@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>pdbonly</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="9.2.0" />
+        <PackageReference Include="NLog" Version="4.7.4" />
+        <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+        <PackageReference Include="FirebaseDatabase.net" Version="4.0.4" />
+        <PackageReference Include="Xamarin.Forms.InputKit" Version="3.3.1" />
+        <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Views\" />
+        <Folder Include="Models\" />
+        <Folder Include="Firebase\" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Resources\Fonts\FA-Brands.otf" />
+      <EmbeddedResource Include="Resources\Fonts\FA-Brands.otf" />
+      <None Remove="Resources\Fonts\FA-Regular.otf" />
+      <EmbeddedResource Include="Resources\Fonts\FA-Regular.otf" />
+      <None Remove="Resources\Fonts\FA-Solid.otf" />
+      <EmbeddedResource Include="Resources\Fonts\FA-Solid.otf" />
+      <EmbeddedResource Update="Views\Registration\HomePage.xaml">
+        <SubType>Designer</SubType>
+        <Generator></Generator>
+      </EmbeddedResource>
+      <None Remove="Resources\Fonts\NU-Regular.ttf" />
+      <EmbeddedResource Include="Resources\Fonts\NU-Regular.ttf" />
+      <EmbeddedResource Update="Views\Registration\DateAttendance.xaml">
+        <SubType>Designer</SubType>
+        <Generator></Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Views\Registration\AttendanceDetails.xaml">
+        <SubType>Designer</SubType>
+        <Generator></Generator>
+      </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Views\Auth\SignIn.xaml.cs">
+        <DependentUpon>SignIn.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Newcomers\DateRecords.xaml.cs">
+        <DependentUpon>DateRecords.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Newcomers\HomePage.xaml.cs">
+        <DependentUpon>HomePage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Newcomers\NewRecord.xaml.cs">
+        <DependentUpon>NewRecord.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Newcomers\RecordDetail.xaml.cs">
+        <DependentUpon>RecordDetail.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Registration\HomePage.xaml.cs">
+        <DependentUpon>HomePage.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="Views\Registration\DateAttendance.xaml.cs">
+        <DependentUpon>DateAttendance.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="Views\Registration\AttendanceDetails.xaml.cs">
+        <DependentUpon>AttendanceDetails.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+</Project>

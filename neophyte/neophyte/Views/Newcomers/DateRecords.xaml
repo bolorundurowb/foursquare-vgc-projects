@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="neophyte.Views.Newcomers.DateRecords">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Text="Report" Priority="0" Clicked="GenerateDateReport" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Fill"
+                     VerticalOptions="Fill">
+            <ActivityIndicator x:Name="prgLoading"
+                               Color="#92278F"
+                               IsRunning="True"
+                               BackgroundColor="Transparent"
+                               IsVisible="True"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand" />
+
+            <ListView
+                x:Name="lstDateRecords"
+                HorizontalOptions="Fill"
+                VerticalOptions="FillAndExpand"
+                SelectionMode="Single"
+                HasUnevenRows="True"
+                IsVisible="False"
+                IsPullToRefreshEnabled="True"
+                Refreshing="RefreshDateRecords"
+                ItemTapped="ViewPersonRecord">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem CommandParameter="{Binding .}"
+                                          Text="Delete"
+                                          IsDestructive="True"
+                                          Clicked="DeleteRecord" />
+                            </ViewCell.ContextActions>
+                            <StackLayout Padding="5, 10, 5, 10"
+                                         Orientation="Horizontal">
+                                <Image WidthRequest="40"
+                                       HeightRequest="40"
+                                       Source="person.png"
+                                       Margin="5,0,0,0" />
+                                <StackLayout Orientation="Vertical"
+                                             HorizontalOptions="FillAndExpand"
+                                             Padding="5,0,0,0">
+                                    <Label Text="{Binding FullName}"
+                                           FontFamily="Nunito"
+                                           FontSize="Medium" />
+                                    <Label Text="{Binding Phone}"
+                                           FontFamily="Nunito"
+                                           FontSize="Small"
+                                           TextColor="#808080" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

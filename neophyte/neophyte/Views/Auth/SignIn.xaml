@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="neophyte.Views.Auth.SignIn">
+    <ContentPage.Content>
+        <StackLayout
+            HorizontalOptions="Fill"
+            VerticalOptions="Center">
+
+            <Entry x:Name="txtEmail"
+                   HeightRequest="50"
+                   Margin="40,10,40,0"
+                   Placeholder="Email address"
+                   Keyboard="Email" />
+
+            <Button x:Name="btnLogin"
+                    Text="Login"
+                    Margin="0,15,0,0"
+                    BackgroundColor="#92278F"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    HeightRequest="45"
+                    CornerRadius="22"
+                    Padding="20,0,20,0"
+                    Clicked="Login" />
+
+            <ActivityIndicator x:Name="prgLoading"
+                               Color="#92278F"
+                               IsRunning="True"
+                               BackgroundColor="Transparent"
+                               IsVisible="False"
+                               HorizontalOptions="Center"
+                               VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
