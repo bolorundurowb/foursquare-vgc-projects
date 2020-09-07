@@ -4,4 +4,14 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Models" />
+      <Folder Include="Repositories\Implementations" />
+      <Folder Include="Repositories\Interfaces" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MongoDB.Driver" Version="2.11.1" />
+    </ItemGroup>
+
 </Project>
