@@ -17,7 +17,7 @@ namespace api.Data.Models
 
         public string Phone { get; private set; }
 
-        public string Email { get; private set; }
+        public string EmailAddress { get; private set; }
 
         public string BirthDay { get; private set; }
 
@@ -47,7 +47,7 @@ namespace api.Data.Models
             FullName = fullName;
             HomeAddress = homeAddress;
             Phone = phone;
-            Email = email;
+            EmailAddress = email;
             BirthDay = birthDay;
             Gender = gender;
             AgeGroup = ageGroup;
