@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace api.Data.Models
 {
-    public class Admin
+    public class Admin : IEntity
     {
         [BsonId] public ObjectId Id { get; private set; }
 

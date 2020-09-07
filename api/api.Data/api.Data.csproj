@@ -6,7 +6,6 @@
 
     <ItemGroup>
       <Folder Include="Repositories\Implementations" />
-      <Folder Include="Repositories\Interfaces" />
     </ItemGroup>
 
     <ItemGroup>

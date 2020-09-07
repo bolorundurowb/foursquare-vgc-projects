@@ -5,7 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace api.Data.Models
 {
-    public class Newcomer
+    public class Newcomer : IEntity
     {
         [BsonId] public ObjectId Id { get; private set; }
 
