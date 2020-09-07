@@ -41,6 +41,7 @@ namespace api.Data.Models
             Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers, bool caredForSickPerson,
             MultiChoice? haveCovidSymptoms, int seatNumber = 0)
         {
+            Date = DateTime.UtcNow.Date;
             EmailAddress = emailAddress;
             FullName = fullName;
             Age = age;
