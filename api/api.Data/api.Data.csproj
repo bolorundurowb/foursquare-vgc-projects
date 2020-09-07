@@ -5,11 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Repositories\Implementations" />
+      <PackageReference Include="MongoDB.Driver" Version="2.11.1" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MongoDB.Driver" Version="2.11.1" />
+      <Folder Include="Repositories\Implementations" />
     </ItemGroup>
 
 </Project>
