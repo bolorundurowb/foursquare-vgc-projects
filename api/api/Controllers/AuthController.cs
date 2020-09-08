@@ -16,7 +16,7 @@ namespace api.Controllers
     public class AuthController : BaseController
     {
         private readonly IAdminsRepository _adminsRepo;
-        
+
         public AuthController(IMapper mapper, IAdminsRepository adminsRepo) : base(mapper)
         {
             _adminsRepo = adminsRepo;
@@ -24,6 +24,7 @@ namespace api.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
+        [ProducesResponseType(typeof(AdminViewModel), 200)]
         [ProducesResponseType(typeof(GenericViewModel), 400)]
         public async Task<IActionResult> Login([FromBody] LoginBindingModel bm)
         {
@@ -37,6 +38,7 @@ namespace api.Controllers
             {
                 var admin = await _adminsRepo.Login(bm.EmailAddress);
                 var (token, expiry) = Helpers.GenerateToken(admin.Id.ToString(), admin.EmailAddress);
+
                 return Ok(new AuthViewModel
                 {
                     Token = token,
