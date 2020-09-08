@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using api.Data.Models;
 using api.Data.Repositories.Interfaces;
+using api.Shared.Exceptions;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
@@ -33,6 +34,20 @@ namespace api.Data.Repositories.Implementations
         {
             return _dbContext.Admins
                 .ReplaceOneAsync(x => x.Id == entity.Id, entity);
+        }
+
+        public async Task<Admin> Login(string email)
+        {
+            var normalizedEmail = email?.ToLowerInvariant();
+            var admin = await Query()
+                .FirstOrDefaultAsync(x => x.EmailAddress == normalizedEmail);
+
+            if (admin == null)
+            {
+                throw new NotFoundException("Admin not found.");
+            }
+
+            return admin;
         }
     }
 }
