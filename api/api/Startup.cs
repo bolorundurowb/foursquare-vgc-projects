@@ -2,6 +2,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json.Serialization;
 using api.Configuration;
+using api.Data;
 using api.Data.Repositories.Implementations;
 using api.Data.Repositories.Interfaces;
 using dotenv.net.DependencyInjection.Microsoft;
@@ -79,13 +80,14 @@ namespace api
             MapsterConfigExtensions.ConfigureMappings(config);
 
             // add DI mappings
+            services.AddSingleton(new DbContext(Config.DbServerUrl, Config.DbName));
             services.AddScoped<IAdminsRepository, AdminsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            if (_environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
