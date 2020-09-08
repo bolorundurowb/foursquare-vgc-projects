@@ -65,7 +65,7 @@ namespace api.Controllers
             });
         }
 
-        internal static async Task<(bool, IEnumerable<string>)> IsValid<T>(T model) where T : IValidator<T>, new()
+        internal static async Task<(bool, IEnumerable<string>)> IsValid<T>(object model) where T : IValidator, new()
         {
             var results = await Validate<T>(model);
             if (results.IsValid)
@@ -79,7 +79,7 @@ namespace api.Controllers
             return (false, errorMessages);
         }
 
-        private static async Task<ValidationResult> Validate<T>(T model) where T : IValidator<T>, new()
+        private static async Task<ValidationResult> Validate<T>(object model) where T : IValidator, new()
         {
             var validator = new T();
             return await validator.ValidateAsync(model);

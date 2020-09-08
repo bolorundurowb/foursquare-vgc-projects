@@ -7,11 +7,11 @@ namespace api.Validators
     {
         public LoginBindingModelValidator()
         {
-            RuleFor(x => x.Email)
+            RuleFor(x => x.EmailAddress)
                 .NotEmpty()
                 .WithMessage("Your email address is required.")
                 .EmailAddress()
-                .WithMessage("Email is invalid.");
+                .WithMessage("EmailAddress is invalid.");
         }
     }
 }
