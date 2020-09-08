@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <PackageReference Include="dotenv.net" Version="2.1.1" />
+      <PackageReference Include="FluentValidation" Version="9.2.0" />
       <PackageReference Include="logly" Version="2.0.0" />
       <PackageReference Include="Mapster" Version="6.5.0" />
       <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
@@ -14,8 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
-      <Folder Include="Models" />
+      <Folder Include="Models\Binding" />
     </ItemGroup>
 
 
