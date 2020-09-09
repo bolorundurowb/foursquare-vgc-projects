@@ -37,7 +37,8 @@ namespace api.Data.Repositories.Implementations
             return attendee;
         }
 
-        public async Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string homeAddress, string phone, string email,
+        public async Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string homeAddress,
+            string phone, string email,
             string birthDay, Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs,
             MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
         {
@@ -49,8 +50,25 @@ namespace api.Data.Repositories.Implementations
             {
                 throw new NotFoundException("Attendee not found.");
             }
-            
-            
+
+            attendee.UpdateDate(date);
+            attendee.UpdateFullName(fullName);
+            attendee.UpdateHomeAddress(homeAddress);
+            attendee.UpdatePhone(phone);
+            attendee.UpdateEmail(email);
+            attendee.UpdateBirthDay(birthDay);
+            attendee.UpdateGender(gender);
+            attendee.UpdateAgeGroup(ageGroup);
+            attendee.UpdateCommentsOrPrayers(commentsOrPrayers);
+            attendee.UpdateHowYouFoundUs(howYouFoundUs);
+            attendee.UpdateBornAgain(bornAgain);
+            attendee.UpdateBecomeMember(becomeMember);
+            attendee.UpdateRemarks(remarks);
+
+            await _dbContext.Attendance
+                .ReplaceOneAsync(x => x.Id == attendeeId, attendee);
+
+            return attendee;
         }
     }
 }

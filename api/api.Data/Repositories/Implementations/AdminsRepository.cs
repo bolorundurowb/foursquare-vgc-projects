@@ -22,20 +22,6 @@ namespace api.Data.Repositories.Implementations
                 .AsQueryable();
         }
 
-        public async Task<Admin> Add(Admin entity)
-        {
-            await _dbContext.Admins
-                .InsertOneAsync(entity);
-
-            return entity;
-        }
-
-        public Task Commit(Admin entity)
-        {
-            return _dbContext.Admins
-                .ReplaceOneAsync(x => x.Id == entity.Id, entity);
-        }
-
         public async Task<Admin> Login(string email)
         {
             var normalizedEmail = email?.ToLowerInvariant();
