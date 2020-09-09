@@ -6,6 +6,5 @@
              mc:Ignorable="d"
              x:Class="neophyte.App">
     <Application.Resources>
-
     </Application.Resources>
 </Application>
