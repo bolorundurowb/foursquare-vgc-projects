@@ -38,9 +38,8 @@ namespace api.Data.Repositories.Implementations
         }
 
         public async Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string homeAddress,
-            string phone, string email,
-            string birthDay, Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs,
-            MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
+            string phone, string email, string birthDay, Gender? gender, string ageGroup, string commentsOrPrayers,
+            string howYouFoundUs, MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
         {
             var attendeeId = ObjectId.Parse(id);
             var attendee = await Query()
@@ -69,6 +68,12 @@ namespace api.Data.Repositories.Implementations
                 .ReplaceOneAsync(x => x.Id == attendeeId, attendee);
 
             return attendee;
+        }
+
+        public async Task<Attendee> RemoveAttendee(string id)
+        {
+            var attendeeId = ObjectId.Parse(id);
+            await _dbContext.Attendance.DeleteOneAsync(x => x.Id == attendeeId);
         }
     }
 }

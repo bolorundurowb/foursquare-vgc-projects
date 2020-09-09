@@ -14,5 +14,7 @@ namespace api.Data.Repositories.Interfaces
         Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string homeAddress, string phone, string email, string birthDay,
             Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs, MultiChoice? bornAgain,
             MultiChoice? becomeMember, string remarks);
+        
+        Task<Attendee> RemoveAttendee(string id);
     }
 }
