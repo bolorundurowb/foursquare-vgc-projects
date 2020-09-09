@@ -28,6 +28,15 @@ namespace api.Data.Repositories.Implementations
                 .AsQueryable();
         }
 
+        public Task<List<DateTime>> GetAttendanceDates()
+        {
+            return Query()
+                .Select(x => x.Date)
+                .GroupBy(x => x.Date)
+                .Select(x => x.Key)
+                .ToListAsync();
+        }
+
         public Task<List<Attendee>> GetAttendees(DateTime date)
         {
             var dayStart = date.StartOf(DateTimeAnchor.Day);

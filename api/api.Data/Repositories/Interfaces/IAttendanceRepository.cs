@@ -8,6 +8,8 @@ namespace api.Data.Repositories.Interfaces
 {
     public interface IAttendanceRepository : IRepository<Attendee>
     {
+        Task<List<DateTime>> GetAttendanceDates();
+        
         Task<List<Attendee>> GetAttendees(DateTime date);
         
         Task<Attendee> AddAttendee(string fullName, string homeAddress, string phone, string email, string birthDay,
