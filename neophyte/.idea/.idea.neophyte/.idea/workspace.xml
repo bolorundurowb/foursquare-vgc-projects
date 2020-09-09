@@ -33,6 +33,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23f99ac0-87eb-424b-b3ce-e947431337a6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.neophyte/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.neophyte/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.neophyte/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.neophyte/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_2_2020_2_36_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.neophyte/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_2_2020_2_36_PM__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.neophyte/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.neophyte/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.neophyte/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.neophyte/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.neophyte/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.neophyte/riderModule.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neophyte.Android/Resources/Resource.designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/neophyte.Android/Resources/Resource.designer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,15 +53,11 @@
         <entry key="$PROJECT_DIR$" value="feature/generate-reports" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/neophyte.Android/Resources/Resource.designer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Documents/OpenSource/foursquare-neophyte/neophyte.iOS/Implementations/IosFilePersistence.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Documents/OpenSource/foursquare-neophyte/neophyte.Android/Implementations/AndroidFilePersistence.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Documents/OpenSource/foursquare-neophyte/neophyte/Views/Newcomers/DateRecords.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5E7B5015-086E-4E2D-B18A-D8DC963B8743/0d/35637f6c/FontAwesomeLabel.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Documents/OpenSource/foursquare-neophyte/neophyte.Android/Resources/Resource.designer.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -97,7 +100,7 @@
     </ignored-facets>
   </component>
   <component name="ProjectId" id="1V1m1OC2huImm8htCJ1pvxAkVko" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -167,6 +170,7 @@
       <workItem from="1599044819996" duration="966000" />
       <workItem from="1599215575224" duration="5312000" />
       <workItem from="1599395474725" duration="3885000" />
+      <workItem from="1599667471612" duration="2604000" />
     </task>
     <task id="LOCAL-00001" summary="ft: change the supported android version">
       <created>1598735214162</created>
