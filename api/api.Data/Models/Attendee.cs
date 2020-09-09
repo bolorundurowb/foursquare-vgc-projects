@@ -43,7 +43,7 @@ namespace api.Data.Models
             Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs, MultiChoice? bornAgain,
             MultiChoice? becomeMember, string remarks)
         {
-            Date = DateTime.UtcNow.Date;
+            Date = DateTime.UtcNow;
             FullName = fullName;
             HomeAddress = homeAddress;
             Phone = phone;
@@ -62,7 +62,7 @@ namespace api.Data.Models
         {
             if (date.HasValue)
             {
-                Date = date.Value.Date;
+                Date = date.Value;
             }
         }
 

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using api.Data.Enums;
 using api.Data.Models;
 using api.Data.Repositories.Interfaces;
 using api.Shared.Exceptions;
+using moment.net;
+using moment.net.Enums;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
@@ -23,6 +26,15 @@ namespace api.Data.Repositories.Implementations
         {
             return _dbContext.Attendance
                 .AsQueryable();
+        }
+
+        public Task<List<Attendee>> GetAttendees(DateTime date)
+        {
+            var dayStart = date.StartOf(DateTimeAnchor.Day);
+            var dayEnd = date.EndOf(DateTimeAnchor.Day);
+            return Query()
+                .Where(x => x.Date >= dayStart && x.Date < dayEnd)
+                .ToListAsync();
         }
 
         public async Task<Attendee> AddAttendee(string fullName, string homeAddress, string phone, string email,
