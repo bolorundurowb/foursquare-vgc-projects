@@ -16,20 +16,17 @@
                 VerticalOptions="Fill">
                 <Label
                     Text="Full Name:"
-                    FontFamily="Nunito"
                     FontSize="Small"
                     TextColor="Gray"
                     Margin="0, 10, 0, 0" />
                 <Label
                     x:Name="lblFullName"
-                    FontFamily="Nunito"
                     Text="{Binding FullName}"
                     FontAttributes="Bold"
                     FontSize="Medium" />
                 <Entry
                     x:Name="txtFullName"
                     Text="{Binding FullName, Mode=TwoWay}"
-                    FontFamily="Nunito"
                     IsVisible="False"
                     HorizontalOptions="Fill"
                     HeightRequest="40"
@@ -37,20 +34,17 @@
 
                 <Label
                     Text="Home Address:"
-                    FontFamily="Nunito"
                     FontSize="Small"
                     TextColor="Gray"
                     Margin="0, 10, 0, 0" />
                 <Label
                     x:Name="lblHomeAddress"
                     Text="{Binding HomeAddress}"
-                    FontFamily="Nunito"
                     FontAttributes="Bold"
                     FontSize="Medium" />
                 <Entry
                     x:Name="txtHomeAddress"
                     Text="{Binding HomeAddress, Mode=TwoWay}"
-                    FontFamily="Nunito"
                     IsVisible="False"
                     HorizontalOptions="Fill"
                     HeightRequest="40"
@@ -58,20 +52,17 @@
 
                 <Label
                     Text="Phone Number:"
-                    FontFamily="Nunito"
                     FontSize="Small"
                     TextColor="Gray"
                     Margin="0, 10, 0, 0" />
                 <Label
                     x:Name="lblPhone"
                     Text="{Binding Phone}"
-                    FontFamily="Nunito"
                     FontAttributes="Bold"
                     FontSize="Medium" />
                 <Entry
                     x:Name="txtPhone"
                     Text="{Binding Phone, Mode=TwoWay}"
-                    FontFamily="Nunito"
                     HorizontalOptions="Fill"
                     IsVisible="False"
                     HeightRequest="40"
@@ -80,14 +71,12 @@
                 <Label
                     Text="Email Address:"
                     FontSize="Small"
-                    FontFamily="Nunito"
                     TextColor="Gray"
                     Margin="0, 10, 0, 0" />
                 <Label
                     x:Name="lblEmailAddress"
                     Text="{Binding Email}"
                     FontAttributes="Bold"
-                    FontFamily="Nunito"
                     FontSize="Medium" />
                 <Entry
                     x:Name="txtEmail"
@@ -95,20 +84,17 @@
                     HorizontalOptions="Fill"
                     IsVisible="False"
                     HeightRequest="40"
-                    FontFamily="Nunito"
                     Keyboard="Email" />
 
                 <Label
                     Text="Birthday:"
                     FontSize="Small"
-                    FontFamily="Nunito"
                     TextColor="Gray"
                     Margin="0, 10, 0, 0" />
                 <Label
                     x:Name="lblBirthday"
                     Text="{Binding BirthDay}"
                     FontAttributes="Bold"
-                    FontFamily="Nunito"
                     FontSize="Medium" />
                 <StackLayout
                     x:Name="stkBirthday"
@@ -119,11 +105,9 @@
                         x:Name="cmbMonths"
                         Title="Select"
                         HeightRequest="40"
-                        FontFamily="Nunito"
                         HorizontalOptions="FillAndExpand" />
                     <Picker x:Name="cmbDays"
                             Title="Select"
-                            FontFamily="Nunito"
                             HeightRequest="40"
                             HorizontalOptions="FillAndExpand" />
                 </StackLayout>
@@ -132,53 +116,45 @@
                     Text="Gender:"
                     FontSize="Small"
                     TextColor="Gray"
-                    FontFamily="Nunito"
                     Margin="0, 10, 0, 0" />
                 <Label
                     x:Name="lblGender"
                     Text="{Binding Gender}"
                     FontAttributes="Bold"
-                    FontFamily="Nunito"
                     FontSize="Medium" />
                 <Picker
                     x:Name="cmbGender"
                     SelectedItem="{Binding Gender, Mode=TwoWay}"
                     HeightRequest="40"
                     IsVisible="False"
-                    FontFamily="Nunito"
                     Title="Select" />
 
                 <Label
                     Text="Age group:"
                     FontSize="Small"
-                    FontFamily="Nunito"
                     TextColor="Gray"
                     Margin="0, 10, 0, 0" />
                 <Label
                     x:Name="lblAgeGroup"
                     Text="{Binding AgeGroup}"
                     FontAttributes="Bold"
-                    FontFamily="Nunito"
                     FontSize="Medium" />
                 <Picker
                     x:Name="cmbAgeGroup"
                     SelectedItem="{Binding AgeGroup, Mode=TwoWay}"
                     HeightRequest="40"
                     IsVisible="False"
-                    FontFamily="Nunito"
                     Title="Select" />
 
                 <Label
                     Text="Comments/Prayer points:"
                     FontSize="Small"
                     TextColor="Gray"
-                    FontFamily="Nunito"
                     Margin="0, 10, 0, 0" />
                 <Label
                     x:Name="lblCommentsPrayers"
                     Text="{Binding CommentsOrPrayers}"
                     FontAttributes="Bold"
-                    FontFamily="Nunito"
                     FontSize="Medium" />
                 <Editor
                     x:Name="txtPrayersComments"
@@ -187,34 +163,29 @@
                     IsVisible="False"
                     HeightRequest="100"
                     Keyboard="Text"
-                    FontFamily="Nunito"
                     IsSpellCheckEnabled="True"
                     IsTextPredictionEnabled="True" />
 
                 <Label
                     Text="How did you get to know about us:"
                     FontSize="Small"
-                    FontFamily="Nunito"
                     TextColor="Gray"
                     Margin="0, 10, 0, 0" />
                 <Label
                     x:Name="lblHowYouFoundUs"
                     Text="{Binding HowYouFoundUs}"
                     FontAttributes="Bold"
-                    FontFamily="Nunito"
                     FontSize="Medium" />
                 <Entry
                     x:Name="txtHowYouFoundUs"
                     Text="{Binding HowYouFoundUs, Mode=TwoWay}"
                     HorizontalOptions="Fill"
                     IsVisible="False"
-                    FontFamily="Nunito"
                     HeightRequest="40"
                     Keyboard="Text" />
 
                 <Label
                     Text="Are you born again?:"
-                    FontFamily="Nunito"
                     Margin="0, 10, 0, 0" />
                 <input:RadioButtonGroupView
                     SelectedItem="{Binding BornAgain, Mode=TwoWay}"
@@ -225,27 +196,23 @@
                         CircleColor="#92278F"
                         Color="#92278F"
                         Text="Yes"
-                        FontFamily="Nunito"
                         Value="Yes" />
                     <input:RadioButton
                         TextFontSize="14"
                         CircleColor="#92278F"
                         Color="#92278F"
-                        FontFamily="Nunito"
                         Text="No"
                         Value="No" />
                     <input:RadioButton
                         TextFontSize="14"
                         CircleColor="#92278F"
                         Color="#92278F"
-                        FontFamily="Nunito"
                         Text="Interested In"
                         Value="Interested" />
                 </input:RadioButtonGroupView>
 
                 <Label
                     Text="Would you like to become a member of this Church?:"
-                    FontFamily="Nunito"
                     Margin="0, 10, 0, 0" />
                 <input:RadioButtonGroupView
                     SelectedItem="{Binding BecomeMember, Mode=TwoWay}"
@@ -255,21 +222,18 @@
                         TextFontSize="14"
                         CircleColor="#92278F"
                         Color="#92278F"
-                        FontFamily="Nunito"
                         Text="Yes"
                         Value="Yes" />
                     <input:RadioButton
                         TextFontSize="14"
                         CircleColor="#92278F"
                         Color="#92278F"
-                        FontFamily="Nunito"
                         Text="No"
                         Value="No" />
                     <input:RadioButton
                         TextFontSize="14"
                         CircleColor="#92278F"
                         Color="#92278F"
-                        FontFamily="Nunito"
                         Text="Maybe"
                         Value="Maybe" />
                 </input:RadioButtonGroupView>
@@ -278,13 +242,11 @@
                     Text="Remarks:"
                     FontSize="Small"
                     TextColor="Gray"
-                    FontFamily="Nunito"
                     Margin="0, 10, 0, 0" />
                 <Label
                     x:Name="lblRemarks"
                     Text="{Binding Remarks}"
                     FontAttributes="Bold"
-                    FontFamily="Nunito"
                     FontSize="Medium" />
                 <Editor
                     x:Name="txtRemarks"
@@ -294,7 +256,6 @@
                     HeightRequest="100"
                     Keyboard="Text"
                     IsSpellCheckEnabled="True"
-                    FontFamily="Nunito"
                     IsTextPredictionEnabled="True" />
 
                 <Button
@@ -308,7 +269,6 @@
                     WidthRequest="100"
                     CornerRadius="22"
                     IsVisible="False"
-                    FontFamily="Nunito"
                     Clicked="UpdateRecord" />
 
                 <ActivityIndicator

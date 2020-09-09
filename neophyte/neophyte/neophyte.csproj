@@ -35,7 +35,6 @@
         <Generator></Generator>
       </EmbeddedResource>
       <None Remove="Resources\Fonts\NU-Regular.ttf" />
-      <EmbeddedResource Include="Resources\Fonts\NU-Regular.ttf" />
       <EmbeddedResource Update="Views\Registration\DateAttendance.xaml">
         <SubType>Designer</SubType>
         <Generator></Generator>
