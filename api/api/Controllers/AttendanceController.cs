@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
@@ -20,6 +21,14 @@ namespace api.Controllers
         public AttendanceController(IMapper mapper, IAttendanceRepository attendanceRepo) : base(mapper)
         {
             _attendanceRepo = attendanceRepo;
+        }
+
+        [HttpGet("dates")]
+        [ProducesResponseType(typeof(IEnumerable<DateTime>), 200)]
+        public async Task<IActionResult> AddAttendeeDates()
+        {
+            var dates = await _attendanceRepo.GetAttendanceDates();
+            return Ok(dates);
         }
 
         [HttpGet("by-date")]
