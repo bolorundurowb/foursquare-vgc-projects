@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
 using api.Shared.Exceptions;
+using api.Validators;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace api.Controllers
 {
     [Authorize]
-    [Microsoft.AspNetCore.Components.Route("v1/attendance")]
+    [Route("v1/attendance")]
     public class AttendanceController : BaseController
     {
         private readonly IAttendanceRepository _attendanceRepo;
@@ -18,6 +20,21 @@ namespace api.Controllers
         public AttendanceController(IMapper mapper, IAttendanceRepository attendanceRepo) : base(mapper)
         {
             _attendanceRepo = attendanceRepo;
+        }
+
+        [HttpGet("by-date")]
+        [ProducesResponseType(typeof(IEnumerable<AttendeeViewModel>), 200)]
+        [ProducesResponseType(typeof(GenericViewModel), 400)]
+        public async Task<IActionResult> AddAttendee([FromQuery] AttendeesQueryModel qm)
+        {
+            var (isValid, errorMessages) = await IsValid<AttendeesQueryModelValidator>(qm);
+            if (!isValid)
+            {
+                return BadRequest(errorMessages);
+            }
+
+            var attendees = await _attendanceRepo.GetAttendees(qm.Date);
+            return Ok(Mapper.Map<IEnumerable<AttendeeViewModel>>(attendees));
         }
 
         [HttpPost("")]
