@@ -14,7 +14,6 @@
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
                 <Label
-                    FontFamily="Nunito"
                     TextColor="Red"
                     HorizontalTextAlignment="Center"
                     Text="Please, be informed that your data would be made available to the government should there arise a need for contact tracing. Thank you"
@@ -22,7 +21,6 @@
 
                 <controls:CheckBox
                     Margin="0, 10, 0, 0"
-                    FontFamily="Nunito"
                     IsChecked="{Binding ReturnedInLastTenDays, Mode=TwoWay}"
                     Type="Material"
                     HorizontalOptions="Fill"
@@ -32,7 +30,6 @@
 
                 <controls:CheckBox
                     Margin="0, 10, 0, 0"
-                    FontFamily="Nunito"
                     IsChecked="{Binding LiveWithCovidCaregivers, Mode=TwoWay}"
                     Type="Material"
                     HorizontalOptions="Fill"
@@ -42,7 +39,6 @@
 
                 <controls:CheckBox
                     Margin="0, 10, 0, 0"
-                    FontFamily="Nunito"
                     IsChecked="{Binding CaredForSickPerson, Mode=TwoWay}"
                     Type="Material"
                     HorizontalOptions="Fill"
@@ -51,7 +47,6 @@
                     CheckChanged="EvaluateValidity"/>
 
                 <Label
-                    FontFamily="Nunito"
                     Text="Do you presently have cold, cough, fever, sore throat, loss of smell or loss of appetite?:"
                     Margin="0, 15, 0, 0" />
 
@@ -61,21 +56,18 @@
                     Margin="0, 10, 0, 0"
                     SelectedItemChanged="EvaluateValidity">
                     <controls:RadioButton
-                        FontFamily="Nunito"
                         TextFontSize="14"
                         CircleColor="#92278F"
                         Color="#92278F"
                         Text="Yes"
                         Value="Yes" />
                     <controls:RadioButton
-                        FontFamily="Nunito"
                         TextFontSize="14"
                         CircleColor="#92278F"
                         Color="#92278F"
                         Text="No"
                         Value="No" />
                     <controls:RadioButton
-                        FontFamily="Nunito"
                         TextFontSize="14"
                         CircleColor="#92278F"
                         Color="#92278F"
@@ -84,67 +76,55 @@
                 </controls:RadioButtonGroupView>
 
                 <Label
-                    FontFamily="Nunito"
                     Text="Full Name:"
                     Margin="0, 10, 0, 0" />
                 <Entry
-                    FontFamily="Nunito"
                     Text="{Binding FullName, Mode=TwoWay}"
                     HorizontalOptions="Fill"
                     HeightRequest="40"
                     Keyboard="Text" />
 
                 <Label
-                    FontFamily="Nunito"
                     Text="Email:"
                     Margin="0, 10, 0, 0" />
                 <Entry
-                    FontFamily="Nunito"
                     Text="{Binding EmailAddress, Mode=TwoWay}"
                     HorizontalOptions="Fill"
                     HeightRequest="40"
                     Keyboard="Email" />
 
                 <Label
-                    FontFamily="Nunito"
                     Text="Age (in years):"
                     Margin="0, 10, 0, 0" />
                 <Entry
-                    FontFamily="Nunito"
                     Text="{Binding Age, Mode=TwoWay}"
                     HorizontalOptions="Fill"
                     HeightRequest="40"
                     Keyboard="Numeric" />
 
                 <Label
-                    FontFamily="Nunito"
                     Text="Gender:"
                     Margin="0, 10, 0, 0" />
                 <Picker
                     x:Name="cmbGender"
-                    FontFamily="Nunito"
                     SelectedItem="{Binding Gender, Mode=TwoWay}"
                     Title="Select"
                     HeightRequest="40"
                     HorizontalOptions="FillAndExpand" />
 
                 <Label
-                    FontFamily="Nunito"
                     Text="Phone Number:"
                     Margin="0, 10, 0, 0" />
                 <Entry
-                    FontFamily="Nunito"
                     Text="{Binding Phone, Mode=TwoWay}"
                     HorizontalOptions="Fill"
                     HeightRequest="40"
                     Keyboard="Telephone" />
 
                 <Label
-                    FontFamily="Nunito"
                     Text="Residential Address:"
                     Margin="0, 10, 0, 0" />
                 <Editor
-                    FontFamily="Nunito"
                     Text="{Binding ResidentialAddress, Mode=TwoWay}"
                     HorizontalOptions="Fill"
                     HeightRequest="100"
@@ -153,18 +133,15 @@
                     IsTextPredictionEnabled="True" />
 
                 <Label
-                    FontFamily="Nunito"
                     Text="Seat Number:"
                     Margin="0, 10, 0, 0" />
                 <Entry
-                    FontFamily="Nunito"
                     Text="{Binding SeatNumber, Mode=TwoWay}"
                     HorizontalOptions="Fill"
                     HeightRequest="40"
                     Keyboard="Numeric" />
 
                 <Button x:Name="btnSave"
-                        FontFamily="Nunito"
                         Text="Register"
                         HeightRequest="45"
                         HorizontalOptions="Center"
