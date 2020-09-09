@@ -28,5 +28,15 @@ namespace api.Controllers
                 bm.BecomeMember, bm.Remarks);
             return Created(Mapper.Map<AttendeeViewModel>(attendee));
         }
+
+        [HttpPut("{id:string}")]
+        [ProducesResponseType(typeof(AttendeeViewModel), 200)]
+        public async Task<IActionResult> UpdateAttendee(string id, [FromBody] AttendeeRegistrationUpdateBindingModel bm)
+        {
+            var attendee = await _attendanceRepo.UpdateAttendee(id, bm.Date, bm.FullName, bm.HomeAddress, bm.Phone,
+                bm.EmailAddress, bm.BirthDay, bm.Gender, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs,
+                bm.BornAgain, bm.BecomeMember, bm.Remarks);
+            return Created(Mapper.Map<AttendeeViewModel>(attendee));
+        }
     }
 }
