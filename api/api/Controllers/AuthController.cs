@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace api.Controllers
 {
     [Authorize]
-    [Route("api/auth")]
+    [Route("v1/auth")]
     public class AuthController : BaseController
     {
         private readonly IAdminsRepository _adminsRepo;
