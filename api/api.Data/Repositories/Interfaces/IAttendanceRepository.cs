@@ -15,6 +15,6 @@ namespace api.Data.Repositories.Interfaces
             Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs, MultiChoice? bornAgain,
             MultiChoice? becomeMember, string remarks);
         
-        Task<Attendee> RemoveAttendee(string id);
+        Task RemoveAttendee(string id);
     }
 }

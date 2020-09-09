@@ -70,7 +70,7 @@ namespace api.Data.Repositories.Implementations
             return attendee;
         }
 
-        public async Task<Attendee> RemoveAttendee(string id)
+        public async Task RemoveAttendee(string id)
         {
             var attendeeId = ObjectId.Parse(id);
             await _dbContext.Attendance.DeleteOneAsync(x => x.Id == attendeeId);
