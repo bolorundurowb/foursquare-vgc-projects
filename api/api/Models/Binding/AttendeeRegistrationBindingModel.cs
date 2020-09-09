@@ -2,7 +2,7 @@
 
 namespace api.Models.Binding
 {
-    public class AttendanceCreationBindingModel
+    public class AttendeeRegistrationBindingModel
     {
         public string FullName { get; set; }
 
