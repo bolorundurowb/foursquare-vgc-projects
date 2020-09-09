@@ -59,6 +59,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Users/bolorundurowb/Documents/open-source/foursquare-vgc-projects/neophyte/neophyte.Android/Resources/Resource.designer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neophyte.Android/Resources/Resource.designer.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -69,7 +70,6 @@
         <option value="$PROJECT_DIR$/neophyte/Views/HomePage.xaml" />
         <option value="$PROJECT_DIR$/neophyte/Views/Newcomers/NewRecord.xaml.cs" />
         <option value="$PROJECT_DIR$/neophyte/Views/RootPage.xaml.cs" />
-        <option value="$PROJECT_DIR$/neophyte/App.xaml.cs" />
         <option value="$PROJECT_DIR$/neophyte/Views/RootPage.xaml" />
         <option value="$PROJECT_DIR$/neophyte/Views/Newcomers/NewRecord.xaml" />
         <option value="$PROJECT_DIR$/neophyte/Views/Newcomers/RecordDetail.xaml" />
@@ -93,6 +93,7 @@
         <option value="$PROJECT_DIR$/neophyte/Views/Registration/DateAttendance.xaml" />
         <option value="$PROJECT_DIR$/neophyte/Views/Newcomers/DateRecords.xaml" />
         <option value="$PROJECT_DIR$/neophyte.iOS/Implementations/IosFilePersistence.cs" />
+        <option value="$PROJECT_DIR$/neophyte/App.xaml.cs" />
       </list>
     </option>
   </component>
@@ -371,7 +372,6 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ft: update deps" />
     <MESSAGE value="ft: fix the android 10 build" />
     <MESSAGE value="ft: more stuff I dont even know" />
     <MESSAGE value="ft: add in font files" />
@@ -396,17 +396,19 @@
     <MESSAGE value="ft: update android filepersistence" />
     <MESSAGE value="ft: update ios file persistence" />
     <MESSAGE value="ft: add report generation for attendance" />
-    <option name="LAST_COMMIT_MESSAGE" value="ft: add report generation for attendance" />
+    <MESSAGE value="ft: remove font file" />
+    <option name="LAST_COMMIT_MESSAGE" value="ft: remove font file" />
   </component>
   <component name="WindowStateProjectService">
     <state x="970" y="1011" width="1776" height="1009" key="AVDManager" timestamp="1599217317540">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
     <state x="970" y="1011" width="1776" height="1009" key="AVDManager/0.0.3840.2120/-3840.0.3840.2120@0.0.3840.2120" timestamp="1599217317540" />
-    <state x="971" y="237" width="1176" height="1231" key="CommitChangelistDialog2" timestamp="1599397235320">
-      <screen x="0" y="0" width="3840" height="2120" />
+    <state x="486" y="155" width="1176" height="1231" key="CommitChangelistDialog2" timestamp="1599673317701">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
     <state x="971" y="237" width="1176" height="1231" key="CommitChangelistDialog2/0.0.3840.2120/-3840.0.3840.2120@0.0.3840.2120" timestamp="1599397235320" />
+    <state x="486" y="155" key="CommitChangelistDialog2/0.23.1920.1177@0.23.1920.1177" timestamp="1599673317701" />
     <state width="1860" height="433" key="GridCell.Tab.0.bottom" timestamp="1599673235998">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
@@ -491,11 +493,11 @@
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
     <state x="917" y="707" key="SettingsEditor/0.0.3840.2120/-3840.0.3840.2120@0.0.3840.2120" timestamp="1599044792183" />
-    <state x="520" y="463" key="Vcs.Push.Dialog.v2" timestamp="1599673311015">
+    <state x="520" y="463" key="Vcs.Push.Dialog.v2" timestamp="1599673320315">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
     <state x="1040" y="792" key="Vcs.Push.Dialog.v2/0.0.3840.2120/-3840.0.3840.2120@0.0.3840.2120" timestamp="1599397237905" />
-    <state x="520" y="463" key="Vcs.Push.Dialog.v2/0.23.1920.1177@0.23.1920.1177" timestamp="1599673311015" />
+    <state x="520" y="463" key="Vcs.Push.Dialog.v2/0.23.1920.1177@0.23.1920.1177" timestamp="1599673320315" />
     <state width="711" height="589" key="XDebugger.FullValuePopup" timestamp="1599673264315">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
