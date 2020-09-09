@@ -5,6 +5,8 @@ namespace api.Models.View
 {
     public class AttendeeViewModel
     {
+        public string Id { get; set; }
+        
         public DateTime Date { get; set; }
 
         public string FullName { get; set; }

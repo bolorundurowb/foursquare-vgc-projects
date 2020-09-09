@@ -1,7 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using api.Data.Enums;
 using api.Data.Models;
 using api.Data.Repositories.Interfaces;
+using api.Shared.Exceptions;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
@@ -32,6 +35,22 @@ namespace api.Data.Repositories.Implementations
                 .InsertOneAsync(attendee);
 
             return attendee;
+        }
+
+        public async Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string homeAddress, string phone, string email,
+            string birthDay, Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs,
+            MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
+        {
+            var attendeeId = ObjectId.Parse(id);
+            var attendee = await Query()
+                .FirstOrDefaultAsync(x => x.Id == attendeeId);
+
+            if (attendee == null)
+            {
+                throw new NotFoundException("Attendee not found.");
+            }
+            
+            
         }
     }
 }
