@@ -22,12 +22,12 @@ namespace api.Controllers
             _newcomersRepo = newcomersRepo;
         }
 
-        [HttpGet("dates")]
-        [ProducesResponseType(typeof(IEnumerable<DateTime>), 200)]
+        [HttpGet("")]
+        [ProducesResponseType(typeof(IEnumerable<DateSummaryViewModel>), 200)]
         public async Task<IActionResult> GetNewcomerDates()
         {
-            var dates = await _newcomersRepo.GetNewcomersDates();
-            return Ok(dates);
+            var dateSummary = await _newcomersRepo.GetNewcomersDates();
+            return Ok(Mapper.Map<IEnumerable<DateSummaryViewModel>>(dateSummary));
         }
 
         [HttpGet("{date:DateTime}")]
