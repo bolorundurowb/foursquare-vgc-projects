@@ -15,7 +15,7 @@ namespace api.Data.Models
 
         public string FullName { get; private set; }
 
-        public string Age { get; private set; }
+        public int? Age { get; private set; }
 
         public Gender? Gender { get; private set; }
 
@@ -31,13 +31,13 @@ namespace api.Data.Models
 
         public MultiChoice? HaveCovidSymptoms { get; private set; }
 
-        public int SeatNumber { get; private set; }
+        public int? SeatNumber { get; private set; }
 
         private Attendee()
         {
         }
 
-        public Attendee(string emailAddress, string fullName, string age, string phone, string residentialAddress,
+        public Attendee(string emailAddress, string fullName, int? age, string phone, string residentialAddress,
             Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers, bool caredForSickPerson,
             MultiChoice? haveCovidSymptoms, int seatNumber = 0)
         {
@@ -71,11 +71,11 @@ namespace api.Data.Models
             }
         }
 
-        public void UpdateHomeAddress(string homeAddress)
+        public void UpdateResidentialAddress(string residentialAddress)
         {
-            if (!string.IsNullOrWhiteSpace(homeAddress))
+            if (!string.IsNullOrWhiteSpace(residentialAddress))
             {
-                HomeAddress = homeAddress;
+                ResidentialAddress = residentialAddress;
             }
         }
 
@@ -95,46 +95,6 @@ namespace api.Data.Models
             }
         }
 
-        public void UpdateBirthDay(string birthDay)
-        {
-            if (!string.IsNullOrWhiteSpace(birthDay))
-            {
-                BirthDay = birthDay;
-            }
-        }
-
-        public void UpdateAgeGroup(string agGroup)
-        {
-            if (!string.IsNullOrWhiteSpace(agGroup))
-            {
-                AgeGroup = agGroup;
-            }
-        }
-
-        public void UpdateCommentsOrPrayers(string commentsOrPrayers)
-        {
-            if (!string.IsNullOrWhiteSpace(commentsOrPrayers))
-            {
-                CommentsOrPrayers = commentsOrPrayers;
-            }
-        }
-
-        public void UpdateHowYouFoundUs(string howYouFoundUs)
-        {
-            if (!string.IsNullOrWhiteSpace(howYouFoundUs))
-            {
-                HowYouFoundUs = howYouFoundUs;
-            }
-        }
-
-        public void UpdateRemarks(string remarks)
-        {
-            if (!string.IsNullOrWhiteSpace(remarks))
-            {
-                Remarks = remarks;
-            }
-        }
-
         public void UpdateGender(Gender? gender)
         {
             if (gender.HasValue)
@@ -143,19 +103,51 @@ namespace api.Data.Models
             }
         }
 
-        public void UpdateBornAgain(MultiChoice? bornAgain)
+        public void UpdateHaveCovidSymptoms(MultiChoice? haveCovidSymptoms)
         {
-            if (bornAgain.HasValue)
+            if (haveCovidSymptoms.HasValue)
             {
-                BornAgain = bornAgain.Value;
+                HaveCovidSymptoms = haveCovidSymptoms.Value;
             }
         }
 
-        public void UpdateBecomeMember(MultiChoice? becomeMember)
+        public void UpdateAge(int? seatNumber)
         {
-            if (becomeMember.HasValue)
+            if (seatNumber.HasValue)
             {
-                BecomeMember = becomeMember.Value;
+                Age = seatNumber.Value;
+            }
+        }
+
+        public void UpdateSeatNumber(int? seatNumber)
+        {
+            if (seatNumber.HasValue)
+            {
+                SeatNumber = seatNumber.Value;
+            }
+        }
+
+        public void UpdateReturnedInLastTenDays(bool? returnedInLastTen)
+        {
+            if (returnedInLastTen.HasValue)
+            {
+                ReturnedInLastTenDays = returnedInLastTen.Value;
+            }
+        }
+
+        public void UpdateLiveWithCovidCaregivers(bool? liveWithCaregivers)
+        {
+            if (liveWithCaregivers.HasValue)
+            {
+                LiveWithCovidCaregivers = liveWithCaregivers.Value;
+            }
+        }
+
+        public void UpdateCaredForSickPerson(bool? caredForSickPerson)
+        {
+            if (caredForSickPerson.HasValue)
+            {
+                CaredForSickPerson = caredForSickPerson.Value;
             }
         }
     }
