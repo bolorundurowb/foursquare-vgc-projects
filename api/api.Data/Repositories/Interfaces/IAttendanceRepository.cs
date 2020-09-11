@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using api.Data.DTOs;
 using api.Data.Enums;
 using api.Data.Models;
 
@@ -8,7 +9,7 @@ namespace api.Data.Repositories.Interfaces
 {
     public interface IAttendanceRepository : IRepository<Attendee>
     {
-        Task<List<DateTime>> GetAttendanceDates();
+        Task<List<DateSummaryDto>> GetAttendanceDates();
 
         Task<List<Attendee>> GetAttendance(DateTime date);
 

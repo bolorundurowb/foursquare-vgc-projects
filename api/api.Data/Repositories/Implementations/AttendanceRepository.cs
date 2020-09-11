@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using api.Data.DTOs;
 using api.Data.Enums;
 using api.Data.Models;
 using api.Data.Repositories.Interfaces;
@@ -28,12 +30,17 @@ namespace api.Data.Repositories.Implementations
                 .AsQueryable();
         }
 
-        public Task<List<DateTime>> GetAttendanceDates()
+        public Task<List<DateSummaryDto>> GetAttendanceDates()
         {
             return Query()
                 .Select(x => x.Date)
                 .GroupBy(x => x.Date)
-                .Select(x => x.Key)
+                .Select(x => new DateSummaryDto
+                {
+                    Date = x.Key,
+                    NumOfEntries = x.Count()
+                })
+                .OrderByDescending(x => x.Date)
                 .ToListAsync();
         }
 
