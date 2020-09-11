@@ -48,7 +48,7 @@ namespace api.Controllers
 
         [HttpPost("")]
         [ProducesResponseType(typeof(NewcomerViewModel), 201)]
-        public async Task<IActionResult> AddNewcomer([FromBody] NewcomerRegistrationBindingModel bm)
+        public async Task<IActionResult> AddNewcomer([FromBody] NewcomerBindingModel bm)
         {
             var attendee = await _newcomersRepo.AddNewcomer(bm.FullName, bm.HomeAddress, bm.Phone, bm.EmailAddress,
                 bm.BirthDay, bm.Gender, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs, bm.BornAgain,
@@ -59,7 +59,7 @@ namespace api.Controllers
         [HttpPut("{id:string}")]
         [ProducesResponseType(typeof(NewcomerViewModel), 200)]
         [ProducesResponseType(typeof(GenericViewModel), 404)]
-        public async Task<IActionResult> UpdateNewcomer(string id, [FromBody] NewcomerRegistrationUpdateBindingModel bm)
+        public async Task<IActionResult> UpdateNewcomer(string id, [FromBody] NewcomerUpdateBindingModel bm)
         {
             try
             {
