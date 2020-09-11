@@ -39,7 +39,7 @@ namespace api.Data.Models
 
         public Attendee(string emailAddress, string fullName, int? age, string phone, string residentialAddress,
             Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers, bool caredForSickPerson,
-            MultiChoice? haveCovidSymptoms, int seatNumber = 0)
+            MultiChoice? haveCovidSymptoms)
         {
             Date = DateTime.UtcNow.Date;
             EmailAddress = emailAddress;
@@ -52,7 +52,6 @@ namespace api.Data.Models
             LiveWithCovidCaregivers = liveWithCovidCaregivers;
             CaredForSickPerson = caredForSickPerson;
             HaveCovidSymptoms = haveCovidSymptoms;
-            SeatNumber = seatNumber;
         }
 
         public void UpdateDate(DateTime? date)
