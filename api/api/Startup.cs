@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using api.Configuration;
 using api.Data;
+using api.Data.Extensions;
 using api.Data.Repositories.Implementations;
 using api.Data.Repositories.Interfaces;
 using dotenv.net.DependencyInjection.Microsoft;
@@ -87,7 +88,7 @@ namespace api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, DbContext context)
         {
             if (_environment.IsDevelopment())
             {
@@ -123,6 +124,8 @@ namespace api
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            context.SeedDefaults();
         }
     }
 }
