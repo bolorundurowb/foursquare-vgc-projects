@@ -50,51 +50,51 @@ namespace api.Data.Repositories.Implementations
             string birthDay, Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs,
             MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
         {
-            var attendee = new Newcomer(fullName, homeAddress, phone, email, birthDay, gender, ageGroup,
+            var newcomer = new Newcomer(fullName, homeAddress, phone, email, birthDay, gender, ageGroup,
                 commentsOrPrayers, howYouFoundUs, bornAgain, becomeMember, remarks);
             await _dbContext.Newcomers
-                .InsertOneAsync(attendee);
+                .InsertOneAsync(newcomer);
 
-            return attendee;
+            return newcomer;
         }
 
         public async Task<Newcomer> UpdateNewcomer(string id, DateTime? date, string fullName, string homeAddress,
             string phone, string email, string birthDay, Gender? gender, string ageGroup, string commentsOrPrayers,
             string howYouFoundUs, MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
         {
-            var attendeeId = ObjectId.Parse(id);
-            var attendee = await Query()
-                .FirstOrDefaultAsync(x => x.Id == attendeeId);
+            var newcomerId = ObjectId.Parse(id);
+            var newcomer = await Query()
+                .FirstOrDefaultAsync(x => x.Id == newcomerId);
 
-            if (attendee == null)
+            if (newcomer == null)
             {
                 throw new NotFoundException("Newcomer not found.");
             }
 
-            attendee.UpdateDate(date);
-            attendee.UpdateFullName(fullName);
-            attendee.UpdateHomeAddress(homeAddress);
-            attendee.UpdatePhone(phone);
-            attendee.UpdateEmail(email);
-            attendee.UpdateBirthDay(birthDay);
-            attendee.UpdateGender(gender);
-            attendee.UpdateAgeGroup(ageGroup);
-            attendee.UpdateCommentsOrPrayers(commentsOrPrayers);
-            attendee.UpdateHowYouFoundUs(howYouFoundUs);
-            attendee.UpdateBornAgain(bornAgain);
-            attendee.UpdateBecomeMember(becomeMember);
-            attendee.UpdateRemarks(remarks);
+            newcomer.UpdateDate(date);
+            newcomer.UpdateFullName(fullName);
+            newcomer.UpdateHomeAddress(homeAddress);
+            newcomer.UpdatePhone(phone);
+            newcomer.UpdateEmail(email);
+            newcomer.UpdateBirthDay(birthDay);
+            newcomer.UpdateGender(gender);
+            newcomer.UpdateAgeGroup(ageGroup);
+            newcomer.UpdateCommentsOrPrayers(commentsOrPrayers);
+            newcomer.UpdateHowYouFoundUs(howYouFoundUs);
+            newcomer.UpdateBornAgain(bornAgain);
+            newcomer.UpdateBecomeMember(becomeMember);
+            newcomer.UpdateRemarks(remarks);
 
             await _dbContext.Newcomers
-                .ReplaceOneAsync(x => x.Id == attendeeId, attendee);
+                .ReplaceOneAsync(x => x.Id == newcomerId, newcomer);
 
-            return attendee;
+            return newcomer;
         }
 
         public async Task RemoveNewcomer(string id)
         {
-            var attendeeId = ObjectId.Parse(id);
-            await _dbContext.Newcomers.DeleteOneAsync(x => x.Id == attendeeId);
+            var newcomerId = ObjectId.Parse(id);
+            await _dbContext.Newcomers.DeleteOneAsync(x => x.Id == newcomerId);
         }
     }
 }

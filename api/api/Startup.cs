@@ -83,6 +83,7 @@ namespace api
             services.AddSingleton(new DbContext(Config.DbServerUrl, Config.DbName));
             services.AddScoped<IAdminsRepository, AdminsRepository>();
             services.AddScoped<INewcomersRepository, NewcomersRepository>();
+            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
