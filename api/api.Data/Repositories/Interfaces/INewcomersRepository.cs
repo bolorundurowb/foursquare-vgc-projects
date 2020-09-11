@@ -6,20 +6,20 @@ using api.Data.Models;
 
 namespace api.Data.Repositories.Interfaces
 {
-    public interface INewcomersRepository : IRepository<Attendee>
+    public interface INewcomersRepository : IRepository<Newcomer>
     {
-        Task<List<DateTime>> GetAttendanceDates();
+        Task<List<DateTime>> GetNewcomersDates();
         
-        Task<List<Attendee>> GetAttendees(DateTime date);
+        Task<List<Newcomer>> GetNewcomers(DateTime date);
         
-        Task<Attendee> AddAttendee(string fullName, string homeAddress, string phone, string email, string birthDay,
+        Task<Newcomer> AddNewcomer(string fullName, string homeAddress, string phone, string email, string birthDay,
             Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs, MultiChoice? bornAgain,
             MultiChoice? becomeMember, string remarks);
         
-        Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string homeAddress, string phone, string email, string birthDay,
+        Task<Newcomer> UpdateNewcomer(string id, DateTime? date, string fullName, string homeAddress, string phone, string email, string birthDay,
             Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs, MultiChoice? bornAgain,
             MultiChoice? becomeMember, string remarks);
         
-        Task RemoveAttendee(string id);
+        Task RemoveNewcomer(string id);
     }
 }

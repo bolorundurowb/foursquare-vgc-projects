@@ -22,13 +22,13 @@ namespace api.Data.Repositories.Implementations
             _dbContext = dbContext;
         }
 
-        public IMongoQueryable<Attendee> Query()
+        public IMongoQueryable<Newcomer> Query()
         {
-            return _dbContext.Attendance
+            return _dbContext.Newcomers
                 .AsQueryable();
         }
 
-        public Task<List<DateTime>> GetAttendanceDates()
+        public Task<List<DateTime>> GetNewcomersDates()
         {
             return Query()
                 .Select(x => x.Date)
@@ -37,7 +37,7 @@ namespace api.Data.Repositories.Implementations
                 .ToListAsync();
         }
 
-        public Task<List<Attendee>> GetAttendees(DateTime date)
+        public Task<List<Newcomer>> GetNewcomers(DateTime date)
         {
             var dayStart = date.StartOf(DateTimeAnchor.Day);
             var dayEnd = date.EndOf(DateTimeAnchor.Day);
@@ -46,19 +46,19 @@ namespace api.Data.Repositories.Implementations
                 .ToListAsync();
         }
 
-        public async Task<Attendee> AddAttendee(string fullName, string homeAddress, string phone, string email,
+        public async Task<Newcomer> AddNewcomer(string fullName, string homeAddress, string phone, string email,
             string birthDay, Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs,
             MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
         {
-            var attendee = new Attendee(fullName, homeAddress, phone, email, birthDay, gender, ageGroup,
+            var attendee = new Newcomer(fullName, homeAddress, phone, email, birthDay, gender, ageGroup,
                 commentsOrPrayers, howYouFoundUs, bornAgain, becomeMember, remarks);
-            await _dbContext.Attendance
+            await _dbContext.Newcomers
                 .InsertOneAsync(attendee);
 
             return attendee;
         }
 
-        public async Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string homeAddress,
+        public async Task<Newcomer> UpdateNewcomer(string id, DateTime? date, string fullName, string homeAddress,
             string phone, string email, string birthDay, Gender? gender, string ageGroup, string commentsOrPrayers,
             string howYouFoundUs, MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
         {
@@ -68,7 +68,7 @@ namespace api.Data.Repositories.Implementations
 
             if (attendee == null)
             {
-                throw new NotFoundException("Attendee not found.");
+                throw new NotFoundException("Newcomer not found.");
             }
 
             attendee.UpdateDate(date);
@@ -85,16 +85,16 @@ namespace api.Data.Repositories.Implementations
             attendee.UpdateBecomeMember(becomeMember);
             attendee.UpdateRemarks(remarks);
 
-            await _dbContext.Attendance
+            await _dbContext.Newcomers
                 .ReplaceOneAsync(x => x.Id == attendeeId, attendee);
 
             return attendee;
         }
 
-        public async Task RemoveAttendee(string id)
+        public async Task RemoveNewcomer(string id)
         {
             var attendeeId = ObjectId.Parse(id);
-            await _dbContext.Attendance.DeleteOneAsync(x => x.Id == attendeeId);
+            await _dbContext.Newcomers.DeleteOneAsync(x => x.Id == attendeeId);
         }
     }
 }
