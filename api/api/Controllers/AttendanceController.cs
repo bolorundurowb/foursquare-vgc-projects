@@ -16,18 +16,18 @@ namespace api.Controllers
     [Route("v1/attendance")]
     public class AttendanceController : BaseController
     {
-        private readonly IAttendanceRepository _attendanceRepo;
+        private readonly INewcomersRepository _newcomersRepo;
 
-        public AttendanceController(IMapper mapper, IAttendanceRepository attendanceRepo) : base(mapper)
+        public AttendanceController(IMapper mapper, INewcomersRepository newcomersRepo) : base(mapper)
         {
-            _attendanceRepo = attendanceRepo;
+            _newcomersRepo = newcomersRepo;
         }
 
         [HttpGet("dates")]
         [ProducesResponseType(typeof(IEnumerable<DateTime>), 200)]
         public async Task<IActionResult> AddAttendeeDates()
         {
-            var dates = await _attendanceRepo.GetAttendanceDates();
+            var dates = await _newcomersRepo.GetAttendanceDates();
             return Ok(dates);
         }
 
@@ -42,7 +42,7 @@ namespace api.Controllers
                 return BadRequest(errorMessages);
             }
 
-            var attendees = await _attendanceRepo.GetAttendees(qm.Date);
+            var attendees = await _newcomersRepo.GetAttendees(qm.Date);
             return Ok(Mapper.Map<IEnumerable<AttendeeViewModel>>(attendees));
         }
 
@@ -50,7 +50,7 @@ namespace api.Controllers
         [ProducesResponseType(typeof(AttendeeViewModel), 201)]
         public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationBindingModel bm)
         {
-            var attendee = await _attendanceRepo.AddAttendee(bm.FullName, bm.HomeAddress, bm.Phone, bm.EmailAddress,
+            var attendee = await _newcomersRepo.AddAttendee(bm.FullName, bm.HomeAddress, bm.Phone, bm.EmailAddress,
                 bm.BirthDay, bm.Gender, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs, bm.BornAgain,
                 bm.BecomeMember, bm.Remarks);
             return Created(Mapper.Map<AttendeeViewModel>(attendee));
@@ -63,7 +63,7 @@ namespace api.Controllers
         {
             try
             {
-                var attendee = await _attendanceRepo.UpdateAttendee(id, bm.Date, bm.FullName, bm.HomeAddress, bm.Phone,
+                var attendee = await _newcomersRepo.UpdateAttendee(id, bm.Date, bm.FullName, bm.HomeAddress, bm.Phone,
                     bm.EmailAddress, bm.BirthDay, bm.Gender, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs,
                     bm.BornAgain, bm.BecomeMember, bm.Remarks);
                 return Ok(Mapper.Map<AttendeeViewModel>(attendee));
@@ -78,7 +78,7 @@ namespace api.Controllers
         [ProducesResponseType(200)]
         public async Task<IActionResult> RemoveAttendee(string id)
         {
-            await _attendanceRepo.RemoveAttendee(id);
+            await _newcomersRepo.RemoveAttendee(id);
             return Ok();
         }
     }

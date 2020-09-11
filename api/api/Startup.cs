@@ -82,7 +82,7 @@ namespace api
             // add DI mappings
             services.AddSingleton(new DbContext(Config.DbServerUrl, Config.DbName));
             services.AddScoped<IAdminsRepository, AdminsRepository>();
-            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+            services.AddScoped<INewcomersRepository, NewcomersRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

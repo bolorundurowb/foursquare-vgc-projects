@@ -11,51 +11,48 @@ namespace api.Data.Models
 
         public DateTime Date { get; private set; }
 
-        public string FullName { get; private set; }
-
-        public string HomeAddress { get; private set; }
-
-        public string Phone { get; private set; }
-
         public string EmailAddress { get; private set; }
 
-        public string BirthDay { get; private set; }
+        public string FullName { get; private set; }
+
+        public string Age { get; private set; }
 
         public Gender? Gender { get; private set; }
 
-        public string AgeGroup { get; private set; }
+        public string Phone { get; private set; }
 
-        public string CommentsOrPrayers { get; private set; }
+        public string ResidentialAddress { get; private set; }
 
-        public string HowYouFoundUs { get; private set; }
+        public bool ReturnedInLastTenDays { get; private set; }
 
-        public MultiChoice? BornAgain { get; private set; }
+        public bool LiveWithCovidCaregivers { get; private set; }
 
-        public MultiChoice? BecomeMember { get; private set; }
+        public bool CaredForSickPerson { get; private set; }
 
-        public string Remarks { get; private set; }
+        public MultiChoice? HaveCovidSymptoms { get; private set; }
+
+        public int SeatNumber { get; private set; }
 
         private Attendee()
         {
         }
 
-        public Attendee(string fullName, string homeAddress, string phone, string email, string birthDay,
-            Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs, MultiChoice? bornAgain,
-            MultiChoice? becomeMember, string remarks)
+        public Attendee(string emailAddress, string fullName, string age, string phone, string residentialAddress,
+            Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers, bool caredForSickPerson,
+            MultiChoice? haveCovidSymptoms, int seatNumber = 0)
         {
-            Date = DateTime.UtcNow;
+            Date = DateTime.UtcNow.Date;
+            EmailAddress = emailAddress;
             FullName = fullName;
-            HomeAddress = homeAddress;
+            Age = age;
             Phone = phone;
-            EmailAddress = email;
-            BirthDay = birthDay;
+            ResidentialAddress = residentialAddress;
             Gender = gender;
-            AgeGroup = ageGroup;
-            CommentsOrPrayers = commentsOrPrayers;
-            HowYouFoundUs = howYouFoundUs;
-            BornAgain = bornAgain;
-            BecomeMember = becomeMember;
-            Remarks = remarks;
+            ReturnedInLastTenDays = returnedInLastTenDays;
+            LiveWithCovidCaregivers = liveWithCovidCaregivers;
+            CaredForSickPerson = caredForSickPerson;
+            HaveCovidSymptoms = haveCovidSymptoms;
+            SeatNumber = seatNumber;
         }
 
         public void UpdateDate(DateTime? date)

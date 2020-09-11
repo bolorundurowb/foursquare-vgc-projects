@@ -13,11 +13,11 @@ using MongoDB.Driver.Linq;
 
 namespace api.Data.Repositories.Implementations
 {
-    public class AttendanceRepository : IAttendanceRepository
+    public class NewcomersRepository : INewcomersRepository
     {
         private readonly DbContext _dbContext;
 
-        public AttendanceRepository(DbContext dbContext)
+        public NewcomersRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
         }
