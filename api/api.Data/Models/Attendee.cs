@@ -1,5 +1,6 @@
 ﻿using System;
 using api.Data.Enums;
+using moment.net;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -41,7 +42,9 @@ namespace api.Data.Models
             Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers, bool caredForSickPerson,
             MultiChoice? haveCovidSymptoms)
         {
-            Date = DateTime.UtcNow.Date;
+            // they should registering against the next sunday
+            Date = DateTime.Now.Next(DayOfWeek.Sunday);
+
             EmailAddress = emailAddress;
             FullName = fullName;
             Age = age;

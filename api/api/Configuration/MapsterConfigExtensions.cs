@@ -11,9 +11,13 @@ namespace api.Configuration
             config
                 .NewConfig<Admin, AdminViewModel>()
                 .Map(x => x.Id, y => y.Id.ToString());
-            
+
             config
-                .NewConfig<Attendee, NewcomerViewModel>()
+                .NewConfig<Newcomer, NewcomerViewModel>()
+                .Map(x => x.Id, y => y.Id.ToString());
+
+            config
+                .NewConfig<Attendee, AttendeeViewModel>()
                 .Map(x => x.Id, y => y.Id.ToString());
         }
     }
