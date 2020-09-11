@@ -31,18 +31,12 @@ namespace api.Controllers
             return Ok(dates);
         }
 
-        [HttpGet("by-date")]
+        [HttpGet("{date:DateTime}")]
         [ProducesResponseType(typeof(IEnumerable<NewcomerViewModel>), 200)]
         [ProducesResponseType(typeof(GenericViewModel), 400)]
-        public async Task<IActionResult> GetNewcomers([FromQuery] EntityQueryModel qm)
+        public async Task<IActionResult> GetNewcomersForDate(DateTime date)
         {
-            var (isValid, errorMessages) = await IsValid<EntityQueryModelValidator>(qm);
-            if (!isValid)
-            {
-                return BadRequest(errorMessages);
-            }
-
-            var attendees = await _newcomersRepo.GetNewcomers(qm.Date);
+            var attendees = await _newcomersRepo.GetNewcomers(date);
             return Ok(Mapper.Map<IEnumerable<NewcomerViewModel>>(attendees));
         }
 
@@ -56,7 +50,7 @@ namespace api.Controllers
             return Created(Mapper.Map<NewcomerViewModel>(attendee));
         }
 
-        [HttpPut("{id:string}")]
+        [HttpPut("{id}")]
         [ProducesResponseType(typeof(NewcomerViewModel), 200)]
         [ProducesResponseType(typeof(GenericViewModel), 404)]
         public async Task<IActionResult> UpdateNewcomer(string id, [FromBody] NewcomerUpdateBindingModel bm)
@@ -74,7 +68,7 @@ namespace api.Controllers
             }
         }
 
-        [HttpDelete("{id:string}")]
+        [HttpDelete("{id}")]
         [ProducesResponseType(200)]
         public async Task<IActionResult> RemoveNewcomer(string id)
         {
