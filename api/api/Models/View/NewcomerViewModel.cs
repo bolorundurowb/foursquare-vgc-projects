@@ -3,7 +3,7 @@ using api.Data.Enums;
 
 namespace api.Models.View
 {
-    public class AttendeeViewModel
+    public class NewcomerViewModel
     {
         public string Id { get; set; }
         

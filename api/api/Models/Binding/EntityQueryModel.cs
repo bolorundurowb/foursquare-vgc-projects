@@ -2,7 +2,7 @@
 
 namespace api.Models.Binding
 {
-    public class AttendeesQueryModel
+    public class EntityQueryModel
     {
         public DateTime Date { get; set; }
     }

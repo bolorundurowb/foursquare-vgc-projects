@@ -25,48 +25,48 @@ namespace api.Controllers
 
         [HttpGet("dates")]
         [ProducesResponseType(typeof(IEnumerable<DateTime>), 200)]
-        public async Task<IActionResult> AddAttendeeDates()
+        public async Task<IActionResult> GetNewcomerDates()
         {
-            var dates = await _newcomersRepo.GetAttendanceDates();
+            var dates = await _newcomersRepo.GetNewcomersDates();
             return Ok(dates);
         }
 
         [HttpGet("by-date")]
-        [ProducesResponseType(typeof(IEnumerable<AttendeeViewModel>), 200)]
+        [ProducesResponseType(typeof(IEnumerable<NewcomerViewModel>), 200)]
         [ProducesResponseType(typeof(GenericViewModel), 400)]
-        public async Task<IActionResult> AddAttendee([FromQuery] AttendeesQueryModel qm)
+        public async Task<IActionResult> GetNewcomers([FromQuery] EntityQueryModel qm)
         {
-            var (isValid, errorMessages) = await IsValid<AttendeesQueryModelValidator>(qm);
+            var (isValid, errorMessages) = await IsValid<EntityQueryModelValidator>(qm);
             if (!isValid)
             {
                 return BadRequest(errorMessages);
             }
 
-            var attendees = await _newcomersRepo.GetAttendees(qm.Date);
-            return Ok(Mapper.Map<IEnumerable<AttendeeViewModel>>(attendees));
+            var attendees = await _newcomersRepo.GetNewcomers(qm.Date);
+            return Ok(Mapper.Map<IEnumerable<NewcomerViewModel>>(attendees));
         }
 
         [HttpPost("")]
-        [ProducesResponseType(typeof(AttendeeViewModel), 201)]
-        public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationBindingModel bm)
+        [ProducesResponseType(typeof(NewcomerViewModel), 201)]
+        public async Task<IActionResult> AddNewcomer([FromBody] NewcomerRegistrationBindingModel bm)
         {
-            var attendee = await _newcomersRepo.AddAttendee(bm.FullName, bm.HomeAddress, bm.Phone, bm.EmailAddress,
+            var attendee = await _newcomersRepo.AddNewcomer(bm.FullName, bm.HomeAddress, bm.Phone, bm.EmailAddress,
                 bm.BirthDay, bm.Gender, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs, bm.BornAgain,
                 bm.BecomeMember, bm.Remarks);
-            return Created(Mapper.Map<AttendeeViewModel>(attendee));
+            return Created(Mapper.Map<NewcomerViewModel>(attendee));
         }
 
         [HttpPut("{id:string}")]
-        [ProducesResponseType(typeof(AttendeeViewModel), 200)]
+        [ProducesResponseType(typeof(NewcomerViewModel), 200)]
         [ProducesResponseType(typeof(GenericViewModel), 404)]
-        public async Task<IActionResult> UpdateAttendee(string id, [FromBody] AttendeeRegistrationUpdateBindingModel bm)
+        public async Task<IActionResult> UpdateNewcomer(string id, [FromBody] NewcomerRegistrationUpdateBindingModel bm)
         {
             try
             {
-                var attendee = await _newcomersRepo.UpdateAttendee(id, bm.Date, bm.FullName, bm.HomeAddress, bm.Phone,
+                var attendee = await _newcomersRepo.UpdateNewcomer(id, bm.Date, bm.FullName, bm.HomeAddress, bm.Phone,
                     bm.EmailAddress, bm.BirthDay, bm.Gender, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs,
                     bm.BornAgain, bm.BecomeMember, bm.Remarks);
-                return Ok(Mapper.Map<AttendeeViewModel>(attendee));
+                return Ok(Mapper.Map<NewcomerViewModel>(attendee));
             }
             catch (NotFoundException ex)
             {
@@ -76,9 +76,9 @@ namespace api.Controllers
 
         [HttpDelete("{id:string}")]
         [ProducesResponseType(200)]
-        public async Task<IActionResult> RemoveAttendee(string id)
+        public async Task<IActionResult> RemoveNewcomer(string id)
         {
-            await _newcomersRepo.RemoveAttendee(id);
+            await _newcomersRepo.RemoveNewcomer(id);
             return Ok();
         }
     }

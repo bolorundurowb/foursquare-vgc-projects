@@ -2,7 +2,7 @@
 
 namespace api.Models.Binding
 {
-    public class AttendeeRegistrationUpdateBindingModel : AttendeeRegistrationBindingModel
+    public class NewcomerRegistrationUpdateBindingModel : NewcomerRegistrationBindingModel
     {
         public DateTime? Date { get; set; }
     }

@@ -13,7 +13,7 @@ namespace api.Configuration
                 .Map(x => x.Id, y => y.Id.ToString());
             
             config
-                .NewConfig<Attendee, AttendeeViewModel>()
+                .NewConfig<Attendee, NewcomerViewModel>()
                 .Map(x => x.Id, y => y.Id.ToString());
         }
     }

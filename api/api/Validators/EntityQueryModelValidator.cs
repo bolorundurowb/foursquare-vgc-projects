@@ -4,9 +4,9 @@ using FluentValidation;
 
 namespace api.Validators
 {
-    public class AttendeesQueryModelValidator : AbstractValidator<AttendeesQueryModel>
+    public class EntityQueryModelValidator : AbstractValidator<EntityQueryModel>
     {
-        public AttendeesQueryModelValidator()
+        public EntityQueryModelValidator()
         {
             RuleFor(x => x.Date)
                 .NotEqual(DateTime.MinValue)
