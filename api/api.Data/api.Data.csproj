@@ -5,8 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="ClosedXML" Version="0.95.3" />
       <PackageReference Include="CsvHelper" Version="15.0.5" />
-      <PackageReference Include="CsvHelper.Excel" Version="1.0.6" />
       <PackageReference Include="moment.net" Version="1.3.0" />
       <PackageReference Include="MongoDB.Driver" Version="2.11.1" />
     </ItemGroup>
