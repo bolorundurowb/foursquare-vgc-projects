@@ -20,11 +20,13 @@ namespace api.Data.Extensions
                     .AsQueryable()
                     .Any(x => x.EmailAddress == adminEmail);
 
-                if (!exists)
+                if (exists)
                 {
-                    var admin = new Admin(string.Empty, adminEmail);
-                    context.Admins.InsertOne(admin);
+                    continue;
                 }
+                
+                var admin = new Admin(string.Empty, adminEmail);
+                context.Admins.InsertOne(admin);
             }
         }
     }
