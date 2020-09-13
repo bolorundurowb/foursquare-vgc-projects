@@ -70,8 +70,9 @@ namespace api.Shared.Email.Implementations
         private HttpClient GetClient()
         {
             var client = _httpFactory.CreateClient();
+            client.BaseAddress = new Uri(BaseUri);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                Convert.ToBase64String(Encoding.ASCII.GetBytes(_apiKey)));
+                Convert.ToBase64String(Encoding.ASCII.GetBytes($"key:{_apiKey}")));
             return client;
         }
     }

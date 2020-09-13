@@ -39,6 +39,7 @@ namespace api.Controllers
             return Ok(Mapper.Map<IEnumerable<AttendeeViewModel>>(attendees));
         }
 
+        [AllowAnonymous]
         [HttpPost("")]
         [ProducesResponseType(typeof(AttendeeViewModel), 201)]
         public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationBindingModel bm)
