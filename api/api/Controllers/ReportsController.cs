@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using api.Data.Helpers;
 using api.Data.Repositories.Interfaces;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,9 @@ namespace api.Controllers
         {
             var attendance = await _attendanceRepo.GetAttendance(date);
             var newcomers = await _newcomersRepo.GetNewcomers(date);
+
+            var attendanceCsv = await CsvHelpers.GenerateCsvFromAttendance(attendance);
+            var newcomerCsv = await CsvHelpers.GenerateCsvFromNewcomers(newcomers);
 
             return Ok();
         }
