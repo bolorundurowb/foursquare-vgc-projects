@@ -59,6 +59,9 @@ namespace api
                     Version = "v1"
                 });
             });
+            
+            // add http client factory
+            services.AddHttpClient();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opts =>
