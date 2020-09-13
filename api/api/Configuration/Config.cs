@@ -10,6 +10,8 @@ namespace api.Configuration
 
         public static string Secret => Environment.GetEnvironmentVariable("SECRET");
 
+        public static string DestinationEmail => Environment.GetEnvironmentVariable("DESTINATION_EMAIL");
+
         public static string Audience => "foursquare-neophyte";
 
         public static string Issuer => "foursquare-neophyte";
