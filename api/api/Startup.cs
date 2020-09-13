@@ -6,6 +6,8 @@ using api.Data;
 using api.Data.Extensions;
 using api.Data.Repositories.Implementations;
 using api.Data.Repositories.Interfaces;
+using api.Shared.Email.Implementations;
+using api.Shared.Email.Interfaces;
 using dotenv.net.DependencyInjection.Microsoft;
 using logly.Extensions;
 using Mapster;
@@ -82,6 +84,7 @@ namespace api
 
             // add DI mappings
             services.AddSingleton(new DbContext(Config.DbServerUrl, Config.DbName));
+            services.AddScoped<IEmailService, MailgunService>();
             services.AddScoped<IAdminsRepository, AdminsRepository>();
             services.AddScoped<INewcomersRepository, NewcomersRepository>();
             services.AddScoped<IAttendanceRepository, AttendanceRepository>();
