@@ -25,7 +25,7 @@ namespace api.Controllers
             _emailService = emailService;
         }
 
-        [HttpPost("{date:DateTime")]
+        [HttpPost("{date:DateTime}")]
         [ProducesResponseType(200)]
         public async Task<IActionResult> GenerateReports(DateTime date)
         {
