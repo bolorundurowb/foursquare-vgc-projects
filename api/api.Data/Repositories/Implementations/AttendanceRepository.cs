@@ -63,7 +63,17 @@ namespace api.Data.Repositories.Implementations
             string residentialAddress, Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers,
             bool caredForSickPerson, MultiChoice? haveCovidSymptoms)
         {
-            var attendee = new Attendee(email, fullName, age, phone, residentialAddress, gender, returnedInLastTenDays,
+            var nextSunday = DateTime.UtcNow.Date.Next(DayOfWeek.Sunday);
+            var normalizedEmail = email?.ToLowerInvariant();
+            var alreadyExists = await Query()
+                .AnyAsync(x => x.Date == nextSunday && x.EmailAddress == normalizedEmail);
+
+            if (alreadyExists)
+            {
+                throw new ConflictException("You have already registered for the service.");
+            }
+            
+            var attendee = new Attendee(normalizedEmail, fullName, age, phone, residentialAddress, gender, returnedInLastTenDays,
                 liveWithCovidCaregivers, caredForSickPerson, haveCovidSymptoms);
             await _dbContext.Attendance
                 .InsertOneAsync(attendee);

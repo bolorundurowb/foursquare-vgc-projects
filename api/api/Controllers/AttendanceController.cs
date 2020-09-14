@@ -43,10 +43,17 @@ namespace api.Controllers
         [ProducesResponseType(typeof(AttendeeViewModel), 201)]
         public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationBindingModel bm)
         {
-            var attendee = await _attendanceRepo.AddAttendee(bm.FullName, bm.EmailAddress, bm.Age, bm.Phone,
-                bm.ResidentialAddress, bm.Gender, bm.ReturnedInLastTenDays, bm.LiveWithCovidCaregivers,
-                bm.CaredForSickPerson, bm.HaveCovidSymptoms);
-            return Created(Mapper.Map<AttendeeViewModel>(attendee));
+            try
+            {
+                var attendee = await _attendanceRepo.AddAttendee(bm.FullName, bm.EmailAddress, bm.Age, bm.Phone,
+                    bm.ResidentialAddress, bm.Gender, bm.ReturnedInLastTenDays, bm.LiveWithCovidCaregivers,
+                    bm.CaredForSickPerson, bm.HaveCovidSymptoms);
+                return Created(Mapper.Map<AttendeeViewModel>(attendee));
+            }
+            catch (ConflictException ex)
+            {
+                return Conflict(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
