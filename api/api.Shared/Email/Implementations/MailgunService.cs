@@ -47,7 +47,7 @@ namespace api.Shared.Email.Implementations
                     var file = new ByteArrayContent(attachment.Content);
                     file.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
-                        Name = attachment.Name,
+                        Name = "attachment",
                         FileName = attachment.Name
                     };
                     content.Add(file);
