@@ -6,12 +6,10 @@ using api.Models.Binding;
 using api.Models.View;
 using api.Shared.Exceptions;
 using MapsterMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-    [Authorize]
     [Route("v1/newcomers")]
     public class NewcomersController : BaseController
     {

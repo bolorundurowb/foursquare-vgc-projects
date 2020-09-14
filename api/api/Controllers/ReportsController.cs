@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    [Route("v1/reports")]
     public class ReportsController : BaseController
     {
         private readonly IAttendanceRepository _attendanceRepo;

@@ -6,10 +6,12 @@ using api.Models.View;
 using FluentValidation;
 using FluentValidation.Results;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    [Authorize]
     [ApiController]
     public class BaseController : ControllerBase
     {
