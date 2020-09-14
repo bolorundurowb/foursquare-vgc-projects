@@ -6,7 +6,7 @@ namespace api.Data.DTOs
     {
         public DateTime Date { get; set; }
 
-        public string HumanReadableDate => Date.ToString("ddd, MMM yyyy h:mm tt");
+        public string HumanReadableDate => Date.ToString("ddd, dd MMM yyyy");
 
         public int NumOfEntries { get; set; }
     }
