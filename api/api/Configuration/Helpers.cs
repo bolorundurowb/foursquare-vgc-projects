@@ -11,6 +11,9 @@ namespace api.Configuration
     {
         internal static (string, DateTime) GenerateToken(string id, string emailAddress)
         {
+            const int durationInDays = 100 * 365; // 100 years
+            var now = DateTime.UtcNow;
+            var expiry = now.AddDays(durationInDays);
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, emailAddress),
@@ -18,15 +21,13 @@ namespace api.Configuration
                 new Claim("id", id)
             };
 
-            const int durationInDays = 100 * 365; // 100 years
-            var expiry = DateTime.UtcNow.AddDays(durationInDays);
             var token = new JwtSecurityToken
             (
                 Config.Issuer,
                 Config.Audience,
                 claims,
                 expires: expiry,
-                notBefore: DateTime.UtcNow,
+                notBefore: now,
                 signingCredentials: new SigningCredentials(
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Config.Secret)),
                     SecurityAlgorithms.HmacSha256)

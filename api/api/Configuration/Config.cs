@@ -12,8 +12,8 @@ namespace api.Configuration
 
         public static string DestinationEmail => Environment.GetEnvironmentVariable("DESTINATION_EMAIL");
 
-        public static string Audience => "foursquare-neophyte";
+        public static string Audience => "neophyte";
 
-        public static string Issuer => "foursquare-neophyte";
+        public static string Issuer => "neophyte";
     }
 }

@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-    [Authorize]
     [Route("v1/attendance")]
     public class AttendanceController : BaseController
     {

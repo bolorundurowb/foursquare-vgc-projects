@@ -13,6 +13,7 @@ using logly.Extensions;
 using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -59,14 +60,11 @@ namespace api
                     Version = "v1"
                 });
             });
-            
-            // add http client factory
-            services.AddHttpClient();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(opts =>
+                .AddJwtBearer(x =>
                 {
-                    opts.TokenValidationParameters = new TokenValidationParameters
+                    x.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateAudience = true,
                         ValidateIssuer = true,
@@ -79,6 +77,12 @@ namespace api
                     };
                 });
 
+            // add in deb context
+            services.AddSingleton(new DbContext(Config.DbServerUrl, Config.DbName));
+
+            // add http client factory
+            services.AddHttpClient();
+
             // add in mapper
             var config = TypeAdapterConfig.GlobalSettings;
             services.AddSingleton(config);
@@ -86,7 +90,6 @@ namespace api
             MapsterConfigExtensions.ConfigureMappings(config);
 
             // add DI mappings
-            services.AddSingleton(new DbContext(Config.DbServerUrl, Config.DbName));
             services.AddScoped<IEmailService, MailgunService>();
             services.AddScoped<IAdminsRepository, AdminsRepository>();
             services.AddScoped<INewcomersRepository, NewcomersRepository>();
@@ -94,9 +97,9 @@ namespace api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, DbContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DbContext context)
         {
-            if (_environment.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -117,10 +120,10 @@ namespace api
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(x =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Neophyte API");
-                c.RoutePrefix = "docs";
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "Neophyte API");
+                x.RoutePrefix = "docs";
             });
 
             app.UseRouting();
@@ -131,6 +134,7 @@ namespace api
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
+            // seed admins
             context.SeedDefaults();
         }
     }

@@ -39,7 +39,6 @@ namespace api.Controllers
             return Ok(Mapper.Map<IEnumerable<NewcomerViewModel>>(attendees));
         }
 
-        [AllowAnonymous]
         [HttpPost("")]
         [ProducesResponseType(typeof(NewcomerViewModel), 201)]
         public async Task<IActionResult> AddNewcomer([FromBody] NewcomerBindingModel bm)
