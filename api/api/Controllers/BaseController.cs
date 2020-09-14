@@ -13,6 +13,7 @@ namespace api.Controllers
 {
     [Authorize]
     [ApiController]
+    [Route("v1/[controller]")]
     public class BaseController : ControllerBase
     {
         protected readonly IMapper Mapper;

@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-    [Route("v1/newcomers")]
     public class NewcomersController : BaseController
     {
         private readonly INewcomersRepository _newcomersRepo;
