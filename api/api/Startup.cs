@@ -55,7 +55,7 @@ namespace api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Neopyhte API",
+                    Title = "Neophyte API",
                     Version = "v1"
                 });
             });
