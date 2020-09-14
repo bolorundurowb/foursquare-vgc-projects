@@ -1,4 +1,5 @@
-﻿using api.Data.Models;
+﻿using api.Data.DTOs;
+using api.Data.Models;
 using api.Models.View;
 using Mapster;
 
@@ -19,6 +20,13 @@ namespace api.Configuration
             config
                 .NewConfig<Attendee, AttendeeViewModel>()
                 .Map(x => x.Id, y => y.Id.ToString());
+
+            config
+                .NewConfig<DateSummaryDto, DateSummaryViewModel>()
+                .AfterMapping((x, y) =>
+                {
+                    y.HumanReadableDate = y.Date.ToString("ddd, dd MMM yyyy");
+                });
         }
     }
 }

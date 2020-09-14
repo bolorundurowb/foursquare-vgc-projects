@@ -33,7 +33,6 @@ namespace api.Data.Repositories.Implementations
         public Task<List<DateSummaryDto>> GetNewcomersDates()
         {
             return Query()
-                .Select(x => x.Date)
                 .GroupBy(x => x.Date)
                 .Select(x => new DateSummaryDto
                 {

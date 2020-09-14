@@ -6,11 +6,14 @@ using api.Models.View;
 using FluentValidation;
 using FluentValidation.Results;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    [Authorize]
     [ApiController]
+    [Route("v1/[controller]")]
     public class BaseController : ControllerBase
     {
         protected readonly IMapper Mapper;

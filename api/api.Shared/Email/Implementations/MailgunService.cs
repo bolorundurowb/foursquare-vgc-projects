@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -13,7 +12,7 @@ namespace api.Shared.Email.Implementations
 {
     public class MailgunService : IEmailService
     {
-        private const string Sender = "no-reply@bolorundurowb.com";
+        private const string Sender = "no-reply@neophyte-api.com";
         private const string BaseUri = "https://api.mailgun.net/v3/";
 
         private readonly ILogger<IEmailService> _logger;
@@ -36,15 +35,25 @@ namespace api.Shared.Email.Implementations
             {
                 var requestUri = $"{_domain}/messages";
                 var client = GetClient();
-                var content = new FormUrlEncodedContent(new[]
-                {
-                    new KeyValuePair<string, string>("from", emailMessage?.Sender ?? Sender),
-                    new KeyValuePair<string, string>("to", recipient),
-                    new KeyValuePair<string, string>("subject", emailMessage?.Subject),
-                    new KeyValuePair<string, string>("html", emailMessage?.Content)
-                });
+                var content = new MultipartFormDataContent();
+                content.Add(new StringContent(emailMessage.Sender ?? Sender), "from");
+                content.Add(new StringContent(recipient), "to");
+                content.Add(new StringContent(emailMessage.Subject), "subject");
+                content.Add(new StringContent( emailMessage.Content), "html");
 
-                var response = await client.PostAsync(requestUri, content);
+                foreach (var attachment in emailMessage.Attachments)
+                {
+                    var file = new ByteArrayContent(attachment.Content);
+                    file.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                    {
+                        Name = "attachment",
+                        FileName = attachment.Name
+                    };
+                    content.Add(file);
+                }
+
+                var response = await client.PostAsync(requestUri, content)
+                    .ConfigureAwait(false);
                 var isSuccessful = response.IsSuccessStatusCode;
 
                 if (isSuccessful)
@@ -70,8 +79,9 @@ namespace api.Shared.Email.Implementations
         private HttpClient GetClient()
         {
             var client = _httpFactory.CreateClient();
+            client.BaseAddress = new Uri(BaseUri);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                Convert.ToBase64String(Encoding.ASCII.GetBytes(_apiKey)));
+                Convert.ToBase64String(Encoding.ASCII.GetBytes($"api:{_apiKey}")));
             return client;
         }
     }

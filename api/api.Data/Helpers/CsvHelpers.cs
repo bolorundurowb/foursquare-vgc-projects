@@ -17,8 +17,8 @@ namespace api.Data.Helpers
             await using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.Configuration.RegisterClassMap<AttendeeCsvMapper>();
             await csv.WriteRecordsAsync(attendees);
-            var csvString = csv.ToString();
-            return Encoding.UTF8.GetBytes(csvString ?? string.Empty);
+            var csvString = writer.ToString();
+            return Encoding.UTF8.GetBytes(csvString);
         }
 
         public static async Task<byte[]> GenerateCsvFromNewcomers(IEnumerable<Newcomer> newcomers)
@@ -27,8 +27,8 @@ namespace api.Data.Helpers
             await using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.Configuration.RegisterClassMap<NewcomerCsvMapper>();
             await csv.WriteRecordsAsync(newcomers);
-            var csvString = csv.ToString();
-            return Encoding.UTF8.GetBytes(csvString ?? string.Empty);
+            var csvString = writer.ToString();
+            return Encoding.UTF8.GetBytes(csvString);
         }
     }
 }

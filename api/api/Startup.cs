@@ -55,18 +55,15 @@ namespace api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Neopyhte API",
+                    Title = "Neophyte API",
                     Version = "v1"
                 });
             });
-            
-            // add http client factory
-            services.AddHttpClient();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(opts =>
+                .AddJwtBearer(x =>
                 {
-                    opts.TokenValidationParameters = new TokenValidationParameters
+                    x.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateAudience = true,
                         ValidateIssuer = true,
@@ -79,6 +76,12 @@ namespace api
                     };
                 });
 
+            // add in deb context
+            services.AddSingleton(new DbContext(Config.DbServerUrl, Config.DbName));
+
+            // add http client factory
+            services.AddHttpClient();
+
             // add in mapper
             var config = TypeAdapterConfig.GlobalSettings;
             services.AddSingleton(config);
@@ -86,7 +89,6 @@ namespace api
             MapsterConfigExtensions.ConfigureMappings(config);
 
             // add DI mappings
-            services.AddSingleton(new DbContext(Config.DbServerUrl, Config.DbName));
             services.AddScoped<IEmailService, MailgunService>();
             services.AddScoped<IAdminsRepository, AdminsRepository>();
             services.AddScoped<INewcomersRepository, NewcomersRepository>();
@@ -101,12 +103,15 @@ namespace api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseLogly(opts => opts
-                .AddRequestMethod()
-                .AddStatusCode()
-                .AddResponseTime()
-                .AddUrl()
-                .AddResponseLength());
+            if (!_environment.IsProduction())
+            {
+                app.UseLogly(opts => opts
+                    .AddRequestMethod()
+                    .AddStatusCode()
+                    .AddResponseTime()
+                    .AddUrl()
+                    .AddResponseLength());
+            }
 
             app.UseCors(options => options
                 .AllowAnyHeader()
@@ -117,10 +122,10 @@ namespace api
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(x =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Neophyte API");
-                c.RoutePrefix = "docs";
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "Neophyte API");
+                x.RoutePrefix = "docs";
             });
 
             app.UseRouting();
@@ -131,6 +136,7 @@ namespace api
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
+            // seed admins
             context.SeedDefaults();
         }
     }
