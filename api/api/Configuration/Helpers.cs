@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using api.Shared;
 using Microsoft.IdentityModel.Tokens;
 
 namespace api.Configuration
@@ -11,9 +12,8 @@ namespace api.Configuration
     {
         internal static (string, DateTime) GenerateToken(string id, string emailAddress)
         {
-            const int durationInDays = 100 * 365; // 100 years
             var now = DateTime.UtcNow;
-            var expiry = now.AddDays(durationInDays);
+            var expiry = Constants.MaxTokenExpiry;
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, emailAddress),
