@@ -42,8 +42,8 @@ namespace api.Data.Models
             Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers, bool caredForSickPerson,
             MultiChoice? haveCovidSymptoms)
         {
-            // they should registering against the next sunday
-            Date = DateTime.Now.Next(DayOfWeek.Sunday);
+            // they should be registering against the next sunday
+            Date = DateTime.UtcNow.Date.Next(DayOfWeek.Sunday);
 
             EmailAddress = emailAddress;
             FullName = fullName;
@@ -61,7 +61,7 @@ namespace api.Data.Models
         {
             if (date.HasValue)
             {
-                Date = date.Value;
+                Date = date.Value.Date;
             }
         }
 
@@ -113,11 +113,11 @@ namespace api.Data.Models
             }
         }
 
-        public void UpdateAge(int? seatNumber)
+        public void UpdateAge(int? age)
         {
-            if (seatNumber.HasValue)
+            if (age.HasValue)
             {
-                Age = seatNumber.Value;
+                Age = age.Value;
             }
         }
 

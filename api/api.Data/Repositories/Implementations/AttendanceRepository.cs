@@ -33,7 +33,6 @@ namespace api.Data.Repositories.Implementations
         public Task<List<DateSummaryDto>> GetAttendanceDates()
         {
             return Query()
-                .Select(x => x.Date)
                 .GroupBy(x => x.Date)
                 .Select(x => new DateSummaryDto
                 {
@@ -90,6 +89,7 @@ namespace api.Data.Repositories.Implementations
             attendee.UpdatePhone(phone);
             attendee.UpdateEmail(email);
             attendee.UpdateGender(gender);
+            attendee.UpdateResidentialAddress(residentialAddress);
             attendee.UpdateHaveCovidSymptoms(haveCovidSymptoms);
             attendee.UpdateAge(age);
             attendee.UpdateSeatNumber(seatNumber);
