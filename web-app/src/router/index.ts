@@ -8,7 +8,10 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "Register",
-    component: RegisterAttendance
+    component: RegisterAttendance,
+    meta: {
+      title: 'Register | Neophyte'
+    }
   }
 ];
 

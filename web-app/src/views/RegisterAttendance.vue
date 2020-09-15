@@ -72,10 +72,7 @@
 
             <template v-if="isAllowedToRegister">
               <label>Full Name:</label>
-              <input
-                  type="text"
-                  v-model="attendance.fullName"
-              />
+              <input type="text" v-model="attendance.fullName" />
 
               <label>Email Address:</label>
               <input type="email" />
@@ -83,16 +80,11 @@
               <div class="question-line row">
                 <div class="column">
                   <label>Age (in years):</label>
-                  <input
-                      type="number"
-                      min="17"
-                      v-model="attendance.age"
-                  />
+                  <input type="number" min="17" v-model="attendance.age" />
                 </div>
                 <div class="column">
                   <label>Gender:</label>
-                  <select
-                  v-model="attendance.gender">
+                  <select v-model="attendance.gender">
                     <option disabled value="">Select One</option>
                     <option value="Other">Other</option>
                     <option value="Male">Male</option>
@@ -102,22 +94,21 @@
               </div>
 
               <label>Phone Number:</label>
-              <input
-                  type="tel"
-                  v-model="attendance.phone"
-              />
+              <input type="tel" v-model="attendance.phone" />
 
               <label>Residential Address:</label>
               <textarea
-                  rows="3"
-              v-model="attendance.residentialAddress"></textarea>
+                rows="3"
+                v-model="attendance.residentialAddress"
+              ></textarea>
             </template>
 
             <input
               class="button-primary"
               type="submit"
               value="Submit"
-              v-on:click="handleClick"
+              v-bind:disabled="isLoading"
+              v-on:click="submit"
             />
           </fieldset>
         </form>
@@ -131,17 +122,18 @@ export default {
   name: "RegisterAttendance",
   data: function() {
     return {
+      isLoading: false,
       attendance: {
         returnedInLastTenDays: false,
         liveWithCovidCaregivers: false,
         caredForSickPerson: false,
         haveCovidSymptoms: "Maybe",
-        emailAddress: '',
-        fullName: '',
+        emailAddress: "",
+        fullName: "",
         age: 18,
         gender: "Other",
-        phone: '',
-        residentialAddress: ''
+        phone: "",
+        residentialAddress: ""
       }
     };
   },
@@ -156,7 +148,8 @@ export default {
     }
   },
   methods: {
-    handleClick: function() {
+    submit: function() {
+      this.isLoading = true;
       console.log(this.attendance);
     }
   }
