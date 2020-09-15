@@ -2,7 +2,7 @@
   <div class="page">
     <div class="content">
       <div class="logo">
-        <img src="../assets/logo.png"/>
+        <img src="../assets/logo.png" />
         <h3>Register</h3>
         <h6>Reserve a seat for next sunday</h6>
       </div>
@@ -11,61 +11,100 @@
         <form>
           <fieldset>
             <div class="question-line">
-              <input type="checkbox">
-              <label class="label-inline">Did you return from a trip overseas in the last 10 days?</label>
+              <input
+                type="checkbox"
+                v-model="attendance.returnedInLastTenDays"
+              />
+              <label class="label-inline">
+                Did you return from a trip overseas in the last 10 days?
+              </label>
             </div>
 
             <div class="question-line">
-              <input type="checkbox">
-              <label class="label-inline">Do you live with COVID-19 caregivers?</label>
+              <input
+                type="checkbox"
+                v-model="attendance.liveWithCovidCaregivers"
+              />
+              <label class="label-inline">
+                Do you live with COVID-19 caregivers?
+              </label>
             </div>
 
             <div class="question-line">
-              <input type="checkbox">
-              <label class="label-inline">Do you recently care for any sick individual at home or in a hospital?</label>
+              <input type="checkbox" v-model="attendance.caredForSickPerson" />
+              <label class="label-inline">
+                Do you recently care for any sick individual at home or in a
+                hospital?
+              </label>
             </div>
 
-            <div>Do you presently have a cold, fever, sore throat, loss of smell or loss of appetite?</div>
+            <div>
+              Do you presently have a cold, fever, sore throat, loss of smell or
+              loss of appetite?
+            </div>
             <div class="question-line">
-              <input type="radio" name="has-symptoms">
+              <input
+                type="radio"
+                name="has-symptoms"
+                value="Yes"
+                v-model="attendance.haveCovidSymptoms"
+              />
               <label class="label-inline">Yes</label>
-              <input class="radio" type="radio" name="has-symptoms">
+
+              <input
+                class="radio"
+                type="radio"
+                name="has-symptoms"
+                value="No"
+                v-model="attendance.haveCovidSymptoms"
+              />
               <label class="label-inline">No</label>
-              <input class="radio" type="radio" name="has-symptoms">
+
+              <input
+                class="radio"
+                type="radio"
+                name="has-symptoms"
+                value="Maybe"
+                v-model="attendance.haveCovidSymptoms"
+              />
               <label class="label-inline">Maybe</label>
             </div>
 
-            <label>Full Name:</label>
-            <input type="text"/>
+            <template v-if="isAllowedToRegister">
+              <label>Full Name:</label>
+              <input type="text" />
 
-            <label>Email Address:</label>
-            <input type="email"/>
+              <label>Email Address:</label>
+              <input type="email" />
 
-            <div class="question-line row">
-              <div class="column">
-                <label>Age (in years):</label>
-                <input type="number"/>
+              <div class="question-line row">
+                <div class="column">
+                  <label>Age (in years):</label>
+                  <input type="number" />
+                </div>
+                <div class="column">
+                  <label>Gender:</label>
+                  <select>
+                    <option value="Other">Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
               </div>
-              <div class="column">
-                <label>Gender:</label>
-                <select>
-                  <option value="Other">Other</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
-            </div>
 
-            <label>Phone Number:</label>
-            <input type="tel"/>
+              <label>Phone Number:</label>
+              <input type="tel" />
 
-            <label>Residential Address:</label>
-            <textarea
-                rows="3"></textarea>
+              <label>Residential Address:</label>
+              <textarea rows="3"></textarea>
+            </template>
 
-            <input class="button-primary"
-                   type="submit"
-                   value="Submit"/>
+            <input
+              class="button-primary"
+              type="submit"
+              value="Submit"
+              v-on:click="handleClick"
+            />
           </fieldset>
         </form>
       </div>
@@ -75,7 +114,32 @@
 
 <script>
 export default {
-  name: "RegisterAttendance"
+  name: "RegisterAttendance",
+  data: function() {
+    return {
+      attendance: {
+        returnedInLastTenDays: false,
+        liveWithCovidCaregivers: false,
+        caredForSickPerson: false,
+        haveCovidSymptoms: "Maybe"
+      }
+    };
+  },
+  computed: {
+    isAllowedToRegister: function() {
+      return (
+        this.attendance.caredForSickPerson === false &&
+        this.attendance.returnedInLastTenDays === false &&
+        this.attendance.liveWithCovidCaregivers === false &&
+        this.attendance.haveCovidSymptoms === "No"
+      );
+    }
+  },
+  methods: {
+    handleClick: function() {
+      console.log(this.attendance);
+    }
+  }
 };
 </script>
 
