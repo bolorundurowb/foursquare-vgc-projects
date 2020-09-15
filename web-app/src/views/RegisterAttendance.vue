@@ -72,7 +72,10 @@
 
             <template v-if="isAllowedToRegister">
               <label>Full Name:</label>
-              <input type="text" />
+              <input
+                  type="text"
+                  v-model="attendance.fullName"
+              />
 
               <label>Email Address:</label>
               <input type="email" />
@@ -80,11 +83,17 @@
               <div class="question-line row">
                 <div class="column">
                   <label>Age (in years):</label>
-                  <input type="number" />
+                  <input
+                      type="number"
+                      min="17"
+                      v-model="attendance.age"
+                  />
                 </div>
                 <div class="column">
                   <label>Gender:</label>
-                  <select>
+                  <select
+                  v-model="attendance.gender">
+                    <option disabled value="">Select One</option>
                     <option value="Other">Other</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -93,10 +102,15 @@
               </div>
 
               <label>Phone Number:</label>
-              <input type="tel" />
+              <input
+                  type="tel"
+                  v-model="attendance.phone"
+              />
 
               <label>Residential Address:</label>
-              <textarea rows="3"></textarea>
+              <textarea
+                  rows="3"
+              v-model="attendance.residentialAddress"></textarea>
             </template>
 
             <input
@@ -121,7 +135,13 @@ export default {
         returnedInLastTenDays: false,
         liveWithCovidCaregivers: false,
         caredForSickPerson: false,
-        haveCovidSymptoms: "Maybe"
+        haveCovidSymptoms: "Maybe",
+        emailAddress: '',
+        fullName: '',
+        age: 18,
+        gender: "Other",
+        phone: '',
+        residentialAddress: ''
       }
     };
   },
