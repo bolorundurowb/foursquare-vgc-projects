@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using api.Data.Repositories.Interfaces;
@@ -12,8 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-    [Authorize]
-    [Route("v1/attendance")]
     public class AttendanceController : BaseController
     {
         private readonly IAttendanceRepository _attendanceRepo;
@@ -23,49 +21,64 @@ namespace api.Controllers
             _attendanceRepo = attendanceRepo;
         }
 
-        [HttpGet("dates")]
-        [ProducesResponseType(typeof(IEnumerable<DateTime>), 200)]
-        public async Task<IActionResult> AddAttendeeDates()
+        [HttpGet("")]
+        [ProducesResponseType(typeof(IEnumerable<DateSummaryViewModel>), 200)]
+        public async Task<IActionResult> GetAttendanceDates()
         {
-            var dates = await _attendanceRepo.GetAttendanceDates();
-            return Ok(dates);
+            var dateSummary = await _attendanceRepo.GetAttendanceDates();
+            return Ok(Mapper.Map<IEnumerable<DateSummaryViewModel>>(dateSummary));
         }
 
-        [HttpGet("by-date")]
+        [HttpGet("{date:DateTime}")]
         [ProducesResponseType(typeof(IEnumerable<AttendeeViewModel>), 200)]
         [ProducesResponseType(typeof(GenericViewModel), 400)]
-        public async Task<IActionResult> AddAttendee([FromQuery] AttendeesQueryModel qm)
+        public async Task<IActionResult> GetAttendanceForDate(DateTime date)
         {
-            var (isValid, errorMessages) = await IsValid<AttendeesQueryModelValidator>(qm);
+            var attendees = await _attendanceRepo.GetAttendance(date);
+            return Ok(Mapper.Map<IEnumerable<AttendeeViewModel>>(attendees));
+        }
+
+        [AllowAnonymous]
+        [HttpPost("")]
+        [ProducesResponseType(typeof(AttendeeViewModel), 201)]
+        [ProducesResponseType(typeof(GenericViewModel), 400)]
+        [ProducesResponseType(typeof(GenericViewModel), 409)]
+        public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationBindingModel bm)
+        {
+            var (isValid, errorMessages) = await IsValid<AttendeeRegistrationBindingModelValidator>(bm);
             if (!isValid)
             {
                 return BadRequest(errorMessages);
             }
-
-            var attendees = await _attendanceRepo.GetAttendees(qm.Date);
-            return Ok(Mapper.Map<IEnumerable<AttendeeViewModel>>(attendees));
+            
+            try
+            {
+                var attendee = await _attendanceRepo.AddAttendee(bm.FullName, bm.EmailAddress, bm.Age, bm.Phone,
+                    bm.ResidentialAddress, bm.Gender, bm.ReturnedInLastTenDays, bm.LiveWithCovidCaregivers,
+                    bm.CaredForSickPerson, bm.HaveCovidSymptoms);
+                return Created(Mapper.Map<AttendeeViewModel>(attendee));
+            }
+            catch (ConflictException ex)
+            {
+                return Conflict(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpPost("")]
-        [ProducesResponseType(typeof(AttendeeViewModel), 201)]
-        public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationBindingModel bm)
-        {
-            var attendee = await _attendanceRepo.AddAttendee(bm.FullName, bm.HomeAddress, bm.Phone, bm.EmailAddress,
-                bm.BirthDay, bm.Gender, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs, bm.BornAgain,
-                bm.BecomeMember, bm.Remarks);
-            return Created(Mapper.Map<AttendeeViewModel>(attendee));
-        }
-
-        [HttpPut("{id:string}")]
-        [ProducesResponseType(typeof(AttendeeViewModel), 200)]
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(NewcomerViewModel), 200)]
         [ProducesResponseType(typeof(GenericViewModel), 404)]
-        public async Task<IActionResult> UpdateAttendee(string id, [FromBody] AttendeeRegistrationUpdateBindingModel bm)
+        public async Task<IActionResult> UpdateAttendance(string id, [FromBody] AttendanceUpdateBindingModel bm)
         {
             try
             {
-                var attendee = await _attendanceRepo.UpdateAttendee(id, bm.Date, bm.FullName, bm.HomeAddress, bm.Phone,
-                    bm.EmailAddress, bm.BirthDay, bm.Gender, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs,
-                    bm.BornAgain, bm.BecomeMember, bm.Remarks);
+                var attendee = await _attendanceRepo.UpdateAttendee(id, bm.Date, bm.FullName, bm.EmailAddress, bm.Age,
+                    bm.Phone,
+                    bm.ResidentialAddress, bm.Gender, bm.ReturnedInLastTenDays, bm.LiveWithCovidCaregivers,
+                    bm.CaredForSickPerson, bm.HaveCovidSymptoms, bm.SeatNumber);
                 return Ok(Mapper.Map<AttendeeViewModel>(attendee));
             }
             catch (NotFoundException ex)
@@ -74,7 +87,7 @@ namespace api.Controllers
             }
         }
 
-        [HttpDelete("{id:string}")]
+        [HttpDelete("{id}")]
         [ProducesResponseType(200)]
         public async Task<IActionResult> RemoveAttendee(string id)
         {

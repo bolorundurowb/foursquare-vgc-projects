@@ -3,8 +3,11 @@ using System.Text;
 using System.Text.Json.Serialization;
 using api.Configuration;
 using api.Data;
+using api.Data.Extensions;
 using api.Data.Repositories.Implementations;
 using api.Data.Repositories.Interfaces;
+using api.Shared.Email.Implementations;
+using api.Shared.Email.Interfaces;
 using dotenv.net.DependencyInjection.Microsoft;
 using logly.Extensions;
 using Mapster;
@@ -52,15 +55,15 @@ namespace api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Neopyhte API",
+                    Title = "Neophyte API",
                     Version = "v1"
                 });
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(opts =>
+                .AddJwtBearer(x =>
                 {
-                    opts.TokenValidationParameters = new TokenValidationParameters
+                    x.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateAudience = true,
                         ValidateIssuer = true,
@@ -73,6 +76,12 @@ namespace api
                     };
                 });
 
+            // add in deb context
+            services.AddSingleton(new DbContext(Config.DbServerUrl, Config.DbName));
+
+            // add http client factory
+            services.AddHttpClient();
+
             // add in mapper
             var config = TypeAdapterConfig.GlobalSettings;
             services.AddSingleton(config);
@@ -80,25 +89,29 @@ namespace api
             MapsterConfigExtensions.ConfigureMappings(config);
 
             // add DI mappings
-            services.AddSingleton(new DbContext(Config.DbServerUrl, Config.DbName));
+            services.AddScoped<IEmailService, MailgunService>();
             services.AddScoped<IAdminsRepository, AdminsRepository>();
+            services.AddScoped<INewcomersRepository, NewcomersRepository>();
             services.AddScoped<IAttendanceRepository, AttendanceRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, DbContext context)
         {
             if (_environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseLogly(opts => opts
-                .AddRequestMethod()
-                .AddStatusCode()
-                .AddResponseTime()
-                .AddUrl()
-                .AddResponseLength());
+            if (!_environment.IsProduction())
+            {
+                app.UseLogly(opts => opts
+                    .AddRequestMethod()
+                    .AddStatusCode()
+                    .AddResponseTime()
+                    .AddUrl()
+                    .AddResponseLength());
+            }
 
             app.UseCors(options => options
                 .AllowAnyHeader()
@@ -109,10 +122,10 @@ namespace api
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(x =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Neophyte API");
-                c.RoutePrefix = "docs";
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "Neophyte API");
+                x.RoutePrefix = "docs";
             });
 
             app.UseRouting();
@@ -122,6 +135,9 @@ namespace api
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            // seed admins
+            context.SeedDefaults();
         }
     }
 }

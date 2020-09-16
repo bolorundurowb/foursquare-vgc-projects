@@ -16,7 +16,7 @@ namespace api.Data
             var client = new MongoClient(dbUrl);
             var database = client.GetDatabase(dbName);
 
-            // set the queryables
+            // set the collections
             Admins = database.GetCollection<Admin>("admins");
             Newcomers = database.GetCollection<Newcomer>("newcomers");
             Attendance = database.GetCollection<Attendee>("attendance");

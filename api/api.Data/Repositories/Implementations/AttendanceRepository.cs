@@ -1,6 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using api.Data.DTOs;
 using api.Data.Enums;
 using api.Data.Models;
 using api.Data.Repositories.Interfaces;
@@ -28,16 +30,20 @@ namespace api.Data.Repositories.Implementations
                 .AsQueryable();
         }
 
-        public Task<List<DateTime>> GetAttendanceDates()
+        public Task<List<DateSummaryDto>> GetAttendanceDates()
         {
             return Query()
-                .Select(x => x.Date)
                 .GroupBy(x => x.Date)
-                .Select(x => x.Key)
+                .Select(x => new DateSummaryDto
+                {
+                    Date = x.Key,
+                    NumOfEntries = x.Count()
+                })
+                .OrderByDescending(x => x.Date)
                 .ToListAsync();
         }
 
-        public Task<List<Attendee>> GetAttendees(DateTime date)
+        public Task<List<Attendee>> GetAttendance(DateTime date)
         {
             var dayStart = date.StartOf(DateTimeAnchor.Day);
             var dayEnd = date.EndOf(DateTimeAnchor.Day);
@@ -46,21 +52,44 @@ namespace api.Data.Repositories.Implementations
                 .ToListAsync();
         }
 
-        public async Task<Attendee> AddAttendee(string fullName, string homeAddress, string phone, string email,
-            string birthDay, Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs,
-            MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
+        public Task<Attendee> GetAttendeeById(string id)
         {
-            var attendee = new Attendee(fullName, homeAddress, phone, email, birthDay, gender, ageGroup,
-                commentsOrPrayers, howYouFoundUs, bornAgain, becomeMember, remarks);
+            var attendeeId = ObjectId.Parse(id);
+            return Query()
+                .FirstOrDefaultAsync(x => x.Id == attendeeId);
+        }
+
+        public async Task<Attendee> AddAttendee(string fullName, string email, int? age, string phone,
+            string residentialAddress, Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers,
+            bool caredForSickPerson, MultiChoice? haveCovidSymptoms)
+        {
+            var nextSunday = DateTime.UtcNow.Date.Next(DayOfWeek.Sunday);
+            var normalizedEmail = email?.ToLowerInvariant();
+            var alreadyExists = await Query()
+                .AnyAsync(x => x.Date == nextSunday && x.EmailAddress == normalizedEmail);
+
+            if (alreadyExists)
+            {
+                throw new ConflictException("You have already registered for the service.");
+            }
+            
+            var attendee = new Attendee(normalizedEmail, fullName, age, phone, residentialAddress, gender, returnedInLastTenDays,
+                liveWithCovidCaregivers, caredForSickPerson, haveCovidSymptoms);
+
+            if (!attendee.CanRegister())
+            {
+                throw new InvalidOperationException("You cannot reserve a seat at this time.");
+            }
+            
             await _dbContext.Attendance
                 .InsertOneAsync(attendee);
 
             return attendee;
         }
 
-        public async Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string homeAddress,
-            string phone, string email, string birthDay, Gender? gender, string ageGroup, string commentsOrPrayers,
-            string howYouFoundUs, MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
+        public async Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string email, int? age,
+            string phone, string residentialAddress, Gender? gender, bool returnedInLastTenDays,
+            bool liveWithCovidCaregivers, bool caredForSickPerson, MultiChoice? haveCovidSymptoms, int? seatNumber)
         {
             var attendeeId = ObjectId.Parse(id);
             var attendee = await Query()
@@ -73,17 +102,16 @@ namespace api.Data.Repositories.Implementations
 
             attendee.UpdateDate(date);
             attendee.UpdateFullName(fullName);
-            attendee.UpdateHomeAddress(homeAddress);
             attendee.UpdatePhone(phone);
             attendee.UpdateEmail(email);
-            attendee.UpdateBirthDay(birthDay);
             attendee.UpdateGender(gender);
-            attendee.UpdateAgeGroup(ageGroup);
-            attendee.UpdateCommentsOrPrayers(commentsOrPrayers);
-            attendee.UpdateHowYouFoundUs(howYouFoundUs);
-            attendee.UpdateBornAgain(bornAgain);
-            attendee.UpdateBecomeMember(becomeMember);
-            attendee.UpdateRemarks(remarks);
+            attendee.UpdateResidentialAddress(residentialAddress);
+            attendee.UpdateHaveCovidSymptoms(haveCovidSymptoms);
+            attendee.UpdateAge(age);
+            attendee.UpdateSeatNumber(seatNumber);
+            attendee.UpdateReturnedInLastTenDays(returnedInLastTenDays);
+            attendee.UpdateLiveWithCovidCaregivers(liveWithCovidCaregivers);
+            attendee.UpdateCaredForSickPerson(caredForSickPerson);
 
             await _dbContext.Attendance
                 .ReplaceOneAsync(x => x.Id == attendeeId, attendee);

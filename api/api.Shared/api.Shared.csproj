@@ -4,4 +4,10 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="dotenv.net" Version="2.1.1" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.8" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.8" />
+    </ItemGroup>
+
 </Project>

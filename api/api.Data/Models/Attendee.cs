@@ -1,5 +1,6 @@
 ﻿using System;
 using api.Data.Enums;
+using moment.net;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -11,58 +12,62 @@ namespace api.Data.Models
 
         public DateTime Date { get; private set; }
 
-        public string FullName { get; private set; }
-
-        public string HomeAddress { get; private set; }
-
-        public string Phone { get; private set; }
-
         public string EmailAddress { get; private set; }
 
-        public string BirthDay { get; private set; }
+        public string FullName { get; private set; }
+
+        public int? Age { get; private set; }
 
         public Gender? Gender { get; private set; }
 
-        public string AgeGroup { get; private set; }
+        public string Phone { get; private set; }
 
-        public string CommentsOrPrayers { get; private set; }
+        public string ResidentialAddress { get; private set; }
 
-        public string HowYouFoundUs { get; private set; }
+        public bool ReturnedInLastTenDays { get; private set; }
 
-        public MultiChoice? BornAgain { get; private set; }
+        public bool LiveWithCovidCaregivers { get; private set; }
 
-        public MultiChoice? BecomeMember { get; private set; }
+        public bool CaredForSickPerson { get; private set; }
 
-        public string Remarks { get; private set; }
+        public MultiChoice? HaveCovidSymptoms { get; private set; }
+
+        public int? SeatNumber { get; private set; }
 
         private Attendee()
         {
         }
 
-        public Attendee(string fullName, string homeAddress, string phone, string email, string birthDay,
-            Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs, MultiChoice? bornAgain,
-            MultiChoice? becomeMember, string remarks)
+        public Attendee(string emailAddress, string fullName, int? age, string phone, string residentialAddress,
+            Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers, bool caredForSickPerson,
+            MultiChoice? haveCovidSymptoms)
         {
-            Date = DateTime.UtcNow;
+            // they should be registering against the next sunday
+            Date = DateTime.UtcNow.Date.Next(DayOfWeek.Sunday);
+
+            EmailAddress = emailAddress;
             FullName = fullName;
-            HomeAddress = homeAddress;
+            Age = age;
             Phone = phone;
-            EmailAddress = email;
-            BirthDay = birthDay;
+            ResidentialAddress = residentialAddress;
             Gender = gender;
-            AgeGroup = ageGroup;
-            CommentsOrPrayers = commentsOrPrayers;
-            HowYouFoundUs = howYouFoundUs;
-            BornAgain = bornAgain;
-            BecomeMember = becomeMember;
-            Remarks = remarks;
+            ReturnedInLastTenDays = returnedInLastTenDays;
+            LiveWithCovidCaregivers = liveWithCovidCaregivers;
+            CaredForSickPerson = caredForSickPerson;
+            HaveCovidSymptoms = haveCovidSymptoms;
+        }
+
+        public bool CanRegister()
+        {
+            return CaredForSickPerson == false && ReturnedInLastTenDays == false && LiveWithCovidCaregivers == false &&
+                   HaveCovidSymptoms == MultiChoice.No;
         }
 
         public void UpdateDate(DateTime? date)
         {
             if (date.HasValue)
             {
-                Date = date.Value;
+                Date = date.Value.Date;
             }
         }
 
@@ -74,11 +79,11 @@ namespace api.Data.Models
             }
         }
 
-        public void UpdateHomeAddress(string homeAddress)
+        public void UpdateResidentialAddress(string residentialAddress)
         {
-            if (!string.IsNullOrWhiteSpace(homeAddress))
+            if (!string.IsNullOrWhiteSpace(residentialAddress))
             {
-                HomeAddress = homeAddress;
+                ResidentialAddress = residentialAddress;
             }
         }
 
@@ -98,46 +103,6 @@ namespace api.Data.Models
             }
         }
 
-        public void UpdateBirthDay(string birthDay)
-        {
-            if (!string.IsNullOrWhiteSpace(birthDay))
-            {
-                BirthDay = birthDay;
-            }
-        }
-
-        public void UpdateAgeGroup(string agGroup)
-        {
-            if (!string.IsNullOrWhiteSpace(agGroup))
-            {
-                AgeGroup = agGroup;
-            }
-        }
-
-        public void UpdateCommentsOrPrayers(string commentsOrPrayers)
-        {
-            if (!string.IsNullOrWhiteSpace(commentsOrPrayers))
-            {
-                CommentsOrPrayers = commentsOrPrayers;
-            }
-        }
-
-        public void UpdateHowYouFoundUs(string howYouFoundUs)
-        {
-            if (!string.IsNullOrWhiteSpace(howYouFoundUs))
-            {
-                HowYouFoundUs = howYouFoundUs;
-            }
-        }
-
-        public void UpdateRemarks(string remarks)
-        {
-            if (!string.IsNullOrWhiteSpace(remarks))
-            {
-                Remarks = remarks;
-            }
-        }
-
         public void UpdateGender(Gender? gender)
         {
             if (gender.HasValue)
@@ -146,19 +111,51 @@ namespace api.Data.Models
             }
         }
 
-        public void UpdateBornAgain(MultiChoice? bornAgain)
+        public void UpdateHaveCovidSymptoms(MultiChoice? haveCovidSymptoms)
         {
-            if (bornAgain.HasValue)
+            if (haveCovidSymptoms.HasValue)
             {
-                BornAgain = bornAgain.Value;
+                HaveCovidSymptoms = haveCovidSymptoms.Value;
             }
         }
 
-        public void UpdateBecomeMember(MultiChoice? becomeMember)
+        public void UpdateAge(int? age)
         {
-            if (becomeMember.HasValue)
+            if (age.HasValue)
             {
-                BecomeMember = becomeMember.Value;
+                Age = age.Value;
+            }
+        }
+
+        public void UpdateSeatNumber(int? seatNumber)
+        {
+            if (seatNumber.HasValue)
+            {
+                SeatNumber = seatNumber.Value;
+            }
+        }
+
+        public void UpdateReturnedInLastTenDays(bool? returnedInLastTen)
+        {
+            if (returnedInLastTen.HasValue)
+            {
+                ReturnedInLastTenDays = returnedInLastTen.Value;
+            }
+        }
+
+        public void UpdateLiveWithCovidCaregivers(bool? liveWithCaregivers)
+        {
+            if (liveWithCaregivers.HasValue)
+            {
+                LiveWithCovidCaregivers = liveWithCaregivers.Value;
+            }
+        }
+
+        public void UpdateCaredForSickPerson(bool? caredForSickPerson)
+        {
+            if (caredForSickPerson.HasValue)
+            {
+                CaredForSickPerson = caredForSickPerson.Value;
             }
         }
     }
