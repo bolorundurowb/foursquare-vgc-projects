@@ -5,6 +5,7 @@ using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
 using api.Shared.Exceptions;
+using api.Validators;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +43,12 @@ namespace api.Controllers
         [ProducesResponseType(typeof(AttendeeViewModel), 201)]
         public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationBindingModel bm)
         {
+            var (isValid, errorMessages) = await IsValid<AttendeeRegistrationBindingModelValidator>(bm);
+            if (!isValid)
+            {
+                return BadRequest(errorMessages);
+            }
+            
             try
             {
                 var attendee = await _attendanceRepo.AddAttendee(bm.FullName, bm.EmailAddress, bm.Age, bm.Phone,
