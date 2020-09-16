@@ -8,7 +8,7 @@ import VueSwal from "vue-swal";
 Vue.config.productionTip = false;
 Vue.use(VueSwal);
 const instance = axios.create({
-  baseURL: 'http://localhost:5089/v1/'
+  baseURL: process.env.APP_VUE_API_URL || 'http://localhost:5089/v1/'
 });
 Vue.use(VueAxios, instance);
 
