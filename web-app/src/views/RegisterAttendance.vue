@@ -8,7 +8,7 @@
       </div>
 
       <div class="form">
-        <form>
+        <form @submit.prevent="register">
           <fieldset>
             <div class="question-line">
               <input
@@ -103,13 +103,12 @@
               ></textarea>
             </template>
 
-            <input
+            <button
               class="button-primary"
-              type="submit"
-              value="Submit"
               v-bind:disabled="isLoading"
-              v-on:click="submit"
-            />
+            >
+              Submit
+            </button>
           </fieldset>
         </form>
       </div>
@@ -137,25 +136,39 @@ export default {
     }
   },
   methods: {
-    submit: function() {
+    register: async function() {
       if (!this.isAllowedToRegister) {
-        this.$snotify.error(
-          "Sorry, you cannot reserve a seat for service at this time."
+        this.$swal(
+          "Uh oh!",
+          "Sorry, you cannot reserve a seat for service at this time.",
+          "error"
         );
       } else {
-        this.isLoading = true;
-        this.axios
-          .post("/attendance", this.attendance)
-          .then(() => {
-            this.attendance = this.getVoidAttendance();
-            this.$snotify.success("You have been successfully registered.");
-            this.isLoading = false;
-          })
-          .catch(err => {
-            console.log(err.status);
-            this.$snotify.error("An error occurred.");
-            this.isLoading = false;
-          });
+        try {
+          this.isLoading = true;
+          await this.axios.post("/attendance", this.attendance);
+          this.attendance = this.getVoidAttendance();
+          this.$swal(
+            "Success!",
+            "You have been successfully registered.",
+            "success"
+          );
+        } catch (err) {
+          const error = err.response;
+          let message;
+
+          if (error.data.message) {
+            message = error.data.message;
+          } else if (error.data.messages) {
+            message = error.data.messages.join('\r\n');
+          } else {
+            message = "An error occurred";
+          }
+
+          this.$swal("Uh oh!", message, "error");
+        } finally {
+          this.isLoading = false;
+        }
       }
     },
     getVoidAttendance: function() {
