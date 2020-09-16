@@ -12,8 +12,8 @@
           <fieldset>
             <div class="question-line">
               <input
-                  type="checkbox"
-                  v-model="attendance.returnedInLastTenDays"
+                type="checkbox"
+                v-model="attendance.returnedInLastTenDays"
               />
               <label class="label-inline">
                 Did you return from a trip overseas in the last 10 days?
@@ -22,8 +22,8 @@
 
             <div class="question-line">
               <input
-                  type="checkbox"
-                  v-model="attendance.liveWithCovidCaregivers"
+                type="checkbox"
+                v-model="attendance.liveWithCovidCaregivers"
               />
               <label class="label-inline">
                 Do you live with COVID-19 caregivers?
@@ -44,28 +44,28 @@
             </div>
             <div class="question-line">
               <input
-                  type="radio"
-                  name="has-symptoms"
-                  value="Yes"
-                  v-model="attendance.haveCovidSymptoms"
+                type="radio"
+                name="has-symptoms"
+                value="Yes"
+                v-model="attendance.haveCovidSymptoms"
               />
               <label class="label-inline">Yes</label>
 
               <input
-                  class="radio"
-                  type="radio"
-                  name="has-symptoms"
-                  value="No"
-                  v-model="attendance.haveCovidSymptoms"
+                class="radio"
+                type="radio"
+                name="has-symptoms"
+                value="No"
+                v-model="attendance.haveCovidSymptoms"
               />
               <label class="label-inline">No</label>
 
               <input
-                  class="radio"
-                  type="radio"
-                  name="has-symptoms"
-                  value="Maybe"
-                  v-model="attendance.haveCovidSymptoms"
+                class="radio"
+                type="radio"
+                name="has-symptoms"
+                value="Maybe"
+                v-model="attendance.haveCovidSymptoms"
               />
               <label class="label-inline">Maybe</label>
             </div>
@@ -98,15 +98,12 @@
 
               <label>Residential Address:</label>
               <textarea
-                  rows="3"
-                  v-model="attendance.residentialAddress"
+                rows="3"
+                v-model="attendance.residentialAddress"
               ></textarea>
             </template>
 
-            <button
-                class="button-primary"
-                v-bind:disabled="isLoading"
-            >
+            <button class="button-primary" v-bind:disabled="isLoading">
               Submit
             </button>
           </fieldset>
@@ -128,10 +125,10 @@ export default {
   computed: {
     isAllowedToRegister: function() {
       return (
-          this.attendance.caredForSickPerson === false &&
-          this.attendance.returnedInLastTenDays === false &&
-          this.attendance.liveWithCovidCaregivers === false &&
-          this.attendance.haveCovidSymptoms === "No"
+        this.attendance.caredForSickPerson === false &&
+        this.attendance.returnedInLastTenDays === false &&
+        this.attendance.liveWithCovidCaregivers === false &&
+        this.attendance.haveCovidSymptoms === "No"
       );
     }
   },
@@ -139,9 +136,9 @@ export default {
     register: async function() {
       if (!this.isAllowedToRegister) {
         this.$swal(
-            "Uh oh!",
-            "Sorry, you cannot reserve a seat for service at this time.",
-            "error"
+          "Uh oh!",
+          "Sorry, you cannot reserve a seat for service at this time.",
+          "error"
         );
       } else {
         try {
@@ -149,9 +146,9 @@ export default {
           await this.axios.post("/attendance", this.attendance);
           this.attendance = this.getVoidAttendance();
           this.$swal(
-              "Success!",
-              "You have been successfully registered.",
-              "success"
+            "Success!",
+            "You have been successfully registered.",
+            "success"
           );
         } catch (err) {
           const error = err.response;
@@ -160,7 +157,7 @@ export default {
           if (error.data.message) {
             message = error.data.message;
           } else if (error.data.messages) {
-            message = error.data.messages.join('\r\n');
+            message = error.data.messages.join("\r\n");
           } else {
             message = "An error occurred";
           }
