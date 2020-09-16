@@ -1,4 +1,4 @@
-# web
+# neophyte-web
 
 ## Project setup
 ```

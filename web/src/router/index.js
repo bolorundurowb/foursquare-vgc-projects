@@ -10,7 +10,7 @@ const routes = [
     name: "Register",
     component: RegisterAttendance,
     meta: {
-      title: 'Register | Neophyte'
+      title: "Register | Neophyte"
     }
   }
 ];
