@@ -145,18 +145,17 @@ export default {
       } else {
         this.isLoading = true;
         this.axios
-          .post("http://localhost:5089/v1/attendance", this.attendance)
-          .then(
-            () => {
-              this.attendance = this.getVoidAttendance();
-              this.$snotify.success("You have been successfully registered.");
-              this.isLoading = false;
-            },
-              () => {
-              this.$snotify.error("An error occurred.");
-              this.isLoading = false;
-            }
-          );
+          .post("/attendance", this.attendance)
+          .then(() => {
+            this.attendance = this.getVoidAttendance();
+            this.$snotify.success("You have been successfully registered.");
+            this.isLoading = false;
+          })
+          .catch(err => {
+            console.log(err.status);
+            this.$snotify.error("An error occurred.");
+            this.isLoading = false;
+          });
       }
     },
     getVoidAttendance: function() {

@@ -15,7 +15,11 @@ Vue.use(VueSnotify, {
     timeout: 4000
   }
 });
-Vue.use(VueAxios, axios);
+
+const instance = axios.create({
+  baseURL: 'http://localhost:5089/v1/'
+});
+Vue.use(VueAxios, instance);
 
 new Vue({
   router,
