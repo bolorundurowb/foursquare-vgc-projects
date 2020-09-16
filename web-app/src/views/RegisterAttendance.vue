@@ -75,7 +75,7 @@
               <input type="text" v-model="attendance.fullName" />
 
               <label>Email Address:</label>
-              <input type="email" />
+              <input type="email" v-model="attendance.emailAddress" />
 
               <div class="question-line row">
                 <div class="column">
@@ -123,18 +123,7 @@ export default {
   data: function() {
     return {
       isLoading: false,
-      attendance: {
-        returnedInLastTenDays: false,
-        liveWithCovidCaregivers: false,
-        caredForSickPerson: false,
-        haveCovidSymptoms: "Maybe",
-        emailAddress: "",
-        fullName: "",
-        age: 18,
-        gender: "Other",
-        phone: "",
-        residentialAddress: ""
-      }
+      attendance: this.getVoidAttendance()
     };
   },
   computed: {
@@ -149,8 +138,40 @@ export default {
   },
   methods: {
     submit: function() {
-      this.isLoading = true;
-      console.log(this.attendance);
+      if (!this.isAllowedToRegister) {
+        this.$snotify.error(
+          "Sorry, you cannot reserve a seat for service at this time."
+        );
+      } else {
+        this.isLoading = true;
+        this.axios
+          .post("http://localhost:5089/v1/attendance", this.attendance)
+          .then(
+            () => {
+              this.attendance = this.getVoidAttendance();
+              this.$snotify.success("You have been successfully registered.");
+              this.isLoading = false;
+            },
+              () => {
+              this.$snotify.error("An error occurred.");
+              this.isLoading = false;
+            }
+          );
+      }
+    },
+    getVoidAttendance: function() {
+      return {
+        returnedInLastTenDays: false,
+        liveWithCovidCaregivers: false,
+        caredForSickPerson: false,
+        haveCovidSymptoms: "Maybe",
+        emailAddress: "",
+        fullName: "",
+        age: 18,
+        gender: "Other",
+        phone: "",
+        residentialAddress: ""
+      };
     }
   }
 };

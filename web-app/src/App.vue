@@ -3,7 +3,10 @@
     <div id="nav">
       <router-link to="/login">LOGIN</router-link>
     </div>
+
     <router-view />
+
+    <vue-snotify></vue-snotify>
   </div>
 </template>
 
