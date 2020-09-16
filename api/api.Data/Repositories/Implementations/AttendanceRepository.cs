@@ -75,12 +75,6 @@ namespace api.Data.Repositories.Implementations
             
             var attendee = new Attendee(normalizedEmail, fullName, age, phone, residentialAddress, gender, returnedInLastTenDays,
                 liveWithCovidCaregivers, caredForSickPerson, haveCovidSymptoms);
-
-            if (!attendee.CanRegister())
-            {
-                throw new InvalidOperationException("You cannot reserve a seat at this time.");
-            }
-            
             await _dbContext.Attendance
                 .InsertOneAsync(attendee);
 

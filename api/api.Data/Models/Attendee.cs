@@ -57,12 +57,6 @@ namespace api.Data.Models
             HaveCovidSymptoms = haveCovidSymptoms;
         }
 
-        public bool CanRegister()
-        {
-            return CaredForSickPerson == false && ReturnedInLastTenDays == false && LiveWithCovidCaregivers == false &&
-                   HaveCovidSymptoms == MultiChoice.No;
-        }
-
         public void UpdateDate(DateTime? date)
         {
             if (date.HasValue)
