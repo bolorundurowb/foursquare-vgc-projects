@@ -1,27 +1,24 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
-using neophyte.Enums;
-using neophyte.Firebase;
-using neophyte.Interfaces;
-using neophyte.Models;
 using neophyte.Models.View;
 using Plugin.Connectivity;
-using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace neophyte.Views.Newcomers
+namespace neophyte.Views.Registration
 {
-    public partial class HomePage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AttendanceDateSummariesPage : ContentPage
     {
-        private readonly NewcomerClient _newcomerClient;
+        private readonly AttendanceClient _attendanceClient;
         private readonly ReportClient _reportClient;
 
-        public HomePage()
+        public AttendanceDateSummariesPage()
         {
             InitializeComponent();
 
-            Title = "Newcomers";
+            Title = "Attendance";
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
 
             if (Device.RuntimePlatform == Device.iOS)
@@ -29,7 +26,7 @@ namespace neophyte.Views.Newcomers
                 btnAddRecord.TextColor = Color.Black;
             }
 
-            _newcomerClient = new NewcomerClient();
+            _attendanceClient = new AttendanceClient();
             _reportClient = new ReportClient();
         }
 
@@ -44,12 +41,12 @@ namespace neophyte.Views.Newcomers
         protected async void OpenDateRecordsPage(object sender, ItemTappedEventArgs e)
         {
             var summary = e.Item as DateSummaryViewModel;
-            await Navigation.PushAsync(new DateRecords(summary.Date));
+            await Navigation.PushAsync(new AttendanceByDatePage(summary.Date));
         }
 
         protected async void OpenNewRecordPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewRecord());
+            await Navigation.PushAsync(new RegisterPage());
         }
 
         protected async void GenerateDateReport(object sender, EventArgs e)
@@ -77,7 +74,7 @@ namespace neophyte.Views.Newcomers
                 return;
             }
 
-            lstDateEntries.ItemsSource = await _newcomerClient.GetAll();
+            lstDateEntries.ItemsSource = await _attendanceClient.GetAll();
         }
     }
 }

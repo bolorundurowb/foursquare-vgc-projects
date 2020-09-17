@@ -27,7 +27,7 @@
             </OnPlatform>
         </NavigationPage.BarTextColor>
         <x:Arguments>
-            <newcomers:HomePage />
+            <newcomers:NewcomersDateSummariesPage />
         </x:Arguments>
     </NavigationPage>
 
@@ -45,7 +45,7 @@
             </OnPlatform>
         </NavigationPage.BarTextColor>
         <x:Arguments>
-            <registration:HomePage />
+            <registration:AttendanceDateSummariesPage />
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 namespace neophyte.Views.Registration
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AttendeeDetails : ContentPage
+    public partial class AttendeeDetailsPage : ContentPage
     {
-        public AttendeeDetails(AttendeeViewModel attendee)
+        public AttendeeDetailsPage(AttendeeViewModel attendee)
         {
             InitializeComponent();
 

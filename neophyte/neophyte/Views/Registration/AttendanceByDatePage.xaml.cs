@@ -1,35 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
-using neophyte.Enums;
-using neophyte.Firebase;
-using neophyte.Interfaces;
-using neophyte.Models;
 using neophyte.Models.View;
 using Plugin.Connectivity;
-using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace neophyte.Views.Newcomers
+namespace neophyte.Views.Registration
 {
-    public partial class DateRecords : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AttendanceByDatePage : ContentPage
     {
-        private readonly NewcomerClient _newcomerClient;
+        private readonly AttendanceClient _attendanceClient;
         private readonly ReportClient _reportClient;
         private readonly DateTime _date;
-        private NewcomerViewModel[] _dateRecords;
+        private AttendeeViewModel[] _dateRecords;
 
-        public DateRecords(DateTime date)
+        public AttendanceByDatePage(DateTime date)
         {
             InitializeComponent();
 
-            Title = "Records";
+            Title = "Entries";
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
-
+            
             _date = date;
-            _newcomerClient = new NewcomerClient();
+            _attendanceClient = new AttendanceClient();
             _reportClient = new ReportClient();
         }
 
@@ -43,20 +39,20 @@ namespace neophyte.Views.Newcomers
 
         protected async void DeleteRecord(object sender, EventArgs e)
         {
-            var newcomer = (sender as MenuItem)?.CommandParameter as NewcomerViewModel;
-            await _newcomerClient.DeleteAttendee(newcomer?.Id);
+            var attendance = (sender as MenuItem)?.CommandParameter as AttendeeViewModel;
+            await _attendanceClient.DeleteAttendee(attendance?.Id);
 
             // refresh view
-            lstDateRecords.ItemsSource = _dateRecords.Where(x => x.Id != newcomer?.Id);
+            lstDateRecords.ItemsSource = _dateRecords.Where(x => x.Id != attendance?.Id);
 
             // notify user
             await DisplayAlert("Success", "Record deleted successfully.", "Ok");
         }
 
-        protected async void ViewPersonRecord(object sender, ItemTappedEventArgs e)
+        protected async void ViewAttendanceDetail(object sender, ItemTappedEventArgs e)
         {
-            var newcomer = e.Item as NewcomerViewModel;
-            await Navigation.PushAsync(new NewcomerDetails(newcomer));
+            var attendee = e.Item as AttendeeViewModel;
+            await Navigation.PushAsync(new AttendeeDetailsPage(attendee));
         }
 
         protected async void RefreshDateRecords(object sender, EventArgs e)
@@ -64,7 +60,7 @@ namespace neophyte.Views.Newcomers
             await LoadDateRecords();
             lstDateRecords.IsRefreshing = false;
         }
-
+        
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
             await _reportClient.GenerateReport(_date);
@@ -80,7 +76,7 @@ namespace neophyte.Views.Newcomers
                 return;
             }
 
-            _dateRecords = await _newcomerClient.GetAttendanceForDate(_date);
+            _dateRecords = await _attendanceClient.GetAttendanceForDate(_date);
             lstDateRecords.ItemsSource = _dateRecords;
         }
     }

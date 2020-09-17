@@ -10,13 +10,13 @@ using Xamarin.Forms.Xaml;
 namespace neophyte.Views.Newcomers
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewcomerDetails : ContentPage
+    public partial class NewcomerDetailsPage : ContentPage
     {
         private readonly RecordService _recordService;
         private readonly RecordValidator _recordValidator = new RecordValidator();
         private readonly string _date;
 
-        public NewcomerDetails(string date, Record record)
+        public NewcomerDetailsPage(string date, Record record)
         {
             InitializeComponent();
 

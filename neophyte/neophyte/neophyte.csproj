@@ -31,16 +31,16 @@
       <EmbeddedResource Include="Resources\Fonts\FA-Regular.otf" />
       <None Remove="Resources\Fonts\FA-Solid.otf" />
       <EmbeddedResource Include="Resources\Fonts\FA-Solid.otf" />
-      <EmbeddedResource Update="Views\Registration\HomePage.xaml">
+      <EmbeddedResource Update="Views\Registration\AttendanceDateSummariesPage.xaml">
         <SubType>Designer</SubType>
         <Generator></Generator>
       </EmbeddedResource>
       <None Remove="Resources\Fonts\NU-Regular.ttf" />
-      <EmbeddedResource Update="Views\Registration\DateAttendance.xaml">
+      <EmbeddedResource Update="Views\Registration\AttendanceByDatePage.xaml">
         <SubType>Designer</SubType>
         <Generator></Generator>
       </EmbeddedResource>
-      <EmbeddedResource Update="Views\Registration\AttendeeDetails.xaml">
+      <EmbeddedResource Update="Views\Registration\AttendeeDetailsPage.xaml">
         <SubType>Designer</SubType>
         <Generator></Generator>
       </EmbeddedResource>
@@ -50,11 +50,11 @@
         <DependentUpon>SignIn.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\Newcomers\DateRecords.xaml.cs">
+      <Compile Update="Views\Newcomers\NewcomersByDatePage.xaml.cs">
         <DependentUpon>DateRecords.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\Newcomers\HomePage.xaml.cs">
+      <Compile Update="Views\Newcomers\NewcomersDateSummariesPage.xaml.cs">
         <DependentUpon>HomePage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
@@ -62,17 +62,17 @@
         <DependentUpon>NewRecord.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\Newcomers\NewcomerDetails.xaml.cs">
+      <Compile Update="Views\Newcomers\NewcomerDetailsPage.xaml.cs">
         <DependentUpon>RecordDetail.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\Registration\HomePage.xaml.cs">
+      <Compile Update="Views\Registration\AttendanceDateSummariesPage.xaml.cs">
         <DependentUpon>HomePage.xaml</DependentUpon>
       </Compile>
-      <Compile Update="Views\Registration\DateAttendance.xaml.cs">
+      <Compile Update="Views\Registration\AttendanceByDatePage.xaml.cs">
         <DependentUpon>DateAttendance.xaml</DependentUpon>
       </Compile>
-      <Compile Update="Views\Registration\AttendeeDetails.xaml.cs">
+      <Compile Update="Views\Registration\AttendeeDetailsPage.xaml.cs">
         <DependentUpon>AttendanceDetails.xaml</DependentUpon>
       </Compile>
     </ItemGroup>
