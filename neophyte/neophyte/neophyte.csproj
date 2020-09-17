@@ -58,7 +58,7 @@
         <DependentUpon>HomePage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\Newcomers\NewRecord.xaml.cs">
+      <Compile Update="Views\Newcomers\RecordNewcomerPage.xaml.cs">
         <DependentUpon>NewRecord.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>

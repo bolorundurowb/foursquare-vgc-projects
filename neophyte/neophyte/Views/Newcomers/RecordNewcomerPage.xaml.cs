@@ -8,12 +8,12 @@ using Xamarin.Forms;
 
 namespace neophyte.Views.Newcomers
 {
-    public partial class NewRecord : ContentPage
+    public partial class RecordNewcomerPage : ContentPage
     {
         private readonly RecordService _recordService;
         private readonly RecordValidator _recordValidator = new RecordValidator();
 
-        public NewRecord()
+        public RecordNewcomerPage()
         {
             InitializeComponent();
 

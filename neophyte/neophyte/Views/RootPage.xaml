@@ -5,6 +5,7 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:newcomers="clr-namespace:neophyte.Views.Newcomers;assembly=neophyte"
             xmlns:registration="clr-namespace:neophyte.Views.Registration;assembly=neophyte"
+            xmlns:attendance="clr-namespace:neophyte.Views.Attendance;assembly=neophyte"
             android:TabbedPage.ToolbarPlacement="Bottom"
             android:TabbedPage.UnselectedTabColor="#66FFFFFF"
             android:TabbedPage.SelectedTabColor="White"
@@ -45,7 +46,7 @@
             </OnPlatform>
         </NavigationPage.BarTextColor>
         <x:Arguments>
-            <registration:AttendanceDateSummariesPage />
+            <attendance:AttendanceDateSummariesPage />
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

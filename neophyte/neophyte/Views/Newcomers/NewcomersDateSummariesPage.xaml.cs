@@ -49,7 +49,7 @@ namespace neophyte.Views.Newcomers
 
         protected async void OpenNewRecordPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewRecord());
+            await Navigation.PushAsync(new RecordNewcomerPage());
         }
 
         protected async void GenerateDateReport(object sender, EventArgs e)

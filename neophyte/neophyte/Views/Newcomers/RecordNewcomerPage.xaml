@@ -4,7 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
-    x:Class="neophyte.Views.Newcomers.NewRecord"
+    x:Class="neophyte.Views.Newcomers.RecordNewcomerPage"
     Padding="10">
     <ContentPage.Content>
         <ScrollView

@@ -7,7 +7,7 @@ using Plugin.Connectivity;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace neophyte.Views.Registration
+namespace neophyte.Views.Attendance
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AttendanceByDatePage : ContentPage

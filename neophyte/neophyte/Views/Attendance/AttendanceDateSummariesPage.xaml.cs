@@ -6,7 +6,7 @@ using Plugin.Connectivity;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace neophyte.Views.Registration
+namespace neophyte.Views.Attendance
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AttendanceDateSummariesPage : ContentPage
@@ -46,7 +46,7 @@ namespace neophyte.Views.Registration
 
         protected async void OpenNewRecordPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RegisterPage());
+            await Navigation.PushAsync(new RegisterAttendeePage());
         }
 
         protected async void GenerateDateReport(object sender, EventArgs e)
