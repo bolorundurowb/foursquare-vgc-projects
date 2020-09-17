@@ -55,7 +55,7 @@ namespace api.Controllers
             {
                 var attendee = await _attendanceRepo.AddAttendee(bm.FullName, bm.EmailAddress, bm.Age, bm.Phone,
                     bm.ResidentialAddress, bm.Gender, bm.ReturnedInLastTenDays, bm.LiveWithCovidCaregivers,
-                    bm.CaredForSickPerson, bm.HaveCovidSymptoms);
+                    bm.CaredForSickPerson, bm.HaveCovidSymptoms, bm.SeatNumber);
                 return Created(Mapper.Map<AttendeeViewModel>(attendee));
             }
             catch (ConflictException ex)

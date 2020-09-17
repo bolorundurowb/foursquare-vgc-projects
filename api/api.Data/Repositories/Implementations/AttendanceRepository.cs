@@ -61,7 +61,7 @@ namespace api.Data.Repositories.Implementations
 
         public async Task<Attendee> AddAttendee(string fullName, string email, int? age, string phone,
             string residentialAddress, Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers,
-            bool caredForSickPerson, MultiChoice? haveCovidSymptoms)
+            bool caredForSickPerson, MultiChoice? haveCovidSymptoms, int? seatNumber)
         {
             var nextSunday = DateTime.UtcNow.Date.Next(DayOfWeek.Sunday);
             var normalizedEmail = email?.ToLowerInvariant();
@@ -72,15 +72,21 @@ namespace api.Data.Repositories.Implementations
             {
                 throw new ConflictException("You have already registered for the service.");
             }
-            
-            var attendee = new Attendee(normalizedEmail, fullName, age, phone, residentialAddress, gender, returnedInLastTenDays,
+
+            var attendee = new Attendee(normalizedEmail, fullName, age, phone, residentialAddress, gender,
+                returnedInLastTenDays,
                 liveWithCovidCaregivers, caredForSickPerson, haveCovidSymptoms);
+
+            if (seatNumber.HasValue)
+            {
+                attendee.UpdateSeatNumber(seatNumber);
+            }
 
             if (!attendee.CanRegister())
             {
                 throw new InvalidOperationException("You cannot reserve a seat at this time.");
             }
-            
+
             await _dbContext.Attendance
                 .InsertOneAsync(attendee);
 

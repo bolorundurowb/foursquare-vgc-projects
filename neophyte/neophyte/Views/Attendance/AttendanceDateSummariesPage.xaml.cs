@@ -6,15 +6,15 @@ using Plugin.Connectivity;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace neophyte.Views.Registration
+namespace neophyte.Views.Attendance
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentPage
+    public partial class AttendanceDateSummariesPage : ContentPage
     {
         private readonly AttendanceClient _attendanceClient;
         private readonly ReportClient _reportClient;
 
-        public HomePage()
+        public AttendanceDateSummariesPage()
         {
             InitializeComponent();
 
@@ -41,12 +41,12 @@ namespace neophyte.Views.Registration
         protected async void OpenDateRecordsPage(object sender, ItemTappedEventArgs e)
         {
             var summary = e.Item as DateSummaryViewModel;
-            await Navigation.PushAsync(new DateAttendance(summary.Date));
+            await Navigation.PushAsync(new AttendanceByDatePage(summary.Date));
         }
 
         protected async void OpenNewRecordPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RegisterPage());
+            await Navigation.PushAsync(new RegisterAttendeePage());
         }
 
         protected async void GenerateDateReport(object sender, EventArgs e)

@@ -7,17 +7,17 @@ using Plugin.Connectivity;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace neophyte.Views.Registration
+namespace neophyte.Views.Attendance
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DateAttendance : ContentPage
+    public partial class AttendanceByDatePage : ContentPage
     {
         private readonly AttendanceClient _attendanceClient;
         private readonly ReportClient _reportClient;
         private readonly DateTime _date;
         private AttendeeViewModel[] _dateRecords;
 
-        public DateAttendance(DateTime date)
+        public AttendanceByDatePage(DateTime date)
         {
             InitializeComponent();
 
@@ -52,7 +52,7 @@ namespace neophyte.Views.Registration
         protected async void ViewAttendanceDetail(object sender, ItemTappedEventArgs e)
         {
             var attendee = e.Item as AttendeeViewModel;
-            await Navigation.PushAsync(new AttendanceDetails(attendee));
+            await Navigation.PushAsync(new AttendeeDetailsPage(attendee));
         }
 
         protected async void RefreshDateRecords(object sender, EventArgs e)

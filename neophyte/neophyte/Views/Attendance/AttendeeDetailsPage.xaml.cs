@@ -2,16 +2,16 @@ using neophyte.Models.View;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace neophyte.Views.Registration
+namespace neophyte.Views.Attendance
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AttendanceDetails : ContentPage
+    public partial class AttendeeDetailsPage : ContentPage
     {
-        public AttendanceDetails(AttendeeViewModel attendee)
+        public AttendeeDetailsPage(AttendeeViewModel attendee)
         {
             InitializeComponent();
 
-            Title = "Attendance Details";
+            Title = "Attendee Details";
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
             BindingContext = attendee;
         }

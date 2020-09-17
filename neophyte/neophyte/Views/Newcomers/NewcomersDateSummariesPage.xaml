@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="neophyte.Views.Registration.HomePage"
-             Padding="10, 10, 10, 10">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="neophyte.Views.Newcomers.NewcomersDateSummariesPage"
+    Padding="10, 10, 10, 10">
     <ContentPage.Content>
         <AbsoluteLayout
             VerticalOptions="FillAndExpand"
@@ -16,7 +17,7 @@
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand">
                     <Label
-                        Text="Attendants By Date"
+                        Text="Newcomers By Date"
                         FontAttributes="Bold"
                         Margin="0, 0, 0, 10"
                         FontSize="Medium"
@@ -45,19 +46,16 @@
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.ContextActions>
-                                        <MenuItem
-                                            CommandParameter="{Binding .}"
-                                            Text="Report"
-                                            Clicked="GenerateDateReport" />
+                                        <MenuItem CommandParameter="{Binding .}"
+                                                  Text="Report"
+                                                  Clicked="GenerateDateReport" />
                                     </ViewCell.ContextActions>
-                                    <StackLayout
-                                        Padding="5, 10, 5, 10"
-                                        Orientation="Horizontal">
-                                        <Image
-                                            WidthRequest="35"
-                                            HeightRequest="35"
-                                            Source="attendance.png"
-                                            Margin="5,0,0,0" />
+                                    <StackLayout Padding="5, 10, 5, 10"
+                                                 Orientation="Horizontal">
+                                        <Image WidthRequest="35"
+                                               HeightRequest="35"
+                                               Source="appointment.png"
+                                               Margin="5,0,0,0" />
                                         <StackLayout
                                             Orientation="Vertical"
                                             HorizontalOptions="FillAndExpand"
@@ -87,12 +85,12 @@
             <Button
                 x:Name="btnAddRecord"
                 CornerRadius="30"
-                Text="&#xf477;"
+                Text="&#xf234;"
                 FontFamily="FAS"
                 TextColor="White"
-                FontSize="25"
+                FontSize="22"
                 FontAttributes="Bold"
-                BackgroundColor="#009688"
+                BackgroundColor="#FF9800"
                 WidthRequest="60"
                 HeightRequest="60"
                 Margin="0,0,10,10"

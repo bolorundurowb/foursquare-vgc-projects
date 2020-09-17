@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
-using neophyte.Firebase;
-using neophyte.Models;
+using neophyte.DataAccess.Implementations;
+using neophyte.Models.Binding;
 using neophyte.Validators;
+using Refit;
 using Xamarin.Forms;
 
 namespace neophyte.Views.Newcomers
 {
-    public partial class NewRecord : ContentPage
+    public partial class RecordNewcomerPage : ContentPage
     {
-        private readonly RecordService _recordService;
-        private readonly RecordValidator _recordValidator = new RecordValidator();
+        private readonly NewcomerClient _newcomerClient;
+        private readonly NewcomerValidator _newcomerValidator = new NewcomerValidator();
 
-        public NewRecord()
+        public RecordNewcomerPage()
         {
             InitializeComponent();
 
@@ -27,17 +29,16 @@ namespace neophyte.Views.Newcomers
             cmbGender.ItemsSource = Constants.Genders;
 
             // initialize stuff
-            _recordService = new RecordService();
-            BindingContext = new Record();
+            _newcomerClient = new NewcomerClient();
+            BindingContext = new NewcomerBindingModel();
         }
 
-        protected async void AddNewRecord(object sender, EventArgs e)
+        protected async void Record(object sender, EventArgs e)
         {
-            var record = (Record) BindingContext;
-            record.BirthDay = $"{cmbMonths.SelectedItem} {cmbDays.SelectedItem}";
+            var newcomer = BindingContext as NewcomerBindingModel;
 
             // validate inputs
-            var validationResult = await _recordValidator.ValidateAsync(record);
+            var validationResult = await _newcomerValidator.ValidateAsync(newcomer);
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors
@@ -56,13 +57,26 @@ namespace neophyte.Views.Newcomers
             // disable the button
             btnSave.IsVisible = false;
             prgSaving.IsVisible = true;
-            await _recordService.CreateRecordAsync(record);
 
-            // alert the user
-            await DisplayAlert("Success", "Record successfully added.", "Ok");
+            try
+            {
+                newcomer.BirthDay = $"{cmbMonths.SelectedItem} {cmbDays.SelectedItem}";
+                await _newcomerClient.Register(newcomer);
+                // alert the user
+                await DisplayAlert("Success", "Newcomer successfully recorded.", "Okay");
+                // set the controls
+                await ResetControlsAsync();
+            }
+            catch (ApiException ex)
+            {
+                await DisplayAlert("Error", ex.Content, "Okay");
+            }
+            catch (HttpRequestException)
+            {
+                await DisplayAlert("Error", "An error occurred.", "Okay");
+            }
 
-            // set the controls
-            await ResetControlsAsync();
+            // enable buttons
             prgSaving.IsVisible = false;
             btnSave.IsVisible = true;
         }
@@ -70,7 +84,7 @@ namespace neophyte.Views.Newcomers
         private async Task ResetControlsAsync()
         {
             // reset binding context
-            BindingContext = new Record();
+            BindingContext = new NewcomerBindingModel();
 
             // drop downs
             cmbDays.SelectedIndex = -1;

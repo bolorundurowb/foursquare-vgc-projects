@@ -3,23 +3,21 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
-using neophyte.Firebase;
-using neophyte.Models;
 using neophyte.Models.Binding;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace neophyte.Views.Registration
+namespace neophyte.Views.Attendance
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegisterPage : ContentPage
+    public partial class RegisterAttendeePage : ContentPage
     {
         private readonly AttendanceClient _attendanceClient;
         private readonly AttendanceValidator _attendanceValidator = new AttendanceValidator();
 
-        public RegisterPage()
+        public RegisterAttendeePage()
         {
             InitializeComponent();
 
@@ -63,7 +61,7 @@ namespace neophyte.Views.Registration
             {
                 await _attendanceClient.Register(attendee);
                 // alert the user
-                await DisplayAlert("Success", "User successfully registered.", "Okay");
+                await DisplayAlert("Success", "Attendee successfully registered.", "Okay");
                 // set the controls
                 await ResetControlsAsync();
             }
@@ -71,7 +69,7 @@ namespace neophyte.Views.Registration
             {
                 await DisplayAlert("Error", ex.Content, "Okay");
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 await DisplayAlert("Error", "An error occurred.", "Okay");
             }

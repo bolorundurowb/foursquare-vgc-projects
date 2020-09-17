@@ -20,7 +20,7 @@ namespace neophyte
 
         public static List<string> Genders = new List<string>
         {
-            "Male", "Female"
+            "Other", "Male", "Female"
         };
     }
 }
