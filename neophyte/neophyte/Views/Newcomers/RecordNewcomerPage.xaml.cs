@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using neophyte.Firebase;
 using neophyte.Models;
+using neophyte.Models.Binding;
 using neophyte.Validators;
 using Xamarin.Forms;
 
@@ -11,7 +12,7 @@ namespace neophyte.Views.Newcomers
     public partial class RecordNewcomerPage : ContentPage
     {
         private readonly RecordService _recordService;
-        private readonly RecordValidator _recordValidator = new RecordValidator();
+        private readonly NewcomerValidator _newcomerValidator = new NewcomerValidator();
 
         public RecordNewcomerPage()
         {
@@ -28,7 +29,7 @@ namespace neophyte.Views.Newcomers
 
             // initialize stuff
             _recordService = new RecordService();
-            BindingContext = new Record();
+            BindingContext = new NewcomerBindingModel();
         }
 
         protected async void AddNewRecord(object sender, EventArgs e)
@@ -37,7 +38,7 @@ namespace neophyte.Views.Newcomers
             record.BirthDay = $"{cmbMonths.SelectedItem} {cmbDays.SelectedItem}";
 
             // validate inputs
-            var validationResult = await _recordValidator.ValidateAsync(record);
+            var validationResult = await _newcomerValidator.ValidateAsync(record);
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors

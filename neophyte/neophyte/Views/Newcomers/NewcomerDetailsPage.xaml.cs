@@ -14,7 +14,7 @@ namespace neophyte.Views.Newcomers
     public partial class NewcomerDetailsPage : ContentPage
     {
         private readonly RecordService _recordService;
-        private readonly RecordValidator _recordValidator = new RecordValidator();
+        private readonly NewcomerValidator _newcomerValidator = new NewcomerValidator();
 
         public NewcomerDetailsPage(NewcomerViewModel newcomer)
         {
@@ -45,7 +45,7 @@ namespace neophyte.Views.Newcomers
             record.BirthDay = $"{cmbMonths.SelectedItem} {cmbDays.SelectedItem}";
 
             // validate inputs
-            var validationResult = await _recordValidator.ValidateAsync(record);
+            var validationResult = await _newcomerValidator.ValidateAsync(record);
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors
