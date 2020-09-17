@@ -3,7 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
-             x:Class="neophyte.Views.Newcomers.RecordDetail"
+             x:Class="neophyte.Views.Newcomers.NewcomerDetails"
              Padding="10">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="menuEdit" Order="Primary" Text="Edit" Priority="0" Clicked="EnableEditMode" />

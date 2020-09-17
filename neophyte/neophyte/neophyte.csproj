@@ -40,7 +40,7 @@
         <SubType>Designer</SubType>
         <Generator></Generator>
       </EmbeddedResource>
-      <EmbeddedResource Update="Views\Registration\AttendanceDetails.xaml">
+      <EmbeddedResource Update="Views\Registration\AttendeeDetails.xaml">
         <SubType>Designer</SubType>
         <Generator></Generator>
       </EmbeddedResource>
@@ -62,7 +62,7 @@
         <DependentUpon>NewRecord.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\Newcomers\RecordDetail.xaml.cs">
+      <Compile Update="Views\Newcomers\NewcomerDetails.xaml.cs">
         <DependentUpon>RecordDetail.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
@@ -72,7 +72,7 @@
       <Compile Update="Views\Registration\DateAttendance.xaml.cs">
         <DependentUpon>DateAttendance.xaml</DependentUpon>
       </Compile>
-      <Compile Update="Views\Registration\AttendanceDetails.xaml.cs">
+      <Compile Update="Views\Registration\AttendeeDetails.xaml.cs">
         <DependentUpon>AttendanceDetails.xaml</DependentUpon>
       </Compile>
     </ItemGroup>

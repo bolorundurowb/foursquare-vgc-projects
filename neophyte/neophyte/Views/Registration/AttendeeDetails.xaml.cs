@@ -5,13 +5,13 @@ using Xamarin.Forms.Xaml;
 namespace neophyte.Views.Registration
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AttendanceDetails : ContentPage
+    public partial class AttendeeDetails : ContentPage
     {
-        public AttendanceDetails(AttendeeViewModel attendee)
+        public AttendeeDetails(AttendeeViewModel attendee)
         {
             InitializeComponent();
 
-            Title = "Attendance Details";
+            Title = "Attendee Details";
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
             BindingContext = attendee;
         }

@@ -56,7 +56,7 @@ namespace neophyte.Views.Newcomers
         protected async void ViewPersonRecord(object sender, ItemTappedEventArgs e)
         {
             var newcomer = e.Item as NewcomerViewModel;
-            await Navigation.PushAsync(new RecordDetail(newcomer));
+            await Navigation.PushAsync(new NewcomerDetails(newcomer));
         }
 
         protected async void RefreshDateRecords(object sender, EventArgs e)

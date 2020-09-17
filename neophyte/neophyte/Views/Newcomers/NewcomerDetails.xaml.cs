@@ -10,17 +10,17 @@ using Xamarin.Forms.Xaml;
 namespace neophyte.Views.Newcomers
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RecordDetail : ContentPage
+    public partial class NewcomerDetails : ContentPage
     {
         private readonly RecordService _recordService;
         private readonly RecordValidator _recordValidator = new RecordValidator();
         private readonly string _date;
 
-        public RecordDetail(string date, Record record)
+        public NewcomerDetails(string date, Record record)
         {
             InitializeComponent();
 
-            Title = "Record Details";
+            Title = "Newcomer Details";
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
 
             // set drop down values
