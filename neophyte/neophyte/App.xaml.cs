@@ -1,7 +1,6 @@
-﻿using neophyte.Firebase;
+﻿using neophyte.DataAccess.Implementations;
 using neophyte.Views;
 using neophyte.Views.Auth;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 [assembly: ExportFont("FA-Brands.otf", Alias = "FAB")]
@@ -17,7 +16,7 @@ namespace neophyte
 
             // determine page to navigate to
             NavigationPage mainPage;
-            var isLoggedIn = Preferences.Get(AuthService.AuthKey, false);
+            var isLoggedIn = new AuthClient().IsLoggedIn();
 
             if (isLoggedIn)
             {
