@@ -1,9 +1,9 @@
 using FluentValidation;
-using neophyte.Models;
+using neophyte.Models.Binding;
 
 namespace neophyte.Validators
 {
-    public class AttendanceValidator : AbstractValidator<Attendance>
+    public class AttendanceValidator : AbstractValidator<AttendeeBindingModel>
     {
         public AttendanceValidator()
         {
@@ -15,7 +15,7 @@ namespace neophyte.Validators
                 .NotEmpty()
                 .WithMessage("An email address is missing")
                 .EmailAddress()
-                .WithMessage("the email address is invalid");
+                .WithMessage("The email address is invalid");
 
             RuleFor(x => x.Phone)
                 .NotEmpty()

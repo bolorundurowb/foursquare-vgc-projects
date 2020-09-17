@@ -17,7 +17,7 @@ namespace api.Data.Repositories.Interfaces
 
         Task<Attendee> AddAttendee(string fullName, string email, int? age, string phone, string residentialAddress,
             Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers, bool caredForSickPerson,
-            MultiChoice? haveCovidSymptoms);
+            MultiChoice? haveCovidSymptoms, int? seatNumber = null);
 
         Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string email, int? age, string phone,
             string residentialAddress, Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers,

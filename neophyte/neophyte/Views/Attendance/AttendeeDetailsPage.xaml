@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             x:Class="neophyte.Views.Attendance.AttendeeDetailsPage"
+             Padding="10">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label
+                    Text="Full Name:"
+                    FontSize="13"
+                    TextColor="Gray"
+                    Margin="0, 10, 0, 0" />
+                <Label
+                    Text="{Binding FullName}"
+                    FontSize="16"
+                    TextColor="Black"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Text="Email:"
+                    Margin="0, 10, 0, 0" />
+                <Label
+                    FontSize="16"
+                    TextColor="Black"
+                    Text="{Binding EmailAddress}" />
+
+                <Label
+                    Text="Age (in years):"
+                    Margin="0, 10, 0, 0" />
+                <Label
+                    Text="{Binding Age}"
+                    FontSize="16"
+                    TextColor="Black" />
+
+                <Label
+                    Text="Gender:"
+                    Margin="0, 10, 0, 0" />
+                <Label
+                    Text="{Binding Gender}"
+                    FontSize="16"
+                    TextColor="Black"
+                    HorizontalOptions="FillAndExpand" />
+
+                <Label
+                    Text="Phone Number:"
+                    Margin="0, 10, 0, 0" />
+                <Label
+                    Text="{Binding Phone}"
+                    FontSize="16"
+                    TextColor="Black" />
+
+                <Label
+                    Text="Residential Address:"
+                    Margin="0, 10, 0, 0" />
+                <Label
+                    Text="{Binding ResidentialAddress}"
+                    FontSize="16"
+                    TextColor="Black" />
+
+                <Label
+                    Text="Seat Number:"
+                    Margin="0, 10, 0, 0" />
+                <Label
+                    Text="{Binding SeatNumber}"
+                    FontSize="16"
+                    TextColor="Black" />
+
+                <controls:CheckBox
+                    IsDisabled="True"
+                    Margin="0, 10, 0, 0"
+                    IsChecked="{Binding ReturnedInLastTenDays}"
+                    Type="Material"
+                    Text="Did you return from a trip overseas in the last 10 days?" />
+
+                <controls:CheckBox
+                    IsDisabled="True"
+                    Margin="0, 10, 0, 0"
+                    IsChecked="{Binding LiveWithCovidCaregivers}"
+                    Type="Material"
+                    Text="Do you live with Covid-19 caregivers / health workers?" />
+
+                <controls:CheckBox
+                    IsDisabled="True"
+                    Margin="0, 10, 0, 0"
+                    IsChecked="{Binding CaredForSickPerson}"
+                    Type="Material"
+                    Text="Did you recently care for any sick individual at home or in hospital?" />
+
+                <Label
+                    Text="Do you presently have cold, cough, fever, sore throat, loss of smell or loss of appetite?:"
+                    Margin="0, 15, 0, 0" />
+
+                <controls:RadioButtonGroupView
+                    SelectedItem="{Binding HaveCovidSymptoms}"
+                    Orientation="Horizontal"
+                    Margin="0, 10, 0, 0">
+                    <controls:RadioButton
+                        IsDisabled="True"
+                        TextFontSize="14"
+                        CircleColor="#92278F"
+                        Color="#92278F"
+                        Text="Yes"
+                        Value="Yes" />
+                    <controls:RadioButton
+                        IsDisabled="True"
+                        TextFontSize="14"
+                        CircleColor="#92278F"
+                        Color="#92278F"
+                        Text="No"
+                        Value="No" />
+                    <controls:RadioButton
+                        IsDisabled="True"
+                        TextFontSize="14"
+                        CircleColor="#92278F"
+                        Color="#92278F"
+                        Text="Maybe"
+                        Value="Maybe" />
+                </controls:RadioButtonGroupView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

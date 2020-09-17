@@ -23,5 +23,7 @@ namespace api.Models.Binding
         public bool CaredForSickPerson { get;  set; }
 
         public MultiChoice? HaveCovidSymptoms { get;  set; }
+
+        public int? SeatNumber { get; set; }
     }
 }
