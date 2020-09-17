@@ -17,6 +17,7 @@ namespace neophyte.Views.Registration
     public partial class HomePage : ContentPage
     {
         private readonly AttendanceClient _attendanceClient;
+        private readonly ReportClient _reportClient;
 
         public HomePage()
         {
@@ -29,8 +30,9 @@ namespace neophyte.Views.Registration
             {
                 btnAddRecord.TextColor = Color.Black;
             }
-            
+
             _attendanceClient = new AttendanceClient();
+            _reportClient = new ReportClient();
         }
 
         protected override async void OnAppearing()
@@ -54,23 +56,12 @@ namespace neophyte.Views.Registration
 
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
-            var summary = (sender as MenuItem)?.CommandParameter as DateSummaryViewModel;
-            // var csvString = await _attendanceService.GenerateCsvForDateAsync(dateEntry?.Date);
-            var filePersistenceHandler = DependencyService.Get<IFilePersistence>();
-            var filePath = filePersistenceHandler.SaveFile(dateEntry?.Date, csvString, RecordType.Attendance);
-
-            // let the user know
-            await DisplayAlert("Success", "Report successfully generated.", "Ok");
-
-            // share the file if iOS as it is harder to access the file system
-            if (Device.RuntimePlatform == Device.iOS)
+            if ((sender as MenuItem)?.CommandParameter is DateSummaryViewModel summary)
             {
-                await Share.RequestAsync(new ShareFileRequest
-                {
-                    Title = "Share report",
-                    File = new ShareFile(filePath)
-                });
+                await _reportClient.GenerateReport(summary.Date);
             }
+
+            await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
         }
 
         protected async void RefreshDateRecords(object sender, EventArgs e)
