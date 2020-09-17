@@ -1,7 +1,6 @@
-using System;
-using api.Data.Enums;
+﻿using System;
 
-namespace api.Models.View
+namespace neophyte.Models.View
 {
     public class AttendeeViewModel
     {
@@ -15,7 +14,7 @@ namespace api.Models.View
 
         public int? Age { get; set; }
 
-        public Gender? Gender { get; set; }
+        public string Gender { get; set; }
 
         public string Phone { get; set; }
 
@@ -27,7 +26,7 @@ namespace api.Models.View
 
         public bool CaredForSickPerson { get; set; }
 
-        public MultiChoice? HaveCovidSymptoms { get; set; }
+        public string HaveCovidSymptoms { get; set; }
 
         public int? SeatNumber { get; set; }
     }

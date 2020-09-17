@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using neophyte.DataAccess.Interfaces;
 using neophyte.Models.View;
 using Refit;
@@ -21,6 +22,11 @@ namespace neophyte.DataAccess.Implementations
         public Task<DateSummaryViewModel[]> GetAll()
         {
             return _attendanceClient.Get();
+        }
+
+        public Task<AttendeeViewModel[]> GetAttendanceForDate(DateTime date)
+        {
+            return _attendanceClient.GetAttendanceForDate(date);
         }
     }
 }

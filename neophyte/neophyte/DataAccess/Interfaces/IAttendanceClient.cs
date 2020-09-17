@@ -11,8 +11,8 @@ namespace neophyte.DataAccess.Interfaces
         [Headers("Authorization: Bearer")]
         Task<DateSummaryViewModel[]> Get();
         
-        [Get("/attendance")]
+        [Get("/attendance/{date}")]
         [Headers("Authorization: Bearer")]
-        Task<DateSummaryViewModel[]> GenerateReport(DateTime date);
+        Task<AttendeeViewModel[]> GetAttendanceForDate(DateTime date);
     }
 }
