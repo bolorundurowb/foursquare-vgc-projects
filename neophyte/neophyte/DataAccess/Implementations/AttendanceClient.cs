@@ -28,5 +28,10 @@ namespace neophyte.DataAccess.Implementations
         {
             return _attendanceClient.GetAttendanceForDate(date.ToString("yyyy-MM-dd"));
         }
+
+        public Task DeleteAttendee(string id)
+        {
+            return _attendanceClient.DeleteAttendee(id);
+        }
     }
 }

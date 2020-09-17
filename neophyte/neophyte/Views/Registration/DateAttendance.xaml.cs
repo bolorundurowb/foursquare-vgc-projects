@@ -47,7 +47,7 @@ namespace neophyte.Views.Registration
         protected async void DeleteRecord(object sender, EventArgs e)
         {
             var attendance = (sender as MenuItem)?.CommandParameter as AttendeeViewModel;
-            // await _attendanceService.DeleteAttendanceAsync(date, attendance?.AttendanceId);
+            await _attendanceClient.DeleteAttendee(attendance?.Id);
 
             // refresh view
             lstDateRecords.ItemsSource = _dateRecords.Where(x => x.Id != attendance?.Id);
@@ -72,33 +72,6 @@ namespace neophyte.Views.Registration
         {
             await _reportClient.GenerateReport(_date);
             await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
-            var status = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
-            if (status != PermissionStatus.Granted)
-            {
-                status = await Permissions.RequestAsync<Permissions.StorageWrite>();
-            }
-
-            if (status != PermissionStatus.Granted)
-            {
-                return;
-            }
-
-            // var csvString = await _attendanceService.GenerateCsvForDateAsync(_dateEntry.Date);
-            // var filePersistenceHandler = DependencyService.Get<IFilePersistence>();
-            // var filePath = filePersistenceHandler.SaveFile(_dateEntry.Date, csvString, RecordType.Attendance);
-            //
-            // // let the user know
-            // await DisplayAlert("Success", "Report successfully generated.", "Ok");
-            //
-            // // share the file if iOS as it is harder to access the file system
-            // if (Device.RuntimePlatform == Device.iOS)
-            // {
-            //     await Share.RequestAsync(new ShareFileRequest
-            //     {
-            //         Title = "Share report",
-            //         File = new ShareFile(filePath)
-            //     });
-            // }
         }
 
         private async Task LoadDateRecords()

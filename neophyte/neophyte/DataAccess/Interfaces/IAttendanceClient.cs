@@ -14,5 +14,9 @@ namespace neophyte.DataAccess.Interfaces
         [Get("/attendance/{date}")]
         [Headers("Authorization: Bearer")]
         Task<AttendeeViewModel[]> GetAttendanceForDate(string date);
+        
+        [Delete("/attendance/{id}")]
+        [Headers("Authorization: Bearer")]
+        Task DeleteAttendee(string id);
     }
 }
