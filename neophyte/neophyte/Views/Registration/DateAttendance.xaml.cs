@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
-using neophyte.Models;
 using neophyte.Models.View;
 using Plugin.Connectivity;
 using Xamarin.Forms;

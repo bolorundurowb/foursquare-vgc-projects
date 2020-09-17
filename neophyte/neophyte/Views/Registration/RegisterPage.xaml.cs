@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using neophyte.DataAccess.Implementations;
 using neophyte.Firebase;
 using neophyte.Models;
+using neophyte.Models.Binding;
 using neophyte.Validators;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,7 +14,7 @@ namespace neophyte.Views.Registration
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterPage : ContentPage
     {
-        private readonly AttendanceService _attendanceService;
+        private readonly AttendanceClient _attendanceClient;
         private readonly AttendanceValidator _attendanceValidator = new AttendanceValidator();
 
         public RegisterPage()
@@ -26,13 +28,13 @@ namespace neophyte.Views.Registration
             cmbGender.ItemsSource = Constants.Genders;
 
             // initialize stuff
-            _attendanceService = new AttendanceService();
-            BindingContext = new Attendance();
+            _attendanceClient = new AttendanceClient();
+            BindingContext = new AttendeeBindingModel();
         }
 
         protected async void Register(object sender, EventArgs e)
         {
-            var attendance = (Attendance) BindingContext;
+            var attendance = BindingContext as AttendeeBindingModel;
 
             // validate inputs
             var validationResult = await _attendanceValidator.ValidateAsync(attendance);
