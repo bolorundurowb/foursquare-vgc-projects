@@ -1,13 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
-using neophyte.Enums;
-using neophyte.Firebase;
-using neophyte.Interfaces;
-using neophyte.Models;
 using neophyte.Models.View;
 using Plugin.Connectivity;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
