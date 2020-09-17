@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using neophyte.DataAccess.Implementations;
 using neophyte.Enums;
 using neophyte.Firebase;
 using neophyte.Interfaces;
 using neophyte.Models;
+using neophyte.Models.View;
 using Plugin.Connectivity;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -13,41 +16,38 @@ namespace neophyte.Views.Newcomers
 {
     public partial class DateRecords : ContentPage
     {
-        private readonly RecordService _recordService;
-        private readonly DateEntry _dateEntry;
-        private List<Record> _dateRecords;
+        private readonly NewcomerClient _newcomerClient;
+        private readonly ReportClient _reportClient;
+        private readonly DateTime _date;
+        private NewcomerViewModel[] _dateRecords;
 
-        public DateRecords(DateEntry dateEntry)
+        public DateRecords(DateTime date)
         {
             InitializeComponent();
 
             Title = "Records";
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
-            _recordService = new RecordService();
-            _dateEntry = dateEntry;
+
+            _date = date;
+            _newcomerClient = new NewcomerClient();
+            _reportClient = new ReportClient();
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            // retrieve data from the database
-            _dateRecords = await _recordService.GetRecordByDateAsync(_dateEntry?.Date);
-            lstDateRecords.ItemsSource = _dateRecords;
-
-            // disable the loading screen
+            await LoadDateRecords();
             prgLoading.IsVisible = false;
             lstDateRecords.IsVisible = true;
         }
 
         protected async void DeleteRecord(object sender, EventArgs e)
         {
-            var date = _dateEntry?.Date;
-            var record = (sender as MenuItem)?.CommandParameter as Record;
-            await _recordService.DeleteRecordAsync(date, record?.RecordId);
+            var newcomer = (sender as MenuItem)?.CommandParameter as NewcomerViewModel;
+            await _newcomerClient.DeleteAttendee(newcomer?.Id);
 
             // refresh view
-            lstDateRecords.ItemsSource = _dateRecords.Where(x => x.RecordId != record?.RecordId);
+            lstDateRecords.ItemsSource = _dateRecords.Where(x => x.Id != newcomer?.Id);
 
             // notify user
             await DisplayAlert("Success", "Record deleted successfully.", "Ok");
@@ -55,60 +55,33 @@ namespace neophyte.Views.Newcomers
 
         protected async void ViewPersonRecord(object sender, ItemTappedEventArgs e)
         {
-            var record = e.Item as Record;
-            await Navigation.PushAsync(new RecordDetail(_dateEntry.Date, record));
+            var newcomer = e.Item as NewcomerViewModel;
+            await Navigation.PushAsync(new RecordDetail(newcomer));
         }
 
         protected async void RefreshDateRecords(object sender, EventArgs e)
         {
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                // retrieve data from the database
-                _dateRecords = await _recordService.GetRecordByDateAsync(_dateEntry?.Date);
-                lstDateRecords.ItemsSource = _dateRecords;
-
-                // disable the loading screen
-                prgLoading.IsVisible = false;
-                lstDateRecords.IsVisible = true;
-            }
-            else
-            {
-                const string errorMessage = "We had issues retrieving data. Please check your internet connection";
-                await DisplayAlert("Error", errorMessage, "Close");
-            }
-
+            await LoadDateRecords();
             lstDateRecords.IsRefreshing = false;
         }
 
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
-            var status = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
-            if (status != PermissionStatus.Granted)
-            {
-                status = await Permissions.RequestAsync<Permissions.StorageWrite>();
-            }
+            await _reportClient.GenerateReport(_date);
+            await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
+        }
 
-            if (status != PermissionStatus.Granted)
+        private async Task LoadDateRecords()
+        {
+            if (!CrossConnectivity.Current.IsConnected)
             {
+                await DisplayAlert("Error", "There were issues retrieving data. Please check your internet connection",
+                    "Close");
                 return;
             }
 
-            var csvString = await _recordService.GenerateCsvForDateAsync(_dateEntry.Date);
-            var filePersistenceHandler = DependencyService.Get<IFilePersistence>();
-            var filePath = filePersistenceHandler.SaveFile(_dateEntry.Date, csvString, RecordType.Newcomers);
-
-            // let the user know
-            await DisplayAlert("Success", "Report successfully generated.", "Ok");
-
-            // share the file if iOS as it is harder to access the file system
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                await Share.RequestAsync(new ShareFileRequest
-                {
-                    Title = "Share report",
-                    File = new ShareFile(filePath)
-                });
-            }
+            _dateRecords = await _newcomerClient.GetAttendanceForDate(_date);
+            lstDateRecords.ItemsSource = _dateRecords;
         }
     }
 }
