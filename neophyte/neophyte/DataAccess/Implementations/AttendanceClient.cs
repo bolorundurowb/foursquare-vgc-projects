@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Interfaces;
+using neophyte.Models.Binding;
 using neophyte.Models.View;
 using Refit;
 
@@ -27,6 +28,11 @@ namespace neophyte.DataAccess.Implementations
         public Task<AttendeeViewModel[]> GetAttendanceForDate(DateTime date)
         {
             return _attendanceClient.GetAttendanceForDate(date.ToString("yyyy-MM-dd"));
+        }
+
+        public Task Register([Body] AttendeeBindingModel payload)
+        {
+            return _attendanceClient.Register(payload);
         }
 
         public Task DeleteAttendee(string id)

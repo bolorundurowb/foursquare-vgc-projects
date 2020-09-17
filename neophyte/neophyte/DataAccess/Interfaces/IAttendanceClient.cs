@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using neophyte.Models.Binding;
 using neophyte.Models.View;
 using Refit;
 
@@ -9,6 +10,9 @@ namespace neophyte.DataAccess.Interfaces
         [Get("/attendance")]
         [Headers("Authorization: Bearer")]
         Task<DateSummaryViewModel[]> Get();
+        
+        [Post("/attendance")]
+        Task Register([Body] AttendeeBindingModel payload);
         
         [Get("/attendance/{date}")]
         [Headers("Authorization: Bearer")]
