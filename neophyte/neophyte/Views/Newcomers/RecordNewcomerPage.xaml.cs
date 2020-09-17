@@ -71,7 +71,7 @@ namespace neophyte.Views.Newcomers
             {
                 await DisplayAlert("Error", ex.Content, "Okay");
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 await DisplayAlert("Error", "An error occurred.", "Okay");
             }
