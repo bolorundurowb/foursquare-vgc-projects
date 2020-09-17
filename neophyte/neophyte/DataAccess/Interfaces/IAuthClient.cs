@@ -8,6 +8,6 @@ namespace neophyte.DataAccess.Interfaces
     public interface IAuthClient
     {
         [Post("/auth/login")]
-        Task<AuthViewModel> Login(LoginBindingModel payload);
+        Task<AuthViewModel> Login([Body] LoginBindingModel payload);
     }
 }
