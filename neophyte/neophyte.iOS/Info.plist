@@ -9,7 +9,7 @@
 	<key>CFBundleName</key>
 	<string>Neophyte</string>
 	<key>CFBundleVersion</key>
-	<string>3.0.0</string>
+	<string>3.0.1</string>
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>UIDeviceFamily</key>
