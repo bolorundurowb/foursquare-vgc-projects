@@ -1,9 +1,6 @@
 using System;
-using neophyte.DataAccess.Interfaces;
-using neophyte.Firebase;
-using neophyte.Views.Newcomers;
+using neophyte.DataAccess.Implementations;
 using Refit;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,14 +9,14 @@ namespace neophyte.Views.Auth
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignIn : ContentPage
     {
-        private readonly IAuthClient _authClient;
+        private readonly AuthClient _authClient;
 
         public SignIn()
         {
             InitializeComponent();
 
             Title = "Sign In";
-            _authClient = RestService.For<IAuthClient>(Constants.BaseUrl);
+            _authClient = new AuthClient();
         }
 
         protected async void Login(object sender, EventArgs e)
@@ -36,21 +33,22 @@ namespace neophyte.Views.Auth
             btnLogin.IsVisible = false;
             prgLoading.IsVisible = true;
 
-            var authResult = await _authService.VerifyAdminEmail(email);
-            if (authResult)
+            try
             {
-                Preferences.Set(AuthService.AuthKey, true);
+                var response = await _authClient.Login(email);
+                _authClient.SetAuth(response.Token, response.ExpiresAt);
+
                 // send to home page
                 Navigation.InsertPageBefore(new RootPage(), this);
                 await Navigation.PopAsync();
             }
-            else
+            catch (ApiException)
             {
                 txtEmail.IsEnabled = true;
                 btnLogin.IsVisible = true;
                 prgLoading.IsVisible = false;
 
-                await DisplayAlert("Error", "You are not authorized to access this app.", "Ok");
+                await DisplayAlert("Error", "Sorry you cannot access this app at this time.", "Ok");
             }
         }
     }
