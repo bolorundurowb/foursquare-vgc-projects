@@ -12,9 +12,11 @@ namespace neophyte.DataAccess.Interfaces
         Task<DateSummaryViewModel[]> Get();
         
         [Post("/newcomers")]
+        [Headers("Authorization: Bearer")]
         Task Register([Body] NewcomerBindingModel payload);
         
         [Put("/newcomers/{id}")]
+        [Headers("Authorization: Bearer")]
         Task<NewcomerViewModel> Update(string id, [Body] NewcomerUpdateBindingModel payload);
         
         [Get("/newcomers/{date}")]
