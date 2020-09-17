@@ -4,6 +4,8 @@ namespace neophyte
 {
     public static class Constants
     {
+        public const string BaseUrl = "https://neophyte-dev-api.herokuapp.com/v1";
+        
         public static List<string> Months = new List<string>
         {
             "January", "February", "March", "April", "May", "June", "July", "August", "September", "October",

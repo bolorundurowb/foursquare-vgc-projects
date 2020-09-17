@@ -1,6 +1,8 @@
 using System;
+using neophyte.DataAccess.Interfaces;
 using neophyte.Firebase;
 using neophyte.Views.Newcomers;
+using Refit;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,14 +12,14 @@ namespace neophyte.Views.Auth
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignIn : ContentPage
     {
-        private readonly AuthService _authService;
+        private readonly IAuthClient _authClient;
 
         public SignIn()
         {
             InitializeComponent();
 
             Title = "Sign In";
-            _authService = new AuthService();
+            _authClient = RestService.For<IAuthClient>(Constants.BaseUrl);
         }
 
         protected async void Login(object sender, EventArgs e)
