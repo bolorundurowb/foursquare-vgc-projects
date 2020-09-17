@@ -20,7 +20,7 @@ namespace neophyte.DataAccess.Implementations
 
         public Task GenerateReport(DateTime date)
         {
-            return _reportClient.GenerateReport(date);
+            return _reportClient.GenerateReport(date.ToString("yyyy-MM-dd"));
         }
     }
 }

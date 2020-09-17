@@ -13,6 +13,6 @@ namespace neophyte.DataAccess.Interfaces
         
         [Get("/attendance/{date}")]
         [Headers("Authorization: Bearer")]
-        Task<AttendeeViewModel[]> GetAttendanceForDate(DateTime date);
+        Task<AttendeeViewModel[]> GetAttendanceForDate(string date);
     }
 }

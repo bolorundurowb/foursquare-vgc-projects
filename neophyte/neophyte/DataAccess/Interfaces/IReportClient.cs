@@ -8,6 +8,6 @@ namespace neophyte.DataAccess.Interfaces
     {
         [Post("/reports/{date}")]
         [Headers("Authorization: Bearer")]
-        Task GenerateReport(DateTime date);
+        Task GenerateReport(string date);
     }
 }

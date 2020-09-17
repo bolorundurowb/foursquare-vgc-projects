@@ -26,7 +26,7 @@ namespace neophyte.DataAccess.Implementations
 
         public Task<AttendeeViewModel[]> GetAttendanceForDate(DateTime date)
         {
-            return _attendanceClient.GetAttendanceForDate(date);
+            return _attendanceClient.GetAttendanceForDate(date.ToString("yyyy-MM-dd"));
         }
     }
 }

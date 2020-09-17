@@ -20,6 +20,7 @@ namespace neophyte.Views.Registration
     public partial class DateAttendance : ContentPage
     {
         private readonly AttendanceClient _attendanceClient;
+        private readonly ReportClient _reportClient;
         private readonly DateTime _date;
         private AttendeeViewModel[] _dateRecords;
 
@@ -32,6 +33,7 @@ namespace neophyte.Views.Registration
             
             _date = date;
             _attendanceClient = new AttendanceClient();
+            _reportClient = new ReportClient();
         }
 
         protected override async void OnAppearing()
@@ -68,6 +70,8 @@ namespace neophyte.Views.Registration
         
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
+            await _reportClient.GenerateReport(_date);
+            await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
             var status = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
             if (status != PermissionStatus.Granted)
             {
