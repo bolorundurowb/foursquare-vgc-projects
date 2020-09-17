@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using neophyte.DataAccess.Implementations;
 using neophyte.Enums;
 using neophyte.Firebase;
 using neophyte.Interfaces;
@@ -14,7 +15,7 @@ namespace neophyte.Views.Registration
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        private readonly AttendanceService _attendanceService;
+        private readonly AttendanceClient _attendanceClient;
 
         public HomePage()
         {
@@ -22,12 +23,13 @@ namespace neophyte.Views.Registration
 
             Title = "Attendance";
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
-            _attendanceService = new AttendanceService();
 
             if (Device.RuntimePlatform == Device.iOS)
             {
                 btnAddRecord.TextColor = Color.Black;
             }
+            
+            _attendanceClient = new AttendanceClient();
         }
 
         protected override async void OnAppearing()
@@ -51,34 +53,7 @@ namespace neophyte.Views.Registration
 
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
-            var status = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
-            if (status != PermissionStatus.Granted)
-            {
-                status = await Permissions.RequestAsync<Permissions.StorageWrite>();
-            }
-
-            if (status != PermissionStatus.Granted)
-            {
-                return;
-            }
-
-            var dateEntry = (sender as MenuItem)?.CommandParameter as DateEntry;
-            var csvString = await _attendanceService.GenerateCsvForDateAsync(dateEntry?.Date);
-            var filePersistenceHandler = DependencyService.Get<IFilePersistence>();
-            var filePath = filePersistenceHandler.SaveFile(dateEntry?.Date, csvString, RecordType.Attendance);
-
-            // let the user know
-            await DisplayAlert("Success", "Report successfully generated.", "Ok");
-
-            // share the file if iOS as it is harder to access the file system
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                await Share.RequestAsync(new ShareFileRequest
-                {
-                    Title = "Share report",
-                    File = new ShareFile(filePath)
-                });
-            }
+           
         }
 
         protected async void RefreshDateRecords(object sender, EventArgs e)
@@ -96,7 +71,7 @@ namespace neophyte.Views.Registration
                 return;
             }
 
-            lstDateEntries.ItemsSource = await _attendanceService.GetDayEntriesAsync();
+            lstDateEntries.ItemsSource = await _attendanceClient.GetAll();
         }
     }
 }

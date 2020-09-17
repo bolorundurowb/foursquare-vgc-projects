@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using neophyte.DataAccess.Interfaces;
+using neophyte.Models.View;
 using Refit;
 
 namespace neophyte.DataAccess.Implementations
@@ -15,6 +16,11 @@ namespace neophyte.DataAccess.Implementations
             {
                 AuthorizationHeaderValueGetter = () => Task.FromResult(tokenClient.GetToken())
             });
+        }
+
+        public Task<DateSummaryViewModel[]> GetAll()
+        {
+            return _attendanceClient.Get();
         }
     }
 }
