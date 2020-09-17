@@ -45,8 +45,8 @@ namespace neophyte.Views.Registration
 
         protected async void OpenDateRecordsPage(object sender, ItemTappedEventArgs e)
         {
-            var dateEntry = e.Item as DateEntry;
-            await Navigation.PushAsync(new DateAttendance(dateEntry));
+            var summary = e.Item as DateSummaryViewModel;
+            await Navigation.PushAsync(new DateAttendance(summary.Date));
         }
 
         protected async void OpenNewRecordPage(object sender, EventArgs e)
