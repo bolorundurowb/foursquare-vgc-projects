@@ -52,8 +52,8 @@ namespace neophyte.Views.Registration
 
         protected async void ViewAttendanceDetail(object sender, ItemTappedEventArgs e)
         {
-            var attendance = e.Item as Attendance;
-            await Navigation.PushAsync(new AttendanceDetails(attendance));
+            var attendee = e.Item as AttendeeViewModel;
+            await Navigation.PushAsync(new AttendanceDetails(attendee));
         }
 
         protected async void RefreshDateRecords(object sender, EventArgs e)
