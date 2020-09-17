@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using neophyte.Firebase;
 using neophyte.Models;
+using neophyte.Models.View;
 using neophyte.Validators;
 using Plugin.Connectivity;
 using Xamarin.Forms;
@@ -14,9 +15,8 @@ namespace neophyte.Views.Newcomers
     {
         private readonly RecordService _recordService;
         private readonly RecordValidator _recordValidator = new RecordValidator();
-        private readonly string _date;
 
-        public NewcomerDetailsPage(string date, Record record)
+        public NewcomerDetailsPage(NewcomerViewModel newcomer)
         {
             InitializeComponent();
 
@@ -30,20 +30,8 @@ namespace neophyte.Views.Newcomers
             cmbGender.ItemsSource = Constants.Genders;
 
             // initialize stuff
-            _recordService = new RecordService();
-            SetRecordValues(record);
-            _date = date;
-        }
-
-        protected override async void OnAppearing()
-        {
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                return;
-            }
-
-            const string errorMessage = "We had issues retrieving data. Please check your internet connection";
-            await DisplayAlert("Error", errorMessage, "Close");
+            // _recordService = new RecordService();
+            SetNewcomerDisplayValues(newcomer);
         }
 
         protected void EnableEditMode(object sender, EventArgs e)
@@ -76,7 +64,7 @@ namespace neophyte.Views.Newcomers
             // disable the button
             btnUpdate.IsVisible = false;
             prgSaving.IsVisible = true;
-            await _recordService.UpdateRecordAsync(_date, record.RecordId, record);
+            // await _recordService.UpdateRecordAsync(_date, record.RecordId, record);
 
             // alert the user
             await DisplayAlert("Success", "Record updated successfully.", "OK");
@@ -91,12 +79,12 @@ namespace neophyte.Views.Newcomers
             HideEditControls();
         }
 
-        private void SetRecordValues(Record record)
+        private void SetNewcomerDisplayValues(NewcomerViewModel newcomer)
         {
             // set the binding model
-            BindingContext = record;
+            BindingContext = newcomer;
 
-            var birthdayParts = record.BirthDay.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+            var birthdayParts = newcomer.BirthDay.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
             if (birthdayParts.Length > 0)
             {
                 cmbMonths.SelectedIndex = Constants.Months.IndexOf(birthdayParts[0]);
