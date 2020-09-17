@@ -1,5 +1,4 @@
 using FluentValidation;
-using neophyte.Models;
 using neophyte.Models.Binding;
 
 namespace neophyte.Validators

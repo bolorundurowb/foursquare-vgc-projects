@@ -1,10 +1,8 @@
 using System;
 using System.Linq;
 using neophyte.Firebase;
-using neophyte.Models;
 using neophyte.Models.View;
 using neophyte.Validators;
-using Plugin.Connectivity;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

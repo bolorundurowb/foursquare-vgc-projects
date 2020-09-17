@@ -3,8 +3,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
-using neophyte.Firebase;
-using neophyte.Models;
 using neophyte.Models.Binding;
 using neophyte.Validators;
 using Refit;
