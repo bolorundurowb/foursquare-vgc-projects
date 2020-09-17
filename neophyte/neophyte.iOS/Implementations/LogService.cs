@@ -1,6 +1,6 @@
 using System.Xml;
-using neophyte.Interfaces;
 using neophyte.iOS.Implementations;
+using neophyte.Logging.Interfaces;
 using NLog;
 using NLog.Config;
 using Xamarin.Forms;

@@ -67,7 +67,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\AndroidFilePersistence.cs" />
     <Compile Include="Implementations\LogService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />

@@ -60,7 +60,6 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Implementations\IosFilePersistence.cs" />
     <Compile Include="Implementations\LogService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
