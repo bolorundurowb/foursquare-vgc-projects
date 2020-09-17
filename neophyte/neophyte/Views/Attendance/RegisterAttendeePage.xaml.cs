@@ -61,7 +61,7 @@ namespace neophyte.Views.Attendance
             {
                 await _attendanceClient.Register(attendee);
                 // alert the user
-                await DisplayAlert("Success", "User successfully registered.", "Okay");
+                await DisplayAlert("Success", "Attendee successfully registered.", "Okay");
                 // set the controls
                 await ResetControlsAsync();
             }

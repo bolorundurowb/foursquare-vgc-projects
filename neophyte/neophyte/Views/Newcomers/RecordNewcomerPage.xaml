@@ -171,7 +171,7 @@
                         Margin="0, 15, 0, 0"
                         WidthRequest="100"
                         CornerRadius="22"
-                        Clicked="AddNewRecord" />
+                        Clicked="Record" />
 
                 <ActivityIndicator
                     x:Name="prgSaving"
