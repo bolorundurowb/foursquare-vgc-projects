@@ -10,13 +10,12 @@
 
     <ItemGroup>
         <PackageReference Include="FluentValidation" Version="9.2.0" />
+        <PackageReference Include="Mapster" Version="6.5.0" />
         <PackageReference Include="NLog" Version="4.7.4" />
-        <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
         <PackageReference Include="Refit" Version="5.2.1" />
-        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
+        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
         <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
-        <PackageReference Include="FirebaseDatabase.net" Version="4.0.4" />
-        <PackageReference Include="Xamarin.Forms.InputKit" Version="3.3.1" />
+        <PackageReference Include="Xamarin.Forms.InputKit" Version="3.4.1" />
         <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     </ItemGroup>
     <ItemGroup>
