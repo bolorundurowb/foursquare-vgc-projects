@@ -72,7 +72,8 @@
                                         </StackLayout>
                                         <Label
                                             Text="{Binding NumOfEntries}"
-                                            FontSize="22"
+                                            FontSize="25"
+                                            FontAttributes="Bold"
                                             VerticalTextAlignment="Center"
                                             TextColor="#808080" />
                                     </StackLayout>
