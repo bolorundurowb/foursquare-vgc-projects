@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using neophyte.DataAccess.Implementations;
 using neophyte.Firebase;
 using neophyte.Models;
+using neophyte.Models.Binding;
 using neophyte.Validators;
+using Refit;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +16,7 @@ namespace neophyte.Views.Registration
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterPage : ContentPage
     {
-        private readonly AttendanceService _attendanceService;
+        private readonly AttendanceClient _attendanceClient;
         private readonly AttendanceValidator _attendanceValidator = new AttendanceValidator();
 
         public RegisterPage()
@@ -26,16 +30,16 @@ namespace neophyte.Views.Registration
             cmbGender.ItemsSource = Constants.Genders;
 
             // initialize stuff
-            _attendanceService = new AttendanceService();
-            BindingContext = new Attendance();
+            _attendanceClient = new AttendanceClient();
+            BindingContext = new AttendeeBindingModel();
         }
 
         protected async void Register(object sender, EventArgs e)
         {
-            var attendance = (Attendance) BindingContext;
+            var attendee = BindingContext as AttendeeBindingModel;
 
             // validate inputs
-            var validationResult = await _attendanceValidator.ValidateAsync(attendance);
+            var validationResult = await _attendanceValidator.ValidateAsync(attendee);
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors
@@ -54,22 +58,31 @@ namespace neophyte.Views.Registration
             // disable the button
             btnSave.IsVisible = false;
             prgSaving.IsVisible = true;
-            await _attendanceService.AddAttendanceAsync(attendance);
 
-            // alert the user
-            await DisplayAlert("Success", "User successfully registered.", "Ok");
+            try
+            {
+                await _attendanceClient.Register(attendee);
+                // alert the user
+                await DisplayAlert("Success", "User successfully registered.", "Okay");
+                // set the controls
+                await ResetControlsAsync();
+            }
+            catch (ApiException ex)
+            {
+                await DisplayAlert("Error", ex.Content, "Okay");
+            }
+            catch (HttpRequestException ex)
+            {
+                await DisplayAlert("Error", "An error occurred.", "Okay");
+            }
 
-            // set the controls
-            await ResetControlsAsync();
             prgSaving.IsVisible = false;
             btnSave.IsVisible = true;
         }
 
         protected async void EvaluateValidity(object sender, EventArgs e)
         {
-            var attendance = BindingContext as Attendance;
-
-            if (attendance == null)
+            if (!(BindingContext is AttendeeBindingModel attendance))
             {
                 return;
             }
@@ -87,7 +100,7 @@ namespace neophyte.Views.Registration
         private async Task ResetControlsAsync()
         {
             // reset binding context
-            BindingContext = new Attendance();
+            BindingContext = new AttendeeBindingModel();
 
             // drop downs
             cmbGender.SelectedIndex = -1;

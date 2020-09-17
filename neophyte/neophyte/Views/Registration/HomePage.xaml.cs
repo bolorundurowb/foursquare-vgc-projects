@@ -1,11 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using neophyte.Enums;
-using neophyte.Firebase;
-using neophyte.Interfaces;
-using neophyte.Models;
+using neophyte.DataAccess.Implementations;
+using neophyte.Models.View;
 using Plugin.Connectivity;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,7 +11,8 @@ namespace neophyte.Views.Registration
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        private readonly AttendanceService _attendanceService;
+        private readonly AttendanceClient _attendanceClient;
+        private readonly ReportClient _reportClient;
 
         public HomePage()
         {
@@ -22,12 +20,14 @@ namespace neophyte.Views.Registration
 
             Title = "Attendance";
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
-            _attendanceService = new AttendanceService();
 
             if (Device.RuntimePlatform == Device.iOS)
             {
                 btnAddRecord.TextColor = Color.Black;
             }
+
+            _attendanceClient = new AttendanceClient();
+            _reportClient = new ReportClient();
         }
 
         protected override async void OnAppearing()
@@ -40,8 +40,8 @@ namespace neophyte.Views.Registration
 
         protected async void OpenDateRecordsPage(object sender, ItemTappedEventArgs e)
         {
-            var dateEntry = e.Item as DateEntry;
-            await Navigation.PushAsync(new DateAttendance(dateEntry));
+            var summary = e.Item as DateSummaryViewModel;
+            await Navigation.PushAsync(new DateAttendance(summary.Date));
         }
 
         protected async void OpenNewRecordPage(object sender, EventArgs e)
@@ -51,34 +51,12 @@ namespace neophyte.Views.Registration
 
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
-            var status = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
-            if (status != PermissionStatus.Granted)
+            if ((sender as MenuItem)?.CommandParameter is DateSummaryViewModel summary)
             {
-                status = await Permissions.RequestAsync<Permissions.StorageWrite>();
+                await _reportClient.GenerateReport(summary.Date);
             }
 
-            if (status != PermissionStatus.Granted)
-            {
-                return;
-            }
-
-            var dateEntry = (sender as MenuItem)?.CommandParameter as DateEntry;
-            var csvString = await _attendanceService.GenerateCsvForDateAsync(dateEntry?.Date);
-            var filePersistenceHandler = DependencyService.Get<IFilePersistence>();
-            var filePath = filePersistenceHandler.SaveFile(dateEntry?.Date, csvString, RecordType.Attendance);
-
-            // let the user know
-            await DisplayAlert("Success", "Report successfully generated.", "Ok");
-
-            // share the file if iOS as it is harder to access the file system
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                await Share.RequestAsync(new ShareFileRequest
-                {
-                    Title = "Share report",
-                    File = new ShareFile(filePath)
-                });
-            }
+            await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
         }
 
         protected async void RefreshDateRecords(object sender, EventArgs e)
@@ -96,7 +74,7 @@ namespace neophyte.Views.Registration
                 return;
             }
 
-            lstDateEntries.ItemsSource = await _attendanceService.GetDayEntriesAsync();
+            lstDateEntries.ItemsSource = await _attendanceClient.GetAll();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace api.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        [ProducesResponseType(typeof(AdminViewModel), 200)]
+        [ProducesResponseType(typeof(AuthViewModel), 200)]
         [ProducesResponseType(typeof(GenericViewModel), 400)]
         public async Task<IActionResult> Login([FromBody] LoginBindingModel bm)
         {

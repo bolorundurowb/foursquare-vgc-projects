@@ -1,14 +1,18 @@
-namespace neophyte.Models
+﻿using System;
+
+namespace neophyte.Models.View
 {
-    public class Attendance
+    public class AttendeeViewModel
     {
-        public string AttendanceId { get; set; }
+        public string Id { get; set; }
+
+        public DateTime Date { get; set; }
 
         public string EmailAddress { get; set; }
 
         public string FullName { get; set; }
 
-        public string Age { get; set; }
+        public int? Age { get; set; }
 
         public string Gender { get; set; }
 
@@ -24,6 +28,6 @@ namespace neophyte.Models
 
         public string HaveCovidSymptoms { get; set; }
 
-        public int SeatNumber { get; set; }
+        public int? SeatNumber { get; set; }
     }
 }

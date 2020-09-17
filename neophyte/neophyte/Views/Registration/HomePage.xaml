@@ -63,13 +63,19 @@
                                             HorizontalOptions="FillAndExpand"
                                             Padding="5,0,0,0">
                                             <Label
-                                                Text="{Binding Date}"
+                                                Text="{Binding HumanReadableDate}"
                                                 FontSize="Medium" />
                                             <Label
-                                                Text="{Binding LongDate}"
+                                                Text="{Binding Date, StringFormat='{0: (yyyy-MM-dd)}'}"
                                                 FontSize="Small"
                                                 TextColor="#808080" />
                                         </StackLayout>
+                                        <Label
+                                            Text="{Binding NumOfEntries}"
+                                            FontSize="25"
+                                            FontAttributes="Bold"
+                                            VerticalTextAlignment="Center"
+                                            TextColor="#808080" />
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
