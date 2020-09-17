@@ -36,7 +36,9 @@ namespace neophyte.Views.Auth
             try
             {
                 var response = await _authClient.Login(email);
-                _authClient.SetAuth(response.Token, response.ExpiresAt);
+                
+                var tokenClient = new TokenClient();
+                tokenClient.SetAuth(response.Token, response.ExpiresAt);
 
                 // send to home page
                 Navigation.InsertPageBefore(new RootPage(), this);

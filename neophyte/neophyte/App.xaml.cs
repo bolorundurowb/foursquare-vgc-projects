@@ -16,7 +16,7 @@ namespace neophyte
 
             // determine page to navigate to
             NavigationPage mainPage;
-            var isLoggedIn = new AuthClient().IsLoggedIn();
+            var isLoggedIn = new TokenClient().IsLoggedIn();
 
             if (isLoggedIn)
             {
