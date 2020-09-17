@@ -38,7 +38,7 @@ namespace neophyte.Views.Newcomers
         protected async void DeleteRecord(object sender, EventArgs e)
         {
             var newcomer = (sender as MenuItem)?.CommandParameter as NewcomerViewModel;
-            await _newcomerClient.DeleteAttendee(newcomer?.Id);
+            await _newcomerClient.DeleteNewcomer(newcomer?.Id);
 
             // refresh view
             lstDateRecords.ItemsSource = _dateRecords.Where(x => x.Id != newcomer?.Id);

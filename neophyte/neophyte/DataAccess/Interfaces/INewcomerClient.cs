@@ -14,12 +14,15 @@ namespace neophyte.DataAccess.Interfaces
         [Post("/newcomers")]
         Task Register([Body] NewcomerBindingModel payload);
         
+        [Put("/newcomers/{id}")]
+        Task<NewcomerViewModel> Update(string id, [Body] NewcomerUpdateBindingModel payload);
+        
         [Get("/newcomers/{date}")]
         [Headers("Authorization: Bearer")]
         Task<NewcomerViewModel[]> GetNewcomersForDate(string date);
         
         [Delete("/newcomers/{id}")]
         [Headers("Authorization: Bearer")]
-        Task DeleteAttendee(string id);
+        Task DeleteNewcomer(string id);
     }
 }

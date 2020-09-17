@@ -30,14 +30,19 @@ namespace neophyte.DataAccess.Implementations
             return _newcomerClient.GetNewcomersForDate(date.ToString("yyyy-MM-dd"));
         }
 
-        public Task Register([Body] NewcomerBindingModel payload)
+        public Task Register(NewcomerBindingModel payload)
         {
             return _newcomerClient.Register(payload);
         }
 
-        public Task DeleteAttendee(string id)
+        public Task<NewcomerViewModel> Update(string id, NewcomerUpdateBindingModel payload)
         {
-            return _newcomerClient.DeleteAttendee(id);
+            return _newcomerClient.Update(id, payload);
+        }
+
+        public Task DeleteNewcomer(string id)
+        {
+            return _newcomerClient.DeleteNewcomer(id);
         }
     }
 }

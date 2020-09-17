@@ -1,8 +1,12 @@
 using System;
 using System.Linq;
-using neophyte.Firebase;
+using System.Net.Http;
+using MapsterMapper;
+using neophyte.DataAccess.Implementations;
+using neophyte.Models.Binding;
 using neophyte.Models.View;
 using neophyte.Validators;
+using Refit;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,8 +15,9 @@ namespace neophyte.Views.Newcomers
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewcomerDetailsPage : ContentPage
     {
-        private readonly RecordService _recordService;
+        private readonly NewcomerClient _newcomerClient;
         private readonly NewcomerValidator _newcomerValidator = new NewcomerValidator();
+        private readonly IMapper _mapper = new Mapper();
 
         public NewcomerDetailsPage(NewcomerViewModel newcomer)
         {
@@ -28,7 +33,7 @@ namespace neophyte.Views.Newcomers
             cmbGender.ItemsSource = Constants.Genders;
 
             // initialize stuff
-            // _recordService = new RecordService();
+            _newcomerClient = new NewcomerClient();
             SetNewcomerDisplayValues(newcomer);
         }
 
@@ -39,11 +44,11 @@ namespace neophyte.Views.Newcomers
 
         protected async void UpdateRecord(object sender, EventArgs e)
         {
-            var vm = BindingContext as 
-            record.BirthDay = $"{cmbMonths.SelectedItem} {cmbDays.SelectedItem}";
+            var vm = BindingContext as NewcomerViewModel;
+            var newcomer = _mapper.Map<NewcomerUpdateBindingModel>(vm);
 
             // validate inputs
-            var validationResult = await _newcomerValidator.ValidateAsync(record);
+            var validationResult = await _newcomerValidator.ValidateAsync(newcomer);
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors
@@ -59,19 +64,33 @@ namespace neophyte.Views.Newcomers
                 }
             }
 
-            // disable the button
+            // mutate controle
+            menuEdit.IsEnabled = false;
             btnUpdate.IsVisible = false;
             prgSaving.IsVisible = true;
-            // await _recordService.UpdateRecordAsync(_date, record.RecordId, record);
 
-            // alert the user
-            await DisplayAlert("Success", "Record updated successfully.", "OK");
+            try
+            {
+                newcomer.BirthDay = $"{cmbMonths.SelectedItem} {cmbDays.SelectedItem}";
+                var response = await _newcomerClient.Update(vm.Id, newcomer);
+                // alert the user
+                await DisplayAlert("Success", "Newcomer details updated successfully.", "Okay");
+                // set the display values
+                SetNewcomerDisplayValues(response);
+            }
+            catch (ApiException ex)
+            {
+                await DisplayAlert("Error", ex.Content, "Okay");
+            }
+            catch (HttpRequestException ex)
+            {
+                await DisplayAlert("Error", "An error occurred.", "Okay");
+            }
 
+            // mutate controls
+            menuEdit.IsEnabled = true;
             btnUpdate.IsVisible = true;
             prgSaving.IsVisible = false;
-
-            // disable the menu option
-            menuEdit.IsEnabled = true;
             await scrollView.ScrollToAsync(0, 0, true);
 
             HideEditControls();
@@ -82,7 +101,10 @@ namespace neophyte.Views.Newcomers
             // set the binding model
             BindingContext = newcomer;
 
-            var birthdayParts = newcomer.BirthDay.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+            var birthdayParts = newcomer.BirthDay.Split(new[]
+            {
+                " "
+            }, StringSplitOptions.RemoveEmptyEntries);
             if (birthdayParts.Length > 0)
             {
                 cmbMonths.SelectedIndex = Constants.Months.IndexOf(birthdayParts[0]);

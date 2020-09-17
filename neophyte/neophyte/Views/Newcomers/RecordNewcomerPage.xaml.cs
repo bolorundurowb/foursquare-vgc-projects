@@ -63,7 +63,7 @@ namespace neophyte.Views.Newcomers
                 newcomer.BirthDay = $"{cmbMonths.SelectedItem} {cmbDays.SelectedItem}";
                 await _newcomerClient.Register(newcomer);
                 // alert the user
-                await DisplayAlert("Success", "Attendee successfully registered.", "Okay");
+                await DisplayAlert("Success", "Newcomer successfully recorded.", "Okay");
                 // set the controls
                 await ResetControlsAsync();
             }
@@ -76,6 +76,7 @@ namespace neophyte.Views.Newcomers
                 await DisplayAlert("Error", "An error occurred.", "Okay");
             }
 
+            // enable buttons
             prgSaving.IsVisible = false;
             btnSave.IsVisible = true;
         }
