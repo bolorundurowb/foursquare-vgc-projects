@@ -25,7 +25,7 @@ namespace neophyte.DataAccess.Implementations
             return _newcomerClient.Get();
         }
 
-        public Task<NewcomerViewModel[]> GetAttendanceForDate(DateTime date)
+        public Task<NewcomerViewModel[]> GetNewcomersForDate(DateTime date)
         {
             return _newcomerClient.GetNewcomersForDate(date.ToString("yyyy-MM-dd"));
         }

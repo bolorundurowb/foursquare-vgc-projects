@@ -80,7 +80,7 @@ namespace neophyte.Views.Newcomers
                 return;
             }
 
-            _dateRecords = await _newcomerClient.GetAttendanceForDate(_date);
+            _dateRecords = await _newcomerClient.GetNewcomersForDate(_date);
             lstDateRecords.ItemsSource = _dateRecords;
         }
     }

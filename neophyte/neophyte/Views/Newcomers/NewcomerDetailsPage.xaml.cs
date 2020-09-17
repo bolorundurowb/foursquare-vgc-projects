@@ -41,7 +41,7 @@ namespace neophyte.Views.Newcomers
 
         protected async void UpdateRecord(object sender, EventArgs e)
         {
-            var record = (Record) BindingContext;
+            var vm = BindingContext as 
             record.BirthDay = $"{cmbMonths.SelectedItem} {cmbDays.SelectedItem}";
 
             // validate inputs
