@@ -2,7 +2,7 @@
 using neophyte.Models.View;
 using Refit;
 
-namespace neophyte.DataAccess.Implementations
+namespace neophyte.DataAccess.Interfaces
 {
     public interface IAttendanceClient
     {
