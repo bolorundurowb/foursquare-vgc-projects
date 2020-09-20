@@ -63,16 +63,7 @@ namespace api.Data.Repositories.Implementations
             string residentialAddress, Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers,
             bool caredForSickPerson, MultiChoice? haveCovidSymptoms, int? seatNumber)
         {
-            DateTime day;
-
-            if (DateTime.UtcNow.DayOfWeek == DayOfWeek.Sunday)
-            {
-                day = DateTime.UtcNow.Date;
-            }
-            else
-            {
-                day = DateTime.UtcNow.Date.Next(DayOfWeek.Sunday);
-            }
+            
 
             var normalizedEmail = email?.ToLowerInvariant();
             var attendee = new Attendee(normalizedEmail, fullName, age, phone, residentialAddress, gender,

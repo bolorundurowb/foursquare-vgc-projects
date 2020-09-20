@@ -43,8 +43,9 @@ namespace api.Data.Models
             MultiChoice? haveCovidSymptoms)
         {
             // they should be registering against the next sunday
-            Date = DateTime.UtcNow.Date.Next(DayOfWeek.Sunday);
-
+            Date = DateTime.UtcNow.DayOfWeek == DayOfWeek.Sunday
+                ? DateTime.UtcNow.Date
+                : DateTime.UtcNow.Date.Next(DayOfWeek.Sunday);
             EmailAddress = emailAddress;
             FullName = fullName;
             Age = age;
