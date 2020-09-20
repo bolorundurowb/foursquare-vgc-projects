@@ -143,6 +143,8 @@ export default {
       } else {
         try {
           this.isLoading = true;
+          // change age to number
+          this.attendance.age = +this.attendance.age;
           await this.axios.post("/attendance", this.attendance);
           this.attendance = this.getVoidAttendance();
           this.$swal(
@@ -195,7 +197,7 @@ export default {
   align-items: center;
 
   .content {
-    width: 35%;
+    width: 45%;
 
     .logo {
       text-align: center;
@@ -222,6 +224,10 @@ export default {
 
     .radio {
       margin-left: 1rem;
+    }
+
+    label {
+      display: inline !important;
     }
   }
 }
