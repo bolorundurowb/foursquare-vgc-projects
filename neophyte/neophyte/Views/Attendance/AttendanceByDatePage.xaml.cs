@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
-using Plugin.Connectivity;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,7 +23,7 @@ namespace neophyte.Views.Attendance
 
             Title = "Attendees";
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
-            
+
             _date = date;
             _attendanceClient = new AttendanceClient();
             _reportClient = new ReportClient();
@@ -60,7 +60,7 @@ namespace neophyte.Views.Attendance
             await LoadDateRecords();
             lstDateRecords.IsRefreshing = false;
         }
-        
+
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
             await _reportClient.GenerateReport(_date);
@@ -69,7 +69,7 @@ namespace neophyte.Views.Attendance
 
         private async Task LoadDateRecords()
         {
-            if (!CrossConnectivity.Current.IsConnected)
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
                 await DisplayAlert("Error", "There were issues retrieving data. Please check your internet connection",
                     "Close");

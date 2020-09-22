@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
-using Plugin.Connectivity;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace neophyte.Views.Newcomers
@@ -67,7 +67,7 @@ namespace neophyte.Views.Newcomers
 
         private async Task LoadDateRecords()
         {
-            if (!CrossConnectivity.Current.IsConnected)
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
                 await DisplayAlert("Error", "There were issues retrieving data. Please check your internet connection",
                     "Close");
