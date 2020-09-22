@@ -9,6 +9,12 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill"
                      VerticalOptions="Fill">
+            <Entry
+                HorizontalOptions="Fill"
+                Placeholder="Search Attendees ..." 
+                Margin="10, 10, 10, 0"
+                TextColor="#808080"/>
+
             <ActivityIndicator x:Name="prgLoading"
                                Color="#92278F"
                                IsRunning="True"
