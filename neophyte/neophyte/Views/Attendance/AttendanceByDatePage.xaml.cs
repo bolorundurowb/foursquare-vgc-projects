@@ -21,7 +21,7 @@ namespace neophyte.Views.Attendance
         {
             InitializeComponent();
 
-            Title = "Entries";
+            Title = "Attendees";
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
             
             _date = date;
