@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
@@ -65,6 +67,13 @@ namespace neophyte.Views.Attendance
         {
             await _reportClient.GenerateReport(_date);
             await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
+        }
+
+        protected void SearchAttendance(object sender, TextChangedEventArgs e)
+        {
+            var query = e.NewTextValue?.ToLowerInvariant();
+            lstDateRecords.ItemsSource = _dateRecords
+                .Where(x => x.FullName.Contains(query) || x.EmailAddress.Contains(query));
         }
 
         private async Task LoadDateRecords()

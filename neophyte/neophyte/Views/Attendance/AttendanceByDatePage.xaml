@@ -13,7 +13,8 @@
                 HorizontalOptions="Fill"
                 Placeholder="Search Attendees ..." 
                 Margin="10, 10, 10, 0"
-                TextColor="#808080"/>
+                TextColor="#808080"
+                TextChanged="SearchAttendance"/>
 
             <ActivityIndicator x:Name="prgLoading"
                                Color="#92278F"
