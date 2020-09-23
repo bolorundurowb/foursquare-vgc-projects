@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
-using Plugin.Connectivity;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,9 +23,9 @@ namespace neophyte.Views.Attendance
         {
             InitializeComponent();
 
-            Title = "Entries";
+            Title = "Attendees";
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
-            
+
             _date = date;
             _attendanceClient = new AttendanceClient();
             _reportClient = new ReportClient();
@@ -60,16 +62,37 @@ namespace neophyte.Views.Attendance
             await LoadDateRecords();
             lstDateRecords.IsRefreshing = false;
         }
-        
+
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
             await _reportClient.GenerateReport(_date);
-            await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
+            await DisplayAlert("Success", "Report successfully generated and sent.", "Okay");
+        }
+
+        protected void SearchAttendance(object sender, TextChangedEventArgs e)
+        {
+            var query = e.NewTextValue?.ToLowerInvariant() ?? string.Empty;
+            var results = new List<AttendeeViewModel>();
+            foreach (var dateRecord in _dateRecords)
+            {
+                if (dateRecord.FullName?.ToLowerInvariant().Contains(query) == true)
+                {
+                    results.Add(dateRecord);
+                    continue;
+                }
+                
+                if (dateRecord.EmailAddress?.ToLowerInvariant().Contains(query) == true)
+                {
+                    results.Add(dateRecord);
+                }
+            }
+
+            lstDateRecords.ItemsSource = results;
         }
 
         private async Task LoadDateRecords()
         {
-            if (!CrossConnectivity.Current.IsConnected)
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
                 await DisplayAlert("Error", "There were issues retrieving data. Please check your internet connection",
                     "Close");

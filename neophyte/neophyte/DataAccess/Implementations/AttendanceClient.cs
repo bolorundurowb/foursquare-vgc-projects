@@ -30,6 +30,11 @@ namespace neophyte.DataAccess.Implementations
             return _attendanceClient.GetAttendanceForDate(date.ToString("yyyy-MM-dd"));
         }
 
+        public Task<AttendeeViewModel> Update(string id, [Body] AttendeeUpdateBindingModel payload)
+        {
+            return _attendanceClient.Update(id, payload);
+        }
+
         public Task Register([Body] AttendeeBindingModel payload)
         {
             return _attendanceClient.Register(payload);

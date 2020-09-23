@@ -64,7 +64,7 @@ namespace neophyte.Views.Newcomers
                 }
             }
 
-            // mutate controle
+            // mutate controls
             menuEdit.IsEnabled = false;
             btnUpdate.IsVisible = false;
             prgSaving.IsVisible = true;
@@ -143,9 +143,6 @@ namespace neophyte.Views.Newcomers
             stkBirthday.IsVisible = true;
             cmbAgeGroup.IsVisible = true;
             cmbGender.IsVisible = true;
-
-            // disable the menu option
-            menuEdit.IsEnabled = false;
         }
 
         private void HideEditControls()
