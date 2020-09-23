@@ -143,7 +143,7 @@
                     Type="Material"
                     Text="Did you recently care for any sick individual at home or in hospital?" />
 
-                <Label
+                <Label x:Name="lblCovidSymptoms"
                     Text="Do you presently have cold, cough, fever, sore throat, loss of smell or loss of appetite?:"
                     Margin="0, 15, 0, 0" />
 

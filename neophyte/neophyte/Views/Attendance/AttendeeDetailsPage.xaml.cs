@@ -103,10 +103,11 @@ namespace neophyte.Views.Attendance
             lblPhoneNumber.IsVisible = false;
             lblResidentialAddress.IsVisible = false;
             lblSeatNumber.IsVisible = false;
-            chkCaredForSick.IsEnabled = true;
-            chkLiveWithCaregivers.IsEnabled = true;
-            chkReturnedInTenDays.IsEnabled = true;
-            rdbCovidSymptoms.IsEnabled = true;
+            lblCovidSymptoms.IsVisible = false;
+            chkCaredForSick.IsVisible = false;
+            chkLiveWithCaregivers.IsVisible = false;
+            chkReturnedInTenDays.IsVisible = false;
+            rdbCovidSymptoms.IsVisible = false;
             
             // show the inputs
             btnUpdate.IsVisible = true;
@@ -132,10 +133,11 @@ namespace neophyte.Views.Attendance
             lblPhoneNumber.IsVisible = true;
             lblResidentialAddress.IsVisible = true;
             lblSeatNumber.IsVisible = true;
-            chkCaredForSick.IsEnabled = false;
-            chkLiveWithCaregivers.IsEnabled = false;
-            chkReturnedInTenDays.IsEnabled = false;
-            rdbCovidSymptoms.IsEnabled = false;
+            lblCovidSymptoms.IsVisible = true;
+            chkCaredForSick.IsVisible = true;
+            chkLiveWithCaregivers.IsVisible = true;
+            chkReturnedInTenDays.IsVisible = true;
+            rdbCovidSymptoms.IsVisible = true;
             
             // show the inputs
             btnUpdate.IsVisible = false;
