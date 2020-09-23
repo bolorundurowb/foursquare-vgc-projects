@@ -66,7 +66,7 @@ namespace neophyte.Views.Attendance
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
             await _reportClient.GenerateReport(_date);
-            await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
+            await DisplayAlert("Success", "Report successfully generated and sent.", "Okay");
         }
 
         protected void SearchAttendance(object sender, TextChangedEventArgs e)
