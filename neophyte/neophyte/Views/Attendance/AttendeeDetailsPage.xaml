@@ -9,7 +9,7 @@
         <ToolbarItem x:Name="menuEdit" Order="Primary" Text="Edit" Priority="0" Clicked="EnableEditMode" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView x:Name="scrollView">
             <StackLayout
                 Orientation="Vertical"
                 HorizontalOptions="Fill"

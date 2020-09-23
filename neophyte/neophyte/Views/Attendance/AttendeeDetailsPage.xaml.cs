@@ -1,8 +1,12 @@
 using System;
+using System.Linq;
+using System.Net.Http;
 using MapsterMapper;
 using neophyte.DataAccess.Implementations;
+using neophyte.Models.Binding;
 using neophyte.Models.View;
 using neophyte.Validators;
+using Refit;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -38,7 +42,50 @@ namespace neophyte.Views.Attendance
         protected async void UpdateAttendee(object sender, EventArgs e)
         {
             var vm = BindingContext as AttendeeViewModel;
-            // var newcomer = _mapper.Map<>(vm);
+            var attendee = _mapper.Map<AttendeeUpdateBindingModel>(vm);
+            
+            // validate inputs
+            var validationResult = await _attendanceValidator.ValidateAsync(attendee);
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors
+                    .Aggregate(string.Empty, (x, y) => x + " - " + y.ErrorMessage + Environment.NewLine);
+
+                var result = await DisplayAlert("Warning",
+                    $"There were some issues with the entry: {Environment.NewLine}{Environment.NewLine}{errors} {Environment.NewLine}Do you want to proceed?",
+                    "Yes", "No");
+
+                if (!result)
+                {
+                    return;
+                }
+            }
+            
+            btnUpdate.IsVisible = false;
+            prgSaving.IsVisible = true;
+            
+            try
+            {
+                var response = await _attendanceClient.Update(vm.Id, attendee);
+                // alert the user
+                await DisplayAlert("Success", "Attendee details updated successfully.", "Okay");
+                // set the display values
+                SetAttendeeDisplayValue(response);
+            }
+            catch (ApiException ex)
+            {
+                await DisplayAlert("Error", ex.Content, "Okay");
+            }
+            catch (HttpRequestException)
+            {
+                await DisplayAlert("Error", "An error occurred.", "Okay");
+            }
+            
+            btnUpdate.IsVisible = true;
+            prgSaving.IsVisible = false;
+            await scrollView.ScrollToAsync(0, 0, true);
+
+            HideEditControls();
         }
 
         private void SetAttendeeDisplayValue(AttendeeViewModel attendee)

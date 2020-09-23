@@ -64,7 +64,7 @@ namespace neophyte.Views.Newcomers
                 }
             }
 
-            // mutate controle
+            // mutate controls
             menuEdit.IsEnabled = false;
             btnUpdate.IsVisible = false;
             prgSaving.IsVisible = true;
