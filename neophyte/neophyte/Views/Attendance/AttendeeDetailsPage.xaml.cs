@@ -42,6 +42,34 @@ namespace neophyte.Views.Attendance
 
         private void ShowEditControls()
         {
+            // hide the display entries
+            lblAge.IsVisible = false;
+            lblGender.IsVisible = false;
+            lblEmailAddress.IsVisible = false;
+            lblFullName.IsVisible = false;
+            lblPhoneNumber.IsVisible = false;
+            lblResidentialAddress.IsVisible = false;
+            lblSeatNumber.IsVisible = false;
+            chkCaredForSick.IsVisible = false;
+            chkLiveWithCaregivers.IsVisible = false;
+            chkReturnedInTenDays.IsVisible = false;
+            rdbCovidSymptoms.IsVisible = false;
+        }
+
+        private void HideEditControls()
+        {
+            // hide the display entries
+            lblAge.IsVisible = true;
+            lblGender.IsVisible = true;
+            lblEmailAddress.IsVisible = true;
+            lblFullName.IsVisible = true;
+            lblPhoneNumber.IsVisible = true;
+            lblResidentialAddress.IsVisible = true;
+            lblSeatNumber.IsVisible = true;
+            chkCaredForSick.IsVisible = true;
+            chkLiveWithCaregivers.IsVisible = true;
+            chkReturnedInTenDays.IsVisible = true;
+            rdbCovidSymptoms.IsVisible = true;
         }
     }
 }
