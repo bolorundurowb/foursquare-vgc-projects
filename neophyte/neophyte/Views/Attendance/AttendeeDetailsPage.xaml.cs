@@ -23,7 +23,7 @@ namespace neophyte.Views.Attendance
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
 
             // set dropdown values
-            // cmbGender.ItemsSource = Constants.Genders;
+            cmbGender.ItemsSource = Constants.Genders;
 
             // initialize stuff
             _attendanceClient = new AttendanceClient();
@@ -33,6 +33,12 @@ namespace neophyte.Views.Attendance
         protected void EnableEditMode(object sender, EventArgs e)
         {
             ShowEditControls();
+        }
+
+        protected async void UpdateAttendee(object sender, EventArgs e)
+        {
+            var vm = BindingContext as AttendeeViewModel;
+            // var newcomer = _mapper.Map<>(vm);
         }
 
         private void SetAttendeeDisplayValue(AttendeeViewModel attendee)
@@ -54,6 +60,19 @@ namespace neophyte.Views.Attendance
             chkLiveWithCaregivers.IsEnabled = true;
             chkReturnedInTenDays.IsEnabled = true;
             rdbCovidSymptoms.IsEnabled = true;
+            
+            // show the inputs
+            btnUpdate.IsVisible = true;
+            txtAge.IsVisible = true;
+            txtEmail.IsVisible = true;
+            txtFullName.IsVisible = true;
+            txtPhoneNumber.IsVisible = true;
+            txtResidentialAddress.IsVisible = true;
+            txtSeatNumber.IsVisible = true;
+            cmbGender.IsVisible = true;
+
+            // disable the menu option
+            menuEdit.IsEnabled = false;
         }
 
         private void HideEditControls()
@@ -70,6 +89,19 @@ namespace neophyte.Views.Attendance
             chkLiveWithCaregivers.IsEnabled = false;
             chkReturnedInTenDays.IsEnabled = false;
             rdbCovidSymptoms.IsEnabled = false;
+            
+            // show the inputs
+            btnUpdate.IsVisible = false;
+            txtAge.IsVisible = false;
+            txtEmail.IsVisible = false;
+            txtFullName.IsVisible = false;
+            txtPhoneNumber.IsVisible = false;
+            txtResidentialAddress.IsVisible = false;
+            txtSeatNumber.IsVisible = false;
+            cmbGender.IsVisible = false;
+
+            // disable the menu option
+            menuEdit.IsEnabled = true;
         }
     }
 }

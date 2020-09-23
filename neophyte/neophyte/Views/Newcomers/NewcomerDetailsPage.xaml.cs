@@ -143,9 +143,6 @@ namespace neophyte.Views.Newcomers
             stkBirthday.IsVisible = true;
             cmbAgeGroup.IsVisible = true;
             cmbGender.IsVisible = true;
-
-            // disable the menu option
-            menuEdit.IsEnabled = false;
         }
 
         private void HideEditControls()

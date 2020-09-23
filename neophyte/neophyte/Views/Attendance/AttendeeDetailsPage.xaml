@@ -171,6 +171,29 @@
                         Text="Maybe"
                         Value="Maybe" />
                 </controls:RadioButtonGroupView>
+
+                <Button
+                    x:Name="btnUpdate"
+                    Text="Update"
+                    HeightRequest="45"
+                    HorizontalOptions="Center"
+                    TextColor="White"
+                    BackgroundColor="#92278F"
+                    Margin="0, 15, 0, 0"
+                    WidthRequest="100"
+                    CornerRadius="22"
+                    IsVisible="False"
+                    Clicked="UpdateAttendee" />
+
+                <ActivityIndicator
+                    x:Name="prgSaving"
+                    HeightRequest="45"
+                    Color="#92278F"
+                    WidthRequest="45"
+                    HorizontalOptions="Center"
+                    Margin="0, 15, 0, 0"
+                    IsVisible="False"
+                    IsRunning="True" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
