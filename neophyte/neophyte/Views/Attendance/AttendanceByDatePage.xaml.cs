@@ -71,9 +71,23 @@ namespace neophyte.Views.Attendance
 
         protected void SearchAttendance(object sender, TextChangedEventArgs e)
         {
-            var query = e.NewTextValue?.ToLowerInvariant();
-            lstDateRecords.ItemsSource = _dateRecords
-                .Where(x => x.FullName.Contains(query) || x.EmailAddress.Contains(query));
+            var query = e.NewTextValue?.ToLowerInvariant() ?? string.Empty;
+            var results = new List<AttendeeViewModel>();
+            foreach (var dateRecord in _dateRecords)
+            {
+                if (dateRecord.FullName?.ToLowerInvariant().Contains(query) == true)
+                {
+                    results.Add(dateRecord);
+                    continue;
+                }
+                
+                if (dateRecord.EmailAddress?.ToLowerInvariant().Contains(query) == true)
+                {
+                    results.Add(dateRecord);
+                }
+            }
+
+            lstDateRecords.ItemsSource = results;
         }
 
         private async Task LoadDateRecords()
