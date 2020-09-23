@@ -1,3 +1,4 @@
+using System;
 using MapsterMapper;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
@@ -29,9 +30,18 @@ namespace neophyte.Views.Attendance
             SetAttendeeDisplayValue(attendee);
         }
 
+        protected void EnableEditMode(object sender, EventArgs e)
+        {
+            ShowEditControls();
+        }
+
         private void SetAttendeeDisplayValue(AttendeeViewModel attendee)
         {
             BindingContext = attendee;
+        }
+
+        private void ShowEditControls()
+        {
         }
     }
 }
