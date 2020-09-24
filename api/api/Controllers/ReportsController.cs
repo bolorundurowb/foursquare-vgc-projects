@@ -27,7 +27,7 @@ namespace api.Controllers
 
         [HttpPost("{date:DateTime}")]
         [ProducesResponseType(200)]
-        public async Task<IActionResult> GenerateReports(DateTime date)
+        public async Task<IActionResult> GenerateReports(DateTime date, [FromBody] string emailAddress = null)
         {
             var formattedDateString = date.Date.ToString("yyyy-MM-dd");
             var attendance = await _attendanceRepo.GetAttendance(date);
@@ -56,7 +56,7 @@ namespace api.Controllers
                     }
                 }
             };
-            await _emailService.SendAsync(Config.DestinationEmail, emailMessage);
+            await _emailService.SendAsync(emailAddress ?? Config.DestinationEmail, emailMessage);
 
             return Ok();
         }
