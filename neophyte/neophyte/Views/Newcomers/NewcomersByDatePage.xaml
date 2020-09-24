@@ -4,9 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="neophyte.Views.Newcomers.NewcomersByDatePage">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Text="Report" Priority="0" Clicked="GenerateDateReport" />
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill"
                      VerticalOptions="Fill">
