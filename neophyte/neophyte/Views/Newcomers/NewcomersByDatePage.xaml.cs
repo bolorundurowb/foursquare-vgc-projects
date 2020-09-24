@@ -11,7 +11,6 @@ namespace neophyte.Views.Newcomers
     public partial class NewcomersByDatePage : ContentPage
     {
         private readonly NewcomerClient _newcomerClient;
-        private readonly ReportClient _reportClient;
         private readonly DateTime _date;
         private NewcomerViewModel[] _dateRecords;
 
@@ -24,7 +23,6 @@ namespace neophyte.Views.Newcomers
 
             _date = date;
             _newcomerClient = new NewcomerClient();
-            _reportClient = new ReportClient();
         }
 
         protected override async void OnAppearing()
@@ -57,12 +55,6 @@ namespace neophyte.Views.Newcomers
         {
             await LoadDateRecords();
             lstDateRecords.IsRefreshing = false;
-        }
-
-        protected async void GenerateDateReport(object sender, EventArgs e)
-        {
-            await _reportClient.GenerateReport(_date);
-            await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
         }
 
         private async Task LoadDateRecords()
