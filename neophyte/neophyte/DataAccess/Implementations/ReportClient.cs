@@ -23,7 +23,7 @@ namespace neophyte.DataAccess.Implementations
         {
             var bm = new ReportGenBindingModel
             {
-                Email = email
+                EmailAddress = email
             };
             return _reportClient.GenerateReport(date.ToString("yyyy-MM-dd"), bm);
         }
