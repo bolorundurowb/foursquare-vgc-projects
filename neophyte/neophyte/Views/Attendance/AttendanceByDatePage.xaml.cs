@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +14,6 @@ namespace neophyte.Views.Attendance
     public partial class AttendanceByDatePage : ContentPage
     {
         private readonly AttendanceClient _attendanceClient;
-        private readonly ReportClient _reportClient;
         private readonly DateTime _date;
         private AttendeeViewModel[] _dateRecords;
 
@@ -28,7 +26,6 @@ namespace neophyte.Views.Attendance
 
             _date = date;
             _attendanceClient = new AttendanceClient();
-            _reportClient = new ReportClient();
         }
 
         protected override async void OnAppearing()
@@ -63,12 +60,6 @@ namespace neophyte.Views.Attendance
             lstDateRecords.IsRefreshing = false;
         }
 
-        protected async void GenerateDateReport(object sender, EventArgs e)
-        {
-            await _reportClient.GenerateReport(_date);
-            await DisplayAlert("Success", "Report successfully generated and sent.", "Okay");
-        }
-
         protected void SearchAttendance(object sender, TextChangedEventArgs e)
         {
             var query = e.NewTextValue?.ToLowerInvariant() ?? string.Empty;
@@ -80,7 +71,7 @@ namespace neophyte.Views.Attendance
                     results.Add(dateRecord);
                     continue;
                 }
-                
+
                 if (dateRecord.EmailAddress?.ToLowerInvariant().Contains(query) == true)
                 {
                     results.Add(dateRecord);
