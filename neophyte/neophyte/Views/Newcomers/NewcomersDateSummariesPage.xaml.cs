@@ -49,9 +49,17 @@ namespace neophyte.Views.Newcomers
 
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
+            var email = await DisplayPromptAsync("Report", "What email address should the report be sent to?",
+                "Generate", "Cancel", "e.g john@doe.org", keyboard: Keyboard.Email);
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return;
+            }
+
             if ((sender as MenuItem)?.CommandParameter is DateSummaryViewModel summary)
             {
-                await _reportClient.GenerateReport(summary.Date);
+                await _reportClient.GenerateReport(summary.Date, email);
             }
 
             await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
