@@ -12,7 +12,7 @@ namespace api.Shared.Email.Implementations
 {
     public class MailgunService : IEmailService
     {
-        private const string Sender = "no-reply@neophyte-api.com";
+        private const string Sender = "no-reply@foursquarevgc.org.com";
         private const string BaseUri = "https://api.mailgun.net/v3/";
 
         private readonly ILogger<IEmailService> _logger;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Interfaces;
+using neophyte.Models.Binding;
 using Refit;
 
 namespace neophyte.DataAccess.Implementations
@@ -18,9 +19,13 @@ namespace neophyte.DataAccess.Implementations
             });
         }
 
-        public Task GenerateReport(DateTime date)
+        public Task GenerateReport(DateTime date, string email)
         {
-            return _reportClient.GenerateReport(date.ToString("yyyy-MM-dd"));
+            var bm = new ReportGenBindingModel
+            {
+                EmailAddress = email
+            };
+            return _reportClient.GenerateReport(date.ToString("yyyy-MM-dd"), bm);
         }
     }
 }

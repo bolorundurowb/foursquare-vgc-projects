@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using api.Configuration;
 using api.Data.Helpers;
 using api.Data.Repositories.Interfaces;
+using api.Models.Binding;
 using api.Shared.Email.Interfaces;
 using api.Shared.Email.Models;
 using MapsterMapper;
@@ -27,7 +28,7 @@ namespace api.Controllers
 
         [HttpPost("{date:DateTime}")]
         [ProducesResponseType(200)]
-        public async Task<IActionResult> GenerateReports(DateTime date)
+        public async Task<IActionResult> GenerateReports(DateTime date, [FromBody] ReportGenBindingModel bm)
         {
             var formattedDateString = date.Date.ToString("yyyy-MM-dd");
             var attendance = await _attendanceRepo.GetAttendance(date);
@@ -56,7 +57,7 @@ namespace api.Controllers
                     }
                 }
             };
-            await _emailService.SendAsync(Config.DestinationEmail, emailMessage);
+            await _emailService.SendAsync(bm?.EmailAddress ?? Config.DestinationEmail, emailMessage);
 
             return Ok();
         }

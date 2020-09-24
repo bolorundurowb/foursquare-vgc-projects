@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using neophyte.Models.Binding;
 using Refit;
 
 namespace neophyte.DataAccess.Interfaces
@@ -7,6 +8,6 @@ namespace neophyte.DataAccess.Interfaces
     {
         [Post("/reports/{date}")]
         [Headers("Authorization: Bearer")]
-        Task GenerateReport(string date);
+        Task GenerateReport(string date, [Body] ReportGenBindingModel payload);
     }
 }
