@@ -37,6 +37,18 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Animation.abc_slide_out_top = global::neophyte.Droid.Resource.Animation.abc_slide_out_top;
 			global::Plugin.InputKit.Resource.Animation.abc_tooltip_enter = global::neophyte.Droid.Resource.Animation.abc_tooltip_enter;
 			global::Plugin.InputKit.Resource.Animation.abc_tooltip_exit = global::neophyte.Droid.Resource.Animation.abc_tooltip_exit;
+			global::Plugin.InputKit.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation = global::neophyte.Droid.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation;
+			global::Plugin.InputKit.Resource.Animation.btn_checkbox_to_checked_box_outer_merged_animation = global::neophyte.Droid.Resource.Animation.btn_checkbox_to_checked_box_outer_merged_animation;
+			global::Plugin.InputKit.Resource.Animation.btn_checkbox_to_checked_icon_null_animation = global::neophyte.Droid.Resource.Animation.btn_checkbox_to_checked_icon_null_animation;
+			global::Plugin.InputKit.Resource.Animation.btn_checkbox_to_unchecked_box_inner_merged_animation = global::neophyte.Droid.Resource.Animation.btn_checkbox_to_unchecked_box_inner_merged_animation;
+			global::Plugin.InputKit.Resource.Animation.btn_checkbox_to_unchecked_check_path_merged_animation = global::neophyte.Droid.Resource.Animation.btn_checkbox_to_unchecked_check_path_merged_animation;
+			global::Plugin.InputKit.Resource.Animation.btn_checkbox_to_unchecked_icon_null_animation = global::neophyte.Droid.Resource.Animation.btn_checkbox_to_unchecked_icon_null_animation;
+			global::Plugin.InputKit.Resource.Animation.btn_radio_to_off_mtrl_dot_group_animation = global::neophyte.Droid.Resource.Animation.btn_radio_to_off_mtrl_dot_group_animation;
+			global::Plugin.InputKit.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_animation = global::neophyte.Droid.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_animation;
+			global::Plugin.InputKit.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_path_animation = global::neophyte.Droid.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_path_animation;
+			global::Plugin.InputKit.Resource.Animation.btn_radio_to_on_mtrl_dot_group_animation = global::neophyte.Droid.Resource.Animation.btn_radio_to_on_mtrl_dot_group_animation;
+			global::Plugin.InputKit.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_animation = global::neophyte.Droid.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_animation;
+			global::Plugin.InputKit.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_path_animation = global::neophyte.Droid.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_path_animation;
 			global::Plugin.InputKit.Resource.Animation.design_bottom_sheet_slide_in = global::neophyte.Droid.Resource.Animation.design_bottom_sheet_slide_in;
 			global::Plugin.InputKit.Resource.Animation.design_bottom_sheet_slide_out = global::neophyte.Droid.Resource.Animation.design_bottom_sheet_slide_out;
 			global::Plugin.InputKit.Resource.Animation.design_snackbar_in = global::neophyte.Droid.Resource.Animation.design_snackbar_in;
@@ -136,6 +148,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Attribute.buttonBarNeutralButtonStyle = global::neophyte.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
 			global::Plugin.InputKit.Resource.Attribute.buttonBarPositiveButtonStyle = global::neophyte.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
 			global::Plugin.InputKit.Resource.Attribute.buttonBarStyle = global::neophyte.Droid.Resource.Attribute.buttonBarStyle;
+			global::Plugin.InputKit.Resource.Attribute.buttonCompat = global::neophyte.Droid.Resource.Attribute.buttonCompat;
 			global::Plugin.InputKit.Resource.Attribute.buttonGravity = global::neophyte.Droid.Resource.Attribute.buttonGravity;
 			global::Plugin.InputKit.Resource.Attribute.buttonIconDimen = global::neophyte.Droid.Resource.Attribute.buttonIconDimen;
 			global::Plugin.InputKit.Resource.Attribute.buttonPanelSideLayout = global::neophyte.Droid.Resource.Attribute.buttonPanelSideLayout;
@@ -230,7 +243,15 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Attribute.dividerHorizontal = global::neophyte.Droid.Resource.Attribute.dividerHorizontal;
 			global::Plugin.InputKit.Resource.Attribute.dividerPadding = global::neophyte.Droid.Resource.Attribute.dividerPadding;
 			global::Plugin.InputKit.Resource.Attribute.dividerVertical = global::neophyte.Droid.Resource.Attribute.dividerVertical;
+			global::Plugin.InputKit.Resource.Attribute.drawableBottomCompat = global::neophyte.Droid.Resource.Attribute.drawableBottomCompat;
+			global::Plugin.InputKit.Resource.Attribute.drawableEndCompat = global::neophyte.Droid.Resource.Attribute.drawableEndCompat;
+			global::Plugin.InputKit.Resource.Attribute.drawableLeftCompat = global::neophyte.Droid.Resource.Attribute.drawableLeftCompat;
+			global::Plugin.InputKit.Resource.Attribute.drawableRightCompat = global::neophyte.Droid.Resource.Attribute.drawableRightCompat;
 			global::Plugin.InputKit.Resource.Attribute.drawableSize = global::neophyte.Droid.Resource.Attribute.drawableSize;
+			global::Plugin.InputKit.Resource.Attribute.drawableStartCompat = global::neophyte.Droid.Resource.Attribute.drawableStartCompat;
+			global::Plugin.InputKit.Resource.Attribute.drawableTint = global::neophyte.Droid.Resource.Attribute.drawableTint;
+			global::Plugin.InputKit.Resource.Attribute.drawableTintMode = global::neophyte.Droid.Resource.Attribute.drawableTintMode;
+			global::Plugin.InputKit.Resource.Attribute.drawableTopCompat = global::neophyte.Droid.Resource.Attribute.drawableTopCompat;
 			global::Plugin.InputKit.Resource.Attribute.drawerArrowStyle = global::neophyte.Droid.Resource.Attribute.drawerArrowStyle;
 			global::Plugin.InputKit.Resource.Attribute.dropdownListPreferredItemHeight = global::neophyte.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
 			global::Plugin.InputKit.Resource.Attribute.dropDownListViewStyle = global::neophyte.Droid.Resource.Attribute.dropDownListViewStyle;
@@ -337,6 +358,8 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Attribute.lineHeight = global::neophyte.Droid.Resource.Attribute.lineHeight;
 			global::Plugin.InputKit.Resource.Attribute.lineSpacing = global::neophyte.Droid.Resource.Attribute.lineSpacing;
 			global::Plugin.InputKit.Resource.Attribute.listChoiceBackgroundIndicator = global::neophyte.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::Plugin.InputKit.Resource.Attribute.listChoiceIndicatorMultipleAnimated = global::neophyte.Droid.Resource.Attribute.listChoiceIndicatorMultipleAnimated;
+			global::Plugin.InputKit.Resource.Attribute.listChoiceIndicatorSingleAnimated = global::neophyte.Droid.Resource.Attribute.listChoiceIndicatorSingleAnimated;
 			global::Plugin.InputKit.Resource.Attribute.listDividerAlertDialog = global::neophyte.Droid.Resource.Attribute.listDividerAlertDialog;
 			global::Plugin.InputKit.Resource.Attribute.listItemLayout = global::neophyte.Droid.Resource.Attribute.listItemLayout;
 			global::Plugin.InputKit.Resource.Attribute.listLayout = global::neophyte.Droid.Resource.Attribute.listLayout;
@@ -345,8 +368,10 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Attribute.listPreferredItemHeight = global::neophyte.Droid.Resource.Attribute.listPreferredItemHeight;
 			global::Plugin.InputKit.Resource.Attribute.listPreferredItemHeightLarge = global::neophyte.Droid.Resource.Attribute.listPreferredItemHeightLarge;
 			global::Plugin.InputKit.Resource.Attribute.listPreferredItemHeightSmall = global::neophyte.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::Plugin.InputKit.Resource.Attribute.listPreferredItemPaddingEnd = global::neophyte.Droid.Resource.Attribute.listPreferredItemPaddingEnd;
 			global::Plugin.InputKit.Resource.Attribute.listPreferredItemPaddingLeft = global::neophyte.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
 			global::Plugin.InputKit.Resource.Attribute.listPreferredItemPaddingRight = global::neophyte.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::Plugin.InputKit.Resource.Attribute.listPreferredItemPaddingStart = global::neophyte.Droid.Resource.Attribute.listPreferredItemPaddingStart;
 			global::Plugin.InputKit.Resource.Attribute.logo = global::neophyte.Droid.Resource.Attribute.logo;
 			global::Plugin.InputKit.Resource.Attribute.logoDescription = global::neophyte.Droid.Resource.Attribute.logoDescription;
 			global::Plugin.InputKit.Resource.Attribute.materialButtonStyle = global::neophyte.Droid.Resource.Attribute.materialButtonStyle;
@@ -388,6 +413,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Attribute.ratingBarStyle = global::neophyte.Droid.Resource.Attribute.ratingBarStyle;
 			global::Plugin.InputKit.Resource.Attribute.ratingBarStyleIndicator = global::neophyte.Droid.Resource.Attribute.ratingBarStyleIndicator;
 			global::Plugin.InputKit.Resource.Attribute.ratingBarStyleSmall = global::neophyte.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::Plugin.InputKit.Resource.Attribute.recyclerViewStyle = global::neophyte.Droid.Resource.Attribute.recyclerViewStyle;
 			global::Plugin.InputKit.Resource.Attribute.reverseLayout = global::neophyte.Droid.Resource.Attribute.reverseLayout;
 			global::Plugin.InputKit.Resource.Attribute.rippleColor = global::neophyte.Droid.Resource.Attribute.rippleColor;
 			global::Plugin.InputKit.Resource.Attribute.scrimAnimationDuration = global::neophyte.Droid.Resource.Attribute.scrimAnimationDuration;
@@ -488,6 +514,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Attribute.textColorSearchUrl = global::neophyte.Droid.Resource.Attribute.textColorSearchUrl;
 			global::Plugin.InputKit.Resource.Attribute.textEndPadding = global::neophyte.Droid.Resource.Attribute.textEndPadding;
 			global::Plugin.InputKit.Resource.Attribute.textInputStyle = global::neophyte.Droid.Resource.Attribute.textInputStyle;
+			global::Plugin.InputKit.Resource.Attribute.textLocale = global::neophyte.Droid.Resource.Attribute.textLocale;
 			global::Plugin.InputKit.Resource.Attribute.textStartPadding = global::neophyte.Droid.Resource.Attribute.textStartPadding;
 			global::Plugin.InputKit.Resource.Attribute.theme = global::neophyte.Droid.Resource.Attribute.theme;
 			global::Plugin.InputKit.Resource.Attribute.thickness = global::neophyte.Droid.Resource.Attribute.thickness;
@@ -717,6 +744,9 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::neophyte.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
 			global::Plugin.InputKit.Resource.Dimension.abc_edit_text_inset_top_material = global::neophyte.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
 			global::Plugin.InputKit.Resource.Dimension.abc_floating_window_z = global::neophyte.Droid.Resource.Dimension.abc_floating_window_z;
+			global::Plugin.InputKit.Resource.Dimension.abc_list_item_height_large_material = global::neophyte.Droid.Resource.Dimension.abc_list_item_height_large_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_list_item_height_material = global::neophyte.Droid.Resource.Dimension.abc_list_item_height_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_list_item_height_small_material = global::neophyte.Droid.Resource.Dimension.abc_list_item_height_small_material;
 			global::Plugin.InputKit.Resource.Dimension.abc_list_item_padding_horizontal_material = global::neophyte.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
 			global::Plugin.InputKit.Resource.Dimension.abc_panel_menu_list_width = global::neophyte.Droid.Resource.Dimension.abc_panel_menu_list_width;
 			global::Plugin.InputKit.Resource.Dimension.abc_progress_bar_height_material = global::neophyte.Droid.Resource.Dimension.abc_progress_bar_height_material;
@@ -894,11 +924,13 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Drawable.abc_action_bar_item_background_material = global::neophyte.Droid.Resource.Drawable.abc_action_bar_item_background_material;
 			global::Plugin.InputKit.Resource.Drawable.abc_btn_borderless_material = global::neophyte.Droid.Resource.Drawable.abc_btn_borderless_material;
 			global::Plugin.InputKit.Resource.Drawable.abc_btn_check_material = global::neophyte.Droid.Resource.Drawable.abc_btn_check_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_check_material_anim = global::neophyte.Droid.Resource.Drawable.abc_btn_check_material_anim;
 			global::Plugin.InputKit.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::neophyte.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
 			global::Plugin.InputKit.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::neophyte.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
 			global::Plugin.InputKit.Resource.Drawable.abc_btn_colored_material = global::neophyte.Droid.Resource.Drawable.abc_btn_colored_material;
 			global::Plugin.InputKit.Resource.Drawable.abc_btn_default_mtrl_shape = global::neophyte.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
 			global::Plugin.InputKit.Resource.Drawable.abc_btn_radio_material = global::neophyte.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_radio_material_anim = global::neophyte.Droid.Resource.Drawable.abc_btn_radio_material_anim;
 			global::Plugin.InputKit.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::neophyte.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
 			global::Plugin.InputKit.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::neophyte.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
 			global::Plugin.InputKit.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::neophyte.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
@@ -976,6 +1008,14 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Drawable.abc_vector_test = global::neophyte.Droid.Resource.Drawable.abc_vector_test;
 			global::Plugin.InputKit.Resource.Drawable.avd_hide_password = global::neophyte.Droid.Resource.Drawable.avd_hide_password;
 			global::Plugin.InputKit.Resource.Drawable.avd_show_password = global::neophyte.Droid.Resource.Drawable.avd_show_password;
+			global::Plugin.InputKit.Resource.Drawable.btn_checkbox_checked_mtrl = global::neophyte.Droid.Resource.Drawable.btn_checkbox_checked_mtrl;
+			global::Plugin.InputKit.Resource.Drawable.btn_checkbox_checked_to_unchecked_mtrl_animation = global::neophyte.Droid.Resource.Drawable.btn_checkbox_checked_to_unchecked_mtrl_animation;
+			global::Plugin.InputKit.Resource.Drawable.btn_checkbox_unchecked_mtrl = global::neophyte.Droid.Resource.Drawable.btn_checkbox_unchecked_mtrl;
+			global::Plugin.InputKit.Resource.Drawable.btn_checkbox_unchecked_to_checked_mtrl_animation = global::neophyte.Droid.Resource.Drawable.btn_checkbox_unchecked_to_checked_mtrl_animation;
+			global::Plugin.InputKit.Resource.Drawable.btn_radio_off_mtrl = global::neophyte.Droid.Resource.Drawable.btn_radio_off_mtrl;
+			global::Plugin.InputKit.Resource.Drawable.btn_radio_off_to_on_mtrl_animation = global::neophyte.Droid.Resource.Drawable.btn_radio_off_to_on_mtrl_animation;
+			global::Plugin.InputKit.Resource.Drawable.btn_radio_on_mtrl = global::neophyte.Droid.Resource.Drawable.btn_radio_on_mtrl;
+			global::Plugin.InputKit.Resource.Drawable.btn_radio_on_to_off_mtrl_animation = global::neophyte.Droid.Resource.Drawable.btn_radio_on_to_off_mtrl_animation;
 			global::Plugin.InputKit.Resource.Drawable.design_bottom_navigation_item_background = global::neophyte.Droid.Resource.Drawable.design_bottom_navigation_item_background;
 			global::Plugin.InputKit.Resource.Drawable.design_fab_background = global::neophyte.Droid.Resource.Drawable.design_fab_background;
 			global::Plugin.InputKit.Resource.Drawable.design_ic_visibility = global::neophyte.Droid.Resource.Drawable.design_ic_visibility;
@@ -1002,6 +1042,39 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Drawable.notify_panel_notification_icon_bg = global::neophyte.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
 			global::Plugin.InputKit.Resource.Drawable.tooltip_frame_dark = global::neophyte.Droid.Resource.Drawable.tooltip_frame_dark;
 			global::Plugin.InputKit.Resource.Drawable.tooltip_frame_light = global::neophyte.Droid.Resource.Drawable.tooltip_frame_light;
+			global::Plugin.InputKit.Resource.Id.accessibility_action_clickable_span = global::neophyte.Droid.Resource.Id.accessibility_action_clickable_span;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_0 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_0;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_1 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_1;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_10 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_10;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_11 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_11;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_12 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_12;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_13 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_13;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_14 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_14;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_15 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_15;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_16 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_16;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_17 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_17;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_18 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_18;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_19 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_19;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_2 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_2;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_20 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_20;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_21 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_21;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_22 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_22;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_23 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_23;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_24 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_24;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_25 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_25;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_26 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_26;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_27 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_27;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_28 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_28;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_29 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_29;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_3 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_3;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_30 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_30;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_31 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_31;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_4 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_4;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_5 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_5;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_6 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_6;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_7 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_7;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_8 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_8;
+			global::Plugin.InputKit.Resource.Id.accessibility_custom_action_9 = global::neophyte.Droid.Resource.Id.accessibility_custom_action_9;
 			global::Plugin.InputKit.Resource.Id.action0 = global::neophyte.Droid.Resource.Id.action0;
 			global::Plugin.InputKit.Resource.Id.actions = global::neophyte.Droid.Resource.Id.actions;
 			global::Plugin.InputKit.Resource.Id.action_bar = global::neophyte.Droid.Resource.Id.action_bar;
@@ -1045,6 +1118,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Id.center_horizontal = global::neophyte.Droid.Resource.Id.center_horizontal;
 			global::Plugin.InputKit.Resource.Id.center_vertical = global::neophyte.Droid.Resource.Id.center_vertical;
 			global::Plugin.InputKit.Resource.Id.checkbox = global::neophyte.Droid.Resource.Id.checkbox;
+			global::Plugin.InputKit.Resource.Id.@checked = global::neophyte.Droid.Resource.Id.@checked;
 			global::Plugin.InputKit.Resource.Id.chronometer = global::neophyte.Droid.Resource.Id.chronometer;
 			global::Plugin.InputKit.Resource.Id.clip_horizontal = global::neophyte.Droid.Resource.Id.clip_horizontal;
 			global::Plugin.InputKit.Resource.Id.clip_vertical = global::neophyte.Droid.Resource.Id.clip_vertical;
@@ -1063,6 +1137,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Id.design_menu_item_action_area_stub = global::neophyte.Droid.Resource.Id.design_menu_item_action_area_stub;
 			global::Plugin.InputKit.Resource.Id.design_menu_item_text = global::neophyte.Droid.Resource.Id.design_menu_item_text;
 			global::Plugin.InputKit.Resource.Id.design_navigation_view = global::neophyte.Droid.Resource.Id.design_navigation_view;
+			global::Plugin.InputKit.Resource.Id.dialog_button = global::neophyte.Droid.Resource.Id.dialog_button;
 			global::Plugin.InputKit.Resource.Id.disableHome = global::neophyte.Droid.Resource.Id.disableHome;
 			global::Plugin.InputKit.Resource.Id.edit_query = global::neophyte.Droid.Resource.Id.edit_query;
 			global::Plugin.InputKit.Resource.Id.end = global::neophyte.Droid.Resource.Id.end;
@@ -1082,6 +1157,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Id.forever = global::neophyte.Droid.Resource.Id.forever;
 			global::Plugin.InputKit.Resource.Id.FUNCTION = global::neophyte.Droid.Resource.Id.FUNCTION;
 			global::Plugin.InputKit.Resource.Id.ghost_view = global::neophyte.Droid.Resource.Id.ghost_view;
+			global::Plugin.InputKit.Resource.Id.ghost_view_holder = global::neophyte.Droid.Resource.Id.ghost_view_holder;
 			global::Plugin.InputKit.Resource.Id.group_divider = global::neophyte.Droid.Resource.Id.group_divider;
 			global::Plugin.InputKit.Resource.Id.home = global::neophyte.Droid.Resource.Id.home;
 			global::Plugin.InputKit.Resource.Id.homeAsUp = global::neophyte.Droid.Resource.Id.homeAsUp;
@@ -1119,6 +1195,8 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Id.notification_background = global::neophyte.Droid.Resource.Id.notification_background;
 			global::Plugin.InputKit.Resource.Id.notification_main_column = global::neophyte.Droid.Resource.Id.notification_main_column;
 			global::Plugin.InputKit.Resource.Id.notification_main_column_container = global::neophyte.Droid.Resource.Id.notification_main_column_container;
+			global::Plugin.InputKit.Resource.Id.off = global::neophyte.Droid.Resource.Id.off;
+			global::Plugin.InputKit.Resource.Id.on = global::neophyte.Droid.Resource.Id.on;
 			global::Plugin.InputKit.Resource.Id.outline = global::neophyte.Droid.Resource.Id.outline;
 			global::Plugin.InputKit.Resource.Id.parallax = global::neophyte.Droid.Resource.Id.parallax;
 			global::Plugin.InputKit.Resource.Id.parentPanel = global::neophyte.Droid.Resource.Id.parentPanel;
@@ -1131,6 +1209,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Id.right_icon = global::neophyte.Droid.Resource.Id.right_icon;
 			global::Plugin.InputKit.Resource.Id.right_side = global::neophyte.Droid.Resource.Id.right_side;
 			global::Plugin.InputKit.Resource.Id.save_non_transition_alpha = global::neophyte.Droid.Resource.Id.save_non_transition_alpha;
+			global::Plugin.InputKit.Resource.Id.save_overlay_view = global::neophyte.Droid.Resource.Id.save_overlay_view;
 			global::Plugin.InputKit.Resource.Id.screen = global::neophyte.Droid.Resource.Id.screen;
 			global::Plugin.InputKit.Resource.Id.scroll = global::neophyte.Droid.Resource.Id.scroll;
 			global::Plugin.InputKit.Resource.Id.scrollable = global::neophyte.Droid.Resource.Id.scrollable;
@@ -1156,6 +1235,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Id.showCustom = global::neophyte.Droid.Resource.Id.showCustom;
 			global::Plugin.InputKit.Resource.Id.showHome = global::neophyte.Droid.Resource.Id.showHome;
 			global::Plugin.InputKit.Resource.Id.showTitle = global::neophyte.Droid.Resource.Id.showTitle;
+			global::Plugin.InputKit.Resource.Id.sliding_tabs = global::neophyte.Droid.Resource.Id.sliding_tabs;
 			global::Plugin.InputKit.Resource.Id.smallLabel = global::neophyte.Droid.Resource.Id.smallLabel;
 			global::Plugin.InputKit.Resource.Id.snackbar_action = global::neophyte.Droid.Resource.Id.snackbar_action;
 			global::Plugin.InputKit.Resource.Id.snackbar_text = global::neophyte.Droid.Resource.Id.snackbar_text;
@@ -1173,6 +1253,11 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Id.submit_area = global::neophyte.Droid.Resource.Id.submit_area;
 			global::Plugin.InputKit.Resource.Id.SYM = global::neophyte.Droid.Resource.Id.SYM;
 			global::Plugin.InputKit.Resource.Id.tabMode = global::neophyte.Droid.Resource.Id.tabMode;
+			global::Plugin.InputKit.Resource.Id.tag_accessibility_actions = global::neophyte.Droid.Resource.Id.tag_accessibility_actions;
+			global::Plugin.InputKit.Resource.Id.tag_accessibility_clickable_spans = global::neophyte.Droid.Resource.Id.tag_accessibility_clickable_spans;
+			global::Plugin.InputKit.Resource.Id.tag_accessibility_heading = global::neophyte.Droid.Resource.Id.tag_accessibility_heading;
+			global::Plugin.InputKit.Resource.Id.tag_accessibility_pane_title = global::neophyte.Droid.Resource.Id.tag_accessibility_pane_title;
+			global::Plugin.InputKit.Resource.Id.tag_screen_reader_focusable = global::neophyte.Droid.Resource.Id.tag_screen_reader_focusable;
 			global::Plugin.InputKit.Resource.Id.tag_transition_group = global::neophyte.Droid.Resource.Id.tag_transition_group;
 			global::Plugin.InputKit.Resource.Id.tag_unhandled_key_event_manager = global::neophyte.Droid.Resource.Id.tag_unhandled_key_event_manager;
 			global::Plugin.InputKit.Resource.Id.tag_unhandled_key_listeners = global::neophyte.Droid.Resource.Id.tag_unhandled_key_listeners;
@@ -1189,6 +1274,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Id.title = global::neophyte.Droid.Resource.Id.title;
 			global::Plugin.InputKit.Resource.Id.titleDividerNoCustom = global::neophyte.Droid.Resource.Id.titleDividerNoCustom;
 			global::Plugin.InputKit.Resource.Id.title_template = global::neophyte.Droid.Resource.Id.title_template;
+			global::Plugin.InputKit.Resource.Id.toolbar = global::neophyte.Droid.Resource.Id.toolbar;
 			global::Plugin.InputKit.Resource.Id.top = global::neophyte.Droid.Resource.Id.top;
 			global::Plugin.InputKit.Resource.Id.topPanel = global::neophyte.Droid.Resource.Id.topPanel;
 			global::Plugin.InputKit.Resource.Id.touch_outside = global::neophyte.Droid.Resource.Id.touch_outside;
@@ -1197,6 +1283,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Id.transition_position = global::neophyte.Droid.Resource.Id.transition_position;
 			global::Plugin.InputKit.Resource.Id.transition_scene_layoutid_cache = global::neophyte.Droid.Resource.Id.transition_scene_layoutid_cache;
 			global::Plugin.InputKit.Resource.Id.transition_transform = global::neophyte.Droid.Resource.Id.transition_transform;
+			global::Plugin.InputKit.Resource.Id.@unchecked = global::neophyte.Droid.Resource.Id.@unchecked;
 			global::Plugin.InputKit.Resource.Id.uniform = global::neophyte.Droid.Resource.Id.uniform;
 			global::Plugin.InputKit.Resource.Id.unlabeled = global::neophyte.Droid.Resource.Id.unlabeled;
 			global::Plugin.InputKit.Resource.Id.up = global::neophyte.Droid.Resource.Id.up;
@@ -1220,6 +1307,13 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Integer.mtrl_tab_indicator_anim_duration_ms = global::neophyte.Droid.Resource.Integer.mtrl_tab_indicator_anim_duration_ms;
 			global::Plugin.InputKit.Resource.Integer.show_password_duration = global::neophyte.Droid.Resource.Integer.show_password_duration;
 			global::Plugin.InputKit.Resource.Integer.status_bar_notification_info_maxnum = global::neophyte.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Plugin.InputKit.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_0 = global::neophyte.Droid.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_0;
+			global::Plugin.InputKit.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_1 = global::neophyte.Droid.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_1;
+			global::Plugin.InputKit.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_0 = global::neophyte.Droid.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_0;
+			global::Plugin.InputKit.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_1 = global::neophyte.Droid.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_1;
+			global::Plugin.InputKit.Resource.Interpolator.btn_radio_to_off_mtrl_animation_interpolator_0 = global::neophyte.Droid.Resource.Interpolator.btn_radio_to_off_mtrl_animation_interpolator_0;
+			global::Plugin.InputKit.Resource.Interpolator.btn_radio_to_on_mtrl_animation_interpolator_0 = global::neophyte.Droid.Resource.Interpolator.btn_radio_to_on_mtrl_animation_interpolator_0;
+			global::Plugin.InputKit.Resource.Interpolator.fast_out_slow_in = global::neophyte.Droid.Resource.Interpolator.fast_out_slow_in;
 			global::Plugin.InputKit.Resource.Interpolator.mtrl_fast_out_linear_in = global::neophyte.Droid.Resource.Interpolator.mtrl_fast_out_linear_in;
 			global::Plugin.InputKit.Resource.Interpolator.mtrl_fast_out_slow_in = global::neophyte.Droid.Resource.Interpolator.mtrl_fast_out_slow_in;
 			global::Plugin.InputKit.Resource.Interpolator.mtrl_linear = global::neophyte.Droid.Resource.Interpolator.mtrl_linear;
@@ -1255,6 +1349,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Layout.BottomTabLayout = global::neophyte.Droid.Resource.Layout.BottomTabLayout;
 			global::Plugin.InputKit.Resource.Layout.browser_actions_context_menu_page = global::neophyte.Droid.Resource.Layout.browser_actions_context_menu_page;
 			global::Plugin.InputKit.Resource.Layout.browser_actions_context_menu_row = global::neophyte.Droid.Resource.Layout.browser_actions_context_menu_row;
+			global::Plugin.InputKit.Resource.Layout.custom_dialog = global::neophyte.Droid.Resource.Layout.custom_dialog;
 			global::Plugin.InputKit.Resource.Layout.design_bottom_navigation_item = global::neophyte.Droid.Resource.Layout.design_bottom_navigation_item;
 			global::Plugin.InputKit.Resource.Layout.design_bottom_sheet_dialog = global::neophyte.Droid.Resource.Layout.design_bottom_sheet_dialog;
 			global::Plugin.InputKit.Resource.Layout.design_layout_snackbar = global::neophyte.Droid.Resource.Layout.design_layout_snackbar;
@@ -1269,6 +1364,8 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Layout.design_navigation_menu = global::neophyte.Droid.Resource.Layout.design_navigation_menu;
 			global::Plugin.InputKit.Resource.Layout.design_navigation_menu_item = global::neophyte.Droid.Resource.Layout.design_navigation_menu_item;
 			global::Plugin.InputKit.Resource.Layout.design_text_input_password_icon = global::neophyte.Droid.Resource.Layout.design_text_input_password_icon;
+			global::Plugin.InputKit.Resource.Layout.FallbackTabbarDoNotUse = global::neophyte.Droid.Resource.Layout.FallbackTabbarDoNotUse;
+			global::Plugin.InputKit.Resource.Layout.FallbackToolbarDoNotUse = global::neophyte.Droid.Resource.Layout.FallbackToolbarDoNotUse;
 			global::Plugin.InputKit.Resource.Layout.FlyoutContent = global::neophyte.Droid.Resource.Layout.FlyoutContent;
 			global::Plugin.InputKit.Resource.Layout.mtrl_layout_snackbar = global::neophyte.Droid.Resource.Layout.mtrl_layout_snackbar;
 			global::Plugin.InputKit.Resource.Layout.mtrl_layout_snackbar_include = global::neophyte.Droid.Resource.Layout.mtrl_layout_snackbar_include;
@@ -1293,6 +1390,8 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Layout.select_dialog_singlechoice_material = global::neophyte.Droid.Resource.Layout.select_dialog_singlechoice_material;
 			global::Plugin.InputKit.Resource.Layout.ShellContent = global::neophyte.Droid.Resource.Layout.ShellContent;
 			global::Plugin.InputKit.Resource.Layout.support_simple_spinner_dropdown_item = global::neophyte.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::Plugin.InputKit.Resource.Layout.Tabbar = global::neophyte.Droid.Resource.Layout.Tabbar;
+			global::Plugin.InputKit.Resource.Layout.Toolbar = global::neophyte.Droid.Resource.Layout.Toolbar;
 			global::Plugin.InputKit.Resource.String.abc_action_bar_home_description = global::neophyte.Droid.Resource.String.abc_action_bar_home_description;
 			global::Plugin.InputKit.Resource.String.abc_action_bar_up_description = global::neophyte.Droid.Resource.String.abc_action_bar_up_description;
 			global::Plugin.InputKit.Resource.String.abc_action_menu_overflow_description = global::neophyte.Droid.Resource.String.abc_action_menu_overflow_description;
@@ -1524,6 +1623,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::neophyte.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
 			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Spinner = global::neophyte.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
 			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::neophyte.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_TextView = global::neophyte.Droid.Resource.Style.Base_Widget_AppCompat_TextView;
 			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::neophyte.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
 			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Toolbar = global::neophyte.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
 			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::neophyte.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
@@ -1657,6 +1757,8 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::neophyte.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
 			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_Dark = global::neophyte.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
 			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::neophyte.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_DayNight = global::neophyte.Droid.Resource.Style.ThemeOverlay_AppCompat_DayNight;
+			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_DayNight_ActionBar = global::neophyte.Droid.Resource.Style.ThemeOverlay_AppCompat_DayNight_ActionBar;
 			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::neophyte.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
 			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::neophyte.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
 			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_Light = global::neophyte.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
@@ -1789,6 +1891,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::neophyte.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
 			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::neophyte.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
 			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::neophyte.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_TextView = global::neophyte.Droid.Resource.Style.Widget_AppCompat_TextView;
 			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::neophyte.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
 			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Toolbar = global::neophyte.Droid.Resource.Style.Widget_AppCompat_Toolbar;
 			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::neophyte.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
@@ -1950,11 +2053,21 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_autoSizePresetSizes = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_autoSizeTextType = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_drawableBottomCompat = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_drawableBottomCompat;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_drawableEndCompat = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_drawableEndCompat;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_drawableLeftCompat = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_drawableLeftCompat;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_drawableRightCompat = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_drawableRightCompat;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_drawableStartCompat = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_drawableStartCompat;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_drawableTint = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_drawableTint;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_drawableTintMode = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_drawableTintMode;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_drawableTopCompat = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_drawableTopCompat;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_fontFamily = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_fontFamily;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_fontVariationSettings = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_fontVariationSettings;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_lineHeight = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_lineHeight;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_textAllCaps = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_textLocale = global::neophyte.Droid.Resource.Styleable.AppCompatTextView_textLocale;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme = global::neophyte.Droid.Resource.Styleable.AppCompatTheme;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarDivider = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
@@ -2028,14 +2141,18 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listChoiceIndicatorMultipleAnimated = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listChoiceIndicatorMultipleAnimated;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listChoiceIndicatorSingleAnimated = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listChoiceIndicatorSingleAnimated;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingEnd = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingEnd;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingStart = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingStart;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_panelBackground = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
 			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::neophyte.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
@@ -2184,6 +2301,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Styleable.ColorStateListItem_android_color = global::neophyte.Droid.Resource.Styleable.ColorStateListItem_android_color;
 			global::Plugin.InputKit.Resource.Styleable.CompoundButton = global::neophyte.Droid.Resource.Styleable.CompoundButton;
 			global::Plugin.InputKit.Resource.Styleable.CompoundButton_android_button = global::neophyte.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::Plugin.InputKit.Resource.Styleable.CompoundButton_buttonCompat = global::neophyte.Droid.Resource.Styleable.CompoundButton_buttonCompat;
 			global::Plugin.InputKit.Resource.Styleable.CompoundButton_buttonTint = global::neophyte.Droid.Resource.Styleable.CompoundButton_buttonTint;
 			global::Plugin.InputKit.Resource.Styleable.CompoundButton_buttonTintMode = global::neophyte.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
 			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout;
@@ -2403,6 +2521,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::neophyte.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
 			global::Plugin.InputKit.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::neophyte.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
 			global::Plugin.InputKit.Resource.Styleable.RecyclerView = global::neophyte.Droid.Resource.Styleable.RecyclerView;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_android_clipToPadding = global::neophyte.Droid.Resource.Styleable.RecyclerView_android_clipToPadding;
 			global::Plugin.InputKit.Resource.Styleable.RecyclerView_android_descendantFocusability = global::neophyte.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
 			global::Plugin.InputKit.Resource.Styleable.RecyclerView_android_orientation = global::neophyte.Droid.Resource.Styleable.RecyclerView_android_orientation;
 			global::Plugin.InputKit.Resource.Styleable.RecyclerView_fastScrollEnabled = global::neophyte.Droid.Resource.Styleable.RecyclerView_fastScrollEnabled;
@@ -2512,11 +2631,14 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_textColor = global::neophyte.Droid.Resource.Styleable.TextAppearance_android_textColor;
 			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_textColorHint = global::neophyte.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
 			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_textColorLink = global::neophyte.Droid.Resource.Styleable.TextAppearance_android_textColorLink;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_textFontWeight = global::neophyte.Droid.Resource.Styleable.TextAppearance_android_textFontWeight;
 			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_textSize = global::neophyte.Droid.Resource.Styleable.TextAppearance_android_textSize;
 			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_textStyle = global::neophyte.Droid.Resource.Styleable.TextAppearance_android_textStyle;
 			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_typeface = global::neophyte.Droid.Resource.Styleable.TextAppearance_android_typeface;
 			global::Plugin.InputKit.Resource.Styleable.TextAppearance_fontFamily = global::neophyte.Droid.Resource.Styleable.TextAppearance_fontFamily;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_fontVariationSettings = global::neophyte.Droid.Resource.Styleable.TextAppearance_fontVariationSettings;
 			global::Plugin.InputKit.Resource.Styleable.TextAppearance_textAllCaps = global::neophyte.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_textLocale = global::neophyte.Droid.Resource.Styleable.TextAppearance_textLocale;
 			global::Plugin.InputKit.Resource.Styleable.TextInputLayout = global::neophyte.Droid.Resource.Styleable.TextInputLayout;
 			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_android_hint = global::neophyte.Droid.Resource.Styleable.TextInputLayout_android_hint;
 			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_android_textColorHint = global::neophyte.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
@@ -2565,6 +2687,7 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Styleable.Toolbar_logo = global::neophyte.Droid.Resource.Styleable.Toolbar_logo;
 			global::Plugin.InputKit.Resource.Styleable.Toolbar_logoDescription = global::neophyte.Droid.Resource.Styleable.Toolbar_logoDescription;
 			global::Plugin.InputKit.Resource.Styleable.Toolbar_maxButtonHeight = global::neophyte.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_menu = global::neophyte.Droid.Resource.Styleable.Toolbar_menu;
 			global::Plugin.InputKit.Resource.Styleable.Toolbar_navigationContentDescription = global::neophyte.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
 			global::Plugin.InputKit.Resource.Styleable.Toolbar_navigationIcon = global::neophyte.Droid.Resource.Styleable.Toolbar_navigationIcon;
 			global::Plugin.InputKit.Resource.Styleable.Toolbar_popupTheme = global::neophyte.Droid.Resource.Styleable.Toolbar_popupTheme;
@@ -2595,7 +2718,6 @@ namespace neophyte.Droid
 			global::Plugin.InputKit.Resource.Styleable.View_paddingStart = global::neophyte.Droid.Resource.Styleable.View_paddingStart;
 			global::Plugin.InputKit.Resource.Styleable.View_theme = global::neophyte.Droid.Resource.Styleable.View_theme;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::neophyte.Droid.Resource.Attribute.alpha;
-			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::neophyte.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::neophyte.Droid.Resource.Attribute.font;
 			global::Xamarin.Essentials.Resource.Attribute.fontProviderAuthority = global::neophyte.Droid.Resource.Attribute.fontProviderAuthority;
 			global::Xamarin.Essentials.Resource.Attribute.fontProviderCerts = global::neophyte.Droid.Resource.Attribute.fontProviderCerts;
@@ -2606,23 +2728,15 @@ namespace neophyte.Droid
 			global::Xamarin.Essentials.Resource.Attribute.fontStyle = global::neophyte.Droid.Resource.Attribute.fontStyle;
 			global::Xamarin.Essentials.Resource.Attribute.fontVariationSettings = global::neophyte.Droid.Resource.Attribute.fontVariationSettings;
 			global::Xamarin.Essentials.Resource.Attribute.fontWeight = global::neophyte.Droid.Resource.Attribute.fontWeight;
-			global::Xamarin.Essentials.Resource.Attribute.keylines = global::neophyte.Droid.Resource.Attribute.keylines;
-			global::Xamarin.Essentials.Resource.Attribute.layout_anchor = global::neophyte.Droid.Resource.Attribute.layout_anchor;
-			global::Xamarin.Essentials.Resource.Attribute.layout_anchorGravity = global::neophyte.Droid.Resource.Attribute.layout_anchorGravity;
-			global::Xamarin.Essentials.Resource.Attribute.layout_behavior = global::neophyte.Droid.Resource.Attribute.layout_behavior;
-			global::Xamarin.Essentials.Resource.Attribute.layout_dodgeInsetEdges = global::neophyte.Droid.Resource.Attribute.layout_dodgeInsetEdges;
-			global::Xamarin.Essentials.Resource.Attribute.layout_insetEdge = global::neophyte.Droid.Resource.Attribute.layout_insetEdge;
-			global::Xamarin.Essentials.Resource.Attribute.layout_keyline = global::neophyte.Droid.Resource.Attribute.layout_keyline;
-			global::Xamarin.Essentials.Resource.Attribute.statusBarBackground = global::neophyte.Droid.Resource.Attribute.statusBarBackground;
 			global::Xamarin.Essentials.Resource.Attribute.ttcIndex = global::neophyte.Droid.Resource.Attribute.ttcIndex;
+			global::Xamarin.Essentials.Resource.Color.androidx_core_ripple_material_light = global::neophyte.Droid.Resource.Color.androidx_core_ripple_material_light;
+			global::Xamarin.Essentials.Resource.Color.androidx_core_secondary_text_default_material_light = global::neophyte.Droid.Resource.Color.androidx_core_secondary_text_default_material_light;
 			global::Xamarin.Essentials.Resource.Color.browser_actions_bg_grey = global::neophyte.Droid.Resource.Color.browser_actions_bg_grey;
 			global::Xamarin.Essentials.Resource.Color.browser_actions_divider_color = global::neophyte.Droid.Resource.Color.browser_actions_divider_color;
 			global::Xamarin.Essentials.Resource.Color.browser_actions_text_color = global::neophyte.Droid.Resource.Color.browser_actions_text_color;
 			global::Xamarin.Essentials.Resource.Color.browser_actions_title_color = global::neophyte.Droid.Resource.Color.browser_actions_title_color;
 			global::Xamarin.Essentials.Resource.Color.notification_action_color_filter = global::neophyte.Droid.Resource.Color.notification_action_color_filter;
 			global::Xamarin.Essentials.Resource.Color.notification_icon_bg_color = global::neophyte.Droid.Resource.Color.notification_icon_bg_color;
-			global::Xamarin.Essentials.Resource.Color.ripple_material_light = global::neophyte.Droid.Resource.Color.ripple_material_light;
-			global::Xamarin.Essentials.Resource.Color.secondary_text_default_material_light = global::neophyte.Droid.Resource.Color.secondary_text_default_material_light;
 			global::Xamarin.Essentials.Resource.Dimension.browser_actions_context_menu_max_width = global::neophyte.Droid.Resource.Dimension.browser_actions_context_menu_max_width;
 			global::Xamarin.Essentials.Resource.Dimension.browser_actions_context_menu_min_padding = global::neophyte.Droid.Resource.Dimension.browser_actions_context_menu_min_padding;
 			global::Xamarin.Essentials.Resource.Dimension.compat_button_inset_horizontal_material = global::neophyte.Droid.Resource.Dimension.compat_button_inset_horizontal_material;
@@ -2697,43 +2811,28 @@ namespace neophyte.Droid
 			global::Xamarin.Essentials.Resource.Id.action_divider = global::neophyte.Droid.Resource.Id.action_divider;
 			global::Xamarin.Essentials.Resource.Id.action_image = global::neophyte.Droid.Resource.Id.action_image;
 			global::Xamarin.Essentials.Resource.Id.action_text = global::neophyte.Droid.Resource.Id.action_text;
-			global::Xamarin.Essentials.Resource.Id.all = global::neophyte.Droid.Resource.Id.all;
 			global::Xamarin.Essentials.Resource.Id.async = global::neophyte.Droid.Resource.Id.async;
 			global::Xamarin.Essentials.Resource.Id.blocking = global::neophyte.Droid.Resource.Id.blocking;
-			global::Xamarin.Essentials.Resource.Id.bottom = global::neophyte.Droid.Resource.Id.bottom;
 			global::Xamarin.Essentials.Resource.Id.browser_actions_header_text = global::neophyte.Droid.Resource.Id.browser_actions_header_text;
 			global::Xamarin.Essentials.Resource.Id.browser_actions_menu_items = global::neophyte.Droid.Resource.Id.browser_actions_menu_items;
 			global::Xamarin.Essentials.Resource.Id.browser_actions_menu_item_icon = global::neophyte.Droid.Resource.Id.browser_actions_menu_item_icon;
 			global::Xamarin.Essentials.Resource.Id.browser_actions_menu_item_text = global::neophyte.Droid.Resource.Id.browser_actions_menu_item_text;
 			global::Xamarin.Essentials.Resource.Id.browser_actions_menu_view = global::neophyte.Droid.Resource.Id.browser_actions_menu_view;
-			global::Xamarin.Essentials.Resource.Id.center = global::neophyte.Droid.Resource.Id.center;
-			global::Xamarin.Essentials.Resource.Id.center_horizontal = global::neophyte.Droid.Resource.Id.center_horizontal;
-			global::Xamarin.Essentials.Resource.Id.center_vertical = global::neophyte.Droid.Resource.Id.center_vertical;
 			global::Xamarin.Essentials.Resource.Id.chronometer = global::neophyte.Droid.Resource.Id.chronometer;
-			global::Xamarin.Essentials.Resource.Id.clip_horizontal = global::neophyte.Droid.Resource.Id.clip_horizontal;
-			global::Xamarin.Essentials.Resource.Id.clip_vertical = global::neophyte.Droid.Resource.Id.clip_vertical;
 			global::Xamarin.Essentials.Resource.Id.dialog_button = global::neophyte.Droid.Resource.Id.dialog_button;
-			global::Xamarin.Essentials.Resource.Id.end = global::neophyte.Droid.Resource.Id.end;
-			global::Xamarin.Essentials.Resource.Id.fill = global::neophyte.Droid.Resource.Id.fill;
-			global::Xamarin.Essentials.Resource.Id.fill_horizontal = global::neophyte.Droid.Resource.Id.fill_horizontal;
-			global::Xamarin.Essentials.Resource.Id.fill_vertical = global::neophyte.Droid.Resource.Id.fill_vertical;
 			global::Xamarin.Essentials.Resource.Id.forever = global::neophyte.Droid.Resource.Id.forever;
 			global::Xamarin.Essentials.Resource.Id.icon = global::neophyte.Droid.Resource.Id.icon;
 			global::Xamarin.Essentials.Resource.Id.icon_group = global::neophyte.Droid.Resource.Id.icon_group;
 			global::Xamarin.Essentials.Resource.Id.info = global::neophyte.Droid.Resource.Id.info;
 			global::Xamarin.Essentials.Resource.Id.italic = global::neophyte.Droid.Resource.Id.italic;
-			global::Xamarin.Essentials.Resource.Id.left = global::neophyte.Droid.Resource.Id.left;
 			global::Xamarin.Essentials.Resource.Id.line1 = global::neophyte.Droid.Resource.Id.line1;
 			global::Xamarin.Essentials.Resource.Id.line3 = global::neophyte.Droid.Resource.Id.line3;
-			global::Xamarin.Essentials.Resource.Id.none = global::neophyte.Droid.Resource.Id.none;
 			global::Xamarin.Essentials.Resource.Id.normal = global::neophyte.Droid.Resource.Id.normal;
 			global::Xamarin.Essentials.Resource.Id.notification_background = global::neophyte.Droid.Resource.Id.notification_background;
 			global::Xamarin.Essentials.Resource.Id.notification_main_column = global::neophyte.Droid.Resource.Id.notification_main_column;
 			global::Xamarin.Essentials.Resource.Id.notification_main_column_container = global::neophyte.Droid.Resource.Id.notification_main_column_container;
-			global::Xamarin.Essentials.Resource.Id.right = global::neophyte.Droid.Resource.Id.right;
 			global::Xamarin.Essentials.Resource.Id.right_icon = global::neophyte.Droid.Resource.Id.right_icon;
 			global::Xamarin.Essentials.Resource.Id.right_side = global::neophyte.Droid.Resource.Id.right_side;
-			global::Xamarin.Essentials.Resource.Id.start = global::neophyte.Droid.Resource.Id.start;
 			global::Xamarin.Essentials.Resource.Id.tag_accessibility_actions = global::neophyte.Droid.Resource.Id.tag_accessibility_actions;
 			global::Xamarin.Essentials.Resource.Id.tag_accessibility_clickable_spans = global::neophyte.Droid.Resource.Id.tag_accessibility_clickable_spans;
 			global::Xamarin.Essentials.Resource.Id.tag_accessibility_heading = global::neophyte.Droid.Resource.Id.tag_accessibility_heading;
@@ -2746,7 +2845,6 @@ namespace neophyte.Droid
 			global::Xamarin.Essentials.Resource.Id.text2 = global::neophyte.Droid.Resource.Id.text2;
 			global::Xamarin.Essentials.Resource.Id.time = global::neophyte.Droid.Resource.Id.time;
 			global::Xamarin.Essentials.Resource.Id.title = global::neophyte.Droid.Resource.Id.title;
-			global::Xamarin.Essentials.Resource.Id.top = global::neophyte.Droid.Resource.Id.top;
 			global::Xamarin.Essentials.Resource.Integer.status_bar_notification_info_maxnum = global::neophyte.Droid.Resource.Integer.status_bar_notification_info_maxnum;
 			global::Xamarin.Essentials.Resource.Layout.browser_actions_context_menu_page = global::neophyte.Droid.Resource.Layout.browser_actions_context_menu_page;
 			global::Xamarin.Essentials.Resource.Layout.browser_actions_context_menu_row = global::neophyte.Droid.Resource.Layout.browser_actions_context_menu_row;
@@ -2757,6 +2855,10 @@ namespace neophyte.Droid
 			global::Xamarin.Essentials.Resource.Layout.notification_template_icon_group = global::neophyte.Droid.Resource.Layout.notification_template_icon_group;
 			global::Xamarin.Essentials.Resource.Layout.notification_template_part_chronometer = global::neophyte.Droid.Resource.Layout.notification_template_part_chronometer;
 			global::Xamarin.Essentials.Resource.Layout.notification_template_part_time = global::neophyte.Droid.Resource.Layout.notification_template_part_time;
+			global::Xamarin.Essentials.Resource.String.copy_toast_msg = global::neophyte.Droid.Resource.String.copy_toast_msg;
+			global::Xamarin.Essentials.Resource.String.fallback_menu_item_copy_link = global::neophyte.Droid.Resource.String.fallback_menu_item_copy_link;
+			global::Xamarin.Essentials.Resource.String.fallback_menu_item_open_in_browser = global::neophyte.Droid.Resource.String.fallback_menu_item_open_in_browser;
+			global::Xamarin.Essentials.Resource.String.fallback_menu_item_share_link = global::neophyte.Droid.Resource.String.fallback_menu_item_share_link;
 			global::Xamarin.Essentials.Resource.String.status_bar_notification_info_overflow = global::neophyte.Droid.Resource.String.status_bar_notification_info_overflow;
 			global::Xamarin.Essentials.Resource.Style.TextAppearance_Compat_Notification = global::neophyte.Droid.Resource.Style.TextAppearance_Compat_Notification;
 			global::Xamarin.Essentials.Resource.Style.TextAppearance_Compat_Notification_Info = global::neophyte.Droid.Resource.Style.TextAppearance_Compat_Notification_Info;
@@ -2765,22 +2867,10 @@ namespace neophyte.Droid
 			global::Xamarin.Essentials.Resource.Style.TextAppearance_Compat_Notification_Title = global::neophyte.Droid.Resource.Style.TextAppearance_Compat_Notification_Title;
 			global::Xamarin.Essentials.Resource.Style.Widget_Compat_NotificationActionContainer = global::neophyte.Droid.Resource.Style.Widget_Compat_NotificationActionContainer;
 			global::Xamarin.Essentials.Resource.Style.Widget_Compat_NotificationActionText = global::neophyte.Droid.Resource.Style.Widget_Compat_NotificationActionText;
-			global::Xamarin.Essentials.Resource.Style.Widget_Support_CoordinatorLayout = global::neophyte.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
 			global::Xamarin.Essentials.Resource.Styleable.ColorStateListItem = global::neophyte.Droid.Resource.Styleable.ColorStateListItem;
 			global::Xamarin.Essentials.Resource.Styleable.ColorStateListItem_alpha = global::neophyte.Droid.Resource.Styleable.ColorStateListItem_alpha;
 			global::Xamarin.Essentials.Resource.Styleable.ColorStateListItem_android_alpha = global::neophyte.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
 			global::Xamarin.Essentials.Resource.Styleable.ColorStateListItem_android_color = global::neophyte.Droid.Resource.Styleable.ColorStateListItem_android_color;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_keylines = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout_keylines;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout_Layout;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::neophyte.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
 			global::Xamarin.Essentials.Resource.Styleable.FontFamily = global::neophyte.Droid.Resource.Styleable.FontFamily;
 			global::Xamarin.Essentials.Resource.Styleable.FontFamilyFont = global::neophyte.Droid.Resource.Styleable.FontFamilyFont;
 			global::Xamarin.Essentials.Resource.Styleable.FontFamilyFont_android_font = global::neophyte.Droid.Resource.Styleable.FontFamilyFont_android_font;
@@ -2815,6 +2905,7 @@ namespace neophyte.Droid
 			global::Xamarin.Essentials.Resource.Styleable.GradientColor_android_startY = global::neophyte.Droid.Resource.Styleable.GradientColor_android_startY;
 			global::Xamarin.Essentials.Resource.Styleable.GradientColor_android_tileMode = global::neophyte.Droid.Resource.Styleable.GradientColor_android_tileMode;
 			global::Xamarin.Essentials.Resource.Styleable.GradientColor_android_type = global::neophyte.Droid.Resource.Styleable.GradientColor_android_type;
+			global::Xamarin.Essentials.Resource.Xml.image_share_filepaths = global::neophyte.Droid.Resource.Xml.image_share_filepaths;
 			global::Xamarin.Essentials.Resource.Xml.xamarin_essentials_fileprovider_file_paths = global::neophyte.Droid.Resource.Xml.xamarin_essentials_fileprovider_file_paths;
 			global::Xamarin.Forms.Platform.Android.Resource.Animation.abc_fade_in = global::neophyte.Droid.Resource.Animation.abc_fade_in;
 			global::Xamarin.Forms.Platform.Android.Resource.Animation.abc_fade_out = global::neophyte.Droid.Resource.Animation.abc_fade_out;
@@ -9938,334 +10029,340 @@ namespace neophyte.Droid
 			public const int accent_material_light = 2131034137;
 			
 			// aapt resource value: 0x7F05001A
-			public const int background_floating_material_dark = 2131034138;
+			public const int androidx_core_ripple_material_light = 2131034138;
 			
 			// aapt resource value: 0x7F05001B
-			public const int background_floating_material_light = 2131034139;
+			public const int androidx_core_secondary_text_default_material_light = 2131034139;
 			
 			// aapt resource value: 0x7F05001C
-			public const int background_material_dark = 2131034140;
+			public const int background_floating_material_dark = 2131034140;
 			
 			// aapt resource value: 0x7F05001D
-			public const int background_material_light = 2131034141;
+			public const int background_floating_material_light = 2131034141;
 			
 			// aapt resource value: 0x7F05001E
-			public const int bright_foreground_disabled_material_dark = 2131034142;
+			public const int background_material_dark = 2131034142;
 			
 			// aapt resource value: 0x7F05001F
-			public const int bright_foreground_disabled_material_light = 2131034143;
+			public const int background_material_light = 2131034143;
 			
 			// aapt resource value: 0x7F050020
-			public const int bright_foreground_inverse_material_dark = 2131034144;
+			public const int bright_foreground_disabled_material_dark = 2131034144;
 			
 			// aapt resource value: 0x7F050021
-			public const int bright_foreground_inverse_material_light = 2131034145;
+			public const int bright_foreground_disabled_material_light = 2131034145;
 			
 			// aapt resource value: 0x7F050022
-			public const int bright_foreground_material_dark = 2131034146;
+			public const int bright_foreground_inverse_material_dark = 2131034146;
 			
 			// aapt resource value: 0x7F050023
-			public const int bright_foreground_material_light = 2131034147;
+			public const int bright_foreground_inverse_material_light = 2131034147;
 			
 			// aapt resource value: 0x7F050024
-			public const int browser_actions_bg_grey = 2131034148;
+			public const int bright_foreground_material_dark = 2131034148;
 			
 			// aapt resource value: 0x7F050025
-			public const int browser_actions_divider_color = 2131034149;
+			public const int bright_foreground_material_light = 2131034149;
 			
 			// aapt resource value: 0x7F050026
-			public const int browser_actions_text_color = 2131034150;
+			public const int browser_actions_bg_grey = 2131034150;
 			
 			// aapt resource value: 0x7F050027
-			public const int browser_actions_title_color = 2131034151;
+			public const int browser_actions_divider_color = 2131034151;
 			
 			// aapt resource value: 0x7F050028
-			public const int button_material_dark = 2131034152;
+			public const int browser_actions_text_color = 2131034152;
 			
 			// aapt resource value: 0x7F050029
-			public const int button_material_light = 2131034153;
+			public const int browser_actions_title_color = 2131034153;
 			
 			// aapt resource value: 0x7F05002A
-			public const int cardview_dark_background = 2131034154;
+			public const int button_material_dark = 2131034154;
 			
 			// aapt resource value: 0x7F05002B
-			public const int cardview_light_background = 2131034155;
+			public const int button_material_light = 2131034155;
 			
 			// aapt resource value: 0x7F05002C
-			public const int cardview_shadow_end_color = 2131034156;
+			public const int cardview_dark_background = 2131034156;
 			
 			// aapt resource value: 0x7F05002D
-			public const int cardview_shadow_start_color = 2131034157;
+			public const int cardview_light_background = 2131034157;
 			
 			// aapt resource value: 0x7F05002E
-			public const int colorAccent = 2131034158;
+			public const int cardview_shadow_end_color = 2131034158;
 			
 			// aapt resource value: 0x7F05002F
-			public const int colorPrimary = 2131034159;
+			public const int cardview_shadow_start_color = 2131034159;
 			
 			// aapt resource value: 0x7F050030
-			public const int colorPrimaryDark = 2131034160;
+			public const int colorAccent = 2131034160;
 			
 			// aapt resource value: 0x7F050031
-			public const int design_bottom_navigation_shadow_color = 2131034161;
+			public const int colorPrimary = 2131034161;
 			
 			// aapt resource value: 0x7F050032
-			public const int design_default_color_primary = 2131034162;
+			public const int colorPrimaryDark = 2131034162;
 			
 			// aapt resource value: 0x7F050033
-			public const int design_default_color_primary_dark = 2131034163;
+			public const int design_bottom_navigation_shadow_color = 2131034163;
 			
 			// aapt resource value: 0x7F050034
-			public const int design_error = 2131034164;
+			public const int design_default_color_primary = 2131034164;
 			
 			// aapt resource value: 0x7F050035
-			public const int design_fab_shadow_end_color = 2131034165;
+			public const int design_default_color_primary_dark = 2131034165;
 			
 			// aapt resource value: 0x7F050036
-			public const int design_fab_shadow_mid_color = 2131034166;
+			public const int design_error = 2131034166;
 			
 			// aapt resource value: 0x7F050037
-			public const int design_fab_shadow_start_color = 2131034167;
+			public const int design_fab_shadow_end_color = 2131034167;
 			
 			// aapt resource value: 0x7F050038
-			public const int design_fab_stroke_end_inner_color = 2131034168;
+			public const int design_fab_shadow_mid_color = 2131034168;
 			
 			// aapt resource value: 0x7F050039
-			public const int design_fab_stroke_end_outer_color = 2131034169;
+			public const int design_fab_shadow_start_color = 2131034169;
 			
 			// aapt resource value: 0x7F05003A
-			public const int design_fab_stroke_top_inner_color = 2131034170;
+			public const int design_fab_stroke_end_inner_color = 2131034170;
 			
 			// aapt resource value: 0x7F05003B
-			public const int design_fab_stroke_top_outer_color = 2131034171;
+			public const int design_fab_stroke_end_outer_color = 2131034171;
 			
 			// aapt resource value: 0x7F05003C
-			public const int design_snackbar_background_color = 2131034172;
+			public const int design_fab_stroke_top_inner_color = 2131034172;
 			
 			// aapt resource value: 0x7F05003D
-			public const int design_tint_password_toggle = 2131034173;
+			public const int design_fab_stroke_top_outer_color = 2131034173;
 			
 			// aapt resource value: 0x7F05003E
-			public const int dim_foreground_disabled_material_dark = 2131034174;
+			public const int design_snackbar_background_color = 2131034174;
 			
 			// aapt resource value: 0x7F05003F
-			public const int dim_foreground_disabled_material_light = 2131034175;
+			public const int design_tint_password_toggle = 2131034175;
 			
 			// aapt resource value: 0x7F050040
-			public const int dim_foreground_material_dark = 2131034176;
+			public const int dim_foreground_disabled_material_dark = 2131034176;
 			
 			// aapt resource value: 0x7F050041
-			public const int dim_foreground_material_light = 2131034177;
+			public const int dim_foreground_disabled_material_light = 2131034177;
 			
 			// aapt resource value: 0x7F050042
-			public const int error_color_material_dark = 2131034178;
+			public const int dim_foreground_material_dark = 2131034178;
 			
 			// aapt resource value: 0x7F050043
-			public const int error_color_material_light = 2131034179;
+			public const int dim_foreground_material_light = 2131034179;
 			
 			// aapt resource value: 0x7F050044
-			public const int foreground_material_dark = 2131034180;
+			public const int error_color_material_dark = 2131034180;
 			
 			// aapt resource value: 0x7F050045
-			public const int foreground_material_light = 2131034181;
+			public const int error_color_material_light = 2131034181;
 			
 			// aapt resource value: 0x7F050046
-			public const int highlighted_text_material_dark = 2131034182;
+			public const int foreground_material_dark = 2131034182;
 			
 			// aapt resource value: 0x7F050047
-			public const int highlighted_text_material_light = 2131034183;
+			public const int foreground_material_light = 2131034183;
 			
 			// aapt resource value: 0x7F050048
-			public const int launcher_background = 2131034184;
+			public const int highlighted_text_material_dark = 2131034184;
 			
 			// aapt resource value: 0x7F050049
-			public const int material_blue_grey_800 = 2131034185;
+			public const int highlighted_text_material_light = 2131034185;
 			
 			// aapt resource value: 0x7F05004A
-			public const int material_blue_grey_900 = 2131034186;
+			public const int launcher_background = 2131034186;
 			
 			// aapt resource value: 0x7F05004B
-			public const int material_blue_grey_950 = 2131034187;
+			public const int material_blue_grey_800 = 2131034187;
 			
 			// aapt resource value: 0x7F05004C
-			public const int material_deep_teal_200 = 2131034188;
+			public const int material_blue_grey_900 = 2131034188;
 			
 			// aapt resource value: 0x7F05004D
-			public const int material_deep_teal_500 = 2131034189;
+			public const int material_blue_grey_950 = 2131034189;
 			
 			// aapt resource value: 0x7F05004E
-			public const int material_grey_100 = 2131034190;
+			public const int material_deep_teal_200 = 2131034190;
 			
 			// aapt resource value: 0x7F05004F
-			public const int material_grey_300 = 2131034191;
+			public const int material_deep_teal_500 = 2131034191;
 			
 			// aapt resource value: 0x7F050050
-			public const int material_grey_50 = 2131034192;
+			public const int material_grey_100 = 2131034192;
 			
 			// aapt resource value: 0x7F050051
-			public const int material_grey_600 = 2131034193;
+			public const int material_grey_300 = 2131034193;
 			
 			// aapt resource value: 0x7F050052
-			public const int material_grey_800 = 2131034194;
+			public const int material_grey_50 = 2131034194;
 			
 			// aapt resource value: 0x7F050053
-			public const int material_grey_850 = 2131034195;
+			public const int material_grey_600 = 2131034195;
 			
 			// aapt resource value: 0x7F050054
-			public const int material_grey_900 = 2131034196;
+			public const int material_grey_800 = 2131034196;
 			
 			// aapt resource value: 0x7F050055
-			public const int mtrl_bottom_nav_colored_item_tint = 2131034197;
+			public const int material_grey_850 = 2131034197;
 			
 			// aapt resource value: 0x7F050056
-			public const int mtrl_bottom_nav_item_tint = 2131034198;
+			public const int material_grey_900 = 2131034198;
 			
 			// aapt resource value: 0x7F050057
-			public const int mtrl_btn_bg_color_disabled = 2131034199;
+			public const int mtrl_bottom_nav_colored_item_tint = 2131034199;
 			
 			// aapt resource value: 0x7F050058
-			public const int mtrl_btn_bg_color_selector = 2131034200;
+			public const int mtrl_bottom_nav_item_tint = 2131034200;
 			
 			// aapt resource value: 0x7F050059
-			public const int mtrl_btn_ripple_color = 2131034201;
+			public const int mtrl_btn_bg_color_disabled = 2131034201;
 			
 			// aapt resource value: 0x7F05005A
-			public const int mtrl_btn_stroke_color_selector = 2131034202;
+			public const int mtrl_btn_bg_color_selector = 2131034202;
 			
 			// aapt resource value: 0x7F05005B
-			public const int mtrl_btn_text_btn_ripple_color = 2131034203;
+			public const int mtrl_btn_ripple_color = 2131034203;
 			
 			// aapt resource value: 0x7F05005C
-			public const int mtrl_btn_text_color_disabled = 2131034204;
+			public const int mtrl_btn_stroke_color_selector = 2131034204;
 			
 			// aapt resource value: 0x7F05005D
-			public const int mtrl_btn_text_color_selector = 2131034205;
+			public const int mtrl_btn_text_btn_ripple_color = 2131034205;
 			
 			// aapt resource value: 0x7F05005E
-			public const int mtrl_btn_transparent_bg_color = 2131034206;
+			public const int mtrl_btn_text_color_disabled = 2131034206;
 			
 			// aapt resource value: 0x7F05005F
-			public const int mtrl_chip_background_color = 2131034207;
+			public const int mtrl_btn_text_color_selector = 2131034207;
 			
 			// aapt resource value: 0x7F050060
-			public const int mtrl_chip_close_icon_tint = 2131034208;
+			public const int mtrl_btn_transparent_bg_color = 2131034208;
 			
 			// aapt resource value: 0x7F050061
-			public const int mtrl_chip_ripple_color = 2131034209;
+			public const int mtrl_chip_background_color = 2131034209;
 			
 			// aapt resource value: 0x7F050062
-			public const int mtrl_chip_text_color = 2131034210;
+			public const int mtrl_chip_close_icon_tint = 2131034210;
 			
 			// aapt resource value: 0x7F050063
-			public const int mtrl_fab_ripple_color = 2131034211;
+			public const int mtrl_chip_ripple_color = 2131034211;
 			
 			// aapt resource value: 0x7F050064
-			public const int mtrl_scrim_color = 2131034212;
+			public const int mtrl_chip_text_color = 2131034212;
 			
 			// aapt resource value: 0x7F050065
-			public const int mtrl_tabs_colored_ripple_color = 2131034213;
+			public const int mtrl_fab_ripple_color = 2131034213;
 			
 			// aapt resource value: 0x7F050066
-			public const int mtrl_tabs_icon_color_selector = 2131034214;
+			public const int mtrl_scrim_color = 2131034214;
 			
 			// aapt resource value: 0x7F050067
-			public const int mtrl_tabs_icon_color_selector_colored = 2131034215;
+			public const int mtrl_tabs_colored_ripple_color = 2131034215;
 			
 			// aapt resource value: 0x7F050068
-			public const int mtrl_tabs_legacy_text_color_selector = 2131034216;
+			public const int mtrl_tabs_icon_color_selector = 2131034216;
 			
 			// aapt resource value: 0x7F050069
-			public const int mtrl_tabs_ripple_color = 2131034217;
-			
-			// aapt resource value: 0x7F05006B
-			public const int mtrl_textinput_default_box_stroke_color = 2131034219;
-			
-			// aapt resource value: 0x7F05006C
-			public const int mtrl_textinput_disabled_color = 2131034220;
-			
-			// aapt resource value: 0x7F05006D
-			public const int mtrl_textinput_filled_box_default_background_color = 2131034221;
-			
-			// aapt resource value: 0x7F05006E
-			public const int mtrl_textinput_hovered_box_stroke_color = 2131034222;
+			public const int mtrl_tabs_icon_color_selector_colored = 2131034217;
 			
 			// aapt resource value: 0x7F05006A
-			public const int mtrl_text_btn_text_color_selector = 2131034218;
+			public const int mtrl_tabs_legacy_text_color_selector = 2131034218;
+			
+			// aapt resource value: 0x7F05006B
+			public const int mtrl_tabs_ripple_color = 2131034219;
+			
+			// aapt resource value: 0x7F05006D
+			public const int mtrl_textinput_default_box_stroke_color = 2131034221;
+			
+			// aapt resource value: 0x7F05006E
+			public const int mtrl_textinput_disabled_color = 2131034222;
 			
 			// aapt resource value: 0x7F05006F
-			public const int notification_action_color_filter = 2131034223;
+			public const int mtrl_textinput_filled_box_default_background_color = 2131034223;
 			
 			// aapt resource value: 0x7F050070
-			public const int notification_icon_bg_color = 2131034224;
+			public const int mtrl_textinput_hovered_box_stroke_color = 2131034224;
+			
+			// aapt resource value: 0x7F05006C
+			public const int mtrl_text_btn_text_color_selector = 2131034220;
 			
 			// aapt resource value: 0x7F050071
-			public const int notification_material_background_media_default_color = 2131034225;
+			public const int notification_action_color_filter = 2131034225;
 			
 			// aapt resource value: 0x7F050072
-			public const int primary_dark_material_dark = 2131034226;
+			public const int notification_icon_bg_color = 2131034226;
 			
 			// aapt resource value: 0x7F050073
-			public const int primary_dark_material_light = 2131034227;
+			public const int notification_material_background_media_default_color = 2131034227;
 			
 			// aapt resource value: 0x7F050074
-			public const int primary_material_dark = 2131034228;
+			public const int primary_dark_material_dark = 2131034228;
 			
 			// aapt resource value: 0x7F050075
-			public const int primary_material_light = 2131034229;
+			public const int primary_dark_material_light = 2131034229;
 			
 			// aapt resource value: 0x7F050076
-			public const int primary_text_default_material_dark = 2131034230;
+			public const int primary_material_dark = 2131034230;
 			
 			// aapt resource value: 0x7F050077
-			public const int primary_text_default_material_light = 2131034231;
+			public const int primary_material_light = 2131034231;
 			
 			// aapt resource value: 0x7F050078
-			public const int primary_text_disabled_material_dark = 2131034232;
+			public const int primary_text_default_material_dark = 2131034232;
 			
 			// aapt resource value: 0x7F050079
-			public const int primary_text_disabled_material_light = 2131034233;
+			public const int primary_text_default_material_light = 2131034233;
 			
 			// aapt resource value: 0x7F05007A
-			public const int ripple_material_dark = 2131034234;
+			public const int primary_text_disabled_material_dark = 2131034234;
 			
 			// aapt resource value: 0x7F05007B
-			public const int ripple_material_light = 2131034235;
+			public const int primary_text_disabled_material_light = 2131034235;
 			
 			// aapt resource value: 0x7F05007C
-			public const int secondary_text_default_material_dark = 2131034236;
+			public const int ripple_material_dark = 2131034236;
 			
 			// aapt resource value: 0x7F05007D
-			public const int secondary_text_default_material_light = 2131034237;
+			public const int ripple_material_light = 2131034237;
 			
 			// aapt resource value: 0x7F05007E
-			public const int secondary_text_disabled_material_dark = 2131034238;
+			public const int secondary_text_default_material_dark = 2131034238;
 			
 			// aapt resource value: 0x7F05007F
-			public const int secondary_text_disabled_material_light = 2131034239;
+			public const int secondary_text_default_material_light = 2131034239;
 			
 			// aapt resource value: 0x7F050080
-			public const int switch_thumb_disabled_material_dark = 2131034240;
+			public const int secondary_text_disabled_material_dark = 2131034240;
 			
 			// aapt resource value: 0x7F050081
-			public const int switch_thumb_disabled_material_light = 2131034241;
+			public const int secondary_text_disabled_material_light = 2131034241;
 			
 			// aapt resource value: 0x7F050082
-			public const int switch_thumb_material_dark = 2131034242;
+			public const int switch_thumb_disabled_material_dark = 2131034242;
 			
 			// aapt resource value: 0x7F050083
-			public const int switch_thumb_material_light = 2131034243;
+			public const int switch_thumb_disabled_material_light = 2131034243;
 			
 			// aapt resource value: 0x7F050084
-			public const int switch_thumb_normal_material_dark = 2131034244;
+			public const int switch_thumb_material_dark = 2131034244;
 			
 			// aapt resource value: 0x7F050085
-			public const int switch_thumb_normal_material_light = 2131034245;
+			public const int switch_thumb_material_light = 2131034245;
 			
 			// aapt resource value: 0x7F050086
-			public const int tooltip_background_dark = 2131034246;
+			public const int switch_thumb_normal_material_dark = 2131034246;
 			
 			// aapt resource value: 0x7F050087
-			public const int tooltip_background_light = 2131034247;
+			public const int switch_thumb_normal_material_light = 2131034247;
+			
+			// aapt resource value: 0x7F050088
+			public const int tooltip_background_dark = 2131034248;
+			
+			// aapt resource value: 0x7F050089
+			public const int tooltip_background_light = 2131034249;
 			
 			static Color()
 			{
@@ -12583,40 +12680,52 @@ namespace neophyte.Droid
 			public const int character_counter_pattern = 2131558430;
 			
 			// aapt resource value: 0x7F0D001F
-			public const int fab_transformation_scrim_behavior = 2131558431;
+			public const int copy_toast_msg = 2131558431;
 			
 			// aapt resource value: 0x7F0D0020
-			public const int fab_transformation_sheet_behavior = 2131558432;
+			public const int fab_transformation_scrim_behavior = 2131558432;
 			
 			// aapt resource value: 0x7F0D0021
-			public const int hide_bottom_view_on_scroll_behavior = 2131558433;
+			public const int fab_transformation_sheet_behavior = 2131558433;
 			
 			// aapt resource value: 0x7F0D0022
-			public const int mtrl_chip_close_icon_content_description = 2131558434;
+			public const int fallback_menu_item_copy_link = 2131558434;
 			
 			// aapt resource value: 0x7F0D0023
-			public const int overflow_tab_title = 2131558435;
+			public const int fallback_menu_item_open_in_browser = 2131558435;
 			
 			// aapt resource value: 0x7F0D0024
-			public const int password_toggle_content_description = 2131558436;
+			public const int fallback_menu_item_share_link = 2131558436;
 			
 			// aapt resource value: 0x7F0D0025
-			public const int path_password_eye = 2131558437;
+			public const int hide_bottom_view_on_scroll_behavior = 2131558437;
 			
 			// aapt resource value: 0x7F0D0026
-			public const int path_password_eye_mask_strike_through = 2131558438;
+			public const int mtrl_chip_close_icon_content_description = 2131558438;
 			
 			// aapt resource value: 0x7F0D0027
-			public const int path_password_eye_mask_visible = 2131558439;
+			public const int overflow_tab_title = 2131558439;
 			
 			// aapt resource value: 0x7F0D0028
-			public const int path_password_strike_through = 2131558440;
+			public const int password_toggle_content_description = 2131558440;
 			
 			// aapt resource value: 0x7F0D0029
-			public const int search_menu_title = 2131558441;
+			public const int path_password_eye = 2131558441;
 			
 			// aapt resource value: 0x7F0D002A
-			public const int status_bar_notification_info_overflow = 2131558442;
+			public const int path_password_eye_mask_strike_through = 2131558442;
+			
+			// aapt resource value: 0x7F0D002B
+			public const int path_password_eye_mask_visible = 2131558443;
+			
+			// aapt resource value: 0x7F0D002C
+			public const int path_password_strike_through = 2131558444;
+			
+			// aapt resource value: 0x7F0D002D
+			public const int search_menu_title = 2131558445;
+			
+			// aapt resource value: 0x7F0D002E
+			public const int status_bar_notification_info_overflow = 2131558446;
 			
 			static String()
 			{
@@ -17217,7 +17326,10 @@ namespace neophyte.Droid
 		{
 			
 			// aapt resource value: 0x7F100000
-			public const int xamarin_essentials_fileprovider_file_paths = 2131755008;
+			public const int image_share_filepaths = 2131755008;
+			
+			// aapt resource value: 0x7F100001
+			public const int xamarin_essentials_fileprovider_file_paths = 2131755009;
 			
 			static Xml()
 			{

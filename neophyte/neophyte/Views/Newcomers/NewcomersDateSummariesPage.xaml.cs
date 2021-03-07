@@ -16,9 +16,6 @@ namespace neophyte.Views.Newcomers
         {
             InitializeComponent();
 
-            Title = "Newcomers";
-            SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
-
             if (Device.RuntimePlatform == Device.iOS)
             {
                 btnAddRecord.TextColor = Color.Black;
