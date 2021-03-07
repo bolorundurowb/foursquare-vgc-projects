@@ -42,6 +42,11 @@
         <SubType>Designer</SubType>
         <Generator></Generator>
       </EmbeddedResource>
+      <None Remove="Resources\Fonts\Lato-Regular.ttf" />
+      <None Remove="Resources\Fonts\Nexa Bold.otf" />
+      <EmbeddedResource Include="Resources\Fonts\Nexa Bold.otf" />
+      <None Remove="Resources\Fonts\Nexa Light.otf" />
+      <EmbeddedResource Include="Resources\Fonts\Nexa Light.otf" />
     </ItemGroup>
     <ItemGroup>
       <Compile Update="Views\Auth\SignIn.xaml.cs">

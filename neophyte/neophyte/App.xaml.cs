@@ -6,6 +6,8 @@ using Xamarin.Forms;
 [assembly: ExportFont("FA-Brands.otf", Alias = "FAB")]
 [assembly: ExportFont("FA-Regular.otf", Alias = "FAR")]
 [assembly: ExportFont("FA-Solid.otf", Alias = "FAS")]
+[assembly: ExportFont("Nexa Bold.otf", Alias = "NexaB")]
+[assembly: ExportFont("Nexa Light.otf", Alias = "NexaL")]
 namespace neophyte
 {
     public partial class App : Application

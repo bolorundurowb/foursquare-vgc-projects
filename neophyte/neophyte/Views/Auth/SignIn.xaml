@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="neophyte.Views.Auth.SignIn"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#92278F">
+             BackgroundColor="#E5E5E2">
     <ContentPage.Content>
         <StackLayout
             HorizontalOptions="FillAndExpand"
@@ -14,8 +14,9 @@
             <StackLayout>
                 <Label
                     Text="Sign In."
-                    TextColor="White"
+                    TextColor="#3E3F3E"
                     FontSize="50"
+                    FontFamily="NexaB"
                     HorizontalTextAlignment="Center"
                     FontAttributes="Bold"
                     Margin="0, 0, 0, 20" />
@@ -27,23 +28,27 @@
                        <Entry x:Name="txtEmail"
                               HeightRequest="50"
                               Margin="0,10,0,20"
-                              Placeholder="Email address"
-                              Keyboard="Email" />
+                              Placeholder="Your Email Address"
+                              Keyboard="Email"
+                              FontFamily="NexaL" />
 
                        <Button x:Name="btnLogin"
                                Text="Login"
                                Margin="0,15,0,0"
-                               BackgroundColor="#A1A416"
+                               BackgroundColor="#3E3F3E"
                                TextColor="White"
                                VerticalOptions="CenterAndExpand"
                                HorizontalOptions="Fill"
                                HeightRequest="50"
                                CornerRadius="10"
                                Padding="20,0,20,0"
-                               Clicked="Login" />
+                               FontFamily="NexaB"
+                               FontAttributes="Bold"
+                               FontSize="15"
+                               Clicked="Login"/>
 
                        <ActivityIndicator x:Name="prgLoading"
-                                          Color="#A1A416"
+                                          Color="#3E3F3E"
                                           IsRunning="True"
                                           BackgroundColor="Transparent"
                                           IsVisible="False"
