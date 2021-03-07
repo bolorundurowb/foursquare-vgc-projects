@@ -24,14 +24,14 @@ namespace neophyte
             {
                 mainPage = new NavigationPage(new RootPage())
                 {
-                    BarBackgroundColor = Color.FromHex("#92278F")
+                    BarBackgroundColor = Color.FromHex("#E5E5E2")
                 };
             }
             else
             {
                 mainPage = new NavigationPage(new SignIn())
                 {
-                    BarBackgroundColor = Color.FromHex("#92278F")
+                    BarBackgroundColor = Color.FromHex("#E5E5E2")
                 };
             }
 

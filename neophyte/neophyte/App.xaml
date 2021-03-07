@@ -6,5 +6,85 @@
              mc:Ignorable="d"
              x:Class="neophyte.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="DarkColour">#3E3F3E</Color>
+            <Color x:Key="LightGreyColour">#F5F5F3</Color>
+            <Color x:Key="GreyColour">#E5E5E2</Color>
+            <Color x:Key="FrameBackgroundColour">#E5E5E2</Color>
+
+            <Style x:Key="ProgressStyle" TargetType="ActivityIndicator">
+                <Setter Property="Color" Value="{StaticResource DarkColour}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="IsRunning" Value="True" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource FrameBackgroundColour}" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="Padding" Value="12" />
+                <Setter Property="Margin" Value="0, 12, 0, 0" />
+            </Style>
+
+            <Style x:Key="PageHeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="50" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="NexaB" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0, 0, 0, 20" />
+            </Style>
+
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 60, 0, 0" />
+            </Style>
+
+            <Style x:Key="TierStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="Margin" Value="6, 18, 0, 0" />
+            </Style>
+
+            <Style x:Key="NameStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="Margin" Value="6, 0, 6, 6" />
+            </Style>
+
+            <Style x:Key="CategoryStyle" TargetType="Image">
+                <Setter Property="Opacity" Value="0.75" />
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="Margin" Value="0, 0, 100, 0" />
+            </Style>
+
+            <Style x:Key="SwipeItemBorderStyle" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="CornerRadius" Value="0, 12, 0, 12" />
+                <Setter Property="Margin" Value="0, 12, 0, 0" />
+            </Style>
+
+            <Style x:Key="SwipeItemIconStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="30" />
+            </Style>
+
+            <Style x:Key="SwipeItemTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 36, 0, 0" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

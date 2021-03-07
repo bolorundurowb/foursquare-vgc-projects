@@ -30,7 +30,7 @@ namespace neophyte.Views.Newcomers
             base.OnAppearing();
             await LoadDateRecords();
             prgLoading.IsVisible = false;
-            lstDateEntries.IsVisible = true;
+            collectionDateEntries.IsVisible = true;
         }
 
         protected async void OpenDateRecordsPage(object sender, ItemTappedEventArgs e)
@@ -65,7 +65,7 @@ namespace neophyte.Views.Newcomers
         protected async void RefreshDateRecords(object sender, EventArgs e)
         {
             await LoadDateRecords();
-            lstDateEntries.IsRefreshing = false;
+            // collectionDateEntries.IsRefreshing = false;
         }
 
         private async Task LoadDateRecords()
@@ -77,7 +77,7 @@ namespace neophyte.Views.Newcomers
                 return;
             }
 
-            lstDateEntries.ItemsSource = await _newcomerClient.GetAll();
+            collectionDateEntries.ItemsSource = await _newcomerClient.GetAll();
         }
     }
 }

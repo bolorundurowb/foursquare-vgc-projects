@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="neophyte.Views.Auth.SignIn"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#E5E5E2">
+             BackgroundColor="{StaticResource GreyColour}">
     <ContentPage.Content>
         <StackLayout
             HorizontalOptions="FillAndExpand"
@@ -14,15 +14,11 @@
             <StackLayout>
                 <Label
                     Text="Sign In."
-                    TextColor="#3E3F3E"
-                    FontSize="50"
-                    FontFamily="NexaB"
-                    HorizontalTextAlignment="Center"
-                    FontAttributes="Bold"
-                    Margin="0, 0, 0, 20" />
+                    Style="{StaticResource PageHeaderStyle}" />
 
                <Frame
-                   CornerRadius="10">
+                   CornerRadius="10"
+                   BackgroundColor="{StaticResource LightGreyColour}">
                    <StackLayout
                        Padding="10, 20, 10, 20">
                        <Entry x:Name="txtEmail"
@@ -48,12 +44,8 @@
                                Clicked="Login"/>
 
                        <ActivityIndicator x:Name="prgLoading"
-                                          Color="#3E3F3E"
-                                          IsRunning="True"
-                                          BackgroundColor="Transparent"
-                                          IsVisible="False"
-                                          HorizontalOptions="Center"
-                                          VerticalOptions="CenterAndExpand" />
+                                          Style="{StaticResource ProgressStyle}"
+                                          IsVisible="False" />
                    </StackLayout>
                </Frame>
             </StackLayout>

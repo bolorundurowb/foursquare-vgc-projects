@@ -4,7 +4,80 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="neophyte.Views.Newcomers.NewcomersDateSummariesPage"
-    Padding="10, 10, 10, 10">
+    Padding="10, 10, 10, 10"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource LightGreyColour}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="EntryTemplate">
+                <SwipeView
+                    HeightRequest="110">
+                    <SwipeView.RightItems>
+                        <SwipeItems
+                            Mode="Reveal">
+                            <SwipeItemView>
+                                <Grid
+                                    WidthRequest="120"
+                                    BackgroundColor="{StaticResource GreyColour}">
+                                    <BoxView
+                                        Style="{StaticResource SwipeItemBorderStyle}"/>
+                                    <Image
+                                        Source="star.png"
+                                        Style="{StaticResource SwipeItemIconStyle}"/>
+                                    <Label                                         
+                                        Text="Favourite"
+                                        Style="{StaticResource SwipeItemTextStyle}"/>
+                                </Grid>
+                            </SwipeItemView>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <SwipeView.Content>
+                        <Grid>
+                            <Frame
+                                Style="{StaticResource FrameStyle}">
+                                <Grid
+                                    VerticalOptions="Center"
+                                    RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Image
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Source="{Binding HumanReadableDate}"
+                                        Style="{StaticResource CategoryStyle}"/>
+                                    <Label
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Text="{Binding Date, StringFormat='{0: (yyyy-MM-dd)}'}"
+                                        Style="{StaticResource TierStyle}"/>
+                                    <Label
+                                        Grid.Column="0"
+                                        Grid.Row="1"
+                                        Text="{Binding NumOfEntries}"
+                                        Style="{StaticResource NameStyle}"/>
+                                </Grid>
+                            </Frame>
+                            <ScrollView
+                                IsEnabled="False"
+                                HorizontalOptions="End">
+                                <Image
+                                    HeightRequest="180"
+                                    Aspect="AspectFill"
+                                    Source="appointment.png"/>
+                            </ScrollView>
+                        </Grid>
+                    </SwipeView.Content>
+                </SwipeView>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout
             VerticalOptions="FillAndExpand"
@@ -12,74 +85,34 @@
             <Grid
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 AbsoluteLayout.LayoutFlags="All">
-                <StackLayout
-                    Orientation="Vertical"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
                     <Label
-                        Text="Newcomers By Date"
-                        FontAttributes="Bold"
-                        Margin="0, 0, 0, 10"
-                        FontSize="Medium"
-                        TextColor="#696969" />
+                        Grid.Row="0"
+                        Text="Newcomers."
+                        Style="{StaticResource PageHeaderStyle}"/>
 
                     <ActivityIndicator
                         x:Name="prgLoading"
-                        Color="#92278F"
-                        IsRunning="True"
-                        BackgroundColor="Transparent"
-                        IsVisible="True"
-                        HorizontalOptions="Center"
-                        VerticalOptions="CenterAndExpand" />
-
-                    <ListView
-                        x:Name="lstDateEntries"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="FillAndExpand"
-                        SelectionMode="None"
-                        HasUnevenRows="True"
-                        IsVisible="False"
-                        IsPullToRefreshEnabled="True"
-                        Refreshing="RefreshDateRecords"
-                        ItemTapped="OpenDateRecordsPage">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <ViewCell.ContextActions>
-                                        <MenuItem CommandParameter="{Binding .}"
-                                                  Text="Report"
-                                                  Clicked="GenerateDateReport" />
-                                    </ViewCell.ContextActions>
-                                    <StackLayout Padding="5, 10, 5, 10"
-                                                 Orientation="Horizontal">
-                                        <Image WidthRequest="35"
-                                               HeightRequest="35"
-                                               Source="appointment.png"
-                                               Margin="5,0,0,0" />
-                                        <StackLayout
-                                            Orientation="Vertical"
-                                            HorizontalOptions="FillAndExpand"
-                                            Padding="5,0,0,0">
-                                            <Label
-                                                Text="{Binding HumanReadableDate}"
-                                                FontSize="Medium" />
-                                            <Label
-                                                Text="{Binding Date, StringFormat='{0: (yyyy-MM-dd)}'}"
-                                                FontSize="Small"
-                                                TextColor="#808080" />
-                                        </StackLayout>
-                                        <Label
-                                            Text="{Binding NumOfEntries}"
-                                            FontSize="25"
-                                            FontAttributes="Bold"
-                                            VerticalTextAlignment="Center"
-                                            TextColor="#808080" />
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+                        Grid.Row="1"
+                        Style="{StaticResource ProgressStyle}"
+                        IsVisible="True" />
+                    
+                    <CollectionView x:Name="collectionDateEntries"
+                        Grid.Row="1"
+                        ItemTemplate="{StaticResource EntryTemplate}"
+                        Margin="12, 12, 12, 0">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout
+                                Orientation="Vertical"
+                                ItemSpacing="12"/>
+                        </CollectionView.ItemsLayout>
+                    </CollectionView>
+                </Grid>
             </Grid>
 
             <Button
