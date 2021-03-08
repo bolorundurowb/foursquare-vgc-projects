@@ -1,18 +1,20 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace neophyte.Views.Newcomers
+namespace neophyte.Views.Attendance
 {
-    public partial class NewcomersDateSummariesPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AttendanceDateSummariesPage : ContentPage
     {
-        private readonly NewcomerClient _newcomerClient;
+        private readonly AttendanceClient _attendanceClient;
         private readonly ReportClient _reportClient;
 
-        public NewcomersDateSummariesPage()
+        public AttendanceDateSummariesPage()
         {
             InitializeComponent();
 
@@ -21,7 +23,7 @@ namespace neophyte.Views.Newcomers
                 btnAddRecord.TextColor = Color.Black;
             }
 
-            _newcomerClient = new NewcomerClient();
+            _attendanceClient = new AttendanceClient();
             _reportClient = new ReportClient();
         }
 
@@ -36,12 +38,12 @@ namespace neophyte.Views.Newcomers
         protected async void OpenDateRecordsPage(object sender, ItemTappedEventArgs e)
         {
             var summary = e.Item as DateSummaryViewModel;
-            await Navigation.PushAsync(new NewcomersByDatePage(summary.Date));
+            await Navigation.PushAsync(new AttendanceByDatePage(summary.Date));
         }
 
         protected async void OpenNewRecordPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RecordNewcomerPage());
+            await Navigation.PushAsync(new RegisterAttendeePage());
         }
 
         protected async void GenerateDateReport(object sender, EventArgs e)
@@ -54,14 +56,13 @@ namespace neophyte.Views.Newcomers
                 return;
             }
 
-            if (((SwipeItemView)sender).BindingContext is DateSummaryViewModel summary)
+            if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _reportClient.GenerateReport(summary.Date, email);
                 await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
             }
             else
             {
-                
             }
         }
 
@@ -74,7 +75,7 @@ namespace neophyte.Views.Newcomers
                 return;
             }
 
-            collectionDateEntries.ItemsSource = await _newcomerClient.GetAll();
+            collectionDateEntries.ItemsSource = await _attendanceClient.GetAll();
         }
     }
 }

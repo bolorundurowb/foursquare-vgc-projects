@@ -9,9 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="9.2.0" />
+        <PackageReference Include="FluentValidation" Version="9.5.1" />
         <PackageReference Include="Mapster" Version="7.1.5" />
-        <PackageReference Include="NLog" Version="4.7.4" />
+        <PackageReference Include="NLog" Version="4.7.8" />
         <PackageReference Include="Refit" Version="5.2.4" />
         <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
         <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
@@ -58,7 +58,7 @@
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="Views\Newcomers\NewcomersDateSummariesPage.xaml.cs">
-        <DependentUpon>HomePage.xaml</DependentUpon>
+        <DependentUpon>Summary.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="Views\Newcomers\RecordNewcomerPage.xaml.cs">

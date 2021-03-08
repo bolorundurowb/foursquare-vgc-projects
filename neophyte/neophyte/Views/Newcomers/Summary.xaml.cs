@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
@@ -6,27 +6,24 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace neophyte.Views.Attendance
+namespace neophyte.Views.Newcomers
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AttendanceDateSummariesPage : ContentPage
+    public partial class NewcomersDateSummariesPage : ContentPage
     {
-        private readonly AttendanceClient _attendanceClient;
+        private readonly NewcomerClient _newcomerClient;
         private readonly ReportClient _reportClient;
 
-        public AttendanceDateSummariesPage()
+        public NewcomersDateSummariesPage()
         {
             InitializeComponent();
-
-            Title = "Attendance";
-            SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
 
             if (Device.RuntimePlatform == Device.iOS)
             {
                 btnAddRecord.TextColor = Color.Black;
             }
 
-            _attendanceClient = new AttendanceClient();
+            _newcomerClient = new NewcomerClient();
             _reportClient = new ReportClient();
         }
 
@@ -35,18 +32,18 @@ namespace neophyte.Views.Attendance
             base.OnAppearing();
             await LoadDateRecords();
             prgLoading.IsVisible = false;
-            lstDateEntries.IsVisible = true;
+            collectionDateEntries.IsVisible = true;
         }
 
         protected async void OpenDateRecordsPage(object sender, ItemTappedEventArgs e)
         {
             var summary = e.Item as DateSummaryViewModel;
-            await Navigation.PushAsync(new AttendanceByDatePage(summary.Date));
+            await Navigation.PushAsync(new NewcomersByDatePage(summary.Date));
         }
 
         protected async void OpenNewRecordPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RegisterAttendeePage());
+            await Navigation.PushAsync(new RecordNewcomerPage());
         }
 
         protected async void GenerateDateReport(object sender, EventArgs e)
@@ -58,19 +55,15 @@ namespace neophyte.Views.Attendance
             {
                 return;
             }
-            
-            if ((sender as MenuItem)?.CommandParameter is DateSummaryViewModel summary)
+
+            if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _reportClient.GenerateReport(summary.Date, email);
+                await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
             }
-
-            await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
-        }
-
-        protected async void RefreshDateRecords(object sender, EventArgs e)
-        {
-            await LoadDateRecords();
-            lstDateEntries.IsRefreshing = false;
+            else
+            {
+            }
         }
 
         private async Task LoadDateRecords()
@@ -82,7 +75,7 @@ namespace neophyte.Views.Attendance
                 return;
             }
 
-            lstDateEntries.ItemsSource = await _attendanceClient.GetAll();
+            collectionDateEntries.ItemsSource = await _newcomerClient.GetAll();
         }
     }
 }
