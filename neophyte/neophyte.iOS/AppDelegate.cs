@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;

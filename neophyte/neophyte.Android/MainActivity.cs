@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Xamarin.Forms;
@@ -23,6 +24,7 @@ namespace neophyte.Droid
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             Config.Init(this, savedInstanceState);
+            UserDialogs.Init(this);
             LoadApplication(new App());
 
             Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>()

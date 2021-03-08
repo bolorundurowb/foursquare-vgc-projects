@@ -1,7 +1,9 @@
 using System;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
+using neophyte.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -53,6 +55,7 @@ namespace neophyte.Views.Attendance
 
             if (string.IsNullOrWhiteSpace(email))
             {
+                Toasts.DisplayError("A valid email address is required.");
                 return;
             }
 
@@ -63,6 +66,7 @@ namespace neophyte.Views.Attendance
             }
             else
             {
+                Toasts.DisplayError("An error occurred when sending the report.");
             }
         }
 
