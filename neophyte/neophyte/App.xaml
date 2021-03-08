@@ -107,6 +107,18 @@
                 <Setter Property="Margin" Value="0,0,10,10" />
             </Style>
 
+            <Style x:Key="BackButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="FAS" />
+                <Setter Property="Text" Value="&#xf060;" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="WidthRequest" Value="50" />
+            </Style>
+
             <Style x:Key="SharedButtonStyle" TargetType="Button">
                 <Setter Property="Margin" Value="0,15,0,0" />
                 <Setter Property="BackgroundColor" Value="#3E3E3E" />

@@ -83,6 +83,11 @@ namespace neophyte.Views.Newcomers
             btnSave.IsVisible = true;
         }
 
+        protected async void GoBack(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync(true);
+        }
+
         private async Task ResetControlsAsync()
         {
             // reset binding context

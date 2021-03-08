@@ -15,9 +15,16 @@
                 Orientation="Vertical"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
-                <Label
-                    Text="Register Attendee."
-                    Style="{StaticResource PageHeaderStyle}" />
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Button
+                        Style="{StaticResource BackButtonStyle}"
+                        Clicked="GoBack" />
+
+                    <Label
+                        Text="Register Attendee."
+                        Style="{StaticResource PageHeaderStyle}" />
+                </StackLayout>
 
                 <Label
                     TextColor="Red"

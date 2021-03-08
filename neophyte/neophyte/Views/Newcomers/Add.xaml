@@ -15,9 +15,17 @@
                 Orientation="Vertical"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
-                <Label
-                    Text="New Record."
-                    Style="{StaticResource PageHeaderStyle}" />
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Button
+                        Style="{StaticResource BackButtonStyle}"
+                        Clicked="GoBack" />
+
+                    <Label
+                        Text="Add Record."
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource PageHeaderStyle}" />
+                </StackLayout>
 
                 <Label
                     Text="Full Name:"
