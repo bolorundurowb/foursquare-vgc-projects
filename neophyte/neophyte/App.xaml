@@ -7,6 +7,7 @@
              x:Class="neophyte.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Color x:Key="BlackColour">#000000</Color>
             <Color x:Key="DarkColour">#3E3F3E</Color>
             <Color x:Key="LightGreyColour">#F5F5F3</Color>
             <Color x:Key="GreyColour">#E5E5E2</Color>
@@ -60,10 +61,13 @@
                 <Setter Property="Margin" Value="6, 0, 6, 6" />
             </Style>
 
-            <Style x:Key="CategoryStyle" TargetType="Image">
-                <Setter Property="Opacity" Value="0.75" />
-                <Setter Property="Aspect" Value="AspectFit" />
-                <Setter Property="Margin" Value="0, 0, 100, 0" />
+            <Style x:Key="NumStatStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaB" />
+                <Setter Property="FontSize" Value="50" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource BlackColour}"></Setter>
+                <Setter Property="Margin" Value="0, 10, 20, 0" />
             </Style>
 
             <Style x:Key="SwipeItemBorderStyle" TargetType="BoxView">

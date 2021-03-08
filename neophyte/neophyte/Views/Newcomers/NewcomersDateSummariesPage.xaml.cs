@@ -54,18 +54,15 @@ namespace neophyte.Views.Newcomers
                 return;
             }
 
-            if ((sender as MenuItem)?.CommandParameter is DateSummaryViewModel summary)
+            if (((SwipeItemView)sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _reportClient.GenerateReport(summary.Date, email);
+                await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
             }
-
-            await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
-        }
-
-        protected async void RefreshDateRecords(object sender, EventArgs e)
-        {
-            await LoadDateRecords();
-            // collectionDateEntries.IsRefreshing = false;
+            else
+            {
+                
+            }
         }
 
         private async Task LoadDateRecords()

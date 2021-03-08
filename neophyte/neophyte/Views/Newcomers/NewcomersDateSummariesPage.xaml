@@ -15,7 +15,8 @@
                     <SwipeView.RightItems>
                         <SwipeItems
                             Mode="Reveal">
-                            <SwipeItemView>
+                            <SwipeItemView
+                                Invoked="GenerateDateReport">
                                 <Grid
                                     WidthRequest="120"
                                     BackgroundColor="{StaticResource LightGreyColour}">
@@ -46,12 +47,6 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Image
-                                        Grid.Column="0"
-                                        Grid.Row="0"
-                                        Grid.RowSpan="2"
-                                        Source="{Binding NumOfEntries}"
-                                        Style="{StaticResource CategoryStyle}"/>
                                     <Label
                                         Grid.Column="0"
                                         Grid.Row="0"
@@ -67,10 +62,9 @@
                             <ScrollView
                                 IsEnabled="False"
                                 HorizontalOptions="End">
-                                <Image
-                                    HeightRequest="180"
-                                    Aspect="AspectFill"
-                                    Source="appointment.png"/>
+                                <Label
+                                    Style="{StaticResource NumStatStyle}"
+                                    Text="{Binding NumOfEntries}"/>
                             </ScrollView>
                         </Grid>
                     </SwipeView.Content>
