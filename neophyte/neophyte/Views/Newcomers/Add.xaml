@@ -5,7 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
     x:Class="neophyte.Views.Newcomers.RecordNewcomerPage"
-    Padding="10">
+    Padding="10"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource LightGreyColour}">
     <ContentPage.Content>
         <ScrollView
             x:Name="scrollView">
@@ -15,17 +17,20 @@
                 VerticalOptions="Fill">
 
                 <Label
+                    Text="New Record."
+                    Style="{StaticResource PageHeaderStyle}" />
+
+                <Label
                     Text="Full Name:"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <Entry
                     Text="{Binding FullName, Mode=TwoWay}"
-                    HorizontalOptions="Fill"
-                    HeightRequest="40"
-                    Keyboard="Text" />
+                    Placeholder="e.g John Doe"
+                    Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Home Address:"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <Entry
                     Text="{Binding HomeAddress, Mode=TwoWay}"
                     HorizontalOptions="Fill"
@@ -34,7 +39,7 @@
 
                 <Label
                     Text="Phone Number:"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <Entry
                     Text="{Binding Phone, Mode=TwoWay}"
                     HorizontalOptions="Fill"
@@ -43,7 +48,7 @@
 
                 <Label
                     Text="Email Address:"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <Entry
                     Text="{Binding EmailAddress, Mode=TwoWay}"
                     HorizontalOptions="Fill"
@@ -52,7 +57,7 @@
 
                 <Label
                     Text="Birthday:"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <StackLayout
                     Orientation="Horizontal"
                     HorizontalOptions="Fill">
@@ -70,7 +75,7 @@
 
                 <Label
                     Text="Gender:"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <Picker
                     x:Name="cmbGender"
                     SelectedItem="{Binding Gender, Mode=TwoWay}"
@@ -79,8 +84,8 @@
                     HorizontalOptions="FillAndExpand" />
 
                 <Label
-                    Text="Age group:"
-                    Margin="0, 10, 0, 0" />
+                    Text="Age Group:"
+                    Style="{StaticResource FormLabelStyle}" />
                 <Picker
                     x:Name="cmbAgeGroup"
                     SelectedItem="{Binding AgeGroup, Mode=TwoWay}"
@@ -89,8 +94,8 @@
                     HorizontalOptions="FillAndExpand" />
 
                 <Label
-                    Text="Comments/Prayer points:"
-                    Margin="0, 10, 0, 0" />
+                    Text="Comments/Prayer Points:"
+                    Style="{StaticResource FormLabelStyle}" />
                 <Editor
                     Text="{Binding CommentsOrPrayers, Mode=TwoWay}"
                     HorizontalOptions="Fill"
@@ -100,8 +105,8 @@
                     IsTextPredictionEnabled="True" />
 
                 <Label
-                    Text="How did you get to know about us:"
-                    Margin="0, 10, 0, 0" />
+                    Text="How Did You Get To Know About Us:"
+                    Style="{StaticResource FormLabelStyle}" />
                 <Entry
                     Text="{Binding HowYouFoundUs, Mode=TwoWay}"
                     HorizontalOptions="Fill"
@@ -109,8 +114,8 @@
                     Keyboard="Text" />
 
                 <Label
-                    Text="Are you born again?:"
-                    Margin="0, 10, 0, 0" />
+                    Text="Are You Born Again?:"
+                    Style="{StaticResource FormLabelStyle}" />
                 <input:RadioButtonGroupView
                     SelectedItem="{Binding BornAgain, Mode=TwoWay}"
                     Orientation="Horizontal"
@@ -136,8 +141,8 @@
                 </input:RadioButtonGroupView>
 
                 <Label
-                    Text="Would you like to become a member of this Church?:"
-                    Margin="0, 10, 0, 0" />
+                    Text="Would You Like To Become A Member Of This Church?:"
+                    Style="{StaticResource FormLabelStyle}" />
                 <input:RadioButtonGroupView
                     SelectedItem="{Binding BecomeMember, Mode=TwoWay}"
                     Orientation="Horizontal"
@@ -163,25 +168,14 @@
                 </input:RadioButtonGroupView>
 
                 <Button x:Name="btnSave"
-                        Text="Save"
-                        HeightRequest="45"
-                        HorizontalOptions="Center"
-                        TextColor="White"
-                        BackgroundColor="#92278F"
-                        Margin="0, 15, 0, 0"
-                        WidthRequest="100"
-                        CornerRadius="22"
+                        Text="Register"
+                        Style="{StaticResource SharedButtonStyle}"
                         Clicked="Record" />
 
                 <ActivityIndicator
                     x:Name="prgSaving"
-                    HeightRequest="45"
-                    WidthRequest="45"
-                    Color="#92278F"
-                    HorizontalOptions="Center"
-                    Margin="0, 15, 0, 0"
-                    IsVisible="False"
-                    IsRunning="True" />
+                    Style="{StaticResource ProgressStyle}"
+                    IsVisible="False" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -22,25 +22,14 @@
                    <StackLayout
                        Padding="10, 20, 10, 20">
                        <Entry x:Name="txtEmail"
-                              HeightRequest="50"
                               Margin="0,10,0,20"
                               Placeholder="Your Email Address"
                               Keyboard="Email"
-                              FontFamily="NexaL" />
+                              Style="{StaticResource FormEntryStyle}"/>
 
                        <Button x:Name="btnLogin"
                                Text="Login"
-                               Margin="0,15,0,0"
-                               BackgroundColor="#3E3F3E"
-                               TextColor="White"
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="Fill"
-                               HeightRequest="50"
-                               CornerRadius="10"
-                               Padding="20,0,20,0"
-                               FontFamily="NexaB"
-                               FontAttributes="Bold"
-                               FontSize="15"
+                               Style="{StaticResource SharedButtonStyle}"
                                Clicked="Login"/>
 
                        <ActivityIndicator x:Name="prgLoading"

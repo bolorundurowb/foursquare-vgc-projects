@@ -7,9 +7,11 @@ using neophyte.Models.Binding;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace neophyte.Views.Newcomers
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecordNewcomerPage : ContentPage
     {
         private readonly NewcomerClient _newcomerClient;
@@ -18,9 +20,6 @@ namespace neophyte.Views.Newcomers
         public RecordNewcomerPage()
         {
             InitializeComponent();
-
-            Title = "Add Record";
-            SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
 
             // set drop down values
             cmbMonths.ItemsSource = Constants.Months;

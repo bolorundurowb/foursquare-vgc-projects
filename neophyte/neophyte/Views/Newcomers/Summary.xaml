@@ -4,7 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="neophyte.Views.Newcomers.NewcomersDateSummariesPage"
-    Padding="10, 10, 10, 10"
+    Padding="10"
     NavigationPage.HasNavigationBar="False"
     BackgroundColor="{StaticResource LightGreyColour}">
     <ContentPage.Resources>
