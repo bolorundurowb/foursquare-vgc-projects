@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              mc:Ignorable="d"
              x:Class="neophyte.App">
     <Application.Resources>
@@ -134,6 +135,38 @@
                 <Setter Property="Keyboard" Value="Text" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+
+            <Style x:Key="FormEditorStyle" TargetType="Editor">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="HeightRequest" Value="100" />
+                <Setter Property="Keyboard" Value="Text" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="IsSpellCheckEnabled" Value="True" />
+                <Setter Property="IsTextPredictionEnabled" Value="True" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+
+            <Style x:Key="FormPickerStyle" TargetType="Picker">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Title" Value="Select" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+
+            <Style x:Key="FormRadioGroupStyle" TargetType="controls:RadioButtonGroupView">
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="0,0,0,15" />
+            </Style>
+
+            <Style x:Key="FormRadioButtonStyle" TargetType="controls:RadioButton">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="TextFontSize" Value="18" />
+                <Setter Property="CircleColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="Color" Value="{StaticResource DarkColour}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
