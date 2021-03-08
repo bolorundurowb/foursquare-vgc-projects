@@ -15,7 +15,6 @@
                 Orientation="Vertical"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
-
                 <Label
                     Text="New Record."
                     Style="{StaticResource PageHeaderStyle}" />

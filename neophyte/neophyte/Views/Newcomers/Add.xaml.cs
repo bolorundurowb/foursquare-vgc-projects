@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
+using neophyte.Utils;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
@@ -61,8 +62,10 @@ namespace neophyte.Views.Newcomers
             {
                 newcomer.BirthDay = $"{cmbMonths.SelectedItem} {cmbDays.SelectedItem}";
                 await _newcomerClient.Register(newcomer);
+
                 // alert the user
-                await DisplayAlert("Success", "Newcomer successfully recorded.", "Okay");
+                Toasts.DisplaySuccess("Newcomer successfully recorded.");
+
                 // set the controls
                 await ResetControlsAsync();
             }

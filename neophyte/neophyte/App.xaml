@@ -168,6 +168,13 @@
                 <Setter Property="CircleColor" Value="{StaticResource DarkColour}" />
                 <Setter Property="Color" Value="{StaticResource DarkColour}" />
             </Style>
+
+            <Style x:Key="FormCheckBoxStyle" TargetType="controls:CheckBox">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="TextFontSize" Value="18" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
