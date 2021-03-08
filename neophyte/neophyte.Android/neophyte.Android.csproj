@@ -82,6 +82,10 @@
     <AndroidResource Include="Resources\drawable\attendance.png" />
     <AndroidResource Include="Resources\drawable\newcomer.png" />
     <AndroidResource Include="Resources\drawable\register.png" />
+    <AndroidResource Include="Resources\drawable\sendreport.png">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\drawable\team.png" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />

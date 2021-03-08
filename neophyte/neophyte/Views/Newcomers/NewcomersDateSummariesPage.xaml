@@ -18,21 +18,21 @@
                             <SwipeItemView>
                                 <Grid
                                     WidthRequest="120"
-                                    BackgroundColor="{StaticResource GreyColour}">
+                                    BackgroundColor="{StaticResource LightGreyColour}">
                                     <BoxView
                                         Style="{StaticResource SwipeItemBorderStyle}"/>
                                     <Image
-                                        Source="star.png"
+                                        Source="sendreport.png"
                                         Style="{StaticResource SwipeItemIconStyle}"/>
                                     <Label                                         
-                                        Text="Favourite"
+                                        Text="Send Report"
                                         Style="{StaticResource SwipeItemTextStyle}"/>
                                 </Grid>
                             </SwipeItemView>
                         </SwipeItems>
                     </SwipeView.RightItems>
                     <SwipeView.Content>
-                        <Grid>
+                        <Grid BackgroundColor="{StaticResource LightGreyColour}">
                             <Frame
                                 Style="{StaticResource FrameStyle}">
                                 <Grid
@@ -50,17 +50,17 @@
                                         Grid.Column="0"
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
-                                        Source="{Binding HumanReadableDate}"
+                                        Source="{Binding NumOfEntries}"
                                         Style="{StaticResource CategoryStyle}"/>
                                     <Label
                                         Grid.Column="0"
                                         Grid.Row="0"
-                                        Text="{Binding Date, StringFormat='{0: (yyyy-MM-dd)}'}"
+                                        Text="{Binding Date, StringFormat='{0: d-MMM-yyyy}'}"
                                         Style="{StaticResource TierStyle}"/>
                                     <Label
                                         Grid.Column="0"
                                         Grid.Row="1"
-                                        Text="{Binding NumOfEntries}"
+                                        Text="{Binding HumanReadableDate}"
                                         Style="{StaticResource NameStyle}"/>
                                 </Grid>
                             </Frame>
