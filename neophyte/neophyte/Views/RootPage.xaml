@@ -12,7 +12,7 @@
             android:TabbedPage.IsSwipePagingEnabled="False"
             x:Class="neophyte.Views.RootPage"
             NavigationPage.HasNavigationBar="False"
-            BarBackgroundColor="#92278F"
+            BarBackgroundColor="#3E3F3E"
             BarTextColor="White">
     <NavigationPage
         Title="Newcomers"

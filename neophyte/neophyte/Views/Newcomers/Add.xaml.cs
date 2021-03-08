@@ -4,12 +4,15 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
+using neophyte.Utils;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace neophyte.Views.Newcomers
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecordNewcomerPage : ContentPage
     {
         private readonly NewcomerClient _newcomerClient;
@@ -18,9 +21,6 @@ namespace neophyte.Views.Newcomers
         public RecordNewcomerPage()
         {
             InitializeComponent();
-
-            Title = "Add Record";
-            SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
 
             // set drop down values
             cmbMonths.ItemsSource = Constants.Months;
@@ -62,8 +62,10 @@ namespace neophyte.Views.Newcomers
             {
                 newcomer.BirthDay = $"{cmbMonths.SelectedItem} {cmbDays.SelectedItem}";
                 await _newcomerClient.Register(newcomer);
+
                 // alert the user
-                await DisplayAlert("Success", "Newcomer successfully recorded.", "Okay");
+                Toasts.DisplaySuccess("Newcomer successfully recorded.");
+
                 // set the controls
                 await ResetControlsAsync();
             }
@@ -79,6 +81,11 @@ namespace neophyte.Views.Newcomers
             // enable buttons
             prgSaving.IsVisible = false;
             btnSave.IsVisible = true;
+        }
+
+        protected async void GoBack(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync(true);
         }
 
         private async Task ResetControlsAsync()

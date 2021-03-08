@@ -95,6 +95,11 @@ namespace neophyte.Views.Attendance
             await ResetControlsAsync();
         }
 
+        protected async void GoBack(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync(true);
+        }
+
         private async Task ResetControlsAsync()
         {
             // reset binding context

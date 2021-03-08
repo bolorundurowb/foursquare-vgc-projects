@@ -3,8 +3,190 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              mc:Ignorable="d"
              x:Class="neophyte.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BlackColour">#000000</Color>
+            <Color x:Key="DarkColour">#3E3F3E</Color>
+            <Color x:Key="LightGreyColour">#F5F5F3</Color>
+            <Color x:Key="GreyColour">#E5E5E2</Color>
+            <Color x:Key="FrameBackgroundColour">#E5E5E2</Color>
+
+            <Style x:Key="ProgressStyle" TargetType="ActivityIndicator">
+                <Setter Property="Color" Value="{StaticResource DarkColour}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="IsRunning" Value="True" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource FrameBackgroundColour}" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="Padding" Value="12" />
+                <Setter Property="Margin" Value="0, 12, 0, 0" />
+            </Style>
+
+            <Style x:Key="PageHeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="50" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="NexaB" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0, 0, 0, 20" />
+            </Style>
+
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 60, 0, 0" />
+            </Style>
+
+            <Style x:Key="TierStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="Margin" Value="6, 18, 0, 0" />
+            </Style>
+
+            <Style x:Key="NameStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaB" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="Margin" Value="6, 0, 6, 6" />
+            </Style>
+
+            <Style x:Key="NumStatStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaB" />
+                <Setter Property="FontSize" Value="50" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource BlackColour}"></Setter>
+                <Setter Property="Margin" Value="0, 10, 20, 0" />
+            </Style>
+
+            <Style x:Key="SwipeItemBorderStyle" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="CornerRadius" Value="0, 12, 0, 12" />
+                <Setter Property="Margin" Value="0, 12, 0, 0" />
+            </Style>
+
+            <Style x:Key="SwipeItemIconStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="WidthRequest" Value="30" />
+            </Style>
+
+            <Style x:Key="SwipeItemTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightGreyColour}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 54, 0, 0" />
+            </Style>
+
+            <Style x:Key="FloatingButtonStyle" TargetType="Button">
+                <Setter Property="CornerRadius" Value="40" />
+                <Setter Property="FontFamily" Value="FAS" />
+                <Setter Property="TextColor" Value="{StaticResource LightGreyColour}" />
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="WidthRequest" Value="80" />
+                <Setter Property="HeightRequest" Value="80" />
+                <Setter Property="Margin" Value="0,0,10,10" />
+            </Style>
+
+            <Style x:Key="BackButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="FAS" />
+                <Setter Property="Text" Value="&#xf060;" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="WidthRequest" Value="50" />
+            </Style>
+
+            <Style x:Key="SharedButtonStyle" TargetType="Button">
+                <Setter Property="Margin" Value="0,15,0,0" />
+                <Setter Property="BackgroundColor" Value="#3E3E3E" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Padding" Value="20, 0, 20, 0" />
+                <Setter Property="FontFamily" Value="NexaB" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+
+            <Style x:Key="FormLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaB" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="0,15,0,10" />
+            </Style>
+
+            <Style x:Key="FormEntryStyle" TargetType="Entry">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Keyboard" Value="Text" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+
+            <Style x:Key="FormEditorStyle" TargetType="Editor">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="HeightRequest" Value="100" />
+                <Setter Property="Keyboard" Value="Text" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="IsSpellCheckEnabled" Value="True" />
+                <Setter Property="IsTextPredictionEnabled" Value="True" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+
+            <Style x:Key="FormPickerStyle" TargetType="Picker">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Title" Value="Select" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+
+            <Style x:Key="FormRadioGroupStyle" TargetType="controls:RadioButtonGroupView">
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="0,0,0,15" />
+            </Style>
+
+            <Style x:Key="FormRadioButtonStyle" TargetType="controls:RadioButton">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="TextFontSize" Value="18" />
+                <Setter Property="CircleColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="Color" Value="{StaticResource DarkColour}" />
+            </Style>
+
+            <Style x:Key="FormCheckBoxStyle" TargetType="controls:CheckBox">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="TextFontSize" Value="18" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

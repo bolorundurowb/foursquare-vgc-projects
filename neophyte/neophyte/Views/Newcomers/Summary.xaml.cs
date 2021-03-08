@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
+using neophyte.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace neophyte.Views.Newcomers
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewcomersDateSummariesPage : ContentPage
     {
         private readonly NewcomerClient _newcomerClient;
@@ -15,9 +19,6 @@ namespace neophyte.Views.Newcomers
         public NewcomersDateSummariesPage()
         {
             InitializeComponent();
-
-            Title = "Newcomers";
-            SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
 
             if (Device.RuntimePlatform == Device.iOS)
             {
@@ -33,12 +34,12 @@ namespace neophyte.Views.Newcomers
             base.OnAppearing();
             await LoadDateRecords();
             prgLoading.IsVisible = false;
-            lstDateEntries.IsVisible = true;
+            collectionDateEntries.IsVisible = true;
         }
 
-        protected async void OpenDateRecordsPage(object sender, ItemTappedEventArgs e)
+        protected async void OpenDateRecordsPage(object sender, EventArgs e)
         {
-            var summary = e.Item as DateSummaryViewModel;
+            var summary = collectionDateEntries.SelectedItem as DateSummaryViewModel;
             await Navigation.PushAsync(new NewcomersByDatePage(summary.Date));
         }
 
@@ -54,21 +55,19 @@ namespace neophyte.Views.Newcomers
 
             if (string.IsNullOrWhiteSpace(email))
             {
+                Toasts.DisplayError("A valid email address is required.");
                 return;
             }
 
-            if ((sender as MenuItem)?.CommandParameter is DateSummaryViewModel summary)
+            if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _reportClient.GenerateReport(summary.Date, email);
+                await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
             }
-
-            await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
-        }
-
-        protected async void RefreshDateRecords(object sender, EventArgs e)
-        {
-            await LoadDateRecords();
-            lstDateEntries.IsRefreshing = false;
+            else
+            {
+                Toasts.DisplayError("An error occurred when sending the report.");
+            }
         }
 
         private async Task LoadDateRecords()
@@ -80,7 +79,7 @@ namespace neophyte.Views.Newcomers
                 return;
             }
 
-            lstDateEntries.ItemsSource = await _newcomerClient.GetAll();
+            collectionDateEntries.ItemsSource = await _newcomerClient.GetAll();
         }
     }
 }
