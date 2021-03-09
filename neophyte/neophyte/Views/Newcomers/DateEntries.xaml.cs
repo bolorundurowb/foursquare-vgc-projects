@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
+using neophyte.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -37,20 +38,27 @@ namespace neophyte.Views.Newcomers
 
         protected async void DeleteRecord(object sender, EventArgs e)
         {
-            var newcomer = (sender as MenuItem)?.CommandParameter as NewcomerViewModel;
-            await _newcomerClient.DeleteNewcomer(newcomer?.Id);
+            if (((SwipeItemView) sender).BindingContext is NewcomerViewModel newcomer)
+            {
+                await _newcomerClient.DeleteNewcomer(newcomer.Id);
+                // refresh view
+                collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != newcomer?.Id);
 
-            // refresh view
-            collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != newcomer?.Id);
-
-            // notify user
-            await DisplayAlert("Success", "Record deleted successfully.", "Ok");
+                // notify user
+                Toasts.DisplaySuccess("Entry successfully removed.");
+            }
+            else
+            {
+                Toasts.DisplayError("An error occurred when deleting the entry.");
+            }
         }
 
-        protected async void ViewPersonRecord(object sender, ItemTappedEventArgs e)
+        protected async void ViewPersonRecord(object sender, EventArgs e)
         {
-            var newcomer = e.Item as NewcomerViewModel;
-            await Navigation.PushAsync(new NewcomerDetailsPage(newcomer));
+            if (collectionDateEntries.SelectedItem is NewcomerViewModel newcomer)
+            {
+                await Navigation.PushAsync(new NewcomerDetailsPage(newcomer));
+            }
         }
 
         protected async void GoBack(object sender, EventArgs e)

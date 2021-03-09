@@ -13,7 +13,8 @@
                     <SwipeView.RightItems>
                         <SwipeItems
                             Mode="Reveal">
-                            <SwipeItemView>
+                            <SwipeItemView
+                                Invoked="DeleteRecord">
                                 <Grid Style="{StaticResource GeneralSwipeActionStyle}">
                                     <BoxView
                                         Style="{StaticResource RedItemBorderStyle}" />
@@ -96,8 +97,9 @@
             <CollectionView x:Name="collectionDateEntries"
                             ItemTemplate="{StaticResource PersonTemplate}"
                             Margin="12, 12, 12, 0"
+                            IsVisible="False"
                             SelectionMode="Single"
-                            IsVisible="False">
+                            SelectionChanged="ViewPersonRecord">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout
                         Orientation="Vertical"
