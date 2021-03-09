@@ -27,7 +27,7 @@ namespace neophyte.Views.Newcomers
             base.OnAppearing();
             
             // set the header
-            lblHeader.Text = _date.ToString("d MMMM 'yy.");
+            lblHeader.Text = _date.ToString("d MMMM \\'yy.");
             
             // load page data
             await LoadDateRecords();

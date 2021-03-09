@@ -15,9 +15,7 @@
                             Mode="Reveal">
                             <SwipeItemView
                                 Invoked="GenerateDateReport">
-                                <Grid
-                                    WidthRequest="120"
-                                    BackgroundColor="{StaticResource LightGreyColour}">
+                                <Grid Style="{StaticResource GeneralSwipeActionStyle}">
                                     <BoxView
                                         Style="{StaticResource SwipeItemBorderStyle}" />
                                     <Image

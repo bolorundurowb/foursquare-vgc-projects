@@ -13,6 +13,8 @@
             <Color x:Key="LightGreyColour">#F5F5F3</Color>
             <Color x:Key="GreyColour">#E5E5E2</Color>
             <Color x:Key="FrameBackgroundColour">#E5E5E2</Color>
+            <Color x:Key="GreenColour">#4D9947</Color>
+            <Color x:Key="RedColour">#B80711</Color>
 
             <Style x:Key="PageStyle" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="{StaticResource LightGreyColour}" />
@@ -75,6 +77,22 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
                 <Setter Property="TextColor" Value="{StaticResource BlackColour}"></Setter>
                 <Setter Property="Margin" Value="0, 10, 20, 0" />
+            </Style>
+
+            <Style x:Key="FullNameStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextTransform" Value="Uppercase" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="Margin" Value="6, 18, 0, 0" />
+            </Style>
+
+            <Style x:Key="PhoneNumberStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaB" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="Margin" Value="6, 5, 6, 6" />
             </Style>
 
             <Style x:Key="SwipeItemBorderStyle" TargetType="BoxView">
@@ -192,6 +210,22 @@
                 <Setter Property="TextFontSize" Value="18" />
                 <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
+            </Style>
+
+            <Style x:Key="GeneralSwipeActionStyle" TargetType="Grid">
+                <Setter Property="WidthRequest" Value="120" />
+                <Setter Property="BackgroundColor" Value="{StaticResource LightGreyColour}" />
+            </Style>
+
+            <Style x:Key="GreenItemBorderStyle" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{StaticResource GreenColour}" />
+                <Setter Property="Margin" Value="0, 12, 0, 0" />
+            </Style>
+
+            <Style x:Key="RedItemBorderStyle" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{StaticResource RedColour}" />
+                <Setter Property="CornerRadius" Value="0, 12, 0, 12" />
+                <Setter Property="Margin" Value="0, 12, 0, 0" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
