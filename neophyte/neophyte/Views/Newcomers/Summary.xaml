@@ -36,8 +36,8 @@
                                     VerticalOptions="Center"
                                     RowSpacing="0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="180" />
                                         <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="100" />
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
