@@ -65,7 +65,6 @@ namespace neophyte.Views.Newcomers
             }
 
             // mutate controls
-            menuEdit.IsEnabled = false;
             btnUpdate.IsVisible = false;
             prgSaving.IsVisible = true;
 
@@ -88,12 +87,16 @@ namespace neophyte.Views.Newcomers
             }
 
             // mutate controls
-            menuEdit.IsEnabled = true;
             btnUpdate.IsVisible = true;
             prgSaving.IsVisible = false;
             await scrollView.ScrollToAsync(0, 0, true);
 
             HideEditControls();
+        }
+
+        protected async void GoBack(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync(true);
         }
 
         private void SetNewcomerDisplayValues(NewcomerViewModel newcomer)

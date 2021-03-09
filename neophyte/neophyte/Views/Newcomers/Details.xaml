@@ -4,21 +4,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              x:Class="neophyte.Views.Newcomers.NewcomerDetailsPage"
-             Padding="10">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="menuEdit" Order="Primary" Text="Edit" Priority="0" Clicked="EnableEditMode" />
-    </ContentPage.ToolbarItems>
+             Style="{StaticResource PageStyle}">
     <ContentPage.Content>
         <ScrollView x:Name="scrollView">
             <StackLayout
                 Orientation="Vertical"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Button
+                        Style="{StaticResource BackButtonStyle}"
+                        Clicked="GoBack" />
+
+                    <Label
+                        Text="Details."
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource PageHeaderStyle}" />
+                </StackLayout>
+                
                 <Label
                     Text="Full Name:"
-                    FontSize="Small"
-                    TextColor="Gray"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <Label
                     x:Name="lblFullName"
                     Text="{Binding FullName}"
@@ -34,9 +41,7 @@
 
                 <Label
                     Text="Home Address:"
-                    FontSize="Small"
-                    TextColor="Gray"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <Label
                     x:Name="lblHomeAddress"
                     Text="{Binding HomeAddress}"
@@ -52,9 +57,7 @@
 
                 <Label
                     Text="Phone Number:"
-                    FontSize="Small"
-                    TextColor="Gray"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <Label
                     x:Name="lblPhone"
                     Text="{Binding Phone}"
@@ -70,9 +73,7 @@
 
                 <Label
                     Text="Email Address:"
-                    FontSize="Small"
-                    TextColor="Gray"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <Label
                     x:Name="lblEmailAddress"
                     Text="{Binding EmailAddress}"
@@ -88,9 +89,7 @@
 
                 <Label
                     Text="Birthday:"
-                    FontSize="Small"
-                    TextColor="Gray"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}"/>
                 <Label
                     x:Name="lblBirthday"
                     Text="{Binding BirthDay}"
@@ -114,9 +113,7 @@
 
                 <Label
                     Text="Gender:"
-                    FontSize="Small"
-                    TextColor="Gray"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <Label
                     x:Name="lblGender"
                     Text="{Binding Gender}"
@@ -130,10 +127,8 @@
                     Title="Select" />
 
                 <Label
-                    Text="Age group:"
-                    FontSize="Small"
-                    TextColor="Gray"
-                    Margin="0, 10, 0, 0" />
+                    Text="Age Group:"
+                    Style="{StaticResource FormLabelStyle}" />
                 <Label
                     x:Name="lblAgeGroup"
                     Text="{Binding AgeGroup}"
@@ -147,10 +142,8 @@
                     Title="Select" />
 
                 <Label
-                    Text="Comments/Prayer points:"
-                    FontSize="Small"
-                    TextColor="Gray"
-                    Margin="0, 10, 0, 0" />
+                    Text="Comments/Prayer Points:"
+                    Style="{StaticResource FormLabelStyle}" />
                 <Label
                     x:Name="lblCommentsPrayers"
                     Text="{Binding CommentsOrPrayers}"
@@ -167,10 +160,8 @@
                     IsTextPredictionEnabled="True" />
 
                 <Label
-                    Text="How did you get to know about us:"
-                    FontSize="Small"
-                    TextColor="Gray"
-                    Margin="0, 10, 0, 0" />
+                    Text="How Did You Get To Know About Us:"
+                    Style="{StaticResource FormLabelStyle}" />
                 <Label
                     x:Name="lblHowYouFoundUs"
                     Text="{Binding HowYouFoundUs}"
@@ -185,8 +176,8 @@
                     Keyboard="Text" />
 
                 <Label
-                    Text="Are you born again?:"
-                    Margin="0, 10, 0, 0" />
+                    Text="Are You Born Again?:"
+                    Style="{StaticResource FormLabelStyle}" />
                 <input:RadioButtonGroupView
                     SelectedItem="{Binding BornAgain, Mode=TwoWay}"
                     Orientation="Horizontal"
@@ -212,8 +203,8 @@
                 </input:RadioButtonGroupView>
 
                 <Label
-                    Text="Would you like to become a member of this Church?:"
-                    Margin="0, 10, 0, 0" />
+                    Text="Would You Like To Become A Member Of This Church?:"
+                    Style="{StaticResource FormLabelStyle}" />
                 <input:RadioButtonGroupView
                     SelectedItem="{Binding BecomeMember, Mode=TwoWay}"
                     Orientation="Horizontal"
@@ -261,25 +252,14 @@
                 <Button
                     x:Name="btnUpdate"
                     Text="Update"
-                    HeightRequest="45"
-                    HorizontalOptions="Center"
-                    TextColor="White"
-                    BackgroundColor="#92278F"
-                    Margin="0, 15, 0, 0"
-                    WidthRequest="100"
-                    CornerRadius="22"
                     IsVisible="False"
+                    Style="{StaticResource SharedButtonStyle}"
                     Clicked="UpdateRecord" />
 
                 <ActivityIndicator
                     x:Name="prgSaving"
-                    HeightRequest="45"
-                    Color="#92278F"
-                    WidthRequest="45"
-                    HorizontalOptions="Center"
-                    Margin="0, 15, 0, 0"
                     IsVisible="False"
-                    IsRunning="True" />
+                    Style="{StaticResource ProgressStyle}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

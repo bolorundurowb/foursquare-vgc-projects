@@ -153,8 +153,8 @@
 
                 <ActivityIndicator
                     x:Name="prgSaving"
-                    Style="{StaticResource ProgressStyle}"
-                    IsVisible="False" />
+                    IsVisible="False"
+                    Style="{StaticResource ProgressStyle}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
