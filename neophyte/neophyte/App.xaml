@@ -14,6 +14,12 @@
             <Color x:Key="GreyColour">#E5E5E2</Color>
             <Color x:Key="FrameBackgroundColour">#E5E5E2</Color>
 
+            <Style x:Key="PageStyle" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightGreyColour}" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="NavigationPage.HasNavigationBar" Value="False" />
+            </Style>
+
             <Style x:Key="ProgressStyle" TargetType="ActivityIndicator">
                 <Setter Property="Color" Value="{StaticResource DarkColour}" />
                 <Setter Property="BackgroundColor" Value="Transparent" />

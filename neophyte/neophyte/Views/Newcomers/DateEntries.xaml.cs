@@ -18,9 +18,6 @@ namespace neophyte.Views.Newcomers
         {
             InitializeComponent();
 
-            Title = "Records";
-            SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
-
             _date = date;
             _newcomerClient = new NewcomerClient();
         }
@@ -28,9 +25,14 @@ namespace neophyte.Views.Newcomers
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            
+            // set the header
+            lblHeader.Text = _date.ToString("d MMMM 'yy.");
+            
+            // load page data
             await LoadDateRecords();
             prgLoading.IsVisible = false;
-            lstDateRecords.IsVisible = true;
+            collectionDateEntries.IsVisible = true;
         }
 
         protected async void DeleteRecord(object sender, EventArgs e)
@@ -39,7 +41,7 @@ namespace neophyte.Views.Newcomers
             await _newcomerClient.DeleteNewcomer(newcomer?.Id);
 
             // refresh view
-            lstDateRecords.ItemsSource = _dateRecords.Where(x => x.Id != newcomer?.Id);
+            collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != newcomer?.Id);
 
             // notify user
             await DisplayAlert("Success", "Record deleted successfully.", "Ok");
@@ -51,10 +53,9 @@ namespace neophyte.Views.Newcomers
             await Navigation.PushAsync(new NewcomerDetailsPage(newcomer));
         }
 
-        protected async void RefreshDateRecords(object sender, EventArgs e)
+        protected async void GoBack(object sender, EventArgs e)
         {
-            await LoadDateRecords();
-            lstDateRecords.IsRefreshing = false;
+            await Navigation.PopAsync(true);
         }
 
         private async Task LoadDateRecords()
@@ -67,7 +68,7 @@ namespace neophyte.Views.Newcomers
             }
 
             _dateRecords = await _newcomerClient.GetNewcomersForDate(_date);
-            lstDateRecords.ItemsSource = _dateRecords;
+            collectionDateEntries.ItemsSource = _dateRecords;
         }
     }
 }
