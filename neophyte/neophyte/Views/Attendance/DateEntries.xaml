@@ -2,64 +2,114 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="neophyte.Views.Attendance.AttendanceByDatePage">
+             x:Class="neophyte.Views.Attendance.AttendanceByDatePage"
+             Style="{StaticResource PageStyle}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="PersonTemplate">
+                <SwipeView
+                    HeightRequest="110">
+                    <SwipeView.RightItems>
+                        <SwipeItems
+                            Mode="Reveal">
+                            <SwipeItemView
+                                Invoked="DeleteRecord">
+                                <Grid Style="{StaticResource GeneralSwipeActionStyle}">
+                                    <BoxView
+                                        Style="{StaticResource RedItemBorderStyle}" />
+                                    <Image
+                                        Source="delete.png"
+                                        Style="{StaticResource SwipeItemIconStyle}" />
+                                    <Label
+                                        Text="Delete Entry"
+                                        Style="{StaticResource SwipeItemTextStyle}" />
+                                </Grid>
+                            </SwipeItemView>
+                            <SwipeItemView>
+                                <Grid Style="{StaticResource GeneralSwipeActionStyle}">
+                                    <BoxView
+                                        Style="{StaticResource GreenItemBorderStyle}" />
+                                    <Image
+                                        Source="edit.png"
+                                        Style="{StaticResource SwipeItemIconStyle}" />
+                                    <Label
+                                        Text="Edit Entry"
+                                        Style="{StaticResource SwipeItemTextStyle}" />
+                                </Grid>
+                            </SwipeItemView>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <SwipeView.Content>
+                        <Grid BackgroundColor="{StaticResource LightGreyColour}">
+                            <Frame
+                                Style="{StaticResource FrameStyle}">
+                                <Grid
+                                    VerticalOptions="Center"
+                                    RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Text="{Binding FullName}"
+                                        Style="{StaticResource FullNameStyle}" />
+                                    <Label
+                                        Grid.Column="0"
+                                        Grid.Row="1"
+                                        Text="{Binding Phone}"
+                                        Style="{StaticResource PhoneNumberStyle}" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </SwipeView.Content>
+                </SwipeView>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill"
                      VerticalOptions="Fill">
+            <StackLayout
+                Orientation="Horizontal">
+                <Button
+                    Style="{StaticResource BackButtonStyle}"
+                    Clicked="GoBack" />
+
+                <Label
+                    x:Name="lblHeader"
+                    Text="Records."
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource PageHeaderStyle}" />
+            </StackLayout>
+
             <Entry
-                HorizontalOptions="Fill"
-                Placeholder="Search Attendees ..." 
-                Margin="10, 10, 10, 0"
-                TextColor="#808080"
-                TextChanged="SearchAttendance"/>
+                Placeholder="Search Attendees ..."
+                Style="{StaticResource FormEntryStyle}"
+                TextChanged="SearchAttendance" />
 
-            <ActivityIndicator x:Name="prgLoading"
-                               Color="#92278F"
-                               IsRunning="True"
-                               BackgroundColor="Transparent"
-                               IsVisible="True"
-                               HorizontalOptions="CenterAndExpand"
-                               VerticalOptions="CenterAndExpand" />
+            <ActivityIndicator
+                x:Name="prgLoading"
+                IsVisible="True"
+                Style="{StaticResource ProgressStyle}" />
 
-            <ListView
-                x:Name="lstDateRecords"
-                HorizontalOptions="Fill"
-                VerticalOptions="FillAndExpand"
-                SelectionMode="Single"
-                HasUnevenRows="True"
+            <CollectionView
+                x:Name="collectionDateEntries"
+                ItemTemplate="{StaticResource PersonTemplate}"
+                Margin="12, 12, 12, 0"
                 IsVisible="False"
-                IsPullToRefreshEnabled="True"
-                Refreshing="RefreshDateRecords"
-                ItemTapped="ViewAttendanceDetail">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem CommandParameter="{Binding .}"
-                                          Text="Delete"
-                                          IsDestructive="True"
-                                          Clicked="DeleteRecord" />
-                            </ViewCell.ContextActions>
-                            <StackLayout Padding="5, 10, 5, 10"
-                                         Orientation="Horizontal">
-                                <Image WidthRequest="40"
-                                       HeightRequest="40"
-                                       Source="team.png"
-                                       Margin="5,0,0,0" />
-                                <StackLayout Orientation="Vertical"
-                                             HorizontalOptions="FillAndExpand"
-                                             Padding="5,0,0,0">
-                                    <Label Text="{Binding FullName}"
-                                           FontSize="Medium" />
-                                    <Label Text="{Binding EmailAddress}"
-                                           FontSize="Small"
-                                           TextColor="#808080" />
-                                </StackLayout>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                SelectionMode="Single"
+                SelectionChanged="ViewAttendanceDetail">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Vertical"
+                        ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

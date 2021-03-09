@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
+using neophyte.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,9 +22,6 @@ namespace neophyte.Views.Attendance
         {
             InitializeComponent();
 
-            Title = "Attendees";
-            SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
-
             _date = date;
             _attendanceClient = new AttendanceClient();
         }
@@ -31,33 +29,40 @@ namespace neophyte.Views.Attendance
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+
+            // set the header
+            lblHeader.Text = _date.ToString("d MMM \\'yy.");
+
+            // load page data
             await LoadDateRecords();
             prgLoading.IsVisible = false;
-            lstDateRecords.IsVisible = true;
+            collectionDateEntries.IsVisible = true;
         }
 
         protected async void DeleteRecord(object sender, EventArgs e)
         {
-            var attendance = (sender as MenuItem)?.CommandParameter as AttendeeViewModel;
-            await _attendanceClient.DeleteAttendee(attendance?.Id);
+            if (((SwipeItemView) sender).BindingContext is AttendeeViewModel attendance)
+            {
+                await _attendanceClient.DeleteAttendee(attendance?.Id);
 
-            // refresh view
-            lstDateRecords.ItemsSource = _dateRecords.Where(x => x.Id != attendance?.Id);
+                // refresh view
+                collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != attendance.Id);
 
-            // notify user
-            await DisplayAlert("Success", "Record deleted successfully.", "Ok");
+                // notify user
+                Toasts.DisplaySuccess("Entry successfully removed.");
+            }
+            else
+            {
+                Toasts.DisplayError("An error occurred when deleting the entry.");
+            }
         }
 
-        protected async void ViewAttendanceDetail(object sender, ItemTappedEventArgs e)
+        protected async void ViewAttendanceDetail(object sender, EventArgs e)
         {
-            var attendee = e.Item as AttendeeViewModel;
-            await Navigation.PushAsync(new AttendeeDetailsPage(attendee));
-        }
-
-        protected async void RefreshDateRecords(object sender, EventArgs e)
-        {
-            await LoadDateRecords();
-            lstDateRecords.IsRefreshing = false;
+            if (collectionDateEntries.SelectedItem is AttendeeViewModel attendee)
+            {
+                await Navigation.PushAsync(new AttendeeDetailsPage(attendee));
+            }
         }
 
         protected void SearchAttendance(object sender, TextChangedEventArgs e)
@@ -78,7 +83,12 @@ namespace neophyte.Views.Attendance
                 }
             }
 
-            lstDateRecords.ItemsSource = results;
+            collectionDateEntries.ItemsSource = results;
+        }
+
+        protected async void GoBack(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync(true);
         }
 
         private async Task LoadDateRecords()
@@ -91,7 +101,7 @@ namespace neophyte.Views.Attendance
             }
 
             _dateRecords = await _attendanceClient.GetAttendanceForDate(_date);
-            lstDateRecords.ItemsSource = _dateRecords;
+            collectionDateEntries.ItemsSource = _dateRecords;
         }
     }
 }

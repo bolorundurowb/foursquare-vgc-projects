@@ -6,9 +6,11 @@ using neophyte.Models.View;
 using neophyte.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace neophyte.Views.Newcomers
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewcomersByDatePage : ContentPage
     {
         private readonly NewcomerClient _newcomerClient;
@@ -28,7 +30,7 @@ namespace neophyte.Views.Newcomers
             base.OnAppearing();
             
             // set the header
-            lblHeader.Text = _date.ToString("d MMMM \\'yy.");
+            lblHeader.Text = _date.ToString("d MMM \\'yy.");
             
             // load page data
             await LoadDateRecords();
@@ -41,8 +43,9 @@ namespace neophyte.Views.Newcomers
             if (((SwipeItemView) sender).BindingContext is NewcomerViewModel newcomer)
             {
                 await _newcomerClient.DeleteNewcomer(newcomer.Id);
+                
                 // refresh view
-                collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != newcomer?.Id);
+                collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != newcomer.Id);
 
                 // notify user
                 Toasts.DisplaySuccess("Entry successfully removed.");
