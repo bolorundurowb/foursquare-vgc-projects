@@ -41,12 +41,12 @@ namespace neophyte.Views.Attendance
 
         protected async void DeleteRecord(object sender, EventArgs e)
         {
-            if (((SwipeItemView) sender).BindingContext is AttendeeViewModel attendance)
+            if (((SwipeItemView) sender).BindingContext is AttendeeViewModel attendee)
             {
-                await _attendanceClient.DeleteAttendee(attendance?.Id);
+                await _attendanceClient.DeleteAttendee(attendee.Id);
 
                 // refresh view
-                collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != attendance.Id);
+                collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != attendee.Id);
 
                 // notify user
                 Toasts.DisplaySuccess("Entry successfully removed.");
@@ -59,9 +59,9 @@ namespace neophyte.Views.Attendance
 
         protected async void EditRecord(object sender, EventArgs e)
         {
-            if (((SwipeItemView) sender).BindingContext is AttendeeViewModel attendance)
+            if (((SwipeItemView) sender).BindingContext is AttendeeViewModel attendee)
             {
-            await Navigation.PushAsync(new AttendeeDetailsPage(attendee, true));
+                await Navigation.PushAsync(new AttendeeDetailsPage(attendee, true));
             }
         }
 

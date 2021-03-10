@@ -84,9 +84,9 @@
                     Style="{StaticResource FormLabelStyle}" />
                 <Entry
                     Placeholder="e.g john@doe.org"
+                    Keyboard="Email"
                     Text="{Binding EmailAddress, Mode=TwoWay}"
-                    Style="{StaticResource FormEntryStyle}"
-                    Keyboard="Email" />
+                    Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Age (in years):"

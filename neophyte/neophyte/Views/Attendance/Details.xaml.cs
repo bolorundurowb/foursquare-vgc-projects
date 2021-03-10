@@ -19,7 +19,7 @@ namespace neophyte.Views.Attendance
         private readonly AttendanceValidator _attendanceValidator = new AttendanceValidator();
         private readonly IMapper _mapper = new Mapper();
 
-        public AttendeeDetailsPage(AttendeeViewModel attendee)
+        public AttendeeDetailsPage(AttendeeViewModel attendee, bool inEditMode = false)
         {
             InitializeComponent();
 
@@ -32,6 +32,11 @@ namespace neophyte.Views.Attendance
             // initialize stuff
             _attendanceClient = new AttendanceClient();
             SetAttendeeDisplayValue(attendee);
+
+            if (inEditMode)
+            {
+                ShowEditControls();
+            }
         }
 
         protected void EnableEditMode(object sender, EventArgs e)
@@ -88,6 +93,11 @@ namespace neophyte.Views.Attendance
             HideEditControls();
         }
 
+        protected async void GoBack(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync(true);
+        }
+
         private void SetAttendeeDisplayValue(AttendeeViewModel attendee)
         {
             BindingContext = attendee;
@@ -118,9 +128,6 @@ namespace neophyte.Views.Attendance
             txtResidentialAddress.IsVisible = true;
             txtSeatNumber.IsVisible = true;
             cmbGender.IsVisible = true;
-
-            // disable the menu option
-            menuEdit.IsEnabled = false;
         }
 
         private void HideEditControls()
@@ -148,9 +155,6 @@ namespace neophyte.Views.Attendance
             txtResidentialAddress.IsVisible = false;
             txtSeatNumber.IsVisible = false;
             cmbGender.IsVisible = false;
-
-            // disable the menu option
-            menuEdit.IsEnabled = true;
         }
     }
 }
