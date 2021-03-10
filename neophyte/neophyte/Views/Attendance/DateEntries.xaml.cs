@@ -57,6 +57,14 @@ namespace neophyte.Views.Attendance
             }
         }
 
+        protected async void EditRecord(object sender, EventArgs e)
+        {
+            if (((SwipeItemView) sender).BindingContext is AttendeeViewModel attendance)
+            {
+            await Navigation.PushAsync(new AttendeeDetailsPage(attendee, true));
+            }
+        }
+
         protected async void ViewAttendanceDetail(object sender, EventArgs e)
         {
             if (collectionDateEntries.SelectedItem is AttendeeViewModel attendee)

@@ -56,6 +56,14 @@ namespace neophyte.Views.Newcomers
             }
         }
 
+        protected async void EditRecord(object sender, EventArgs e)
+        {
+            if (((SwipeItemView) sender).BindingContext is NewcomerViewModel newcomer)
+            {
+                await Navigation.PushAsync(new NewcomerDetailsPage(newcomer, true));
+            }
+        }
+
         protected async void ViewPersonRecord(object sender, EventArgs e)
         {
             if (collectionDateEntries.SelectedItem is NewcomerViewModel newcomer)

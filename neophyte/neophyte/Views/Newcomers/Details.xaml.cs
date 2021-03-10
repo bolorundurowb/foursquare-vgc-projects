@@ -19,7 +19,7 @@ namespace neophyte.Views.Newcomers
         private readonly NewcomerValidator _newcomerValidator = new NewcomerValidator();
         private readonly IMapper _mapper = new Mapper();
 
-        public NewcomerDetailsPage(NewcomerViewModel newcomer)
+        public NewcomerDetailsPage(NewcomerViewModel newcomer, bool inEditMode = false)
         {
             InitializeComponent();
 
@@ -35,6 +35,11 @@ namespace neophyte.Views.Newcomers
             // initialize stuff
             _newcomerClient = new NewcomerClient();
             SetNewcomerDisplayValues(newcomer);
+
+            if (inEditMode)
+            {
+                ShowEditControls();
+            }
         }
 
         protected void EnableEditMode(object sender, EventArgs e)
