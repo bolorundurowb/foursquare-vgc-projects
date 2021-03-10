@@ -21,23 +21,24 @@
                         Text="Details."
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource PageHeaderStyle}" />
+                    
+                    <Button
+                        Style="{StaticResource EditButtonStyle}"
+                        Clicked="EnableEditMode" />
                 </StackLayout>
-                
+
                 <Label
                     Text="Full Name:"
                     Style="{StaticResource FormLabelStyle}" />
                 <Label
                     x:Name="lblFullName"
                     Text="{Binding FullName}"
-                    FontAttributes="Bold"
-                    FontSize="Medium" />
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
                     x:Name="txtFullName"
-                    Text="{Binding FullName, Mode=TwoWay}"
                     IsVisible="False"
-                    HorizontalOptions="Fill"
-                    HeightRequest="40"
-                    Keyboard="Text" />
+                    Text="{Binding FullName, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Home Address:"
@@ -45,15 +46,12 @@
                 <Label
                     x:Name="lblHomeAddress"
                     Text="{Binding HomeAddress}"
-                    FontAttributes="Bold"
-                    FontSize="Medium" />
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
                     x:Name="txtHomeAddress"
-                    Text="{Binding HomeAddress, Mode=TwoWay}"
                     IsVisible="False"
-                    HorizontalOptions="Fill"
-                    HeightRequest="40"
-                    Keyboard="Text" />
+                    Text="{Binding HomeAddress, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Phone Number:"
@@ -61,15 +59,13 @@
                 <Label
                     x:Name="lblPhone"
                     Text="{Binding Phone}"
-                    FontAttributes="Bold"
-                    FontSize="Medium" />
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
                     x:Name="txtPhone"
-                    Text="{Binding Phone, Mode=TwoWay}"
-                    HorizontalOptions="Fill"
                     IsVisible="False"
-                    HeightRequest="40"
-                    Keyboard="Telephone" />
+                    Keyboard="Telephone"
+                    Text="{Binding Phone, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Email Address:"
@@ -77,24 +73,21 @@
                 <Label
                     x:Name="lblEmailAddress"
                     Text="{Binding EmailAddress}"
-                    FontAttributes="Bold"
-                    FontSize="Medium" />
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
                     x:Name="txtEmail"
-                    Text="{Binding EmailAddress, Mode=TwoWay}"
-                    HorizontalOptions="Fill"
                     IsVisible="False"
-                    HeightRequest="40"
-                    Keyboard="Email" />
+                    Keyboard="Email"
+                    Text="{Binding EmailAddress, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Birthday:"
-                    Style="{StaticResource FormLabelStyle}"/>
+                    Style="{StaticResource FormLabelStyle}" />
                 <Label
                     x:Name="lblBirthday"
                     Text="{Binding BirthDay}"
-                    FontAttributes="Bold"
-                    FontSize="Medium" />
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <StackLayout
                     x:Name="stkBirthday"
                     Orientation="Horizontal"
@@ -102,13 +95,10 @@
                     IsVisible="False">
                     <Picker
                         x:Name="cmbMonths"
-                        Title="Select"
-                        HeightRequest="40"
-                        HorizontalOptions="FillAndExpand" />
-                    <Picker x:Name="cmbDays"
-                            Title="Select"
-                            HeightRequest="40"
-                            HorizontalOptions="FillAndExpand" />
+                        Style="{StaticResource FormPickerStyle}" />
+                    <Picker
+                        x:Name="cmbDays"
+                        Style="{StaticResource FormPickerStyle}" />
                 </StackLayout>
 
                 <Label
@@ -117,14 +107,12 @@
                 <Label
                     x:Name="lblGender"
                     Text="{Binding Gender}"
-                    FontAttributes="Bold"
-                    FontSize="Medium" />
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Picker
                     x:Name="cmbGender"
-                    SelectedItem="{Binding Gender, Mode=TwoWay}"
-                    HeightRequest="40"
                     IsVisible="False"
-                    Title="Select" />
+                    SelectedItem="{Binding Gender, Mode=TwoWay}"
+                    Style="{StaticResource FormPickerStyle}" />
 
                 <Label
                     Text="Age Group:"
@@ -132,14 +120,12 @@
                 <Label
                     x:Name="lblAgeGroup"
                     Text="{Binding AgeGroup}"
-                    FontAttributes="Bold"
-                    FontSize="Medium" />
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Picker
                     x:Name="cmbAgeGroup"
-                    SelectedItem="{Binding AgeGroup, Mode=TwoWay}"
-                    HeightRequest="40"
                     IsVisible="False"
-                    Title="Select" />
+                    SelectedItem="{Binding AgeGroup, Mode=TwoWay}"
+                    Style="{StaticResource FormPickerStyle}" />
 
                 <Label
                     Text="Comments/Prayer Points:"
@@ -147,17 +133,12 @@
                 <Label
                     x:Name="lblCommentsPrayers"
                     Text="{Binding CommentsOrPrayers}"
-                    FontAttributes="Bold"
-                    FontSize="Medium" />
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Editor
                     x:Name="txtPrayersComments"
-                    Text="{Binding CommentsOrPrayers, Mode=TwoWay}"
-                    HorizontalOptions="Fill"
                     IsVisible="False"
-                    HeightRequest="100"
-                    Keyboard="Text"
-                    IsSpellCheckEnabled="True"
-                    IsTextPredictionEnabled="True" />
+                    Text="{Binding CommentsOrPrayers, Mode=TwoWay}"
+                    Style="{StaticResource FormEditorStyle}" />
 
                 <Label
                     Text="How Did You Get To Know About Us:"
@@ -165,41 +146,31 @@
                 <Label
                     x:Name="lblHowYouFoundUs"
                     Text="{Binding HowYouFoundUs}"
-                    FontAttributes="Bold"
-                    FontSize="Medium" />
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
                     x:Name="txtHowYouFoundUs"
-                    Text="{Binding HowYouFoundUs, Mode=TwoWay}"
-                    HorizontalOptions="Fill"
                     IsVisible="False"
-                    HeightRequest="40"
-                    Keyboard="Text" />
+                    Text="{Binding HowYouFoundUs, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Are You Born Again?:"
                     Style="{StaticResource FormLabelStyle}" />
                 <input:RadioButtonGroupView
                     SelectedItem="{Binding BornAgain, Mode=TwoWay}"
-                    Orientation="Horizontal"
-                    Margin="0, 10, 0, 0">
+                    Style="{StaticResource FormRadioGroupStyle}">
                     <input:RadioButton
-                        TextFontSize="14"
-                        CircleColor="#92278F"
-                        Color="#92278F"
                         Text="Yes"
-                        Value="Yes" />
+                        Value="Yes"
+                        Style="{StaticResource FormRadioButtonStyle}" />
                     <input:RadioButton
-                        TextFontSize="14"
-                        CircleColor="#92278F"
-                        Color="#92278F"
                         Text="No"
-                        Value="No" />
+                        Value="No"
+                        Style="{StaticResource FormRadioButtonStyle}" />
                     <input:RadioButton
-                        TextFontSize="14"
-                        CircleColor="#92278F"
-                        Color="#92278F"
                         Text="Interested In"
-                        Value="Maybe" />
+                        Value="Maybe"
+                        Style="{StaticResource FormRadioButtonStyle}" />
                 </input:RadioButtonGroupView>
 
                 <Label
@@ -207,47 +178,33 @@
                     Style="{StaticResource FormLabelStyle}" />
                 <input:RadioButtonGroupView
                     SelectedItem="{Binding BecomeMember, Mode=TwoWay}"
-                    Orientation="Horizontal"
-                    Margin="0, 10, 0, 0">
+                    Style="{StaticResource FormRadioGroupStyle}">
                     <input:RadioButton
-                        TextFontSize="14"
-                        CircleColor="#92278F"
-                        Color="#92278F"
                         Text="Yes"
-                        Value="Yes" />
+                        Value="Yes"
+                        Style="{StaticResource FormRadioButtonStyle}" />
                     <input:RadioButton
-                        TextFontSize="14"
-                        CircleColor="#92278F"
-                        Color="#92278F"
                         Text="No"
-                        Value="No" />
+                        Value="No"
+                        Style="{StaticResource FormRadioButtonStyle}" />
                     <input:RadioButton
-                        TextFontSize="14"
-                        CircleColor="#92278F"
-                        Color="#92278F"
                         Text="Maybe"
-                        Value="Maybe" />
+                        Value="Maybe"
+                        Style="{StaticResource FormRadioButtonStyle}" />
                 </input:RadioButtonGroupView>
 
                 <Label
                     Text="Remarks:"
-                    FontSize="Small"
-                    TextColor="Gray"
-                    Margin="0, 10, 0, 0" />
+                    Style="{StaticResource FormLabelStyle}" />
                 <Label
                     x:Name="lblRemarks"
                     Text="{Binding Remarks}"
-                    FontAttributes="Bold"
-                    FontSize="Medium" />
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Editor
                     x:Name="txtRemarks"
-                    Text="{Binding Remarks, Mode=TwoWay}"
-                    HorizontalOptions="Fill"
                     IsVisible="False"
-                    HeightRequest="100"
-                    Keyboard="Text"
-                    IsSpellCheckEnabled="True"
-                    IsTextPredictionEnabled="True" />
+                    Text="{Binding Remarks, Mode=TwoWay}"
+                    Style="{StaticResource FormEditorStyle}" />
 
                 <Button
                     x:Name="btnUpdate"

@@ -143,6 +143,18 @@
                 <Setter Property="WidthRequest" Value="50" />
             </Style>
 
+            <Style x:Key="EditButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="FAS" />
+                <Setter Property="Text" Value="&#xf4ff;" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="WidthRequest" Value="60" />
+            </Style>
+
             <Style x:Key="SharedButtonStyle" TargetType="Button">
                 <Setter Property="Margin" Value="0,15,0,0" />
                 <Setter Property="BackgroundColor" Value="#3E3E3E" />
@@ -163,6 +175,14 @@
                 <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Margin" Value="0,15,0,10" />
+            </Style>
+
+            <Style x:Key="FormDisplayLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaL" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="0" />
             </Style>
 
             <Style x:Key="FormEntryStyle" TargetType="Entry">
