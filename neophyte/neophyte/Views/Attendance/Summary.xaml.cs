@@ -37,10 +37,12 @@ namespace neophyte.Views.Attendance
             collectionDateEntries.IsVisible = true;
         }
 
-        protected async void OpenDateRecordsPage(object sender, ItemTappedEventArgs e)
+        protected async void OpenDateRecordsPage(object sender, EventArgs e)
         {
-            var summary = e.Item as DateSummaryViewModel;
-            await Navigation.PushAsync(new AttendanceByDatePage(summary.Date));
+            if (collectionDateEntries.SelectedItem is DateSummaryViewModel summary)
+            {
+                await Navigation.PushAsync(new AttendanceByDatePage(summary.Date));
+            }
         }
 
         protected async void OpenNewRecordPage(object sender, EventArgs e)

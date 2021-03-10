@@ -4,9 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="neophyte.Views.Newcomers.NewcomersDateSummariesPage"
-    Padding="10"
-    NavigationPage.HasNavigationBar="False"
-    BackgroundColor="{StaticResource LightGreyColour}">
+    Style="{StaticResource PageStyle}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="EntryTemplate">
@@ -17,9 +15,7 @@
                             Mode="Reveal">
                             <SwipeItemView
                                 Invoked="GenerateDateReport">
-                                <Grid
-                                    WidthRequest="120"
-                                    BackgroundColor="{StaticResource LightGreyColour}">
+                                <Grid Style="{StaticResource GeneralSwipeActionStyle}">
                                     <BoxView
                                         Style="{StaticResource SwipeItemBorderStyle}" />
                                     <Image
@@ -40,8 +36,8 @@
                                     VerticalOptions="Center"
                                     RowSpacing="0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="180" />
                                         <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="100" />
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
@@ -93,13 +89,15 @@
                     <ActivityIndicator
                         x:Name="prgLoading"
                         Grid.Row="1"
-                        Style="{StaticResource ProgressStyle}"
-                        IsVisible="True" />
+                        IsVisible="True"
+                        Style="{StaticResource ProgressStyle}" />
 
                     <CollectionView x:Name="collectionDateEntries"
                                     Grid.Row="1"
                                     ItemTemplate="{StaticResource EntryTemplate}"
-                                    Margin="12, 12, 12, 0">
+                                    Margin="12, 12, 12, 0"
+                                    SelectionMode="Single"
+                                    SelectionChanged="OpenDateRecordsPage">
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout
                                 Orientation="Vertical"

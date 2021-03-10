@@ -5,9 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
     x:Class="neophyte.Views.Attendance.RegisterAttendeePage"
-    Padding="10"
-    NavigationPage.HasNavigationBar="False"
-    BackgroundColor="{StaticResource LightGreyColour}">
+    Style="{StaticResource PageStyle}">
     <ContentPage.Content>
         <ScrollView
             x:Name="scrollView">
@@ -86,9 +84,9 @@
                     Style="{StaticResource FormLabelStyle}" />
                 <Entry
                     Placeholder="e.g john@doe.org"
+                    Keyboard="Email"
                     Text="{Binding EmailAddress, Mode=TwoWay}"
-                    Style="{StaticResource FormEntryStyle}"
-                    Keyboard="Email" />
+                    Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Age (in years):"

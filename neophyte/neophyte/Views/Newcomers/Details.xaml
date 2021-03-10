@@ -1,14 +1,12 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
-    x:Class="neophyte.Views.Newcomers.RecordNewcomerPage"
-    Style="{StaticResource PageStyle}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             x:Class="neophyte.Views.Newcomers.NewcomerDetailsPage"
+             Style="{StaticResource PageStyle}">
     <ContentPage.Content>
-        <ScrollView
-            x:Name="scrollView">
+        <ScrollView x:Name="scrollView">
             <StackLayout
                 Orientation="Vertical"
                 HorizontalOptions="Fill"
@@ -20,51 +18,81 @@
                         Clicked="GoBack" />
 
                     <Label
-                        Text="Add Record."
+                        Text="Details."
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource PageHeaderStyle}" />
+                    
+                    <Button
+                        Style="{StaticResource EditButtonStyle}"
+                        Clicked="EnableEditMode" />
                 </StackLayout>
 
                 <Label
                     Text="Full Name:"
                     Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    x:Name="lblFullName"
+                    Text="{Binding FullName}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
-                    Placeholder="e.g John Doe"
+                    x:Name="txtFullName"
+                    IsVisible="False"
                     Text="{Binding FullName, Mode=TwoWay}"
                     Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Home Address:"
                     Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    x:Name="lblHomeAddress"
+                    Text="{Binding HomeAddress}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
-                    Placeholder="e.g 12, Sample Street ..."
+                    x:Name="txtHomeAddress"
+                    IsVisible="False"
                     Text="{Binding HomeAddress, Mode=TwoWay}"
                     Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Phone Number:"
                     Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    x:Name="lblPhone"
+                    Text="{Binding Phone}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
+                    x:Name="txtPhone"
+                    IsVisible="False"
                     Keyboard="Telephone"
-                    Placeholder="e.g 08017382719"
                     Text="{Binding Phone, Mode=TwoWay}"
                     Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Email Address:"
                     Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    x:Name="lblEmailAddress"
+                    Text="{Binding EmailAddress}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
+                    x:Name="txtEmail"
+                    IsVisible="False"
                     Keyboard="Email"
-                    Placeholder="e.g john@doe.org"
                     Text="{Binding EmailAddress, Mode=TwoWay}"
                     Style="{StaticResource FormEntryStyle}" />
 
                 <Label
                     Text="Birthday:"
                     Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    x:Name="lblBirthday"
+                    Text="{Binding BirthDay}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <StackLayout
+                    x:Name="stkBirthday"
                     Orientation="Horizontal"
-                    HorizontalOptions="Fill">
+                    HorizontalOptions="Fill"
+                    IsVisible="False">
                     <Picker
                         x:Name="cmbMonths"
                         Style="{StaticResource FormPickerStyle}" />
@@ -76,32 +104,52 @@
                 <Label
                     Text="Gender:"
                     Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    x:Name="lblGender"
+                    Text="{Binding Gender}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Picker
                     x:Name="cmbGender"
+                    IsVisible="False"
                     SelectedItem="{Binding Gender, Mode=TwoWay}"
                     Style="{StaticResource FormPickerStyle}" />
 
                 <Label
                     Text="Age Group:"
                     Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    x:Name="lblAgeGroup"
+                    Text="{Binding AgeGroup}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Picker
                     x:Name="cmbAgeGroup"
+                    IsVisible="False"
                     SelectedItem="{Binding AgeGroup, Mode=TwoWay}"
                     Style="{StaticResource FormPickerStyle}" />
 
                 <Label
                     Text="Comments/Prayer Points:"
                     Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    x:Name="lblCommentsPrayers"
+                    Text="{Binding CommentsOrPrayers}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Editor
-                    Placeholder="I want God to ..."
+                    x:Name="txtPrayersComments"
+                    IsVisible="False"
                     Text="{Binding CommentsOrPrayers, Mode=TwoWay}"
                     Style="{StaticResource FormEditorStyle}" />
 
                 <Label
                     Text="How Did You Get To Know About Us:"
                     Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    x:Name="lblHowYouFoundUs"
+                    Text="{Binding HowYouFoundUs}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
-                    Placeholder="From my ..."
+                    x:Name="txtHowYouFoundUs"
+                    IsVisible="False"
                     Text="{Binding HowYouFoundUs, Mode=TwoWay}"
                     Style="{StaticResource FormEntryStyle}" />
 
@@ -145,11 +193,25 @@
                         Style="{StaticResource FormRadioButtonStyle}" />
                 </input:RadioButtonGroupView>
 
+                <Label
+                    Text="Remarks:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    x:Name="lblRemarks"
+                    Text="{Binding Remarks}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
+                <Editor
+                    x:Name="txtRemarks"
+                    IsVisible="False"
+                    Text="{Binding Remarks, Mode=TwoWay}"
+                    Style="{StaticResource FormEditorStyle}" />
+
                 <Button
-                    x:Name="btnSave"
-                    Text="Register"
+                    x:Name="btnUpdate"
+                    Text="Update"
+                    IsVisible="False"
                     Style="{StaticResource SharedButtonStyle}"
-                    Clicked="Record" />
+                    Clicked="UpdateRecord" />
 
                 <ActivityIndicator
                     x:Name="prgSaving"

@@ -54,7 +54,7 @@
         <DependentUpon>SignIn.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\Newcomers\NewcomersByDatePage.xaml.cs">
+      <Compile Update="Views\Newcomers\DateEntries.xaml.cs">
         <DependentUpon>DateRecords.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
@@ -66,7 +66,7 @@
         <DependentUpon>NewRecord.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\Newcomers\NewcomerDetailsPage.xaml.cs">
+      <Compile Update="Views\Newcomers\Details.xaml.cs">
         <DependentUpon>RecordDetail.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>

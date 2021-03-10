@@ -80,14 +80,17 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\attendance.png" />
+    <AndroidResource Include="Resources\drawable\delete.png" />
+    <AndroidResource Include="Resources\drawable\edit.png">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\drawable\newcomer.png" />
     <AndroidResource Include="Resources\drawable\register.png" />
     <AndroidResource Include="Resources\drawable\sendreport.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\team.png" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
@@ -129,12 +132,6 @@
       <Generator>
       </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\appointment.png">
-      <SubType>
-      </SubType>
-      <Generator>
-      </Generator>
-    </AndroidResource>
     <AndroidResource Include="Resources\drawable-hdpi\appointment.png">
       <SubType>
       </SubType>
@@ -148,12 +145,6 @@
       </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-xxhdpi\appointment.png">
-      <SubType>
-      </SubType>
-      <Generator>
-      </Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\person.png">
       <SubType>
       </SubType>
       <Generator>

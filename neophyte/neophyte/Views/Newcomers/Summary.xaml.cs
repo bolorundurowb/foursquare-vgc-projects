@@ -39,8 +39,10 @@ namespace neophyte.Views.Newcomers
 
         protected async void OpenDateRecordsPage(object sender, EventArgs e)
         {
-            var summary = collectionDateEntries.SelectedItem as DateSummaryViewModel;
-            await Navigation.PushAsync(new NewcomersByDatePage(summary.Date));
+            if (collectionDateEntries.SelectedItem is DateSummaryViewModel summary)
+            {
+                await Navigation.PushAsync(new NewcomersByDatePage(summary.Date));
+            }
         }
 
         protected async void OpenNewRecordPage(object sender, EventArgs e)
