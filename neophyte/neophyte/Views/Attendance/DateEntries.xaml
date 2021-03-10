@@ -25,7 +25,8 @@
                                         Style="{StaticResource SwipeItemTextStyle}" />
                                 </Grid>
                             </SwipeItemView>
-                            <SwipeItemView>
+                            <SwipeItemView
+                                Invoked="EditRecord">
                                 <Grid Style="{StaticResource GeneralSwipeActionStyle}">
                                     <BoxView
                                         Style="{StaticResource GreenItemBorderStyle}" />
