@@ -31,7 +31,7 @@ namespace neophyte.Droid.Renderers
 
         void ChangeFont()
         {
-            var fontFace = Typeface.CreateFromAsset(Context?.Assets, "NexaBold.otf");
+            var fontFace = Typeface.CreateFromAsset(Context?.Assets, "nexabold.otf");
 
             if (!(_bottomNavigationView.GetChildAt(0) is BottomNavigationMenuView bottomNavMenuView))
             {

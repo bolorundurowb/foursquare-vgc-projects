@@ -21,10 +21,13 @@
     <item name="windowActionModeOverlay">true</item>
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
     <item name="android:windowLightStatusBar">true</item>
+    <item name="android:fontFamily">@font/nexabold</item>
   </style>
+
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#3E3F3E</item>
   </style>
+
   <style name="MainTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@drawable/splashScreen</item>
     <item name="android:windowNoTitle">true</item>

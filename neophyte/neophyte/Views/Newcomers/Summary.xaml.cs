@@ -57,14 +57,13 @@ namespace neophyte.Views.Newcomers
 
             if (string.IsNullOrWhiteSpace(email))
             {
-                Toasts.DisplayError("A valid email address is required.");
                 return;
             }
 
             if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _reportClient.GenerateReport(summary.Date, email);
-                await DisplayAlert("Success", "Report successfully generated and sent.", "Ok");
+                Toasts.DisplaySuccess("Report successfully generated and sent.");
             }
             else
             {
