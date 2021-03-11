@@ -127,60 +127,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\appointment.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\appointment.imageset\appointment.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\appointment.imageset\appointment%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\appointment.imageset\appointment%403x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\appointment.imageset\appointment-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\appointment.imageset\appointment%402x-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\appointment.imageset\appointment%403x-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\appointment.imageset\appointment-2.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\appointment.imageset\appointment%402x-2.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\person.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\person.imageset\person.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\person.imageset\person%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\person.imageset\person%403x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\person.imageset\person-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\person.imageset\person%402x-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\person.imageset\person%403x-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\person.imageset\person-2.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\person.imageset\person%402x-2.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />
     <ImageAsset Include="Resources\Assets.xcassets\foursquare.imageset\foursquare%403x.png" />
     <ImageAsset Include="Resources\Assets.xcassets\foursquare.imageset\foursquare%402x.png" />
@@ -210,10 +156,5 @@
       <Project>{A8DCD51D-7F49-461F-9D67-7449C2C957E0}</Project>
       <Name>neophyte</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets.xcassets\appointment.imageset\" />
-    <Folder Include="Assets.xcassets\person.imageset\" />
-    <Folder Include="Assets.xcassets\foursquare.imageset\" />
   </ItemGroup>
 </Project>
