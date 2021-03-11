@@ -14188,13 +14188,10 @@ namespace neophyte.Droid
 			public const int sendreport = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int team = 2131165321;
+			public const int tooltip_frame_dark = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int tooltip_frame_dark = 2131165322;
-			
-			// aapt resource value: 0x7F07008B
-			public const int tooltip_frame_light = 2131165323;
+			public const int tooltip_frame_light = 2131165322;
 			
 			static Drawable()
 			{
