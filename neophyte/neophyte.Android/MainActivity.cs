@@ -10,7 +10,7 @@ using Platform = Xamarin.Essentials.Platform;
 
 namespace neophyte.Droid
 {
-    [Activity(Label = "Neophyte", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "Neophyte", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", 
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {

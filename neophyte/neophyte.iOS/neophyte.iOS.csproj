@@ -181,6 +181,11 @@
     <ImageAsset Include="Assets.xcassets\person.imageset\person%402x-2.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\foursquare.imageset\foursquare%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\foursquare.imageset\foursquare%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\foursquare.imageset\foursquare%401x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\foursquare.imageset\Contents.json" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
