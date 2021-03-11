@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NLog.config" />
+    <AndroidResource Include="Resources\drawable\tabbed_page_baackground.xml" />
     <AndroidResource Include="Resources\font\nexabold.otf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />

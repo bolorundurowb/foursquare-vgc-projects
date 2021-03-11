@@ -14197,10 +14197,13 @@ namespace neophyte.Droid
 			public const int splashScreen = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int tooltip_frame_dark = 2131165323;
+			public const int tabbed_page_baackground = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int tooltip_frame_light = 2131165324;
+			public const int tooltip_frame_dark = 2131165324;
+			
+			// aapt resource value: 0x7F07008D
+			public const int tooltip_frame_light = 2131165325;
 			
 			static Drawable()
 			{

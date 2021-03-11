@@ -73,9 +73,7 @@
                     Style="{StaticResource FormLabelStyle}" />
                 <Label x:Name="lblGender"
                     Text="{Binding Gender}"
-                    FontSize="16"
-                    TextColor="Black"
-                    HorizontalOptions="FillAndExpand" />
+                    Style="{StaticResource FormDisplayLabelStyle}"/>
                 <Picker
                     x:Name="cmbGender"
                     IsVisible="False"

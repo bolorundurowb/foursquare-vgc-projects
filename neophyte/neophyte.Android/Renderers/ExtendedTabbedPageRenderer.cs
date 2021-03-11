@@ -26,6 +26,7 @@ namespace neophyte.Droid.Renderers
             {
                 _bottomNavigationView = (GetChildAt(0) as RelativeLayout)?.GetChildAt(1) as BottomNavigationView;
                 ChangeFont();
+                AddCornerRadius();
             }
         }
 
@@ -49,6 +50,11 @@ namespace neophyte.Droid.Renderers
                 smallTextView?.SetTypeface(fontFace, TypefaceStyle.Normal);
                 largeTextView?.SetTypeface(fontFace, TypefaceStyle.Normal);
             }
+        }
+
+        void AddCornerRadius()
+        {
+            _bottomNavigationView.Background = Context.GetDrawable("tabbed_page_baackground");
         }
     }
 }
