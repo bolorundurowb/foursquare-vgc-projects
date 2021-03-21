@@ -45,7 +45,7 @@ namespace api.Controllers
         [ProducesResponseType(typeof(GenericViewModel), 409)]
         public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationBindingModel bm)
         {
-            var (isValid, errorMessages) = await IsValid<AttendeeRegistrationBindingModelValidator>(bm);
+            var (isValid, errorMessages) = await IsValid<AttendeeRegistrationBindingModelValidator, AttendeeRegistrationBindingModel>(bm);
             if (!isValid)
             {
                 return BadRequest(errorMessages);
