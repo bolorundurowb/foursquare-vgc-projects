@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using api.Configuration;
+using api.Data.Helpers;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
+using api.Shared.Email.Interfaces;
+using api.Shared.Email.Models;
 using api.Shared.Exceptions;
 using api.Validators;
 using MapsterMapper;
@@ -15,10 +19,13 @@ namespace api.Controllers
     public class AttendanceController : BaseController
     {
         private readonly IAttendanceRepository _attendanceRepo;
+        private readonly IEmailService _emailService;
 
-        public AttendanceController(IMapper mapper, IAttendanceRepository attendanceRepo) : base(mapper)
+        public AttendanceController(IMapper mapper, IAttendanceRepository attendanceRepo, IEmailService emailService) :
+            base(mapper)
         {
             _attendanceRepo = attendanceRepo;
+            _emailService = emailService;
         }
 
         [HttpGet("")]
@@ -45,12 +52,13 @@ namespace api.Controllers
         [ProducesResponseType(typeof(GenericViewModel), 409)]
         public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationBindingModel bm)
         {
-            var (isValid, errorMessages) = await IsValid<AttendeeRegistrationBindingModelValidator, AttendeeRegistrationBindingModel>(bm);
+            var (isValid, errorMessages) =
+                await IsValid<AttendeeRegistrationBindingModelValidator, AttendeeRegistrationBindingModel>(bm);
             if (!isValid)
             {
                 return BadRequest(errorMessages);
             }
-            
+
             try
             {
                 var attendee = await _attendanceRepo.AddAttendee(bm.FullName, bm.EmailAddress, bm.Age, bm.Phone,
@@ -93,6 +101,33 @@ namespace api.Controllers
         {
             await _attendanceRepo.RemoveAttendee(id);
             return Ok();
+        }
+
+        [HttpPost("{date:DateTime}/send-report")]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> GenerateReportForDate(DateTime date, [FromBody] ReportGenBindingModel bm)
+        {
+            var formattedDateString = date.Date.ToString("yyyy-MM-dd");
+            var attendance = await _attendanceRepo.GetAttendance(date);
+            var attendanceCsv = await CsvHelpers.GenerateCsvFromAttendance(attendance);
+
+            var emailMessage = new EmailMessage
+            {
+                Subject = $"Attendance Reports For {formattedDateString}",
+                Content = "<p>See attached for the generated report</p>",
+                Attachments = new List<EmailAttachment>
+                {
+                    new()
+                    {
+                        Content = attendanceCsv,
+                        MimeType = "text/csv",
+                        Name = $"{formattedDateString}.csv"
+                    }
+                }
+            };
+            await _emailService.SendAsync(bm?.EmailAddress ?? Config.DestinationEmail, emailMessage);
+
+            return NoContent();
         }
     }
 }
