@@ -26,23 +26,28 @@ namespace neophyte.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
-            TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;  
-            
+            TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
+
+            Forms.SetFlags("SwipeView_Experimental");
             Forms.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }
 
-        private static void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs unobservedTaskExceptionEventArgs)
+        private static void TaskSchedulerOnUnobservedTaskException(object sender,
+            UnobservedTaskExceptionEventArgs unobservedTaskExceptionEventArgs)
         {
-            var newExc = new Exception("TaskSchedulerOnUnobservedTaskException", unobservedTaskExceptionEventArgs.Exception);
+            var newExc = new Exception("TaskSchedulerOnUnobservedTaskException",
+                unobservedTaskExceptionEventArgs.Exception);
             LogUnhandledException(newExc);
-        }  
+        }
 
-        private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
+        private static void CurrentDomainOnUnhandledException(object sender,
+            UnhandledExceptionEventArgs unhandledExceptionEventArgs)
         {
-            var newExc = new Exception("CurrentDomainOnUnhandledException", unhandledExceptionEventArgs.ExceptionObject as Exception);
+            var newExc = new Exception("CurrentDomainOnUnhandledException",
+                unhandledExceptionEventArgs.ExceptionObject as Exception);
             LogUnhandledException(newExc);
         }
 
@@ -51,16 +56,16 @@ namespace neophyte.iOS
             try
             {
                 const string errorFileName = "Fatal.log";
-                var libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Resources); 
-                var errorFilePath = Path.Combine(libraryPath, errorFileName);  
+                var libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Resources);
+                var errorFilePath = Path.Combine(libraryPath, errorFileName);
                 var errorMessage = $"Time: {DateTime.Now}\r\nError: Unhandled Exception\r\n{exception}";
-                File.WriteAllText(errorFilePath, errorMessage);  
+                File.WriteAllText(errorFilePath, errorMessage);
             }
             catch
             {
                 // just suppress any error logging exceptions
             }
-        }  
+        }
 
         /// <summary>
         // If there is an unhandled exception, the exception information is displayed 

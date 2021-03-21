@@ -22,6 +22,7 @@ namespace neophyte.Droid
             base.OnCreate(savedInstanceState);
 
             Platform.Init(this, savedInstanceState);
+            Forms.SetFlags("SwipeView_Experimental");
             Forms.Init(this, savedInstanceState);
             Config.Init(this, savedInstanceState);
             UserDialogs.Init(this);
