@@ -15,7 +15,7 @@ namespace api.Data.Helpers
         {
             await using var writer = new StringWriter();
             await using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-            csv.Configuration.RegisterClassMap<AttendeeCsvMapper>();
+            csv.Context.RegisterClassMap<AttendeeCsvMapper>();
             await csv.WriteRecordsAsync(attendees);
             var csvString = writer.ToString();
             return Encoding.UTF8.GetBytes(csvString);
@@ -25,7 +25,7 @@ namespace api.Data.Helpers
         {
             await using var writer = new StringWriter();
             await using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-            csv.Configuration.RegisterClassMap<NewcomerCsvMapper>();
+            csv.Context.RegisterClassMap<NewcomerCsvMapper>();
             await csv.WriteRecordsAsync(newcomers);
             var csvString = writer.ToString();
             return Encoding.UTF8.GetBytes(csvString);
