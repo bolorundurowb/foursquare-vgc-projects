@@ -43,13 +43,13 @@ namespace api.Controllers
                 Content = "<p>See attached for reports</p>",
                 Attachments = new List<EmailAttachment>
                 {
-                    new EmailAttachment
+                    new()
                     {
                         Content = attendanceCsv,
                         MimeType = "text/csv",
                         Name = $"{formattedDateString}-attendance.csv"
                     },
-                    new EmailAttachment
+                    new()
                     {
                         Content = newcomerCsv,
                         MimeType = "text/csv",

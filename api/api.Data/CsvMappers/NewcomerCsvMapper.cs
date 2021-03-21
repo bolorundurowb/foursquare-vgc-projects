@@ -10,7 +10,7 @@ namespace api.Data.CsvMappers
             Map(x => x.SerialNo)
                 .Name("S/No")
                 .Index(0)
-                .Convert(x => x.Row.Parser.Row);
+                .Convert(x => x.Row.Parser.Row + 1);
             
             Map(x => x.FullName)
                 .Name("Full Name")
