@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using api.Shared.Email.Interfaces;
 using api.Shared.Email.Models;
-using dotenv.net.Interfaces;
+using dotenv.net.Utilities;
 using Microsoft.Extensions.Logging;
 
 namespace api.Shared.Email.Implementations
@@ -20,13 +20,13 @@ namespace api.Shared.Email.Implementations
         private readonly string _apiKey;
         private readonly string _domain;
 
-        public MailgunService(ILogger<IEmailService> logger, IHttpClientFactory httpFactory, IEnvReader envReader)
+        public MailgunService(ILogger<IEmailService> logger, IHttpClientFactory httpFactory)
         {
             _logger = logger;
             _httpFactory = httpFactory;
 
-            envReader.TryGetStringValue("MAILGUN_KEY", out _apiKey);
-            envReader.TryGetStringValue("MAILGUN_DOMAIN", out _domain);
+            EnvReader.TryGetStringValue("MAILGUN_KEY", out _apiKey);
+            EnvReader.TryGetStringValue("MAILGUN_DOMAIN", out _domain);
         }
 
         public async Task<bool> SendAsync(string recipient, EmailMessage emailMessage)

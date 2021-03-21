@@ -5,8 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="dotenv.net" Version="2.1.1" />
-      <PackageReference Include="dotenv.net.DependencyInjection.Microsoft" Version="2.1.1" />
       <PackageReference Include="FluentValidation" Version="8.6.3" />
       <PackageReference Include="logly" Version="2.0.0" />
       <PackageReference Include="Mapster" Version="7.1.5" />
