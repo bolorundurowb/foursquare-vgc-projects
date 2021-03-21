@@ -94,5 +94,15 @@ namespace api.Controllers
             await _attendanceRepo.RemoveAttendee(id);
             return Ok();
         }
+
+        [HttpPost("{date:DateTime}")]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> GenerateReportForDate(DateTime date, [FromBody] ReportGenBindingModel bm)
+        {
+            var formattedDateString = date.Date.ToString("yyyy-MM-dd");
+            var attendance = await _attendanceRepo.GetAttendance(date);
+            var attendees = await _attendanceRepo.GetAttendance(date);
+            return Ok(Mapper.Map<IEnumerable<AttendeeViewModel>>(attendees));
+        }
     }
 }
