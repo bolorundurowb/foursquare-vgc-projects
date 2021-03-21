@@ -1,4 +1,3 @@
-using System.IO;
 using System.Text;
 using System.Text.Json.Serialization;
 using api.Configuration;
@@ -8,7 +7,7 @@ using api.Data.Repositories.Implementations;
 using api.Data.Repositories.Interfaces;
 using api.Shared.Email.Implementations;
 using api.Shared.Email.Interfaces;
-using dotenv.net.DependencyInjection.Microsoft;
+using dotenv.net;
 using logly.Extensions;
 using Mapster;
 using MapsterMapper;
@@ -35,14 +34,14 @@ namespace api
         public void ConfigureServices(IServiceCollection services)
         {
             // read the environment vars
-            services.AddEnv(builder =>
+            if (_environment.IsDevelopment())
             {
-                builder
-                    .AddEncoding(Encoding.Default)
-                    .AddEnvFile(Path.GetFullPath(".env"))
-                    .AddThrowOnError(_environment.IsDevelopment());
-            });
-            services.AddEnvReader();
+                DotEnv.Fluent()
+                    .WithDefaultEncoding()
+                    .WithProbeForEnv()
+                    .WithExceptions()
+                    .Load();
+            }
 
             services.AddCors();
 

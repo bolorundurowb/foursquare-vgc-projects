@@ -32,18 +32,18 @@ namespace api.Controllers
         [ProducesResponseType(typeof(GenericViewModel), 400)]
         public async Task<IActionResult> GetNewcomersForDate(DateTime date)
         {
-            var attendees = await _newcomersRepo.GetNewcomers(date);
-            return Ok(Mapper.Map<IEnumerable<NewcomerViewModel>>(attendees));
+            var newcomers = await _newcomersRepo.GetNewcomers(date);
+            return Ok(Mapper.Map<IEnumerable<NewcomerViewModel>>(newcomers));
         }
 
         [HttpPost("")]
         [ProducesResponseType(typeof(NewcomerViewModel), 201)]
         public async Task<IActionResult> AddNewcomer([FromBody] NewcomerBindingModel bm)
         {
-            var attendee = await _newcomersRepo.AddNewcomer(bm.FullName, bm.HomeAddress, bm.Phone, bm.EmailAddress,
+            var newcomer = await _newcomersRepo.AddNewcomer(bm.FullName, bm.HomeAddress, bm.Phone, bm.EmailAddress,
                 bm.BirthDay, bm.Gender, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs, bm.BornAgain,
                 bm.BecomeMember, bm.Remarks);
-            return Created(Mapper.Map<NewcomerViewModel>(attendee));
+            return Created(Mapper.Map<NewcomerViewModel>(newcomer));
         }
 
         [HttpPut("{id}")]
@@ -53,10 +53,10 @@ namespace api.Controllers
         {
             try
             {
-                var attendee = await _newcomersRepo.UpdateNewcomer(id, bm.Date, bm.FullName, bm.HomeAddress, bm.Phone,
+                var newcomer = await _newcomersRepo.UpdateNewcomer(id, bm.Date, bm.FullName, bm.HomeAddress, bm.Phone,
                     bm.EmailAddress, bm.BirthDay, bm.Gender, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs,
                     bm.BornAgain, bm.BecomeMember, bm.Remarks);
-                return Ok(Mapper.Map<NewcomerViewModel>(attendee));
+                return Ok(Mapper.Map<NewcomerViewModel>(newcomer));
             }
             catch (NotFoundException ex)
             {

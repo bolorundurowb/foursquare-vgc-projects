@@ -7,7 +7,8 @@ namespace api.Data.Models
 {
     public class Newcomer : IEntity
     {
-        [BsonId] public ObjectId Id { get; private set; }
+        [BsonId] 
+        public ObjectId Id { get; private set; }
 
         public DateTime Date { get; private set; }
 
@@ -34,6 +35,9 @@ namespace api.Data.Models
         public MultiChoice? BecomeMember { get; private set; }
 
         public string Remarks { get; private set; }
+        
+        [BsonIgnore]
+        public int SerialNo { get; set; }
 
         private Newcomer()
         {

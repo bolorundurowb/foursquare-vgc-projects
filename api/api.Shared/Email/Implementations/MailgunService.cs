@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using api.Shared.Email.Interfaces;
 using api.Shared.Email.Models;
-using dotenv.net.Interfaces;
+using dotenv.net.Utilities;
 using Microsoft.Extensions.Logging;
 
 namespace api.Shared.Email.Implementations
@@ -20,13 +20,13 @@ namespace api.Shared.Email.Implementations
         private readonly string _apiKey;
         private readonly string _domain;
 
-        public MailgunService(ILogger<IEmailService> logger, IHttpClientFactory httpFactory, IEnvReader envReader)
+        public MailgunService(ILogger<IEmailService> logger, IHttpClientFactory httpFactory)
         {
             _logger = logger;
             _httpFactory = httpFactory;
 
-            envReader.TryGetStringValue("MAILGUN_KEY", out _apiKey);
-            envReader.TryGetStringValue("MAILGUN_DOMAIN", out _domain);
+            EnvReader.TryGetStringValue("MAILGUN_KEY", out _apiKey);
+            EnvReader.TryGetStringValue("MAILGUN_DOMAIN", out _domain);
         }
 
         public async Task<bool> SendAsync(string recipient, EmailMessage emailMessage)
@@ -59,12 +59,12 @@ namespace api.Shared.Email.Implementations
                 if (isSuccessful)
                 {
                     _logger.LogInformation(
-                        $"Email with subject '{emailMessage?.Subject}' successfully sent to '{recipient}'.");
+                        $"Email with subject '{emailMessage.Subject}' successfully sent to '{recipient}'.");
                 }
                 else
                 {
                     _logger.LogCritical(
-                        $"Email with subject '{emailMessage?.Subject}' failed being sent to '{recipient}'. Error message: {await response.Content.ReadAsStringAsync()}");
+                        $"Email with subject '{emailMessage.Subject}' failed being sent to '{recipient}'. Error message: {await response.Content.ReadAsStringAsync()}");
                 }
 
                 return isSuccessful;
