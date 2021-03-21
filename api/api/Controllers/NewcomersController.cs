@@ -6,6 +6,7 @@ using api.Data.Helpers;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
+using api.Shared.Email.Interfaces;
 using api.Shared.Email.Models;
 using api.Shared.Exceptions;
 using MapsterMapper;
@@ -16,10 +17,12 @@ namespace api.Controllers
     public class NewcomersController : BaseController
     {
         private readonly INewcomersRepository _newcomersRepo;
+        private readonly IEmailService _emailService;
 
-        public NewcomersController(IMapper mapper, INewcomersRepository newcomersRepo) : base(mapper)
+        public NewcomersController(IMapper mapper, INewcomersRepository newcomersRepo, IEmailService emailService) : base(mapper)
         {
             _newcomersRepo = newcomersRepo;
+            _emailService = emailService;
         }
 
         [HttpGet("")]
