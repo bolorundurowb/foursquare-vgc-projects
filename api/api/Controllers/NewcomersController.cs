@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using api.Configuration;
+using api.Data.Helpers;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
+using api.Shared.Email.Models;
 using api.Shared.Exceptions;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -70,6 +73,33 @@ namespace api.Controllers
         {
             await _newcomersRepo.RemoveNewcomer(id);
             return Ok();
+        }
+
+        [HttpPost("{date:DateTime}/send-report")]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> GenerateReportForDate(DateTime date, [FromBody] ReportGenBindingModel bm)
+        {
+            var formattedDateString = date.Date.ToString("yyyy-MM-dd");
+            var newcomers = await _newcomersRepo.GetNewcomers(date);
+            var newcomerCsv = await CsvHelpers.GenerateCsvFromNewcomers(newcomers);
+
+            var emailMessage = new EmailMessage
+            {
+                Subject = $"Newcomer Reports For {formattedDateString}",
+                Content = "<p>See attached for the generated report</p>",
+                Attachments = new List<EmailAttachment>
+                {
+                    new()
+                    {
+                        Content = newcomerCsv,
+                        MimeType = "text/csv",
+                        Name = $"{formattedDateString}.csv"
+                    }
+                }
+            };
+            await _emailService.SendAsync(bm?.EmailAddress ?? Config.DestinationEmail, emailMessage);
+
+            return NoContent();
         }
     }
 }
