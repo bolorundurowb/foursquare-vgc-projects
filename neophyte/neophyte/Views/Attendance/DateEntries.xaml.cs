@@ -41,19 +41,29 @@ namespace neophyte.Views.Attendance
 
         protected async void DeleteRecord(object sender, EventArgs e)
         {
-            if (((SwipeItemView) sender).BindingContext is AttendeeViewModel attendee)
+            var shouldDelete = await DisplayAlert("Confirm Delete",
+                "Are you sure you want to permanently delete this attendee?", "Yes", "No");
+
+            if (shouldDelete)
             {
-                await _attendanceClient.DeleteAttendee(attendee.Id);
+                if (((SwipeItemView) sender).BindingContext is AttendeeViewModel attendee)
+                {
+                    await _attendanceClient.DeleteAttendee(attendee.Id);
 
-                // refresh view
-                collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != attendee.Id);
+                    // refresh view
+                    collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != attendee.Id);
 
-                // notify user
-                Toasts.DisplaySuccess("Entry successfully removed.");
+                    // notify user
+                    Toasts.DisplaySuccess("Entry successfully removed.");
+                }
+                else
+                {
+                    Toasts.DisplayError("An error occurred when deleting the entry.");
+                }
             }
             else
             {
-                Toasts.DisplayError("An error occurred when deleting the entry.");
+                Toasts.DisplayInfo("Operation cancelled.");
             }
         }
 

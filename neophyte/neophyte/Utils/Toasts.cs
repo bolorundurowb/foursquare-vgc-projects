@@ -14,6 +14,11 @@ namespace neophyte.Utils
         {
             Display(message, "#4D9947");
         }
+        
+        public static void DisplayInfo(string message)
+        {
+            Display(message, "#49ABE8");
+        }
 
         private static void Display(string message, string colorHex)
         {
