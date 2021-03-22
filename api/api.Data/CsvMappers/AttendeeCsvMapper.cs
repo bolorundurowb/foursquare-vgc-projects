@@ -25,7 +25,7 @@ namespace api.Data.CsvMappers
                 .Index(3);
 
             Map(x => x.ResidentialAddress)
-                .Name("ResidentialAddress")
+                .Name("Residential Address")
                 .Index(4);
 
             Map(x => x.SeatNumber)
@@ -53,7 +53,7 @@ namespace api.Data.CsvMappers
                 .Convert(x => x.Value.CaredForSickPerson ? "Yes" : "No");
 
             Map(x => x.HaveCovidSymptoms)
-                .Name("Do you have a cough, catarrh or sore-throat??")
+                .Name("Do you have a cough, catarrh or sore-throat?")
                 .Index(10)
                 .Convert(x => x.Value.HaveCovidSymptoms.GetValueOrDefault().ToString());
         }
