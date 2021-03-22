@@ -50,11 +50,6 @@ namespace neophyte.Views.Newcomers
             var email = await DisplayPromptAsync("Report", "What email address should the report be sent to?",
                 "Generate", "Cancel", "e.g john@doe.org", keyboard: Keyboard.Email);
 
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                return;
-            }
-
             if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _reportClient.GenerateReport(summary.Date, email);
