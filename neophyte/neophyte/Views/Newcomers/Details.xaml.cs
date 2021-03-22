@@ -5,6 +5,7 @@ using MapsterMapper;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
 using neophyte.Models.View;
+using neophyte.Utils;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
@@ -22,9 +23,6 @@ namespace neophyte.Views.Newcomers
         public NewcomerDetailsPage(NewcomerViewModel newcomer, bool inEditMode = false)
         {
             InitializeComponent();
-
-            Title = "Newcomer Details";
-            SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
 
             // set drop down values
             cmbMonths.ItemsSource = Constants.Months;
@@ -77,8 +75,10 @@ namespace neophyte.Views.Newcomers
             {
                 newcomer.BirthDay = $"{cmbMonths.SelectedItem} {cmbDays.SelectedItem}";
                 var response = await _newcomerClient.Update(vm.Id, newcomer);
+
                 // alert the user
-                await DisplayAlert("Success", "Newcomer details updated successfully.", "Okay");
+                Toasts.DisplaySuccess("Newcomer successfully updated.");
+
                 // set the display values
                 SetNewcomerDisplayValues(response);
             }
