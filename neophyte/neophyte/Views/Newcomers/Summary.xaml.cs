@@ -20,11 +20,6 @@ namespace neophyte.Views.Newcomers
         {
             InitializeComponent();
 
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                btnAddRecord.TextColor = Color.Black;
-            }
-
             _newcomerClient = new NewcomerClient();
             _reportClient = new ReportClient();
         }

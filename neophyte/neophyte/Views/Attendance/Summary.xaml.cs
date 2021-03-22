@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using Acr.UserDialogs;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using neophyte.Utils;
@@ -19,11 +18,6 @@ namespace neophyte.Views.Attendance
         public AttendanceDateSummariesPage()
         {
             InitializeComponent();
-
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                btnAddRecord.TextColor = Color.Black;
-            }
 
             _attendanceClient = new AttendanceClient();
             _reportClient = new ReportClient();
