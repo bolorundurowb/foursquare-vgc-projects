@@ -8,7 +8,8 @@ namespace api.Data.Models
 {
     public class Attendee : IEntity
     {
-        [BsonId] public ObjectId Id { get; private set; }
+        [BsonId] 
+        public ObjectId Id { get; private set; }
 
         public DateTime Date { get; private set; }
 
@@ -33,6 +34,9 @@ namespace api.Data.Models
         public MultiChoice? HaveCovidSymptoms { get; private set; }
 
         public int? SeatNumber { get; private set; }
+        
+        [BsonIgnore]
+        public int SerialNo { get; set; }
 
         private Attendee()
         {

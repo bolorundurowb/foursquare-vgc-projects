@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using api.Configuration;
@@ -28,6 +29,7 @@ namespace api.Controllers
 
         [HttpPost("{date:DateTime}")]
         [ProducesResponseType(200)]
+        [Obsolete("Use the entity specific methods")]
         public async Task<IActionResult> GenerateReports(DateTime date, [FromBody] ReportGenBindingModel bm)
         {
             var formattedDateString = date.Date.ToString("yyyy-MM-dd");
@@ -43,13 +45,13 @@ namespace api.Controllers
                 Content = "<p>See attached for reports</p>",
                 Attachments = new List<EmailAttachment>
                 {
-                    new EmailAttachment
+                    new()
                     {
                         Content = attendanceCsv,
                         MimeType = "text/csv",
                         Name = $"{formattedDateString}-attendance.csv"
                     },
-                    new EmailAttachment
+                    new()
                     {
                         Content = newcomerCsv,
                         MimeType = "text/csv",

@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    x:Class="neophyte.Views.Newcomers.RecordNewcomerPage"
+    Style="{StaticResource PageStyle}">
+    <ContentPage.Content>
+        <ScrollView
+            x:Name="scrollView">
+            <StackLayout
+                Orientation="Vertical"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Button
+                        Style="{StaticResource BackButtonStyle}"
+                        Clicked="GoBack" />
+
+                    <Label
+                        Text="Add Record."
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource PageHeaderStyle}" />
+                </StackLayout>
+
+                <Label
+                    Text="Full Name:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Entry
+                    Placeholder="e.g John Doe"
+                    Text="{Binding FullName, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Home Address:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Entry
+                    Placeholder="e.g 12, Sample Street ..."
+                    Text="{Binding HomeAddress, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Phone Number:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Entry
+                    Keyboard="Telephone"
+                    Placeholder="e.g 08017382719"
+                    Text="{Binding Phone, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Email Address:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Entry
+                    Keyboard="Email"
+                    Placeholder="e.g john@doe.org"
+                    Text="{Binding EmailAddress, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Birthday:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Fill">
+                    <Picker
+                        x:Name="cmbMonths"
+                        Style="{StaticResource FormPickerStyle}" />
+                    <Picker
+                        x:Name="cmbDays"
+                        Style="{StaticResource FormPickerStyle}" />
+                </StackLayout>
+
+                <Label
+                    Text="Gender:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Picker
+                    x:Name="cmbGender"
+                    SelectedItem="{Binding Gender, Mode=TwoWay}"
+                    Style="{StaticResource FormPickerStyle}" />
+
+                <Label
+                    Text="Age Group:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Picker
+                    x:Name="cmbAgeGroup"
+                    SelectedItem="{Binding AgeGroup, Mode=TwoWay}"
+                    Style="{StaticResource FormPickerStyle}" />
+
+                <Label
+                    Text="Comments/Prayer Points:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Editor
+                    Placeholder="I want God to ..."
+                    Text="{Binding CommentsOrPrayers, Mode=TwoWay}"
+                    Style="{StaticResource FormEditorStyle}" />
+
+                <Label
+                    Text="How Did You Get To Know About Us:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Entry
+                    Placeholder="From my ..."
+                    Text="{Binding HowYouFoundUs, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Are You Born Again?:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <input:RadioButtonGroupView
+                    SelectedItem="{Binding BornAgain, Mode=TwoWay}"
+                    Style="{StaticResource FormRadioGroupStyle}">
+                    <input:RadioButton
+                        Text="Yes"
+                        Value="Yes"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                    <input:RadioButton
+                        Text="No"
+                        Value="No"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                    <input:RadioButton
+                        Text="Interested In"
+                        Value="Maybe"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                </input:RadioButtonGroupView>
+
+                <Label
+                    Text="Would You Like To Become A Member Of This Church?:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <input:RadioButtonGroupView
+                    SelectedItem="{Binding BecomeMember, Mode=TwoWay}"
+                    Style="{StaticResource FormRadioGroupStyle}">
+                    <input:RadioButton
+                        Text="Yes"
+                        Value="Yes"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                    <input:RadioButton
+                        Text="No"
+                        Value="No"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                    <input:RadioButton
+                        Text="Maybe"
+                        Value="Maybe"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                </input:RadioButtonGroupView>
+
+                <Button
+                    x:Name="btnSave"
+                    Text="Register"
+                    Style="{StaticResource SharedButtonStyle}"
+                    Clicked="Record" />
+
+                <ActivityIndicator
+                    x:Name="prgSaving"
+                    IsVisible="False"
+                    Style="{StaticResource ProgressStyle}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

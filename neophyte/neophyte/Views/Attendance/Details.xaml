@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             x:Class="neophyte.Views.Attendance.AttendeeDetailsPage"
+             Style="{StaticResource PageStyle}">
+    <ContentPage.Content>
+        <ScrollView x:Name="scrollView">
+            <StackLayout
+                Orientation="Vertical"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Button
+                        Style="{StaticResource BackButtonStyle}"
+                        Clicked="GoBack" />
+
+                    <Label
+                        Text="Details."
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource PageHeaderStyle}" />
+                    
+                    <Button
+                        Style="{StaticResource EditButtonStyle}"
+                        Clicked="EnableEditMode" />
+                </StackLayout>
+                
+                <Label
+                    Text="Full Name:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Label x:Name="lblFullName"
+                    Text="{Binding FullName}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
+                <Entry
+                    x:Name="txtFullName"
+                    IsVisible="False"
+                    Placeholder="e.g John Doe"
+                    Text="{Binding FullName, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Email:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Label x:Name="lblEmailAddress"
+                    Text="{Binding EmailAddress}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
+                <Entry
+                    x:Name="txtEmail"
+                    IsVisible="False"
+                    Keyboard="Email"
+                    Placeholder="e.g john@doe.org"
+                    Text="{Binding EmailAddress, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Age (in years):"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Label x:Name="lblAge"
+                    Text="{Binding Age}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
+                <Entry
+                    x:Name="txtAge"
+                    IsVisible="False"
+                    Keyboard="Numeric"
+                    Placeholder="e.g 27"
+                    Text="{Binding Age, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Gender:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Label x:Name="lblGender"
+                    Text="{Binding Gender}"
+                    Style="{StaticResource FormDisplayLabelStyle}"/>
+                <Picker
+                    x:Name="cmbGender"
+                    IsVisible="False"
+                    SelectedItem="{Binding Gender, Mode=TwoWay}"
+                    Style="{StaticResource FormPickerStyle}" />
+
+                <Label
+                    Text="Phone Number:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Label x:Name="lblPhoneNumber"
+                    Text="{Binding Phone}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
+                <Entry
+                    x:Name="txtPhoneNumber"
+                    IsVisible="False"
+                    Keyboard="Telephone"
+                    Placeholder="e.g 09023729364"
+                    Text="{Binding Phone, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Residential Address:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Label x:Name="lblResidentialAddress"
+                    Text="{Binding ResidentialAddress}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
+                <Editor
+                    x:Name="txtResidentialAddress"
+                    IsVisible="False"
+                    Placeholder="e.g 12 Sample Street ..."
+                    Text="{Binding ResidentialAddress, Mode=TwoWay}"
+                    Style="{StaticResource FormEditorStyle}" />
+
+                <Label
+                    Text="Seat Number:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Label x:Name="lblSeatNumber"
+                    Text="{Binding SeatNumber}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
+                <Entry
+                    x:Name="txtSeatNumber"
+                    IsVisible="False"
+                    Keyboard="Numeric"
+                    Placeholder="e.g 234"
+                    Text="{Binding SeatNumber, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <controls:CheckBox 
+                    x:Name="chkReturnedInTenDays"
+                    IsDisabled="True"
+                    Text="Did you return from a trip overseas in the last 10 days?"
+                    IsChecked="{Binding ReturnedInLastTenDays}"
+                    Style="{StaticResource FormCheckBoxStyle}" />
+
+                <controls:CheckBox 
+                    x:Name="chkLiveWithCaregivers"
+                    IsDisabled="True"
+                    Text="Do you live with Covid-19 caregivers / health workers?"
+                    IsChecked="{Binding LiveWithCovidCaregivers}"
+                    Style="{StaticResource FormCheckBoxStyle}" />
+
+                <controls:CheckBox
+                    x:Name="chkCaredForSick"
+                    IsDisabled="True"
+                    Text="Did you recently care for any sick individual at home or in hospital?"
+                    IsChecked="{Binding CaredForSickPerson}"
+                    Style="{StaticResource FormCheckBoxStyle}" />
+
+                <Label x:Name="lblCovidSymptoms"
+                    Text="Do you presently have cold, cough, fever, sore throat, loss of smell or loss of appetite?:"
+                    Style="{StaticResource FormLabelStyle}" />
+
+                <controls:RadioButtonGroupView
+                    x:Name="rdbCovidSymptoms"
+                    IsEnabled="False"
+                    SelectedItem="{Binding HaveCovidSymptoms}"
+                    Style="{StaticResource FormRadioGroupStyle}">
+                    <controls:RadioButton
+                        Text="Yes"
+                        Value="Yes"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                    <controls:RadioButton
+                        Text="No"
+                        Value="No"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                    <controls:RadioButton
+                        Text="Maybe"
+                        Value="Maybe"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                </controls:RadioButtonGroupView>
+
+                <Button
+                    x:Name="btnUpdate"
+                    Text="Update"
+                    IsVisible="False"
+                    Style="{StaticResource SharedButtonStyle}"
+                    Clicked="UpdateAttendee" />
+
+                <ActivityIndicator
+                    x:Name="prgSaving"
+                    IsVisible="False"
+                    Style="{StaticResource ProgressStyle}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

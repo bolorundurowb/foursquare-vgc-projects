@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Xamarin.Forms;
@@ -9,7 +10,7 @@ using Platform = Xamarin.Essentials.Platform;
 
 namespace neophyte.Droid
 {
-    [Activity(Label = "Neophyte", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "Neophyte", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", 
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
@@ -21,8 +22,10 @@ namespace neophyte.Droid
             base.OnCreate(savedInstanceState);
 
             Platform.Init(this, savedInstanceState);
+            Forms.SetFlags("SwipeView_Experimental");
             Forms.Init(this, savedInstanceState);
             Config.Init(this, savedInstanceState);
+            UserDialogs.Init(this);
             LoadApplication(new App());
 
             Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>()

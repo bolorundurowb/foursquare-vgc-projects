@@ -1,18 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="dotenv.net" Version="2.1.1" />
-      <PackageReference Include="dotenv.net.DependencyInjection.Microsoft" Version="2.1.1" />
-      <PackageReference Include="FluentValidation" Version="8.6.3" />
+      <PackageReference Include="ClosedXML" Version="0.95.4" />
+      <PackageReference Include="FluentValidation" Version="9.5.3" />
       <PackageReference Include="logly" Version="2.0.0" />
-      <PackageReference Include="Mapster" Version="6.5.0" />
+      <PackageReference Include="Mapster" Version="7.1.5" />
       <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
-      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
     </ItemGroup>
 
     <ItemGroup>

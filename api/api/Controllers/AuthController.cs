@@ -26,7 +26,7 @@ namespace api.Controllers
         [ProducesResponseType(typeof(GenericViewModel), 400)]
         public async Task<IActionResult> Login([FromBody] LoginBindingModel bm)
         {
-            var (isValid, errorMessages) = await IsValid<LoginBindingModelValidator>(bm);
+            var (isValid, errorMessages) = await IsValid<LoginBindingModelValidator, LoginBindingModel>(bm);
             if (!isValid)
             {
                 return BadRequest(errorMessages);

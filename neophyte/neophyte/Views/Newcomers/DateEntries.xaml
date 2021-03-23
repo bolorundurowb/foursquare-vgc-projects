@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="neophyte.Views.Newcomers.NewcomersByDatePage"
+    Style="{StaticResource PageStyle}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="PersonTemplate">
+                <SwipeView
+                    HeightRequest="110">
+                    <SwipeView.RightItems>
+                        <SwipeItems
+                            Mode="Reveal">
+                            <SwipeItemView
+                                Invoked="DeleteRecord">
+                                <Grid Style="{StaticResource GeneralSwipeActionStyle}">
+                                    <BoxView
+                                        Style="{StaticResource RedItemBorderStyle}" />
+                                    <Image
+                                        Source="delete.png"
+                                        Style="{StaticResource SwipeItemIconStyle}" />
+                                    <Label
+                                        Text="Delete Entry"
+                                        Style="{StaticResource SwipeItemTextStyle}" />
+                                </Grid>
+                            </SwipeItemView>
+                            <SwipeItemView
+                                Invoked="EditRecord">
+                                <Grid Style="{StaticResource GeneralSwipeActionStyle}">
+                                    <BoxView
+                                        Style="{StaticResource GreenItemBorderStyle}" />
+                                    <Image
+                                        Source="edit.png"
+                                        Style="{StaticResource SwipeItemIconStyle}" />
+                                    <Label
+                                        Text="Edit Entry"
+                                        Style="{StaticResource SwipeItemTextStyle}" />
+                                </Grid>
+                            </SwipeItemView>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <SwipeView.Content>
+                        <Grid BackgroundColor="{StaticResource LightGreyColour}">
+                            <Frame
+                                Style="{StaticResource FrameStyle}">
+                                <Grid
+                                    VerticalOptions="Center"
+                                    RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Text="{Binding FullName}"
+                                        Style="{StaticResource FullNameStyle}" />
+                                    <Label
+                                        Grid.Column="0"
+                                        Grid.Row="1"
+                                        Text="{Binding Phone}"
+                                        Style="{StaticResource PhoneNumberStyle}" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </SwipeView.Content>
+                </SwipeView>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+            <StackLayout
+                Orientation="Horizontal">
+                <Button
+                    Style="{StaticResource BackButtonStyle}"
+                    Clicked="GoBack" />
+
+                <Label
+                    x:Name="lblHeader"
+                    Text="Attendees."
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource PageHeaderStyle}" />
+            </StackLayout>
+
+            <ActivityIndicator
+                x:Name="prgLoading"
+                IsVisible="True"
+                Style="{StaticResource ProgressStyle}" />
+
+            <CollectionView
+                x:Name="collectionDateEntries"
+                ItemTemplate="{StaticResource PersonTemplate}"
+                Margin="12, 12, 12, 0"
+                IsVisible="False"
+                SelectionMode="Single"
+                SelectionChanged="ViewPersonRecord">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Vertical"
+                        ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

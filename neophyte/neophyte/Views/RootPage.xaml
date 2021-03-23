@@ -4,29 +4,18 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:newcomers="clr-namespace:neophyte.Views.Newcomers;assembly=neophyte"
-            xmlns:registration="clr-namespace:neophyte.Views.Registration;assembly=neophyte"
             xmlns:attendance="clr-namespace:neophyte.Views.Attendance;assembly=neophyte"
             android:TabbedPage.ToolbarPlacement="Bottom"
             android:TabbedPage.UnselectedTabColor="#66FFFFFF"
-            android:TabbedPage.SelectedTabColor="White"
+            android:TabbedPage.SelectedTabColor="{StaticResource LightGreyColour}"
             android:TabbedPage.IsSwipePagingEnabled="False"
             x:Class="neophyte.Views.RootPage"
             NavigationPage.HasNavigationBar="False"
-            BarBackgroundColor="#92278F"
-            BarTextColor="White">
+            BarBackgroundColor="{StaticResource DarkColour}"
+            BarTextColor="{StaticResource LightGreyColour}">
     <NavigationPage
         Title="Newcomers"
         IconImageSource="newcomer.png">
-        <NavigationPage.BarBackgroundColor>
-            <OnPlatform x:TypeArguments="Color">
-                <On Platform="iOS">#92278F</On>
-            </OnPlatform>
-        </NavigationPage.BarBackgroundColor>
-        <NavigationPage.BarTextColor>
-            <OnPlatform x:TypeArguments="Color">
-                <On Platform="iOS">Black</On>
-            </OnPlatform>
-        </NavigationPage.BarTextColor>
         <x:Arguments>
             <newcomers:NewcomersDateSummariesPage />
         </x:Arguments>
@@ -35,16 +24,6 @@
     <NavigationPage
         Title="Attendance"
         IconImageSource="register.png">
-        <NavigationPage.BarBackgroundColor>
-            <OnPlatform x:TypeArguments="Color">
-                <On Platform="iOS">#92278F</On>
-            </OnPlatform>
-        </NavigationPage.BarBackgroundColor>
-        <NavigationPage.BarTextColor>
-            <OnPlatform x:TypeArguments="Color">
-                <On Platform="iOS">Black</On>
-            </OnPlatform>
-        </NavigationPage.BarTextColor>
         <x:Arguments>
             <attendance:AttendanceDateSummariesPage />
         </x:Arguments>

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    x:Class="neophyte.Views.Attendance.RegisterAttendeePage"
+    Style="{StaticResource PageStyle}">
+    <ContentPage.Content>
+        <ScrollView
+            x:Name="scrollView">
+            <StackLayout
+                Orientation="Vertical"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Button
+                        Style="{StaticResource BackButtonStyle}"
+                        Clicked="GoBack" />
+
+                    <Label
+                        Text="Register Attendee."
+                        Style="{StaticResource PageHeaderStyle}" />
+                </StackLayout>
+
+                <Label
+                    TextColor="Red"
+                    HorizontalTextAlignment="Center"
+                    FontFamily="NexaB"
+                    Text="Please, be informed that your data would be made available to the government should there arise a need for contact tracing. Thank you"
+                    Margin="0, 10, 0, 0" />
+
+                <controls:CheckBox
+                    Text="Did you return from a trip overseas in the last 10 days?"
+                    IsChecked="{Binding ReturnedInLastTenDays, Mode=TwoWay}"
+                    Style="{StaticResource FormCheckBoxStyle}"
+                    CheckChanged="EvaluateValidity" />
+
+                <controls:CheckBox
+                    Text="Do you live with Covid-19 caregivers / health workers?"
+                    IsChecked="{Binding LiveWithCovidCaregivers, Mode=TwoWay}"
+                    Style="{StaticResource FormCheckBoxStyle}"
+                    CheckChanged="EvaluateValidity" />
+
+                <controls:CheckBox
+                    Text="Did you recently care for any sick individual at home or in hospital?"
+                    IsChecked="{Binding CaredForSickPerson, Mode=TwoWay}"
+                    Style="{StaticResource FormCheckBoxStyle}"
+                    CheckChanged="EvaluateValidity" />
+
+                <Label
+                    Text="Do You Presently Have A Cold, Cough, Fever, Sore Throat, Loss Of Smell Or Loss Of Appetite?:"
+                    Style="{StaticResource FormLabelStyle}" />
+
+                <controls:RadioButtonGroupView
+                    SelectedItem="{Binding HaveCovidSymptoms, Mode=TwoWay}"
+                    Style="{StaticResource FormRadioGroupStyle}"
+                    SelectedItemChanged="EvaluateValidity">
+                    <controls:RadioButton
+                        Text="Yes"
+                        Value="Yes"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                    <controls:RadioButton
+                        Text="No"
+                        Value="No"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                    <controls:RadioButton
+                        Text="Maybe"
+                        Value="Maybe"
+                        Style="{StaticResource FormRadioButtonStyle}" />
+                </controls:RadioButtonGroupView>
+
+                <Label
+                    Text="Full Name:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Entry
+                    Placeholder="e.g John Doe"
+                    Text="{Binding FullName, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Email:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Entry
+                    Placeholder="e.g john@doe.org"
+                    Keyboard="Email"
+                    Text="{Binding EmailAddress, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Age (in years):"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Entry
+                    Placeholder="e.g 27"
+                    Keyboard="Numeric"
+                    Text="{Binding Age, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Label
+                    Text="Gender:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Picker
+                    x:Name="cmbGender"
+                    SelectedItem="{Binding Gender, Mode=TwoWay}"
+                    Style="{StaticResource FormPickerStyle}" />
+
+                <Label
+                    Text="Phone Number:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Entry
+                    Placeholder="e.g 09023729364"
+                    Text="{Binding Phone, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}"
+                    Keyboard="Telephone" />
+
+                <Label
+                    Text="Residential Address:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Editor
+                    Placeholder="e.g 12 Sample Street ..."
+                    Text="{Binding ResidentialAddress, Mode=TwoWay}"
+                    Style="{StaticResource FormEditorStyle}" />
+
+                <Label
+                    Text="Seat Number:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Entry
+                    Placeholder="e.g 234"
+                    Keyboard="Numeric"
+                    Text="{Binding SeatNumber, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}" />
+
+                <Button x:Name="btnSave"
+                        Text="Register"
+                        Style="{StaticResource SharedButtonStyle}"
+                        Clicked="Register" />
+
+                <ActivityIndicator
+                    x:Name="prgSaving"
+                    Style="{StaticResource ProgressStyle}"
+                    IsVisible="False" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

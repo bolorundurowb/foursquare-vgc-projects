@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System;
 using System.Threading.Tasks;
 using api.Models.View;
 using FluentValidation;
@@ -68,12 +69,12 @@ namespace api.Controllers
             });
         }
 
-        internal static async Task<(bool, IEnumerable<string>)> IsValid<T>(object model) where T : IValidator, new()
+        internal static async Task<(bool, IEnumerable<string>)> IsValid<TValidator, TModel>(TModel model) where TValidator : IValidator<TModel>, new()
         {
-            var results = await Validate<T>(model);
+            var results = await Validate<TValidator, TModel>(model);
             if (results.IsValid)
             {
-                return (true, new string[0]);
+                return (true, Array.Empty<string>());
             }
 
             var errorMessages = results.Errors
@@ -82,9 +83,9 @@ namespace api.Controllers
             return (false, errorMessages);
         }
 
-        private static async Task<ValidationResult> Validate<T>(object model) where T : IValidator, new()
+        private static async Task<ValidationResult> Validate<TValidator, TModel>(TModel model) where TValidator : IValidator<TModel>, new()
         {
-            var validator = new T();
+            var validator = new TValidator();
             return await validator.ValidateAsync(model);
         }
     }
