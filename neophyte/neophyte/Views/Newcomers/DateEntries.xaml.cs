@@ -28,10 +28,10 @@ namespace neophyte.Views.Newcomers
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            
+
             // set the header
             lblHeader.Text = _date.ToString("d MMM \\'yy.");
-            
+
             // load page data
             await LoadDateRecords();
             prgLoading.IsVisible = false;
@@ -40,19 +40,29 @@ namespace neophyte.Views.Newcomers
 
         protected async void DeleteRecord(object sender, EventArgs e)
         {
-            if (((SwipeItemView) sender).BindingContext is NewcomerViewModel newcomer)
-            {
-                await _newcomerClient.DeleteNewcomer(newcomer.Id);
-                
-                // refresh view
-                collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != newcomer.Id);
+            var shouldDelete = await DisplayAlert("Confirm Delete",
+                "Are you sure you want to permanently delete this newcomer?", "Yes", "No");
 
-                // notify user
-                Toasts.DisplaySuccess("Entry successfully removed.");
+            if (shouldDelete)
+            {
+                if (((SwipeItemView) sender).BindingContext is NewcomerViewModel newcomer)
+                {
+                    await _newcomerClient.DeleteNewcomer(newcomer.Id);
+
+                    // refresh view
+                    collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != newcomer.Id);
+
+                    // notify user
+                    Toasts.DisplaySuccess("Entry successfully removed.");
+                }
+                else
+                {
+                    Toasts.DisplayError("An error occurred when deleting the entry.");
+                }
             }
             else
             {
-                Toasts.DisplayError("An error occurred when deleting the entry.");
+                Toasts.DisplayInfo("Operation cancelled.");
             }
         }
 

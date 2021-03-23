@@ -10,21 +10,25 @@ namespace neophyte.DataAccess.Interfaces
         [Get("/newcomers")]
         [Headers("Authorization: Bearer")]
         Task<DateSummaryViewModel[]> Get();
-        
+
         [Post("/newcomers")]
         [Headers("Authorization: Bearer")]
         Task Register([Body] NewcomerBindingModel payload);
-        
+
         [Put("/newcomers/{id}")]
         [Headers("Authorization: Bearer")]
         Task<NewcomerViewModel> Update(string id, [Body] NewcomerUpdateBindingModel payload);
-        
+
         [Get("/newcomers/{date}")]
         [Headers("Authorization: Bearer")]
         Task<NewcomerViewModel[]> GetNewcomersForDate(string date);
-        
+
         [Delete("/newcomers/{id}")]
         [Headers("Authorization: Bearer")]
         Task DeleteNewcomer(string id);
+
+        [Post("/newcomers/{date}/send-report")]
+        [Headers("Authorization: Bearer")]
+        Task SendReport(string date, [Body] ReportGenBindingModel payload);
     }
 }

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
+using neophyte.Utils;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
@@ -20,9 +21,6 @@ namespace neophyte.Views.Attendance
         public RegisterAttendeePage()
         {
             InitializeComponent();
-
-            Title = "Register";
-            SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#52004C"));
 
             // set drop down values
             cmbGender.ItemsSource = Constants.Genders;
@@ -60,8 +58,10 @@ namespace neophyte.Views.Attendance
             try
             {
                 await _attendanceClient.Register(attendee);
+
                 // alert the user
-                await DisplayAlert("Success", "Attendee successfully registered.", "Okay");
+                Toasts.DisplaySuccess("Attendee successfully registered.");
+
                 // set the controls
                 await ResetControlsAsync();
             }

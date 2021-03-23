@@ -5,6 +5,7 @@ using MapsterMapper;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
 using neophyte.Models.View;
+using neophyte.Utils;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
@@ -48,7 +49,7 @@ namespace neophyte.Views.Attendance
         {
             var vm = BindingContext as AttendeeViewModel;
             var attendee = _mapper.Map<AttendeeUpdateBindingModel>(vm);
-            
+
             // validate inputs
             var validationResult = await _attendanceValidator.ValidateAsync(attendee);
             if (!validationResult.IsValid)
@@ -65,15 +66,17 @@ namespace neophyte.Views.Attendance
                     return;
                 }
             }
-            
+
             btnUpdate.IsVisible = false;
             prgSaving.IsVisible = true;
-            
+
             try
             {
                 var response = await _attendanceClient.Update(vm.Id, attendee);
+
                 // alert the user
-                await DisplayAlert("Success", "Attendee details updated successfully.", "Okay");
+                Toasts.DisplaySuccess("Attendee details updated successfully.");
+
                 // set the display values
                 SetAttendeeDisplayValue(response);
             }
@@ -85,7 +88,7 @@ namespace neophyte.Views.Attendance
             {
                 await DisplayAlert("Error", "An error occurred.", "Okay");
             }
-            
+
             btnUpdate.IsVisible = true;
             prgSaving.IsVisible = false;
             await scrollView.ScrollToAsync(0, 0, true);
@@ -118,7 +121,7 @@ namespace neophyte.Views.Attendance
             chkLiveWithCaregivers.IsVisible = false;
             chkReturnedInTenDays.IsVisible = false;
             rdbCovidSymptoms.IsVisible = false;
-            
+
             // show the inputs
             btnUpdate.IsVisible = true;
             txtAge.IsVisible = true;
@@ -145,7 +148,7 @@ namespace neophyte.Views.Attendance
             chkLiveWithCaregivers.IsVisible = true;
             chkReturnedInTenDays.IsVisible = true;
             rdbCovidSymptoms.IsVisible = true;
-            
+
             // show the inputs
             btnUpdate.IsVisible = false;
             txtAge.IsVisible = false;
