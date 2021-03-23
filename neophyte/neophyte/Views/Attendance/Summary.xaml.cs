@@ -47,7 +47,13 @@ namespace neophyte.Views.Attendance
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
             var email = await DisplayPromptAsync("Report", "What email address should the report be sent to?",
-                "Generate", "Cancel", "e.g john@doe.org", keyboard: Keyboard.Email);
+                "Send", "Cancel", "e.g john@doe.org (optional)", keyboard: Keyboard.Email);
+
+            if (email == null)
+            {
+                Toasts.DisplayInfo("Operation cancelled.");
+                return;
+            }
 
             if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
             {
