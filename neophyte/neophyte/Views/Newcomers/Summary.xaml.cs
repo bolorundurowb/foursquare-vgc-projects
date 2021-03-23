@@ -14,14 +14,11 @@ namespace neophyte.Views.Newcomers
     public partial class NewcomersDateSummariesPage : ContentPage
     {
         private readonly NewcomerClient _newcomerClient;
-        private readonly ReportClient _reportClient;
 
         public NewcomersDateSummariesPage()
         {
             InitializeComponent();
-
             _newcomerClient = new NewcomerClient();
-            _reportClient = new ReportClient();
         }
 
         protected override async void OnAppearing()
@@ -58,7 +55,7 @@ namespace neophyte.Views.Newcomers
 
             if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
             {
-                await _reportClient.GenerateReport(summary.Date, email);
+                await _newcomerClient.SendNewcomerReports(summary.Date, email);
                 Toasts.DisplaySuccess("Report successfully generated and sent.");
             }
             else
