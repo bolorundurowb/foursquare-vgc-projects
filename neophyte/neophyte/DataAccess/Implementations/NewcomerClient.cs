@@ -44,5 +44,10 @@ namespace neophyte.DataAccess.Implementations
         {
             return _newcomerClient.DeleteNewcomer(id);
         }
+
+        public Task SendNewcomerReports(string id)
+        {
+            return _newcomerClient.DeleteNewcomer(id);
+        }
     }
 }

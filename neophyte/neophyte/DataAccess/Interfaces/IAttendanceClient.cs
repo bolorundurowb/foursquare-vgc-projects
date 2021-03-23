@@ -10,20 +10,24 @@ namespace neophyte.DataAccess.Interfaces
         [Get("/attendance")]
         [Headers("Authorization: Bearer")]
         Task<DateSummaryViewModel[]> Get();
-        
+
         [Post("/attendance")]
         Task Register([Body] AttendeeBindingModel payload);
-        
+
         [Get("/attendance/{date}")]
         [Headers("Authorization: Bearer")]
         Task<AttendeeViewModel[]> GetAttendanceForDate(string date);
-        
+
         [Put("/attendance/{id}")]
         [Headers("Authorization: Bearer")]
         Task<AttendeeViewModel> Update(string id, [Body] AttendeeUpdateBindingModel payload);
-        
+
         [Delete("/attendance/{id}")]
         [Headers("Authorization: Bearer")]
         Task DeleteAttendee(string id);
+
+        [Post("/attendance/{date}/send-report")]
+        [Headers("Authorization: Bearer")]
+        Task SendReport(string date, [Body] ReportGenBindingModel payload);
     }
 }
