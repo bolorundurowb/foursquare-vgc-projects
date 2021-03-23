@@ -44,5 +44,14 @@ namespace neophyte.DataAccess.Implementations
         {
             return _attendanceClient.DeleteAttendee(id);
         }
+
+        public Task SendNewcomerReports(DateTime date, string email)
+        {
+            var bm = new ReportGenBindingModel
+            {
+                EmailAddress = email
+            };
+            return _attendanceClient.SendReport(date.ToString("yyyy-MM-dd"), bm);
+        }
     }
 }

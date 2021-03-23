@@ -45,9 +45,13 @@ namespace neophyte.DataAccess.Implementations
             return _newcomerClient.DeleteNewcomer(id);
         }
 
-        public Task SendNewcomerReports(string id)
+        public Task SendNewcomerReports(DateTime date, string email)
         {
-            return _newcomerClient.DeleteNewcomer(id);
+            var bm = new ReportGenBindingModel
+            {
+                EmailAddress = email
+            };
+            return _newcomerClient.SendReport(date.ToString("yyyy-MM-dd"), bm);
         }
     }
 }
