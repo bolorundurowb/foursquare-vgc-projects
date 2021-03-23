@@ -54,7 +54,7 @@ namespace neophyte.Views.Attendance
 
             if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
             {
-                await _attendanceClient.SendNewcomerReports(summary.Date, email);
+                await _attendanceClient.SendAttendanceReport(summary.Date, email);
                 Toasts.DisplaySuccess("Report successfully generated and sent.");
             }
             else

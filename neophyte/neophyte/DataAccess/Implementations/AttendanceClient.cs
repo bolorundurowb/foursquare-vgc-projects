@@ -45,7 +45,7 @@ namespace neophyte.DataAccess.Implementations
             return _attendanceClient.DeleteAttendee(id);
         }
 
-        public Task SendNewcomerReports(DateTime date, string email)
+        public Task SendAttendanceReport(DateTime date, string email)
         {
             var bm = new ReportGenBindingModel
             {
