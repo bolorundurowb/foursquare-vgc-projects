@@ -19,7 +19,8 @@ namespace api.Controllers
         private readonly INewcomersRepository _newcomersRepo;
         private readonly IEmailService _emailService;
 
-        public NewcomersController(IMapper mapper, INewcomersRepository newcomersRepo, IEmailService emailService) : base(mapper)
+        public NewcomersController(IMapper mapper, INewcomersRepository newcomersRepo, IEmailService emailService) :
+            base(mapper)
         {
             _newcomersRepo = newcomersRepo;
             _emailService = emailService;

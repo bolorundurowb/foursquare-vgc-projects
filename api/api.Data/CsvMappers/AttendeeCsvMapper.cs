@@ -3,14 +3,13 @@ using CsvHelper.Configuration;
 
 namespace api.Data.CsvMappers
 {
-    public class AttendeeCsvMapper : ClassMap<Attendee>
+    public sealed class AttendeeCsvMapper : ClassMap<Attendee>
     {
         public AttendeeCsvMapper()
         {
             Map(x => x.SerialNo)
                 .Name("S/No")
-                .Index(0)
-                .Convert(x => x.Row.Parser.Row + 1);
+                .Index(0);
 
             Map(x => x.FullName)
                 .Name("Full Name")
