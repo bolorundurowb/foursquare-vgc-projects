@@ -35,21 +35,6 @@ namespace api.Controllers
             var formattedDateString = date.Date.ToString("yyyy-MM-dd");
             var attendance = await _attendanceRepo.GetAttendance(date);
             var newcomers = await _newcomersRepo.GetNewcomers(date);
-
-            // add in the serial numbers, since the csv mapper doesnt work
-            var newcomerSerialNo = 1;
-            newcomers.ForEach(x =>
-            {
-                x.SerialNo = newcomerSerialNo;
-                newcomerSerialNo++;
-            });
-            var attendanceSerialNo = 1;
-            attendance.ForEach(x =>
-            {
-                x.SerialNo = attendanceSerialNo;
-                attendanceSerialNo++;
-            });
-
             var attendanceCsv = await CsvHelpers.GenerateCsvFromAttendance(attendance);
             var newcomerCsv = await CsvHelpers.GenerateCsvFromNewcomers(newcomers);
 

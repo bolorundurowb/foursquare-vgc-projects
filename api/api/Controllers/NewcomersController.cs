@@ -85,15 +85,6 @@ namespace api.Controllers
         {
             var formattedDateString = date.Date.ToString("yyyy-MM-dd");
             var newcomers = await _newcomersRepo.GetNewcomers(date);
-
-            // add in the serial numbers, since the csv mapper doesnt work
-            var newcomerSerialNo = 1;
-            newcomers.ForEach(x =>
-            {
-                x.SerialNo = newcomerSerialNo;
-                newcomerSerialNo++;
-            });
-            
             var newcomerCsv = await CsvHelpers.GenerateCsvFromNewcomers(newcomers);
 
             var emailMessage = new EmailMessage
