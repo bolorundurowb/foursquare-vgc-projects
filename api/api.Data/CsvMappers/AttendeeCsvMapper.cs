@@ -3,7 +3,7 @@ using CsvHelper.Configuration;
 
 namespace api.Data.CsvMappers
 {
-    public class AttendeeCsvMapper : ClassMap<Attendee>
+    public sealed class AttendeeCsvMapper : ClassMap<Attendee>
     {
         public AttendeeCsvMapper()
         {
