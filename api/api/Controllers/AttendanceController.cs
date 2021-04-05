@@ -109,6 +109,15 @@ namespace api.Controllers
         {
             var formattedDateString = date.Date.ToString("yyyy-MM-dd");
             var attendance = await _attendanceRepo.GetAttendance(date);
+            
+            // add in the serial numbers, since the csv mapper doesnt work
+            var attendanceSerialNo = 1;
+            attendance.ForEach(x =>
+            {
+                x.SerialNo = attendanceSerialNo;
+                attendanceSerialNo++;
+            });
+            
             var attendanceCsv = await CsvHelpers.GenerateCsvFromAttendance(attendance);
 
             var emailMessage = new EmailMessage
