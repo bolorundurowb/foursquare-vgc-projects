@@ -35,7 +35,6 @@ namespace api.Controllers
             var formattedDateString = date.Date.ToString("yyyy-MM-dd");
             var attendance = await _attendanceRepo.GetAttendance(date);
             var newcomers = await _newcomersRepo.GetNewcomers(date);
-
             var attendanceCsv = await CsvHelpers.GenerateCsvFromAttendance(attendance);
             var newcomerCsv = await CsvHelpers.GenerateCsvFromNewcomers(newcomers);
 
