@@ -16,7 +16,6 @@ namespace neophyte.Views.Newcomers
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewcomerDetailsPage : ContentPage
     {
-        private static  DateTime _tomorrow = DateTime.UtcNow.AddDays(1);
         private readonly NewcomerClient _newcomerClient;
         private readonly NewcomerValidator _newcomerValidator = new NewcomerValidator();
         private readonly IMapper _mapper = new Mapper();
