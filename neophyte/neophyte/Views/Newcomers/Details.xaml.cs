@@ -16,6 +16,7 @@ namespace neophyte.Views.Newcomers
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewcomerDetailsPage : ContentPage
     {
+        private static  DateTime _tomorrow = DateTime.UtcNow.AddDays(1);
         private readonly NewcomerClient _newcomerClient;
         private readonly NewcomerValidator _newcomerValidator = new NewcomerValidator();
         private readonly IMapper _mapper = new Mapper();
@@ -151,6 +152,9 @@ namespace neophyte.Views.Newcomers
             stkBirthday.IsVisible = true;
             cmbAgeGroup.IsVisible = true;
             cmbGender.IsVisible = true;
+            
+            // enable date picker
+            dtpDate.IsEnabled = true;
         }
 
         private void HideEditControls()
@@ -180,6 +184,9 @@ namespace neophyte.Views.Newcomers
             stkBirthday.IsVisible = false;
             cmbAgeGroup.IsVisible = false;
             cmbGender.IsVisible = false;
+            
+            // disable date picker
+            dtpDate.IsEnabled = false;
         }
     }
 }
