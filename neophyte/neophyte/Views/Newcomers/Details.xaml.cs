@@ -151,6 +151,9 @@ namespace neophyte.Views.Newcomers
             stkBirthday.IsVisible = true;
             cmbAgeGroup.IsVisible = true;
             cmbGender.IsVisible = true;
+            
+            // enable date picker
+            dtpDate.IsEnabled = true;
         }
 
         private void HideEditControls()
@@ -180,6 +183,9 @@ namespace neophyte.Views.Newcomers
             stkBirthday.IsVisible = false;
             cmbAgeGroup.IsVisible = false;
             cmbGender.IsVisible = false;
+            
+            // disable date picker
+            dtpDate.IsEnabled = false;
         }
     }
 }

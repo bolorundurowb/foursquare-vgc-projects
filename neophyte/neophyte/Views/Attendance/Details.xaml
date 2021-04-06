@@ -26,6 +26,15 @@
                         Style="{StaticResource EditButtonStyle}"
                         Clicked="EnableEditMode" />
                 </StackLayout>
+
+                <Label
+                    Text="Entry Date:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <DatePicker
+                    x:Name="dtpDate"
+                    IsEnabled="False"
+                    Date="{Binding Date}"
+                    Style="{StaticResource FormDatePickerStyle}" />
                 
                 <Label
                     Text="Full Name:"

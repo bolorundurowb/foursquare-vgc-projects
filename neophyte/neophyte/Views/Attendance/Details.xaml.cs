@@ -131,6 +131,9 @@ namespace neophyte.Views.Attendance
             txtResidentialAddress.IsVisible = true;
             txtSeatNumber.IsVisible = true;
             cmbGender.IsVisible = true;
+            
+            // enable date picker
+            dtpDate.IsEnabled = true;
         }
 
         private void HideEditControls()
@@ -158,6 +161,9 @@ namespace neophyte.Views.Attendance
             txtResidentialAddress.IsVisible = false;
             txtSeatNumber.IsVisible = false;
             cmbGender.IsVisible = false;
+            
+            // disable date picker
+            dtpDate.IsEnabled = false;
         }
     }
 }
