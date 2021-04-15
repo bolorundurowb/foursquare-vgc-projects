@@ -7,10 +7,13 @@ namespace neophyte.DataAccess.Implementations
     {
         private const string AuthTokenKey = "Neophyte_Token";
         private const string AuthExpiryKey = "Neophyte_Expiry";
+        private const string AuthLoginKey = "Neophyte_Login";
 
         public void Logout()
         {
-            Preferences.Clear();
+            Preferences.Clear(AuthExpiryKey);
+            Preferences.Clear(AuthLoginKey);
+            Preferences.Clear(AuthTokenKey);
         }
 
         public bool IsLoggedIn()
@@ -35,6 +38,7 @@ namespace neophyte.DataAccess.Implementations
         {
             Preferences.Set(AuthTokenKey, token);
             Preferences.Set(AuthExpiryKey, expiresAt);
+            Preferences.Set(AuthLoginKey, DateTime.UtcNow);
         }
     }
 }
