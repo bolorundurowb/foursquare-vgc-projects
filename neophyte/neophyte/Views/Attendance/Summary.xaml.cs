@@ -83,8 +83,7 @@ namespace neophyte.Views.Attendance
             {
                 // logout and redirect to login
                 new TokenClient().Logout();
-                Navigation.InsertPageBefore(new SignIn(), Application.Current.MainPage.Navigation.NavigationStack[0]);
-                await Navigation.PopAsync();
+                Application.Current.MainPage = new NavigationPage(new SignIn());
             }
         }
     }

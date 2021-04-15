@@ -28,11 +28,10 @@ namespace neophyte.Views.General
             };
         }
 
-        protected async void Logout(object sender, EventArgs e)
+        protected void Logout(object sender, EventArgs e)
         {
             _tokenClient.Logout();
-            Navigation.InsertPageBefore(new SignIn(), Application.Current.MainPage.Navigation.NavigationStack[0]);
-            await Navigation.PopAsync();
+            Application.Current.MainPage = new NavigationPage(new SignIn());
         }
     }
 }
