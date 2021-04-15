@@ -35,6 +35,21 @@ namespace neophyte.DataAccess.Implementations
             return Preferences.Get(AuthTokenKey, null);
         }
 
+        public string GetEmail()
+        {
+            return Preferences.Get(AuthEmailKey, null);
+        }
+
+        public DateTime GetExpiry()
+        {
+            return Preferences.Get(AuthExpiryKey, DateTime.MinValue);
+        }
+
+        public DateTime GetLogin()
+        {
+            return Preferences.Get(AuthLoginKey, DateTime.MinValue);
+        }
+
         public void SetAuth(string emailAddress, string token, DateTime expiresAt)
         {
             Preferences.Set(AuthEmailKey, emailAddress);

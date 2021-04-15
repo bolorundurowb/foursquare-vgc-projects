@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using neophyte.DataAccess.Implementations;
+using neophyte.Models.View;
+using neophyte.Views.Auth;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,9 +10,29 @@ namespace neophyte.Views.General
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
+        private readonly TokenClient _tokenClient;
+        
         public SettingsPage()
         {
             InitializeComponent();
+            _tokenClient = new TokenClient();
+        }
+
+        protected override void OnAppearing()
+        {
+            BindingContext = new SettingsViewModel
+            {
+                EmailAddress = _tokenClient.GetEmail(),
+                LastLogin = _tokenClient.GetLogin().ToLongDateString(),
+                LoginExpiresAt = _tokenClient.GetExpiry().ToLongDateString()
+            };
+        }
+
+        protected async void Logout(object sender, EventArgs e)
+        {
+            _tokenClient.Logout();
+            Navigation.InsertPageBefore(new SignIn(), Application.Current.MainPage.Navigation.NavigationStack[0]);
+            await Navigation.PopAsync();
         }
     }
 }
