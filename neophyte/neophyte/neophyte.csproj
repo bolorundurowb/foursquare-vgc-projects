@@ -9,14 +9,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Acr.UserDialogs" Version="7.1.0.481" />
-        <PackageReference Include="FluentValidation" Version="9.5.2" />
-        <PackageReference Include="Mapster" Version="7.1.5" />
-        <PackageReference Include="NLog" Version="4.7.8" />
+        <PackageReference Include="Acr.UserDialogs" Version="7.1.0.483" />
+        <PackageReference Include="FluentValidation" Version="10.0.3" />
+        <PackageReference Include="Mapster" Version="7.2.0" />
+        <PackageReference Include="NLog" Version="4.7.9" />
         <PackageReference Include="Refit" Version="5.2.4" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
         <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-        <PackageReference Include="Xamarin.Forms.InputKit" Version="3.5.0" />
+        <PackageReference Include="Xamarin.Forms.InputKit" Version="3.7.1" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Logging" />
