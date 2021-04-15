@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace neophyte.Views.General
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Settings : ContentPage
+    public partial class SettingsPage : ContentPage
     {
-        public Settings()
+        public SettingsPage()
         {
             InitializeComponent();
         }

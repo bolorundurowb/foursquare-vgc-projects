@@ -15,8 +15,6 @@ namespace neophyte.Views.Auth
         public SignIn()
         {
             InitializeComponent();
-
-            Title = "Sign In";
             _authClient = new AuthClient();
         }
 
