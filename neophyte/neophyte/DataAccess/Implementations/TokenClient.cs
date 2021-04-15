@@ -8,6 +8,7 @@ namespace neophyte.DataAccess.Implementations
         private const string AuthTokenKey = "Neophyte_Token";
         private const string AuthExpiryKey = "Neophyte_Expiry";
         private const string AuthLoginKey = "Neophyte_Login";
+        private const string AuthEmailKey = "Neophyte_Email";
 
         public void Logout()
         {
@@ -34,8 +35,9 @@ namespace neophyte.DataAccess.Implementations
             return Preferences.Get(AuthTokenKey, null);
         }
 
-        public void SetAuth(string token, DateTime expiresAt)
+        public void SetAuth(string emailAddress, string token, DateTime expiresAt)
         {
+            Preferences.Set(AuthEmailKey, emailAddress);
             Preferences.Set(AuthTokenKey, token);
             Preferences.Set(AuthExpiryKey, expiresAt);
             Preferences.Set(AuthLoginKey, DateTime.UtcNow);
