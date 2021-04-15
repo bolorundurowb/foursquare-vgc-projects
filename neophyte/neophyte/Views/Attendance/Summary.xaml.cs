@@ -1,8 +1,11 @@
 using System;
+using System.Net;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using neophyte.Utils;
+using neophyte.Views.Auth;
+using Refit;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -72,7 +75,16 @@ namespace neophyte.Views.Attendance
                 return;
             }
 
-            collectionDateEntries.ItemsSource = await _attendanceClient.GetAll();
+            try
+            {
+                collectionDateEntries.ItemsSource = await _attendanceClient.GetAll();
+            }
+            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                // logout and redirect to login
+                new TokenClient().Logout();
+                Application.Current.MainPage = new NavigationPage(new SignIn());
+            }
         }
     }
 }

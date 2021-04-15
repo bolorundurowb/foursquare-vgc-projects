@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="neophyte.Views.General.SettingsPage"
+             Style="{StaticResource PageStyle}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                Text="Settings."
+                Style="{StaticResource PageHeaderStyle}" />
+
+            <Label
+                Text="Login Email:"
+                Style="{StaticResource FormLabelStyle}" />
+            <Label
+                IsEnabled="False"
+                Text="{Binding EmailAddress}"
+                Style="{StaticResource FormDisplayLabelStyle}" />
+
+            <Label
+                Text="Last Login:"
+                Style="{StaticResource FormLabelStyle}" />
+            <Label
+                IsEnabled="False"
+                Text="{Binding LastLogin}"
+                Style="{StaticResource FormDisplayLabelStyle}" />
+
+            <Label
+                Text="Next Login At:"
+                Style="{StaticResource FormLabelStyle}" />
+            <Label
+                IsEnabled="False"
+                Text="{Binding LoginExpiresAt}"
+                Style="{StaticResource FormDisplayLabelStyle}" />
+
+            <Button
+                Text="Logout"
+                Style="{StaticResource SharedButtonStyle}"
+                Clicked="Logout" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

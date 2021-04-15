@@ -15,8 +15,6 @@ namespace neophyte.Views.Auth
         public SignIn()
         {
             InitializeComponent();
-
-            Title = "Sign In";
             _authClient = new AuthClient();
         }
 
@@ -39,7 +37,7 @@ namespace neophyte.Views.Auth
                 var response = await _authClient.Login(email);
                 
                 var tokenClient = new TokenClient();
-                tokenClient.SetAuth(response.Token, response.ExpiresAt);
+                tokenClient.SetAuth(email, response.Token, response.ExpiresAt);
 
                 // send to home page
                 Navigation.InsertPageBefore(new RootPage(), this);
