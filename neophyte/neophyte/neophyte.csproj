@@ -10,7 +10,7 @@
 
     <ItemGroup>
         <PackageReference Include="Acr.UserDialogs" Version="7.1.0.483" />
-        <PackageReference Include="FluentValidation" Version="10.0.3" />
+        <PackageReference Include="FluentValidation" Version="10.0.4" />
         <PackageReference Include="Mapster" Version="7.2.0" />
         <PackageReference Include="NLog" Version="4.7.9" />
         <PackageReference Include="Refit" Version="5.2.4" />
