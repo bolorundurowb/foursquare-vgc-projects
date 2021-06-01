@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers.v1
 {
-    [ApiVersion("1")]
+    [ApiVersion("1.0")]
     public class AttendanceController : ApiController
     {
         private readonly IAttendanceRepository _attendanceRepo;

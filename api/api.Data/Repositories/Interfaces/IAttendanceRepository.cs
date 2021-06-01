@@ -13,11 +13,11 @@ namespace api.Data.Repositories.Interfaces
 
         Task<List<Attendee>> GetAttendance(DateTime date);
 
-        Task<Attendee> GetAttendeeById(string id);
-
         Task<Attendee> AddAttendee(string fullName, string email, int? age, string phone, string residentialAddress,
             Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers, bool caredForSickPerson,
             MultiChoice? haveCovidSymptoms, int? seatNumber = null);
+
+        Task<Attendee> AddAttendee(string personId, int? seatNumber);
 
         Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string email, int? age, string phone,
             string residentialAddress, Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers,

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers.v1
 {
-    [ApiVersion("1")]
+    [ApiVersion("1.0")]
     public class AuthController : ApiController
     {
         private readonly IAdminsRepository _adminsRepo;

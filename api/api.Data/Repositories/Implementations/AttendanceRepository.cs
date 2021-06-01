@@ -52,19 +52,10 @@ namespace api.Data.Repositories.Implementations
                 .ToListAsync();
         }
 
-        public Task<Attendee> GetAttendeeById(string id)
-        {
-            var attendeeId = ObjectId.Parse(id);
-            return Query()
-                .FirstOrDefaultAsync(x => x.Id == attendeeId);
-        }
-
         public async Task<Attendee> AddAttendee(string fullName, string email, int? age, string phone,
             string residentialAddress, Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers,
             bool caredForSickPerson, MultiChoice? haveCovidSymptoms, int? seatNumber)
         {
-            
-
             var normalizedEmail = email?.ToLowerInvariant();
             var attendee = new Attendee(normalizedEmail, fullName, age, phone, residentialAddress, gender,
                 returnedInLastTenDays, liveWithCovidCaregivers, caredForSickPerson, haveCovidSymptoms);
@@ -79,6 +70,19 @@ namespace api.Data.Repositories.Implementations
                 throw new InvalidOperationException("You cannot reserve a seat at this time.");
             }
 
+            await _dbContext.Attendance
+                .InsertOneAsync(attendee);
+
+            return attendee;
+        }
+
+        public async Task<Attendee> AddAttendee(string personId, int? seatNumber)
+        {
+            var person = await _dbContext.Persons
+                .AsQueryable()
+                .FirstOrDefaultAsync(x => x.Id == ObjectId.Parse(personId));
+            
+            var attendee = new Attendee(person?.FirstName, person?.LastName, person?.Phone, seatNumber);
             await _dbContext.Attendance
                 .InsertOneAsync(attendee);
 
