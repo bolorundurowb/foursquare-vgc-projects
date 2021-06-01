@@ -52,13 +52,6 @@ namespace api.Data.Repositories.Implementations
                 .ToListAsync();
         }
 
-        public Task<Attendee> GetAttendeeById(string id)
-        {
-            var attendeeId = ObjectId.Parse(id);
-            return Query()
-                .FirstOrDefaultAsync(x => x.Id == attendeeId);
-        }
-
         public async Task<Attendee> AddAttendee(string fullName, string email, int? age, string phone,
             string residentialAddress, Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers,
             bool caredForSickPerson, MultiChoice? haveCovidSymptoms, int? seatNumber)
