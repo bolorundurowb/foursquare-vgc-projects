@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using api.Configuration.Extensions.SwaggerFilters;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace api.Configuration.Extensions
 {
@@ -8,29 +11,19 @@ namespace api.Configuration.Extensions
     {
         public static void ConfigureDocs(this IServiceCollection services)
         {
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "Neophyte API",
-                    Version = "v1"
-                });
-                options.SwaggerDoc("v2", new OpenApiInfo
-                {
-                    Title = "Neophyte API",
-                    Version = "v2"
-                });
-            });
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+            services.AddSwaggerGen(options => { options.OperationFilter<SwaggerDefaultValues>(); });
         }
 
-        public static void UseDocs(this IApplicationBuilder app)
+        public static void UseDocs(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
-            app.UseSwagger();
-
-            app.UseSwaggerUI(x =>
+            app.UseSwagger(options => { options.RouteTemplate = "docs/{documentName}/docs.json"; });
+            app.UseSwaggerUI(options =>
             {
-                x.SwaggerEndpoint("/swagger/v1/swagger.json", "Neophyte API");
-                x.RoutePrefix = "docs";
+                options.RoutePrefix = "docs";
+                foreach (var description in provider.ApiVersionDescriptions)
+                    options.SwaggerEndpoint($"/docs/{description.GroupName}/docs.json",
+                        description.GroupName.ToUpperInvariant());
             });
         }
     }

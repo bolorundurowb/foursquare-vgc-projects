@@ -15,16 +15,21 @@ namespace api.Configuration.Extensions
             services.AddRouting(option => option.LowercaseUrls = true);
             services.AddControllers()
                 .AddJsonOptions(x => x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-            services.AddApiVersioning();
+            services.AddApiVersioning(options => { options.ReportApiVersions = true; });
+            services.AddVersionedApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
+            });
         }
-        
+
         public static void UseApi(this IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+
             if (!environment.IsProduction())
             {
                 app.UseLogly(opts => opts
