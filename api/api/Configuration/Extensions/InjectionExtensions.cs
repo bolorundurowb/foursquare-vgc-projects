@@ -17,6 +17,7 @@ namespace api.Configuration.Extensions
             services.AddScoped<IAdminsRepository, AdminsRepository>();
             services.AddScoped<INewcomersRepository, NewcomersRepository>();
             services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+            services.AddScoped<IPersonsRepository, PersonsRepository>();
         }
     }
 }

@@ -27,5 +27,14 @@ namespace api.Data.Repositories.Implementations
             return Query()
                 .FirstOrDefaultAsync(x => x.Phone == trimmed);
         }
+
+        public async Task<Person> Create(string firstName, string lastName, string phoneNumber)
+        {
+            var person = new Person(firstName, lastName, phoneNumber);
+            await _dbContext.Persons
+                .InsertOneAsync(person);
+
+            return person;
+        }
     }
 }
