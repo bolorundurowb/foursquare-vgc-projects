@@ -49,8 +49,8 @@ namespace api.Controllers.v1
         public async Task<IActionResult> AddNewcomer([FromBody] NewcomerBindingModel bm)
         {
             var newcomer = await _newcomersRepo.AddNewcomer(bm.FullName, bm.HomeAddress, bm.Phone, bm.EmailAddress,
-                bm.BirthDay, bm.Gender, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs, bm.BornAgain,
-                bm.BecomeMember, bm.Remarks);
+                bm.BirthDay, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs, bm.BecomeMember, bm.Gender,
+                bm.BornAgain);
             return Created(Mapper.Map<NewcomerViewModel>(newcomer));
         }
 
