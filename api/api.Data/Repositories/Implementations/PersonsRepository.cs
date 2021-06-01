@@ -32,7 +32,7 @@ namespace api.Data.Repositories.Implementations
         {
             var person = await GetByPhone(phoneNumber);
 
-            if (person != null)
+            if (person == null)
             {
                 person = new Person(firstName, lastName, phoneNumber);
                 await _dbContext.Persons
