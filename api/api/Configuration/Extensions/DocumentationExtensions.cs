@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using api.Configuration.Extensions.SwaggerFilters;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -8,12 +10,17 @@ namespace api.Configuration.Extensions
     {
         public static void ConfigureDocs(this IServiceCollection services)
         {
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Neophyte API",
                     Version = "v1"
+                });
+                options.SwaggerDoc("v2", new OpenApiInfo
+                {
+                    Title = "Neophyte API",
+                    Version = "v2"
                 });
             });
         }

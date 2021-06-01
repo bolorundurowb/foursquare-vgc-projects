@@ -19,5 +19,9 @@
       <ProjectReference Include="..\api.Data\api.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Configuration\Extensions\SwaggerFilters" />
+    </ItemGroup>
+
 
 </Project>
