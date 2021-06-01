@@ -9,9 +9,10 @@ using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api.Controllers
+namespace api.Controllers.v1
 {
-    public class AuthController : BaseController
+    [ApiVersion("1.0")]
+    public class AuthController : ApiController
     {
         private readonly IAdminsRepository _adminsRepo;
 

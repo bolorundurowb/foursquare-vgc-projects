@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using api.Configuration;
@@ -11,9 +10,10 @@ using api.Shared.Email.Models;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api.Controllers
+namespace api.Controllers.v1
 {
-    public class ReportsController : BaseController
+    [ApiVersion("1.0")]
+    public class ReportsController : ApiController
     {
         private readonly IAttendanceRepository _attendanceRepo;
         private readonly INewcomersRepository _newcomersRepo;

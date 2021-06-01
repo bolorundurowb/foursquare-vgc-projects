@@ -14,9 +14,10 @@ using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api.Controllers
+namespace api.Controllers.v1
 {
-    public class AttendanceController : BaseController
+    [ApiVersion("1.0")]
+    public class AttendanceController : ApiController
     {
         private readonly IAttendanceRepository _attendanceRepo;
         private readonly IEmailService _emailService;

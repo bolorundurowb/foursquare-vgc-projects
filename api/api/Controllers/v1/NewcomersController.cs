@@ -12,9 +12,10 @@ using api.Shared.Exceptions;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api.Controllers
+namespace api.Controllers.v1
 {
-    public class NewcomersController : BaseController
+    [ApiVersion("1.0")]
+    public class NewcomersController : ApiController
     {
         private readonly INewcomersRepository _newcomersRepo;
         private readonly IEmailService _emailService;
