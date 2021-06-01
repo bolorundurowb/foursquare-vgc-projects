@@ -45,7 +45,7 @@ namespace api.Data.Models
 
         public Newcomer(string fullName, string homeAddress, string phone, string email, string birthDay,
             Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs, MultiChoice? bornAgain,
-            MultiChoice? becomeMember, string remarks)
+            MultiChoice? becomeMember, string remarks = null)
         {
             Date = DateTime.UtcNow.Date;
             FullName = fullName;
@@ -59,7 +59,7 @@ namespace api.Data.Models
             HowYouFoundUs = howYouFoundUs;
             BornAgain = bornAgain;
             BecomeMember = becomeMember;
-            Remarks = remarks;
+            Remarks = remarks ?? string.Empty;
         }
 
         public void UpdateDate(DateTime? date)
