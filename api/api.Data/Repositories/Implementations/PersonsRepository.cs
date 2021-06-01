@@ -30,9 +30,14 @@ namespace api.Data.Repositories.Implementations
 
         public async Task<Person> Create(string firstName, string lastName, string phoneNumber)
         {
-            var person = new Person(firstName, lastName, phoneNumber);
-            await _dbContext.Persons
-                .InsertOneAsync(person);
+            var person = await GetByPhone(phoneNumber);
+
+            if (person != null)
+            {
+                person = new Person(firstName, lastName, phoneNumber);
+                await _dbContext.Persons
+                    .InsertOneAsync(person);
+            }
 
             return person;
         }

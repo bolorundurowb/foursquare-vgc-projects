@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using api.Data.Repositories.Interfaces;
+using api.Models.Binding;
 using api.Shared.Media.Interfaces;
+using api.Validators;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +14,8 @@ namespace api.Controllers.v1
         private readonly IPersonsRepository _personsRepo;
         private readonly IQrCodeService _qrCodeService;
 
-        public PersonsController(IMapper mapper, IPersonsRepository personsRepo, IQrCodeService qrCodeService) : base(mapper)
+        public PersonsController(IMapper mapper, IPersonsRepository personsRepo, IQrCodeService qrCodeService) :
+            base(mapper)
         {
             _personsRepo = personsRepo;
             _qrCodeService = qrCodeService;
@@ -30,6 +33,21 @@ namespace api.Controllers.v1
                 return NotFound();
             }
 
+            return Ok(_qrCodeService.CreateQrFromCode(person.Id.ToString()));
+        }
+
+        [HttpPost("")]
+        [ProducesResponseType(typeof(string), 200)]
+        public async Task<IActionResult> Add([FromBody] PersonCreationBindingModel bm)
+        {
+            var (isValid, errorMessages) =
+                await IsValid<PersonCreationBindingModelValidator, PersonCreationBindingModel>(bm);
+            if (!isValid)
+            {
+                return BadRequest(errorMessages);
+            }
+
+            var person = await _personsRepo.Create(bm.FirstName, bm.LastName, bm.Phone);
             return Ok(_qrCodeService.CreateQrFromCode(person.Id.ToString()));
         }
     }
