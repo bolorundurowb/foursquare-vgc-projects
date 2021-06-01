@@ -34,12 +34,20 @@ namespace api.Data.Models
         public MultiChoice? HaveCovidSymptoms { get; private set; }
 
         public int? SeatNumber { get; private set; }
-        
-        [BsonIgnore]
+
+        [BsonIgnore] 
         public int SerialNo { get; set; }
 
         private Attendee()
         {
+        }
+
+        public Attendee(string firstName, string lastName, string phone, int? seatNumber)
+        {
+            Date = DateTime.UtcNow.Date;
+            FullName = $"{firstName} {lastName}";
+            Phone = phone;
+            SeatNumber = seatNumber;
         }
 
         public Attendee(string emailAddress, string fullName, int? age, string phone, string residentialAddress,
