@@ -11,6 +11,8 @@ namespace api.Data
 
         public IMongoCollection<Attendee> Attendance { get; }
 
+        public IMongoCollection<Person> Persons { get; }
+
         public DbContext(string dbUrl, string dbName)
         {
             var client = new MongoClient(dbUrl);
@@ -20,6 +22,7 @@ namespace api.Data
             Admins = database.GetCollection<Admin>("admins");
             Newcomers = database.GetCollection<Newcomer>("newcomers");
             Attendance = database.GetCollection<Attendee>("attendance");
+            Persons = database.GetCollection<Person>("persons");
         }
     }
 }
