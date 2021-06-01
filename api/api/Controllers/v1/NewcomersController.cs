@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers.v1
 {
-    [ApiVersion("1")]
+    [ApiVersion("1.0")]
     public class NewcomersController : ApiController
     {
         private readonly INewcomersRepository _newcomersRepo;
