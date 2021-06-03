@@ -188,15 +188,16 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="css">
 .page {
   height: calc(100vh - 9rem);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
 
-  .content {
+  .page.content {
     width: 45%;
 
     .logo {
