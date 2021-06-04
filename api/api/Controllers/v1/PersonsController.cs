@@ -4,10 +4,12 @@ using api.Models.Binding;
 using api.Shared.Media.Interfaces;
 using api.Validators;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers.v1
 {
+    [AllowAnonymous]
     [ApiVersion("1.0")]
     public class PersonsController : ApiController
     {

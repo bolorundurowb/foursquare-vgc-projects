@@ -1,15 +1,18 @@
-import { createApp } from "vue";
+import axios from "axios";
 import App from "./App.vue";
 import router from "./router";
+import { createApp } from "vue";
 import VueAxios from "vue-axios";
-import axios from "axios";
+import VueSweetalert2 from "vue-sweetalert2";
 
-const app = createApp(App);
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const instance = axios.create({
-  baseURL: process.env.VUE_APP_API_URL || "http://localhost:5089/api"
+  baseURL: process.env.VUE_APP_API_URL || "http://localhost:5089/api",
 });
-app.use(VueAxios, instance);
 
-app.use(router);
-app.mount("#app");
+createApp(App)
+  .use(VueAxios, instance)
+  .use(VueSweetalert2)
+  .use(router)
+  .mount("#app");

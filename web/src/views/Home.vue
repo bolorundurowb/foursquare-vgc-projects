@@ -42,6 +42,16 @@ export default {
           `/v1/persons/check?phoneNumber=${this.phoneNumber}`
         );
         console.log(response);
+      } catch (err) {
+        const error = err.response;
+
+        if (error.status === 404) {
+          // TODO: redirect to the registration page
+        } else {
+          const message =
+            "An error occurred when checking your registration status.";
+          this.$swal("Uh oh!", message, "error");
+        }
       } finally {
         this.isLoading = false;
       }
@@ -52,9 +62,9 @@ export default {
 
 <style scoped>
 .form-container {
-  padding: 3rem;
+  padding: 5rem 4rem;
   border-radius: 1rem;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
   width: 50%;
 }
 
