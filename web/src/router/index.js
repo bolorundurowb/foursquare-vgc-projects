@@ -4,12 +4,12 @@ import Home from "../views/Home.vue";
 const routes = [
   {
     path: "/",
-    name: "Register",
+    name: "Home",
     component: Home,
     meta: {
-      title: "Register | Neophyte"
-    }
-  }
+      title: "Check | Foursquare VGC",
+    },
+  },
 ];
 
 const router = createRouter({
