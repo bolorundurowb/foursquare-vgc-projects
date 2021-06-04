@@ -5,19 +5,48 @@
       You can check to see if you have been registered to attend our services.
     </h5>
 
-    <form>
-      <fieldset>
-        <label for="phone-number">Phone Number</label>
-        <input type="tel" placeholder="e.g 08012345678" id="phone-number">
-        <button class="button" type="button">Check</button>
-      </fieldset>
-    </form>
+    <div class="form">
+      <form @submit.prevent="check">
+        <fieldset>
+          <label for="phone-number">Phone Number</label>
+          <input
+            type="tel"
+            placeholder="e.g 08012345678"
+            id="phone-number"
+            v-model="phoneNumber"
+          />
+          <button class="button" type="submit" v-bind:disabled="isLoading">
+            Check
+          </button>
+        </fieldset>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  data() {
+    return {
+      isLoading: false,
+      phoneNumber: "",
+    };
+  },
+  methods: {
+    async check() {
+      this.isLoading = true;
+
+      try {
+        const response = await this.axios.get(
+          `/v1/persons/check?phoneNumber=${this.phoneNumber}`
+        );
+        console.log(response);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+  },
 };
 </script>
 
@@ -35,5 +64,10 @@ export default {
 
 .form-container h5 {
   text-align: center;
+}
+
+.form {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 </style>
