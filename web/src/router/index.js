@@ -10,7 +10,7 @@ const routes = [
     name: "Home",
     component: Home,
     meta: {
-      title: "Check | Foursquare VGC",
+      title: 'Home',
     },
   },
 ];
