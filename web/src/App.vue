@@ -7,7 +7,7 @@
       <router-view />
     </div>
   </div>
-  <notifications/>
+  <notifications />
 </template>
 
 <style scoped>

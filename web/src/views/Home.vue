@@ -22,14 +22,25 @@
       </form>
     </div>
   </div>
+
+  <VueModal v-model="showRegisterModal" title="Register">
+
+  </VueModal>
 </template>
 
 <script>
+import VueModal from '@kouts/vue-modal'
+
 export default {
   name: "Home",
+  components: {
+    'VueModal': VueModal
+  },
   data() {
     return {
       isLoading: false,
+      showRegisterModal: false,
+      showInfoModal: false,
       phoneNumber: "",
     };
   },
@@ -45,12 +56,13 @@ export default {
       } catch (err) {
         const error = err.response;
 
-        if (error.status === 404) {
+        if (error && error.status === 404) {
           // TODO: redirect to the registration page
+          await this.$swal.fire("Uh oh!", "Waiting fdor studf", "info");
         } else {
           const message =
             "An error occurred when checking your registration status.";
-          this.$swal("Uh oh!", message, "error");
+          await this.$swal.fire("Uh oh!", message, "error");
         }
       } finally {
         this.isLoading = false;
