@@ -1,35 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/login">LOGIN</router-link>
+  <div class="page">
+    <div class="header">
+      <img src="./assets/logo.png" />
     </div>
-
-    <router-view />
+    <div class="container">
+      <router-view />
+    </div>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
-  height: 100%;
+<style scoped>
+.page {
+  padding: 2rem;
 }
 
-#nav {
-  padding: 30px;
+.page .header {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.page .header img {
+  width: 15rem;
+}
+
+.page .container {
   display: flex;
-  flex-direction: row-reverse;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    text-decoration: none;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 </style>

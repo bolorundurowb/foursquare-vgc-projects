@@ -1,22 +1,24 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import RegisterAttendance from "../views/RegisterAttendance.vue";
+import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Register",
-    component: RegisterAttendance,
+    name: "Home",
+    component: Home,
     meta: {
-      title: "Register | Neophyte"
-    }
-  }
+      title: 'Home',
+    },
+  },
 ];
 
 const router = new VueRouter({
-  routes
+  mode: "history",
+  base: process.env.BASE_URL,
+  routes,
 });
 
 export default router;
