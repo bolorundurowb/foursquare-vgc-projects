@@ -58,6 +58,17 @@
         </fieldset>
       </form>
     </VueModal>
+
+    <VueModal v-model="showInfoModal" title="Registration Info">
+      <div style="padding: 1.5rem">
+        <h3>Your registration details</h3>
+        <h6 style="text-align: justify">
+          You can save a screenshot of this QR code and present it to check in at the church premises
+        </h6>
+
+        <img v-bind:src="qrUrl" alt="QR code"/>
+      </div>
+    </VueModal>
   </div>
 </template>
 
@@ -100,10 +111,8 @@ export default {
       this.isLoading = true;
 
       try {
-        const response = await this.axios.get(
-            `/v1/persons/check?phoneNumber=${this.phoneNumber}`
-        );
-        this.qrUrl = `data:image/png;base64,${response}`;
+        const response = await this.axios.get(`/v1/persons/check?phoneNumber=${this.phoneNumber}`);
+        this.qrUrl = `data:image/png;base64,${response.data}`;
 
         // show the modal
         this.showInfoModal = true;
@@ -144,7 +153,7 @@ export default {
 
       try {
         const response = await this.axios.post(`/v1/persons`, this.newPerson);
-        this.qrUrl = `data:image/png;base64,${response}`;
+        this.qrUrl = `data:image/png;base64,${response.data}`;
 
         // reset the input
         this.newPerson = {};
