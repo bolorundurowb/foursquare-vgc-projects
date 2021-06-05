@@ -1,31 +1,33 @@
 <template>
-  <div class="form-container">
-    <h2>Check Your Status</h2>
-    <h5>
-      You can check to see if you have been registered to attend our services.
-    </h5>
+  <div>
+    <div class="form-container">
+      <h2>Check Your Status</h2>
+      <h5>
+        You can check to see if you have been registered to attend our services.
+      </h5>
 
-    <div class="form">
-      <form @submit.prevent="check">
-        <fieldset>
-          <label for="phone-number">Phone Number</label>
-          <input
-            type="tel"
-            placeholder="e.g 08012345678"
-            id="phone-number"
-            v-model="phoneNumber"
-          />
-          <button class="button" type="submit" v-bind:disabled="isLoading">
-            Check
-          </button>
-        </fieldset>
-      </form>
+      <div class="form">
+        <form @submit.prevent="check">
+          <fieldset>
+            <label for="phone-number">Phone Number</label>
+            <input
+                type="tel"
+                placeholder="e.g 08012345678"
+                id="phone-number"
+                v-model="phoneNumber"
+            />
+            <button class="button" type="submit" v-bind:disabled="isLoading">
+              Check
+            </button>
+          </fieldset>
+        </form>
+      </div>
     </div>
+
+    <VueModal v-model="showRegisterModal" title="Register">
+
+    </VueModal>
   </div>
-
-  <VueModal v-model="showRegisterModal" title="Register">
-
-  </VueModal>
 </template>
 
 <script>
@@ -58,11 +60,11 @@ export default {
 
         if (error && error.status === 404) {
           // TODO: redirect to the registration page
-          await this.$swal.fire("Uh oh!", "Waiting fdor studf", "info");
+          this.$swal("Uh oh!", "Waiting fdor studf", "info");
         } else {
           const message =
             "An error occurred when checking your registration status.";
-          await this.$swal.fire("Uh oh!", message, "error");
+          this.$swal("Uh oh!", message, "error");
         }
       } finally {
         this.isLoading = false;
@@ -77,7 +79,9 @@ export default {
   padding: 5rem 4rem;
   border-radius: 1rem;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
-  width: 50%;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-container h2 {

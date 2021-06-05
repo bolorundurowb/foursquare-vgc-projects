@@ -4,14 +4,16 @@ import router from "./router";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import VueSwal from "vue-swal";
+import VueModal from '@kouts/vue-modal';
 
-import "sweetalert2/dist/sweetalert2.min.css";
-import "@sweetalert2/theme-bulma/bulma.css";
 import "@kouts/vue-modal/dist/vue-modal.css";
+import '@kouts/vue-modal/dist/vue-modal.css'
 
 Vue.config.productionTip = false;
 
 Vue.use(VueSwal);
+
+Vue.component('VueModal', VueModal);
 
 const instance = axios.create({
   baseURL: process.env.VUE_APP_API_URL || "http://localhost:5089/v1/"
