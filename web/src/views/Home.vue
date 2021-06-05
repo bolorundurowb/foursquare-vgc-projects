@@ -49,7 +49,7 @@
               type="tel"
               placeholder="e.g 08012345678"
               id="reg-phone-number"
-              v-model="newPerson.phoneNumber"
+              v-model="newPerson.phone"
           />
 
           <button class="button" type="submit" v-bind:disabled="isRegistering">
@@ -88,8 +88,12 @@ export default {
       }
 
       // validate input
-      if (!this.phoneNumber || !(/0\d{10}/g.test(this.phoneNumber))) {
-        this.$swal("Error", "A valid phone number is required.", "error");
+      if (!this.phoneNumber || !(/0\d{10}$/g.test(this.phoneNumber))) {
+        this.$swal({
+          title: 'Error',
+          text: 'A valid phone number is required.',
+          icon: 'error'
+        });
         return;
       }
 
@@ -100,22 +104,72 @@ export default {
             `/v1/persons/check?phoneNumber=${this.phoneNumber}`
         );
         this.qrUrl = `data:image/png;base64,${response}`;
+
+        // show the modal
+        this.showInfoModal = true;
       } catch (err) {
         const error = err.response;
 
         if (error && error.status === 404) {
+          this.newPerson.phone = this.phoneNumber;
           this.showRegisterModal = true;
         } else {
-          const message =
-              "An error occurred when checking your registration status.";
-          this.$swal("Uh oh!", message, "error");
+          this.$swal({
+            title: 'Error',
+            text: 'An error occurred when checking your registration status.',
+            icon: 'error'
+          });
         }
       } finally {
         this.isLoading = false;
       }
     },
     async register() {
+      // avoid rage clicks
+      if (this.isRegistering) {
+        return;
+      }
+
       this.isRegistering = true;
+
+      // validate input
+      if (!this.newPerson.phone || !(/0\d{10}$/g.test(this.newPerson.phone))) {
+        this.$swal({
+          title: 'Error',
+          text: 'A valid phone number is required.',
+          icon: 'error'
+        });
+        return;
+      }
+
+      try {
+        const response = await this.axios.post(`/v1/persons`, this.newPerson);
+        this.qrUrl = `data:image/png;base64,${response}`;
+
+        // reset the input
+        this.newPerson = {};
+
+        // show modal
+        this.showRegisterModal = false;
+        this.showInfoModal = true;
+      } catch (err) {
+        const error = err.response;
+        let message;
+
+        if (error && error.data) {
+          message = error.data.message;
+        } else {
+          message = 'An error occurred when checking your registration status.';
+        }
+
+        this.$swal({
+          title: 'Error',
+          text: message,
+          icon: 'error'
+        });
+      } finally {
+        this.isLoading = false;
+      }
     }
   },
 };
@@ -142,5 +196,13 @@ export default {
 .form {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+</style>
+
+<style>
+.swal-button {
+  padding: 0 3.0rem !important;
+  border: 0.1rem solid #9b4dca !important;
+  background-color: #9b4dca !important;
 }
 </style>
