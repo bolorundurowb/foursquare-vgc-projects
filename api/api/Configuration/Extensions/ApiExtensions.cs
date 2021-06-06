@@ -1,9 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using logly.Extensions;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace api.Configuration.Extensions
 {
@@ -23,23 +20,8 @@ namespace api.Configuration.Extensions
             });
         }
 
-        public static void UseApi(this IApplicationBuilder app, IWebHostEnvironment environment)
+        public static void UseApi(this IApplicationBuilder app)
         {
-            if (environment.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            if (!environment.IsProduction())
-            {
-                app.UseLogly(opts => opts
-                    .AddRequestMethod()
-                    .AddStatusCode()
-                    .AddResponseTime()
-                    .AddUrl()
-                    .AddResponseLength());
-            }
-
             app.UseCors(options => options
                 .AllowAnyHeader()
                 .AllowAnyMethod()
