@@ -31,6 +31,7 @@ namespace api
                     .Load();
             }
 
+            services.ConfigureLogging();
             services.ConfigureApi();
             services.ConfigureDocs();
             services.ConfigureAuth();
@@ -41,7 +42,9 @@ namespace api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, DbContext context, IApiVersionDescriptionProvider provider)
         {
-            app.UseApi(_environment);
+            app.UseExceptionHandling(_environment);
+            app.UseLogging();
+            app.UseApi();
             app.UseDocs(provider);
             context.SeedDefaults();
         }
