@@ -9,12 +9,14 @@
       <div class="form">
         <form @submit.prevent="check">
           <fieldset>
-            <label for="phone-number">Phone Number <span style="color: red">*</span></label>
+            <label for="phone-number"
+              >Phone Number <span style="color: red">*</span></label
+            >
             <input
-                type="tel"
-                placeholder="e.g 08012345678"
-                id="phone-number"
-                v-model="phoneNumber"
+              type="tel"
+              placeholder="e.g 08012345678"
+              id="phone-number"
+              v-model="phoneNumber"
             />
 
             <button class="button" type="submit" v-bind:disabled="isLoading">
@@ -30,26 +32,28 @@
         <fieldset>
           <label for="first-name">First Name</label>
           <input
-              type="text"
-              placeholder="e.g John"
-              id="first-name"
-              v-model="newPerson.firstName"
+            type="text"
+            placeholder="e.g John"
+            id="first-name"
+            v-model="newPerson.firstName"
           />
 
           <label for="last-name">Last Name</label>
           <input
-              type="text"
-              placeholder="e.g Doe"
-              id="last-name"
-              v-model="newPerson.lastName"
+            type="text"
+            placeholder="e.g Doe"
+            id="last-name"
+            v-model="newPerson.lastName"
           />
 
-          <label for="reg-phone-number">Phone Number <span style="color: red">*</span></label>
+          <label for="reg-phone-number"
+            >Phone Number <span style="color: red">*</span></label
+          >
           <input
-              type="tel"
-              placeholder="e.g 08012345678"
-              id="reg-phone-number"
-              v-model="newPerson.phone"
+            type="tel"
+            placeholder="e.g 08012345678"
+            id="reg-phone-number"
+            v-model="newPerson.phone"
           />
 
           <button class="button" type="submit" v-bind:disabled="isRegistering">
@@ -63,22 +67,23 @@
       <div style="padding: 1.5rem">
         <h3>Your registration details</h3>
         <h6 style="text-align: justify">
-          You can save a screenshot of this QR code and present it to check in at the church premises
+          You can save a screenshot of this QR code and present it to check in
+          at the church premises
         </h6>
 
-        <img v-bind:src="qrUrl" alt="QR code"/>
+        <img v-bind:src="qrUrl" alt="QR code" />
       </div>
     </VueModal>
   </div>
 </template>
 
 <script>
-import VueModal from '@kouts/vue-modal'
+import VueModal from "@kouts/vue-modal";
 
 export default {
   name: "Home",
   components: {
-    'VueModal': VueModal
+    VueModal: VueModal,
   },
   data() {
     return {
@@ -88,7 +93,7 @@ export default {
       isRegistering: false,
       newPerson: {},
       showInfoModal: false,
-      qrUrl: ''
+      qrUrl: "",
     };
   },
   methods: {
@@ -99,11 +104,11 @@ export default {
       }
 
       // validate input
-      if (!this.phoneNumber || !(/0\d{10}$/g.test(this.phoneNumber))) {
+      if (!this.phoneNumber || !/0\d{10}$/g.test(this.phoneNumber)) {
         this.$swal({
-          title: 'Error',
-          text: 'A valid phone number is required.',
-          icon: 'error'
+          title: "Error",
+          text: "A valid phone number is required.",
+          icon: "error",
         });
         return;
       }
@@ -111,7 +116,9 @@ export default {
       this.isLoading = true;
 
       try {
-        const response = await this.axios.get(`/v1/persons/check?phoneNumber=${this.phoneNumber}`);
+        const response = await this.axios.get(
+          `/v1/persons/check?phoneNumber=${this.phoneNumber}`
+        );
         this.qrUrl = `data:image/png;base64,${response.data}`;
 
         // show the modal
@@ -124,9 +131,9 @@ export default {
           this.showRegisterModal = true;
         } else {
           this.$swal({
-            title: 'Error',
-            text: 'An error occurred when checking your registration status.',
-            icon: 'error'
+            title: "Error",
+            text: "An error occurred when checking your registration status.",
+            icon: "error",
           });
         }
       } finally {
@@ -142,11 +149,11 @@ export default {
       this.isRegistering = true;
 
       // validate input
-      if (!this.newPerson.phone || !(/0\d{10}$/g.test(this.newPerson.phone))) {
+      if (!this.newPerson.phone || !/0\d{10}$/g.test(this.newPerson.phone)) {
         this.$swal({
-          title: 'Error',
-          text: 'A valid phone number is required.',
-          icon: 'error'
+          title: "Error",
+          text: "A valid phone number is required.",
+          icon: "error",
         });
         return;
       }
@@ -168,18 +175,18 @@ export default {
         if (error && error.data) {
           message = error.data.message;
         } else {
-          message = 'An error occurred when checking your registration status.';
+          message = "An error occurred when checking your registration status.";
         }
 
         this.$swal({
-          title: 'Error',
+          title: "Error",
           text: message,
-          icon: 'error'
+          icon: "error",
         });
       } finally {
         this.isLoading = false;
       }
-    }
+    },
   },
 };
 </script>
@@ -210,7 +217,7 @@ export default {
 
 <style>
 .swal-button {
-  padding: 0 3.0rem !important;
+  padding: 0 3rem !important;
   border: 0.1rem solid #9b4dca !important;
   background-color: #9b4dca !important;
 }
