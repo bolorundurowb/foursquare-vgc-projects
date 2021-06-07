@@ -91,7 +91,8 @@
                             Style="{StaticResource PageHeaderStyle}" />
                         
                         <Button
-                            Style="{StaticResource SettingsButtonStyle}" />
+                            Style="{StaticResource SettingsButtonStyle}"
+                            Clicked="OpenSettingsPage" />
                     </StackLayout>
 
                     <ActivityIndicator

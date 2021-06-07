@@ -159,14 +159,13 @@
             </Style>
 
             <Style x:Key="SharedButtonStyle" TargetType="Button">
-                <Setter Property="Margin" Value="0,15,0,0" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+                <Setter Property="Padding" Value="20,0,20,0" />
                 <Setter Property="BackgroundColor" Value="#3E3E3E" />
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="Padding" Value="20, 0, 20, 0" />
                 <Setter Property="FontFamily" Value="NexaB" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="18" />
