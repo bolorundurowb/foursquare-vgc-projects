@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -44,7 +45,7 @@
                 <Setter Property="FontFamily" Value="NexaB" />
                 <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="Margin" Value="-10, 0, 0, 20" />
+                <Setter Property="Margin" Value="0, 0, 0, 10" />
             </Style>
 
             <Style x:Key="TitleStyle" TargetType="Label">
@@ -74,8 +75,8 @@
                 <Setter Property="FontFamily" Value="NexaB" />
                 <Setter Property="FontSize" Value="45" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
-                <Setter Property="TextColor" Value="{StaticResource BlackColour}"></Setter>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColour}" />
                 <Setter Property="Margin" Value="0, 10, 20, 0" />
             </Style>
 
@@ -135,7 +136,7 @@
                 <Setter Property="FontFamily" Value="FAS" />
                 <Setter Property="Text" Value="&#xf060;" />
                 <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
-                <Setter Property="FontSize" Value="30" />
+                <Setter Property="FontSize" Value="28" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="HorizontalOptions" Value="Start" />
@@ -143,15 +144,17 @@
                 <Setter Property="WidthRequest" Value="50" />
             </Style>
 
-            <Style x:Key="EditButtonStyle" TargetType="Button">
-                <Setter Property="FontFamily" Value="FAS" />
+            <Style x:Key="EditButtonStyle" BasedOn="{StaticResource BackButtonStyle}" TargetType="Button">
                 <Setter Property="Text" Value="&#xf4ff;" />
-                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
                 <Setter Property="FontSize" Value="30" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="HorizontalOptions" Value="End" />
-                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="WidthRequest" Value="60" />
+            </Style>
+
+            <Style x:Key="SettingsButtonStyle" BasedOn="{StaticResource BackButtonStyle}" TargetType="Button">
+                <Setter Property="Text" Value="&#xf085;" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="HorizontalOptions" Value="End" />
                 <Setter Property="WidthRequest" Value="60" />
             </Style>
 
