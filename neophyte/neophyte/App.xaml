@@ -122,7 +122,7 @@
 
             <Style x:Key="FloatingButtonStyle" TargetType="Button">
                 <Setter Property="CornerRadius" Value="40" />
-                <Setter Property="FontFamily" Value="FAS" />
+                <Setter Property="FontFamily" Value="FAR" />
                 <Setter Property="TextColor" Value="{StaticResource LightGreyColour}" />
                 <Setter Property="FontSize" Value="25" />
                 <Setter Property="FontAttributes" Value="Bold" />

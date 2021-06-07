@@ -117,10 +117,10 @@
             </Grid>
 
             <Button
-                Style="{StaticResource FloatingButtonStyle}"
-                Text="&#xf234;"
+                Text="&#xf0fe;"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                Style="{StaticResource FloatingButtonStyle}"
                 Clicked="OpenNewRecordPage" />
         </AbsoluteLayout>
     </ContentPage.Content>
