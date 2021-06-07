@@ -80,11 +80,20 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-
-                    <Label
+                    
+                    <StackLayout
                         Grid.Row="0"
-                        Text="Newcomers."
-                        Style="{StaticResource PageHeaderStyle}" />
+                        Orientation="Horizontal">
+                        <Label
+                            Text="Newcomers."
+                            Margin="10, 0, 0, 10"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource PageHeaderStyle}" />
+                        
+                        <Button
+                            Style="{StaticResource SettingsButtonStyle}"
+                            Clicked="OpenSettingsPage" />
+                    </StackLayout>
 
                     <ActivityIndicator
                         x:Name="prgLoading"

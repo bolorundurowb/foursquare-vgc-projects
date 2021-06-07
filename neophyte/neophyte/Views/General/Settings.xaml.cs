@@ -33,5 +33,10 @@ namespace neophyte.Views.General
             _tokenClient.Logout();
             Application.Current.MainPage = new NavigationPage(new SignIn());
         }
+
+        protected async void GoBack(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync(true);
+        }
     }
 }

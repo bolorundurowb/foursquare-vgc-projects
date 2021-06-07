@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-            xmlns:newcomers="clr-namespace:neophyte.Views.Newcomers;assembly=neophyte"
-            xmlns:attendance="clr-namespace:neophyte.Views.Attendance;assembly=neophyte"
-            xmlns:general="clr-namespace:neophyte.Views.General;assembly=neophyte"
-            android:TabbedPage.ToolbarPlacement="Bottom"
-            android:TabbedPage.UnselectedTabColor="#66FFFFFF"
-            android:TabbedPage.SelectedTabColor="{StaticResource LightGreyColour}"
-            android:TabbedPage.IsSwipePagingEnabled="False"
-            x:Class="neophyte.Views.RootPage"
-            NavigationPage.HasNavigationBar="False"
-            BarBackgroundColor="{StaticResource DarkColour}"
-            BarTextColor="{StaticResource LightGreyColour}">
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:newcomers="clr-namespace:neophyte.Views.Newcomers;assembly=neophyte"
+    xmlns:attendance="clr-namespace:neophyte.Views.Attendance;assembly=neophyte"
+    android:TabbedPage.ToolbarPlacement="Bottom"
+    android:TabbedPage.UnselectedTabColor="#66FFFFFF"
+    android:TabbedPage.SelectedTabColor="{StaticResource LightGreyColour}"
+    android:TabbedPage.IsSwipePagingEnabled="False"
+    x:Class="neophyte.Views.RootPage"
+    NavigationPage.HasNavigationBar="False"
+    BarBackgroundColor="{StaticResource DarkColour}"
+    BarTextColor="{StaticResource LightGreyColour}">
     <NavigationPage
         Title="Newcomers"
         IconImageSource="newcomer.png">
@@ -27,14 +27,6 @@
         IconImageSource="register.png">
         <x:Arguments>
             <attendance:AttendanceDateSummariesPage />
-        </x:Arguments>
-    </NavigationPage>
-
-    <NavigationPage
-        Title="Settings"
-        IconImageSource="setting.png">
-        <x:Arguments>
-            <general:SettingsPage />
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

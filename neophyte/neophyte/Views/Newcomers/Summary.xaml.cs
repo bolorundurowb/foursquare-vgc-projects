@@ -6,6 +6,7 @@ using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using neophyte.Utils;
 using neophyte.Views.Auth;
+using neophyte.Views.General;
 using Refit;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -43,6 +44,11 @@ namespace neophyte.Views.Newcomers
         protected async void OpenNewRecordPage(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new RecordNewcomerPage());
+        }
+
+        protected async void OpenSettingsPage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsPage());
         }
 
         protected async void GenerateDateReport(object sender, EventArgs e)

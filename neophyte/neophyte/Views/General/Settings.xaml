@@ -6,9 +6,18 @@
              Style="{StaticResource PageStyle}">
     <ContentPage.Content>
         <StackLayout>
-            <Label
-                Text="Settings."
-                Style="{StaticResource PageHeaderStyle}" />
+            <StackLayout
+                Orientation="Horizontal">
+                <Button
+                    Style="{StaticResource BackButtonStyle}"
+                    Clicked="GoBack" />
+
+                <Label
+                    Text="Settings."
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="-10, 0, 0, 0"
+                    Style="{StaticResource PageHeaderStyle}" />
+            </StackLayout>
 
             <Label
                 Text="Login Email:"
