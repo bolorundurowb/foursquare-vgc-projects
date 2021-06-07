@@ -15,7 +15,7 @@ Vue.use(VueSwal);
 Vue.component('VueModal', VueModal);
 
 const instance = axios.create({
-  baseURL: process.env.VUE_APP_API_URL || "http://localhost:5089/api/"
+  baseURL: process.env.VUE_APP_API_URL || "http://localhost:5089/"
 });
 Vue.use(VueAxios, instance);
 
