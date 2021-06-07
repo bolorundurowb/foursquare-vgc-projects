@@ -32,19 +32,19 @@
 
             <Style x:Key="FrameStyle" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="{StaticResource FrameBackgroundColour}" />
-                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="HasShadow" Value="False" />
-                <Setter Property="Padding" Value="12" />
+                <Setter Property="Padding" Value="15, 0, 15, 0" />
                 <Setter Property="Margin" Value="0, 12, 0, 0" />
             </Style>
 
             <Style x:Key="PageHeaderStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="45" />
+                <Setter Property="FontSize" Value="40" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="NexaB" />
                 <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="Margin" Value="0, 0, 0, 20" />
+                <Setter Property="Margin" Value="-15, 0, 0, 20" />
             </Style>
 
             <Style x:Key="TitleStyle" TargetType="Label">
@@ -84,14 +84,14 @@
                 <Setter Property="FontSize" Value="15" />
                 <Setter Property="TextTransform" Value="Uppercase" />
                 <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
-                <Setter Property="Margin" Value="6, 18, 0, 0" />
+                <Setter Property="Margin" Value="6, 15, 0, 5" />
             </Style>
 
             <Style x:Key="PhoneNumberStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="NexaB" />
                 <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontSize" Value="20" />
                 <Setter Property="Margin" Value="6, 5, 6, 6" />
             </Style>
 
