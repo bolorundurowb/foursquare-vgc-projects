@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using neophyte.Services.Implementations;
+using neophyte.Services.Interfaces;
 using neophyte.Views.Auth;
 using neophyte.Views.General;
 using Refit;
@@ -40,14 +41,18 @@ namespace neophyte.Views.Attendance
             }
         }
 
-        protected async void OpenNewRecordPage(object sender, EventArgs e)
+        protected async void OpenScanner(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RegisterAttendeePage());
-        }
+            var scanner = DependencyService.Get<IQrScanService>();
+            var result = await scanner.ScanAsync();
 
-        protected async void OpenScanPage(object sender, EventArgs e)
-        {
-            
+            if (string.IsNullOrWhiteSpace(result))
+            {
+                ToastService.DisplayInfo("Scan unsuccessful.");
+                return;
+            }
+
+            await DisplayAlert("Result", result, "OK");
         }
 
         protected async void OpenSettingsPage(object sender, EventArgs e)

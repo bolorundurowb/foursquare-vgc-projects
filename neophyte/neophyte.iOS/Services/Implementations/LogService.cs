@@ -1,12 +1,12 @@
 using System.Xml;
-using neophyte.iOS.Implementations;
-using neophyte.Logging.Interfaces;
+using neophyte.iOS.Services.Implementations;
+using neophyte.Services.Interfaces;
 using NLog;
 using NLog.Config;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(LogService))]
-namespace neophyte.iOS.Implementations
+namespace neophyte.iOS.Services.Implementations
 {
     public class LogService : ILogService
     {

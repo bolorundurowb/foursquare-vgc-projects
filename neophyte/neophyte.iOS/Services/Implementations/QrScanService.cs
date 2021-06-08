@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
-using Java.Lang;
-using neophyte.Droid.Services.Implementations;
+using System;
+using System.Threading.Tasks;
+using Foundation;
+using neophyte.iOS.Services.Implementations;
 using neophyte.Services.Interfaces;
-using ZXing.Mobile;
 using Xamarin.Forms;
-using Application = Android.App.Application;
+using ZXing.Mobile;
 
 [assembly: Dependency(typeof(QrScanService))]
-namespace neophyte.Droid.Services.Implementations
+namespace neophyte.iOS.Services.Implementations
 {
     public class QrScanService : IQrScanService
     {
@@ -22,14 +22,14 @@ namespace neophyte.Droid.Services.Implementations
                     BottomText = "Scanning..."
                 };
 
-                var scanResult = await scanner.Scan(Application.Context, options);
+                var scanResult = await scanner.Scan(options, true);
                 return scanResult?.Text;
             }
-            catch (Exception)
+            catch (NSErrorException)
             {
                 return null;
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return null;
             }

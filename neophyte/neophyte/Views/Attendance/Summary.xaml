@@ -121,7 +121,7 @@
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
                 Style="{StaticResource FloatingButtonStyle}"
-                Clicked="OpenScanPage" />
+                Clicked="OpenScanner" />
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
