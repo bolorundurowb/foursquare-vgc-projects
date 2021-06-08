@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using Acr.UserDialogs;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
-using neophyte.Utils;
+using neophyte.Services.Implementations;
 using neophyte.Views.Auth;
 using neophyte.Views.General;
 using Refit;
@@ -58,18 +57,18 @@ namespace neophyte.Views.Newcomers
 
             if (email == null)
             {
-                Toasts.DisplayInfo("Operation cancelled.");
+                ToastService.DisplayInfo("Operation cancelled.");
                 return;
             }
 
             if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _newcomerClient.SendNewcomersReport(summary.Date, email);
-                Toasts.DisplaySuccess("Report successfully generated and sent.");
+                ToastService.DisplaySuccess("Report successfully generated and sent.");
             }
             else
             {
-                Toasts.DisplayError("An error occurred when sending the report.");
+                ToastService.DisplayError("An error occurred when sending the report.");
             }
         }
 

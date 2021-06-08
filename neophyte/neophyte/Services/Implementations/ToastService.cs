@@ -1,9 +1,9 @@
 using Acr.UserDialogs;
 using Xamarin.Forms;
 
-namespace neophyte.Utils
+namespace neophyte.Services.Implementations
 {
-    internal static class Toasts
+    internal static class ToastService
     {
         public static void DisplayError(string message)
         {

@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
-using neophyte.Utils;
+using neophyte.Services.Implementations;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
@@ -64,7 +64,7 @@ namespace neophyte.Views.Newcomers
                 await _newcomerClient.Register(newcomer);
 
                 // alert the user
-                Toasts.DisplaySuccess("Newcomer successfully recorded.");
+                ToastService.DisplaySuccess("Newcomer successfully recorded.");
 
                 // set the controls
                 await ResetControlsAsync();
