@@ -33,6 +33,8 @@
     </array>
     <key>XSAppIconAssets</key>
     <string>Assets.xcassets/AppIcon.appiconset</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Needs camera access to scan attendees in</string>
   </dict>
 </plist>
 
