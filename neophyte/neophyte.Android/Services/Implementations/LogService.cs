@@ -1,12 +1,12 @@
 using System.Xml;
-using neophyte.Droid.Implementations;
-using neophyte.Logging.Interfaces;
+using neophyte.Droid.Services.Implementations;
+using neophyte.Services.Interfaces;
 using NLog;
 using NLog.Config;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(LogService))]
-namespace neophyte.Droid.Implementations
+namespace neophyte.Droid.Services.Implementations
 {
     public class LogService : ILogService
     {
@@ -15,7 +15,7 @@ namespace neophyte.Droid.Implementations
         public LogService()
         {
             var assembly = GetType().Assembly;
-           var location = "neophyte.Droid.NLog.config";
+            var location = "neophyte.Droid.NLog.config";
             var stream = assembly.GetManifestResourceStream(location);
             LogManager.Configuration = new XmlLoggingConfiguration(XmlReader.Create(stream), null);
             _logger = LogManager.GetCurrentClassLogger();

@@ -1,4 +1,4 @@
-namespace neophyte.Logging.Interfaces
+namespace neophyte.Services.Interfaces
 {
     public interface ILogService
     {
