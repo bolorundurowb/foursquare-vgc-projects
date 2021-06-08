@@ -45,6 +45,11 @@ namespace neophyte.Views.Attendance
             await Navigation.PushAsync(new RegisterAttendeePage());
         }
 
+        protected async void OpenScanPage(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new ScanPage());
+        }
+
         protected async void OpenSettingsPage(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SettingsPage());
