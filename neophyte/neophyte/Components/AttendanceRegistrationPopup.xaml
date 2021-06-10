@@ -62,7 +62,8 @@
             <Button
                 x:Name="btnSubmit"
                 Text="Register"
-                Style="{StaticResource SharedButtonStyle}" />
+                Style="{StaticResource SharedButtonStyle}"
+                Clicked="RegisterAttendance" />
             <ProgressBar
                 x:Name="prgSubmit"
                 IsVisible="False"
