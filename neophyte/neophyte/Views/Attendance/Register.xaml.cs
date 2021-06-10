@@ -73,9 +73,11 @@ namespace neophyte.Views.Attendance
             {
                 await DisplayAlert("Error", "An error occurred.", "Okay");
             }
-
-            prgSaving.IsVisible = false;
-            btnSave.IsVisible = true;
+            finally
+            {
+                prgSaving.IsVisible = false;
+                btnSave.IsVisible = true;
+            }
         }
 
         protected async void EvaluateValidity(object sender, EventArgs e)
