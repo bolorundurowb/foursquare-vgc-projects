@@ -2,6 +2,8 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
+using GoogleVisionBarCodeScanner.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
@@ -10,7 +12,7 @@ using Platform = Xamarin.Essentials.Platform;
 
 namespace neophyte.Droid
 {
-    [Activity(Label = "Neophyte", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", 
+    [Activity(Label = "Neophyte", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
@@ -21,6 +23,7 @@ namespace neophyte.Droid
 
             base.OnCreate(savedInstanceState);
 
+            RendererInitializer.Init();
             Platform.Init(this, savedInstanceState);
             Forms.SetFlags("SwipeView_Experimental");
             Forms.Init(this, savedInstanceState);
@@ -30,6 +33,13 @@ namespace neophyte.Droid
 
             Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>()
                 .UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions,
+            [GeneratedEnum] Permission[] grantResults)
+        {
+            Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="neophyte.Views.Auth.SignIn"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="{StaticResource GreyColour}">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="neophyte.Views.Auth.SignIn"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource GreyColour}">
     <ContentPage.Content>
         <StackLayout
             HorizontalOptions="FillAndExpand"
@@ -16,27 +17,30 @@
                     Text="Sign In."
                     Style="{StaticResource PageHeaderStyle}" />
 
-               <Frame
-                   CornerRadius="10"
-                   BackgroundColor="{StaticResource LightGreyColour}">
-                   <StackLayout
-                       Padding="10, 20, 10, 20">
-                       <Entry x:Name="txtEmail"
-                              Margin="0,10,0,20"
-                              Placeholder="Your Email Address"
-                              Keyboard="Email"
-                              Style="{StaticResource FormEntryStyle}"/>
+                <Frame
+                    CornerRadius="10"
+                    BackgroundColor="{StaticResource LightGreyColour}">
+                    <StackLayout
+                        Padding="10, 20, 10, 20">
+                        <Entry
+                            x:Name="txtEmail"
+                            Margin="0,10,0,20"
+                            Placeholder="Your Email Address"
+                            Keyboard="Email"
+                            Style="{StaticResource FormEntryStyle}" />
 
-                       <Button x:Name="btnLogin"
-                               Text="Login"
-                               Style="{StaticResource SharedButtonStyle}"
-                               Clicked="Login"/>
+                        <Button
+                            x:Name="btnLogin"
+                            Text="Login"
+                            Style="{StaticResource SharedButtonStyle}"
+                            Clicked="Login" />
 
-                       <ActivityIndicator x:Name="prgLoading"
-                                          Style="{StaticResource ProgressStyle}"
-                                          IsVisible="False" />
-                   </StackLayout>
-               </Frame>
+                        <ActivityIndicator
+                            x:Name="prgLoading"
+                            Style="{StaticResource ProgressStyle}"
+                            IsVisible="False" />
+                    </StackLayout>
+                </Frame>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

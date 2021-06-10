@@ -1,6 +1,6 @@
 using System;
 using neophyte.DataAccess.Implementations;
-using neophyte.Utils;
+using neophyte.Services.Implementations;
 using Refit;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -49,7 +49,7 @@ namespace neophyte.Views.Auth
                 btnLogin.IsVisible = true;
                 prgLoading.IsVisible = false;
 
-                Toasts.DisplayError("Sorry, you cannot access this app at this time.");
+                ToastService.DisplayError("Sorry, you cannot access this app at this time.");
             }
         }
     }

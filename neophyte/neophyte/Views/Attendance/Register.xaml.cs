@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
-using neophyte.Utils;
+using neophyte.Services.Implementations;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
@@ -60,7 +60,7 @@ namespace neophyte.Views.Attendance
                 await _attendanceClient.Register(attendee);
 
                 // alert the user
-                Toasts.DisplaySuccess("Attendee successfully registered.");
+                ToastService.DisplaySuccess("Attendee successfully registered.");
 
                 // set the controls
                 await ResetControlsAsync();
