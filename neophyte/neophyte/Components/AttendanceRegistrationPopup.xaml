@@ -70,6 +70,7 @@
             <ProgressBar
                 x:Name="prgSubmit"
                 IsVisible="False"
+                IsEnabled="True"
                 Style="{StaticResource ProgressStyle}"/>
         </StackLayout>
         
