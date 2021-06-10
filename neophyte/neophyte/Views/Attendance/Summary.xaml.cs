@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using neophyte.Components;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using neophyte.Services.Implementations;
@@ -52,7 +53,8 @@ namespace neophyte.Views.Attendance
                 return;
             }
 
-            await DisplayAlert("Result", result, "OK");
+            var popup = new AttendanceRegistrationPopup(result);
+            await Navigation.PushModalAsync(popup);
         }
 
         protected async void OpenSettingsPage(object sender, EventArgs e)

@@ -13,14 +13,11 @@ namespace neophyte.Components
     public partial class AttendanceRegistrationPopup : PopupPage
     {
         private readonly string _personId;
-        private readonly Action _action;
         
-        public AttendanceRegistrationPopup(string personId, Action action)
+        public AttendanceRegistrationPopup(string personId)
         {
             InitializeComponent();
-
             _personId = personId;
-            _action = action;
         }
 
         protected override void OnAppearing()
@@ -33,7 +30,8 @@ namespace neophyte.Components
         {
             btnSubmit.IsVisible = false;
             prgSubmit.IsVisible = true;
-            
+
+            int.TryParse(txtSeatNumber.Text, out var seatNumber);
         }
     }
 }
