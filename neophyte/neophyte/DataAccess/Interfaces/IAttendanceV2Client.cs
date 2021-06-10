@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using neophyte.Models.Binding;
-using neophyte.Models.View;
 using Refit;
 
 namespace neophyte.DataAccess.Interfaces

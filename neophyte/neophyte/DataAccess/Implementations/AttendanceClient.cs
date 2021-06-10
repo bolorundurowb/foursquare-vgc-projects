@@ -14,7 +14,7 @@ namespace neophyte.DataAccess.Implementations
         public AttendanceClient()
         {
             var tokenClient = new TokenClient();
-            _attendanceClient = RestService.For<IAttendanceClient>(Constants.BaseUrl, new RefitSettings
+            _attendanceClient = RestService.For<IAttendanceClient>(Constants.V1BaseUrl, new RefitSettings
             {
                 AuthorizationHeaderValueGetter = () => Task.FromResult(tokenClient.GetToken())
             });

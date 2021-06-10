@@ -14,7 +14,7 @@ namespace neophyte.DataAccess.Implementations
         public NewcomerClient()
         {
             var tokenClient = new TokenClient();
-            _newcomerClient = RestService.For<INewcomerClient>(Constants.BaseUrl, new RefitSettings
+            _newcomerClient = RestService.For<INewcomerClient>(Constants.V1BaseUrl, new RefitSettings
             {
                 AuthorizationHeaderValueGetter = () => Task.FromResult(tokenClient.GetToken())
             });
