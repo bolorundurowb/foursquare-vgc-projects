@@ -71,16 +71,18 @@ namespace neophyte.Views.Newcomers
             }
             catch (ApiException ex)
             {
-                await DisplayAlert("Error", ex.Content, "Okay");
+                ToastService.DisplayError(ex.Content);
             }
             catch (HttpRequestException)
             {
-                await DisplayAlert("Error", "An error occurred.", "Okay");
+                ToastService.DisplayError("An error occurred.");
             }
-
-            // enable buttons
-            prgSaving.IsVisible = false;
-            btnSave.IsVisible = true;
+            finally
+            {
+                // enable buttons
+                prgSaving.IsVisible = false;
+                btnSave.IsVisible = true;
+            }
         }
 
         protected async void GoBack(object sender, EventArgs e)

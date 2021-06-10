@@ -67,11 +67,11 @@ namespace neophyte.Views.Attendance
             }
             catch (ApiException ex)
             {
-                await DisplayAlert("Error", ex.Content, "Okay");
+                ToastService.DisplayError(ex.Content);
             }
             catch (HttpRequestException)
             {
-                await DisplayAlert("Error", "An error occurred.", "Okay");
+                ToastService.DisplayError("An error occurred.");
             }
             finally
             {

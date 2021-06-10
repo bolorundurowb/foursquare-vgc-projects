@@ -1,15 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
 using neophyte.Services.Implementations;
 using Refit;
 using Rg.Plugins.Popup.Pages;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace neophyte.Components
@@ -19,11 +14,11 @@ namespace neophyte.Components
     {
         private readonly AttendanceV2Client _attendanceClient;
         private readonly string _personId;
-        
+
         public AttendanceRegistrationPopup(string personId)
         {
             InitializeComponent();
-            
+
             _personId = personId;
             _attendanceClient = new AttendanceV2Client();
         }
@@ -57,11 +52,11 @@ namespace neophyte.Components
             }
             catch (ApiException ex)
             {
-                await DisplayAlert("Error", ex.Content, "Okay");
+                ToastService.DisplayError(ex.Content);
             }
             catch (HttpRequestException)
             {
-                await DisplayAlert("Error", "An error occurred.", "Okay");
+                ToastService.DisplayError("An error occurred.");
             }
             finally
             {
