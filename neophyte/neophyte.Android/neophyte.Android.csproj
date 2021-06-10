@@ -59,6 +59,7 @@
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
     <PackageReference Include="BarcodeScanner.XF" Version="5.0.5" />
     <PackageReference Include="NLog.Config" Version="4.7.10" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.3.0.1" />
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.3.0" />
