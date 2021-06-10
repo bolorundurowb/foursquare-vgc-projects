@@ -40,9 +40,10 @@
                 <Label
                     Text="Full Name:"
                     Style="{StaticResource FormLabelStyle}" />
-                <Label x:Name="lblFullName"
-                       Text="{Binding FullName}"
-                       Style="{StaticResource FormDisplayLabelStyle}" />
+                <Label
+                    x:Name="lblFullName"
+                    Text="{Binding FullName}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
                     x:Name="txtFullName"
                     IsVisible="False"
@@ -53,9 +54,10 @@
                 <Label
                     Text="Email:"
                     Style="{StaticResource FormLabelStyle}" />
-                <Label x:Name="lblEmailAddress"
-                       Text="{Binding EmailAddress}"
-                       Style="{StaticResource FormDisplayLabelStyle}" />
+                <Label
+                    x:Name="lblEmailAddress"
+                    Text="{Binding EmailAddress}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
                     x:Name="txtEmail"
                     IsVisible="False"
@@ -124,9 +126,10 @@
                 <Label
                     Text="Seat Number:"
                     Style="{StaticResource FormLabelStyle}" />
-                <Label x:Name="lblSeatNumber"
-                       Text="{Binding SeatNumber}"
-                       Style="{StaticResource FormDisplayLabelStyle}" />
+                <Label
+                    x:Name="lblSeatNumber"
+                    Text="{Binding SeatNumber}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
                     x:Name="txtSeatNumber"
                     IsVisible="False"
