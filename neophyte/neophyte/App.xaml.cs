@@ -8,6 +8,7 @@ using Xamarin.Forms;
 [assembly: ExportFont("FA-Solid.otf", Alias = "FAS")]
 [assembly: ExportFont("Nexa Bold.otf", Alias = "NexaB")]
 [assembly: ExportFont("Nexa Light.otf", Alias = "NexaL")]
+
 namespace neophyte
 {
     public partial class App : Application
@@ -17,9 +18,10 @@ namespace neophyte
             InitializeComponent();
 
             // determine page to navigate to
-            NavigationPage mainPage;
-            var isLoggedIn = new TokenClient().IsLoggedIn();
+            var tokenClient = new TokenClient();
+            var isLoggedIn = tokenClient.IsLoggedIn();
 
+            NavigationPage mainPage;
             if (isLoggedIn)
             {
                 mainPage = new NavigationPage(new RootPage())

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
-using neophyte.Utils;
+using neophyte.Services.Implementations;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -53,16 +53,16 @@ namespace neophyte.Views.Newcomers
                     collectionDateEntries.ItemsSource = _dateRecords.Where(x => x.Id != newcomer.Id);
 
                     // notify user
-                    Toasts.DisplaySuccess("Entry successfully removed.");
+                    ToastService.DisplaySuccess("Entry successfully removed.");
                 }
                 else
                 {
-                    Toasts.DisplayError("An error occurred when deleting the entry.");
+                    ToastService.DisplayError("An error occurred when deleting the entry.");
                 }
             }
             else
             {
-                Toasts.DisplayInfo("Operation cancelled.");
+                ToastService.DisplayInfo("Operation cancelled.");
             }
         }
 

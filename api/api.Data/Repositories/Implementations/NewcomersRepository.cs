@@ -52,12 +52,12 @@ namespace api.Data.Repositories.Implementations
                 .ToListAsync();
         }
 
-        public async Task<Newcomer> AddNewcomer(string fullName, string homeAddress, string phone, string email,
-            string birthDay, Gender? gender, string ageGroup, string commentsOrPrayers, string howYouFoundUs,
-            MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
+        public async Task<Newcomer> AddNewcomer(string fullName, string homeAddress, string phone, string email, string birthDay, string ageGroup,
+            string commentsOrPrayers, string howYouFoundUs, MultiChoice? becomeMember, Gender? gender = null,
+            MultiChoice? bornAgain = null)
         {
             var newcomer = new Newcomer(fullName, homeAddress, phone, email, birthDay, gender, ageGroup,
-                commentsOrPrayers, howYouFoundUs, bornAgain, becomeMember, remarks);
+                commentsOrPrayers, howYouFoundUs, bornAgain, becomeMember);
             await _dbContext.Newcomers
                 .InsertOneAsync(newcomer);
 

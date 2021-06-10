@@ -5,7 +5,7 @@ using MapsterMapper;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
 using neophyte.Models.View;
-using neophyte.Utils;
+using neophyte.Services.Implementations;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
@@ -77,7 +77,7 @@ namespace neophyte.Views.Newcomers
                 var response = await _newcomerClient.Update(vm.Id, newcomer);
 
                 // alert the user
-                Toasts.DisplaySuccess("Newcomer successfully updated.");
+                ToastService.DisplaySuccess("Newcomer successfully updated.");
 
                 // set the display values
                 SetNewcomerDisplayValues(response);
@@ -151,6 +151,9 @@ namespace neophyte.Views.Newcomers
             stkBirthday.IsVisible = true;
             cmbAgeGroup.IsVisible = true;
             cmbGender.IsVisible = true;
+            
+            // enable date picker
+            dtpDate.IsEnabled = true;
         }
 
         private void HideEditControls()
@@ -180,6 +183,9 @@ namespace neophyte.Views.Newcomers
             stkBirthday.IsVisible = false;
             cmbAgeGroup.IsVisible = false;
             cmbGender.IsVisible = false;
+            
+            // disable date picker
+            dtpDate.IsEnabled = false;
         }
     }
 }

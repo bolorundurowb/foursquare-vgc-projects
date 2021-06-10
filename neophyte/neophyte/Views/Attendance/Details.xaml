@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
-             x:Class="neophyte.Views.Attendance.AttendeeDetailsPage"
-             Style="{StaticResource PageStyle}">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    x:Class="neophyte.Views.Attendance.AttendeeDetailsPage"
+    Style="{StaticResource PageStyle}">
     <ContentPage.Content>
         <ScrollView x:Name="scrollView">
             <StackLayout
@@ -21,16 +22,26 @@
                         Text="Details."
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource PageHeaderStyle}" />
-                    
+
                     <Button
                         Style="{StaticResource EditButtonStyle}"
                         Clicked="EnableEditMode" />
                 </StackLayout>
-                
+
+                <Label
+                    Text="Entry Date:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <DatePicker
+                    x:Name="dtpDate"
+                    IsEnabled="False"
+                    Date="{Binding Date}"
+                    Style="{StaticResource FormDatePickerStyle}" />
+
                 <Label
                     Text="Full Name:"
                     Style="{StaticResource FormLabelStyle}" />
-                <Label x:Name="lblFullName"
+                <Label
+                    x:Name="lblFullName"
                     Text="{Binding FullName}"
                     Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
@@ -43,7 +54,8 @@
                 <Label
                     Text="Email:"
                     Style="{StaticResource FormLabelStyle}" />
-                <Label x:Name="lblEmailAddress"
+                <Label
+                    x:Name="lblEmailAddress"
                     Text="{Binding EmailAddress}"
                     Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
@@ -57,7 +69,8 @@
                 <Label
                     Text="Age (in years):"
                     Style="{StaticResource FormLabelStyle}" />
-                <Label x:Name="lblAge"
+                <Label
+                    x:Name="lblAge"
                     Text="{Binding Age}"
                     Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
@@ -71,9 +84,10 @@
                 <Label
                     Text="Gender:"
                     Style="{StaticResource FormLabelStyle}" />
-                <Label x:Name="lblGender"
+                <Label
+                    x:Name="lblGender"
                     Text="{Binding Gender}"
-                    Style="{StaticResource FormDisplayLabelStyle}"/>
+                    Style="{StaticResource FormDisplayLabelStyle}" />
                 <Picker
                     x:Name="cmbGender"
                     IsVisible="False"
@@ -83,7 +97,8 @@
                 <Label
                     Text="Phone Number:"
                     Style="{StaticResource FormLabelStyle}" />
-                <Label x:Name="lblPhoneNumber"
+                <Label
+                    x:Name="lblPhoneNumber"
                     Text="{Binding Phone}"
                     Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
@@ -97,7 +112,8 @@
                 <Label
                     Text="Residential Address:"
                     Style="{StaticResource FormLabelStyle}" />
-                <Label x:Name="lblResidentialAddress"
+                <Label
+                    x:Name="lblResidentialAddress"
                     Text="{Binding ResidentialAddress}"
                     Style="{StaticResource FormDisplayLabelStyle}" />
                 <Editor
@@ -110,7 +126,8 @@
                 <Label
                     Text="Seat Number:"
                     Style="{StaticResource FormLabelStyle}" />
-                <Label x:Name="lblSeatNumber"
+                <Label
+                    x:Name="lblSeatNumber"
                     Text="{Binding SeatNumber}"
                     Style="{StaticResource FormDisplayLabelStyle}" />
                 <Entry
@@ -121,14 +138,14 @@
                     Text="{Binding SeatNumber, Mode=TwoWay}"
                     Style="{StaticResource FormEntryStyle}" />
 
-                <controls:CheckBox 
+                <controls:CheckBox
                     x:Name="chkReturnedInTenDays"
                     IsDisabled="True"
                     Text="Did you return from a trip overseas in the last 10 days?"
                     IsChecked="{Binding ReturnedInLastTenDays}"
                     Style="{StaticResource FormCheckBoxStyle}" />
 
-                <controls:CheckBox 
+                <controls:CheckBox
                     x:Name="chkLiveWithCaregivers"
                     IsDisabled="True"
                     Text="Do you live with Covid-19 caregivers / health workers?"
@@ -142,7 +159,8 @@
                     IsChecked="{Binding CaredForSickPerson}"
                     Style="{StaticResource FormCheckBoxStyle}" />
 
-                <Label x:Name="lblCovidSymptoms"
+                <Label
+                    x:Name="lblCovidSymptoms"
                     Text="Do you presently have cold, cough, fever, sore throat, loss of smell or loss of appetite?:"
                     Style="{StaticResource FormLabelStyle}" />
 

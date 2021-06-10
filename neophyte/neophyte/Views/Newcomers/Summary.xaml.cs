@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
-using Acr.UserDialogs;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
-using neophyte.Utils;
+using neophyte.Services.Implementations;
+using neophyte.Views.Auth;
+using neophyte.Views.General;
+using Refit;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -42,6 +45,11 @@ namespace neophyte.Views.Newcomers
             await Navigation.PushAsync(new RecordNewcomerPage());
         }
 
+        protected async void OpenSettingsPage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsPage());
+        }
+
         protected async void GenerateDateReport(object sender, EventArgs e)
         {
             var email = await DisplayPromptAsync("Report", "What email address should the report be sent to?",
@@ -49,18 +57,18 @@ namespace neophyte.Views.Newcomers
 
             if (email == null)
             {
-                Toasts.DisplayInfo("Operation cancelled.");
+                ToastService.DisplayInfo("Operation cancelled.");
                 return;
             }
 
             if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _newcomerClient.SendNewcomersReport(summary.Date, email);
-                Toasts.DisplaySuccess("Report successfully generated and sent.");
+                ToastService.DisplaySuccess("Report successfully generated and sent.");
             }
             else
             {
-                Toasts.DisplayError("An error occurred when sending the report.");
+                ToastService.DisplayError("An error occurred when sending the report.");
             }
         }
 
@@ -73,7 +81,16 @@ namespace neophyte.Views.Newcomers
                 return;
             }
 
-            collectionDateEntries.ItemsSource = await _newcomerClient.GetAll();
+            try
+            {
+                collectionDateEntries.ItemsSource = await _newcomerClient.GetAll();
+            }
+            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                // logout and redirect to login
+                new TokenClient().Logout();
+                Application.Current.MainPage = new NavigationPage(new SignIn());
+            }
         }
     }
 }

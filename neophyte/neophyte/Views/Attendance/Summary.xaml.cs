@@ -1,8 +1,14 @@
 using System;
+using System.Net;
 using System.Threading.Tasks;
+using neophyte.Components;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
-using neophyte.Utils;
+using neophyte.Services.Implementations;
+using neophyte.Services.Interfaces;
+using neophyte.Views.Auth;
+using neophyte.Views.General;
+using Refit;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -36,9 +42,24 @@ namespace neophyte.Views.Attendance
             }
         }
 
-        protected async void OpenNewRecordPage(object sender, EventArgs e)
+        protected async void OpenScanner(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RegisterAttendeePage());
+            var scanner = DependencyService.Get<IQrScanService>();
+            var result = await scanner.ScanAsync();
+
+            if (string.IsNullOrWhiteSpace(result))
+            {
+                ToastService.DisplayInfo("Scan unsuccessful.");
+                return;
+            }
+
+            var popup = new AttendanceRegistrationPopup(result);
+            await Navigation.PushModalAsync(popup);
+        }
+
+        protected async void OpenSettingsPage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsPage());
         }
 
         protected async void GenerateDateReport(object sender, EventArgs e)
@@ -48,18 +69,18 @@ namespace neophyte.Views.Attendance
 
             if (email == null)
             {
-                Toasts.DisplayInfo("Operation cancelled.");
+                ToastService.DisplayInfo("Operation cancelled.");
                 return;
             }
 
             if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _attendanceClient.SendAttendanceReport(summary.Date, email);
-                Toasts.DisplaySuccess("Report successfully generated and sent.");
+                ToastService.DisplaySuccess("Report successfully generated and sent.");
             }
             else
             {
-                Toasts.DisplayError("An error occurred when sending the report.");
+                ToastService.DisplayError("An error occurred when sending the report.");
             }
         }
 
@@ -72,7 +93,16 @@ namespace neophyte.Views.Attendance
                 return;
             }
 
-            collectionDateEntries.ItemsSource = await _attendanceClient.GetAll();
+            try
+            {
+                collectionDateEntries.ItemsSource = await _attendanceClient.GetAll();
+            }
+            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                // logout and redirect to login
+                new TokenClient().Logout();
+                Application.Current.MainPage = new NavigationPage(new SignIn());
+            }
         }
     }
 }

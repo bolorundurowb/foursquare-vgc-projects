@@ -5,7 +5,7 @@ using MapsterMapper;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
 using neophyte.Models.View;
-using neophyte.Utils;
+using neophyte.Services.Implementations;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
@@ -75,7 +75,7 @@ namespace neophyte.Views.Attendance
                 var response = await _attendanceClient.Update(vm.Id, attendee);
 
                 // alert the user
-                Toasts.DisplaySuccess("Attendee details updated successfully.");
+                ToastService.DisplaySuccess("Attendee details updated successfully.");
 
                 // set the display values
                 SetAttendeeDisplayValue(response);
@@ -131,6 +131,9 @@ namespace neophyte.Views.Attendance
             txtResidentialAddress.IsVisible = true;
             txtSeatNumber.IsVisible = true;
             cmbGender.IsVisible = true;
+            
+            // enable date picker
+            dtpDate.IsEnabled = true;
         }
 
         private void HideEditControls()
@@ -158,6 +161,9 @@ namespace neophyte.Views.Attendance
             txtResidentialAddress.IsVisible = false;
             txtSeatNumber.IsVisible = false;
             cmbGender.IsVisible = false;
+            
+            // disable date picker
+            dtpDate.IsEnabled = false;
         }
     }
 }

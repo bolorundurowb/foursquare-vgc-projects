@@ -131,10 +131,11 @@
                     Text="{Binding SeatNumber, Mode=TwoWay}"
                     Style="{StaticResource FormEntryStyle}" />
 
-                <Button x:Name="btnSave"
-                        Text="Register"
-                        Style="{StaticResource SharedButtonStyle}"
-                        Clicked="Register" />
+                <Button
+                    x:Name="btnSave"
+                    Text="Register"
+                    Style="{StaticResource SharedButtonStyle}"
+                    Clicked="Register" />
 
                 <ActivityIndicator
                     x:Name="prgSaving"

@@ -12,7 +12,7 @@ namespace neophyte.DataAccess.Implementations
 
         public AuthClient()
         {
-            _authClient = RestService.For<IAuthClient>(Constants.BaseUrl);
+            _authClient = RestService.For<IAuthClient>(Constants.V1BaseUrl);
         }
 
         public Task<AuthViewModel> Login(string email)

@@ -17,13 +17,13 @@
                                 Invoked="GenerateDateReport">
                                 <Grid Style="{StaticResource GeneralSwipeActionStyle}">
                                     <BoxView
-                                        Style="{StaticResource SwipeItemBorderStyle}"/>
+                                        Style="{StaticResource SwipeItemBorderStyle}" />
                                     <Image
                                         Source="sendreport.png"
-                                        Style="{StaticResource SwipeItemIconStyle}"/>
-                                    <Label                                         
+                                        Style="{StaticResource SwipeItemIconStyle}" />
+                                    <Label
                                         Text="Send Report"
-                                        Style="{StaticResource SwipeItemTextStyle}"/>
+                                        Style="{StaticResource SwipeItemTextStyle}" />
                                 </Grid>
                             </SwipeItemView>
                         </SwipeItems>
@@ -47,12 +47,12 @@
                                         Grid.Column="0"
                                         Grid.Row="0"
                                         Text="{Binding Date, StringFormat='{0: d-MMM-yyyy}'}"
-                                        Style="{StaticResource TierStyle}"/>
+                                        Style="{StaticResource TierStyle}" />
                                     <Label
                                         Grid.Column="0"
                                         Grid.Row="1"
                                         Text="{Binding HumanReadableDate}"
-                                        Style="{StaticResource NameStyle}"/>
+                                        Style="{StaticResource NameStyle}" />
                                 </Grid>
                             </Frame>
                             <ScrollView
@@ -60,7 +60,7 @@
                                 HorizontalOptions="End">
                                 <Label
                                     Style="{StaticResource NumStatStyle}"
-                                    Text="{Binding NumOfEntries}"/>
+                                    Text="{Binding NumOfEntries}" />
                             </ScrollView>
                         </Grid>
                     </SwipeView.Content>
@@ -80,40 +80,48 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    
-                    <Label
+                    <StackLayout
                         Grid.Row="0"
-                        Text="Attendance."
-                        Style="{StaticResource PageHeaderStyle}"/>
+                        Orientation="Horizontal">
+                        <Label
+                            Text="Attendance."
+                            Margin="10, 0, 0, 10"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource PageHeaderStyle}" />
+
+                        <Button
+                            Style="{StaticResource SettingsButtonStyle}"
+                            Clicked="OpenSettingsPage" />
+                    </StackLayout>
 
                     <ActivityIndicator
                         x:Name="prgLoading"
                         Grid.Row="1"
                         Style="{StaticResource ProgressStyle}"
                         IsVisible="True" />
-                    
-                    <CollectionView x:Name="collectionDateEntries"
-                                    Grid.Row="1"
-                                    ItemTemplate="{StaticResource EntryTemplate}"
-                                    Margin="12, 12, 12, 0"
-                                    SelectionMode="Single"
-                                    SelectionChanged="OpenDateRecordsPage">
+
+                    <CollectionView
+                        x:Name="collectionDateEntries"
+                        Grid.Row="1"
+                        ItemTemplate="{StaticResource EntryTemplate}"
+                        Margin="12, 12, 12, 0"
+                        SelectionMode="Single"
+                        SelectionChanged="OpenDateRecordsPage">
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout
                                 Orientation="Vertical"
-                                ItemSpacing="12"/>
+                                ItemSpacing="12" />
                         </CollectionView.ItemsLayout>
                     </CollectionView>
                 </Grid>
             </Grid>
 
             <Button
-                x:Name="btnAddRecord"
-                Style="{StaticResource FloatingButtonStyle}"
-                Text="&#xf477;"
+                Text="&#xf328;"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
-                Clicked="OpenNewRecordPage" />
+                Style="{StaticResource FloatingButtonStyle}"
+                Clicked="OpenScanner" />
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

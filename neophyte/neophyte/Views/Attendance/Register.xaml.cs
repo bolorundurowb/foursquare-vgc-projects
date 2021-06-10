@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
-using neophyte.Utils;
+using neophyte.Services.Implementations;
 using neophyte.Validators;
 using Refit;
 using Xamarin.Forms;
@@ -60,22 +60,24 @@ namespace neophyte.Views.Attendance
                 await _attendanceClient.Register(attendee);
 
                 // alert the user
-                Toasts.DisplaySuccess("Attendee successfully registered.");
+                ToastService.DisplaySuccess("Attendee successfully registered.");
 
                 // set the controls
                 await ResetControlsAsync();
             }
             catch (ApiException ex)
             {
-                await DisplayAlert("Error", ex.Content, "Okay");
+                ToastService.DisplayError(ex.Content);
             }
             catch (HttpRequestException)
             {
-                await DisplayAlert("Error", "An error occurred.", "Okay");
+                ToastService.DisplayError("An error occurred.");
             }
-
-            prgSaving.IsVisible = false;
-            btnSave.IsVisible = true;
+            finally
+            {
+                prgSaving.IsVisible = false;
+                btnSave.IsVisible = true;
+            }
         }
 
         protected async void EvaluateValidity(object sender, EventArgs e)

@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Foundation;
+using Rg.Plugins.Popup;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -28,9 +29,15 @@ namespace neophyte.iOS
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
 
+            Popup.Init();
             Forms.SetFlags("SwipeView_Experimental");
             Forms.Init();
             LoadApplication(new App());
+            
+            GoogleVisionBarCodeScanner.iOS.Initializer.Init();
+            // Temporary work around for bug on Firebase Library
+            // https://github.com/xamarin/GoogleApisForiOSComponents/issues/368
+            Firebase.Core.App.Configure();
 
             return base.FinishedLaunching(app, options);
         }

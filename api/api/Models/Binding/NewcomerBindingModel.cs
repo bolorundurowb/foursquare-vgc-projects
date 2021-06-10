@@ -25,7 +25,5 @@ namespace api.Models.Binding
         public MultiChoice? BornAgain { get; set; }
 
         public MultiChoice? BecomeMember { get; set; }
-
-        public string Remarks { get; set; }
     }
 }
