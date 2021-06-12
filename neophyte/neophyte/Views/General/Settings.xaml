@@ -20,34 +20,37 @@
                     Style="{StaticResource PageHeaderStyle}" />
             </StackLayout>
 
-            <Label
-                Text="Login Email:"
-                Style="{StaticResource FormLabelStyle}" />
-            <Label
-                IsEnabled="False"
-                Text="{Binding EmailAddress}"
-                Style="{StaticResource FormDisplayLabelStyle}" />
+            <StackLayout
+                Padding="20, 10, 20, 10">
+                <Label
+                    Text="Login Email:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    IsEnabled="False"
+                    Text="{Binding EmailAddress}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
 
-            <Label
-                Text="Last Login:"
-                Style="{StaticResource FormLabelStyle}" />
-            <Label
-                IsEnabled="False"
-                Text="{Binding LastLogin}"
-                Style="{StaticResource FormDisplayLabelStyle}" />
+                <Label
+                    Text="Last Login:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    IsEnabled="False"
+                    Text="{Binding LastLogin}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
 
-            <Label
-                Text="Next Login At:"
-                Style="{StaticResource FormLabelStyle}" />
-            <Label
-                IsEnabled="False"
-                Text="{Binding LoginExpiresAt}"
-                Style="{StaticResource FormDisplayLabelStyle}" />
+                <Label
+                    Text="Next Login At:"
+                    Style="{StaticResource FormLabelStyle}" />
+                <Label
+                    IsEnabled="False"
+                    Text="{Binding LoginExpiresAt}"
+                    Style="{StaticResource FormDisplayLabelStyle}" />
 
-            <Button
-                Text="Logout"
-                Style="{StaticResource SharedButtonStyle}"
-                Clicked="Logout" />
+                <Button
+                    Text="Logout"
+                    Style="{StaticResource SharedButtonStyle}"
+                    Clicked="Logout" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

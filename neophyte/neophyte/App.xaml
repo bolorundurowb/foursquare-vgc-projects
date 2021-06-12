@@ -171,6 +171,13 @@
                 <Setter Property="FontSize" Value="18" />
             </Style>
 
+            <Style x:Key="CancelButtonStyle" BasedOn="{StaticResource SharedButtonStyle}" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="BorderColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="BorderWidth" Value="2" />
+            </Style>
+
             <Style x:Key="FormLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="NexaB" />
                 <Setter Property="FontSize" Value="16" />
