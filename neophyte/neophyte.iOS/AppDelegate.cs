@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using Acr.UserDialogs;
 using Foundation;
 using Rg.Plugins.Popup;
 using UIKit;
@@ -34,7 +33,6 @@ namespace neophyte.iOS
             Forms.Init();
             LoadApplication(new App());
             
-            GoogleVisionBarCodeScanner.iOS.Initializer.Init();
             // Temporary work around for bug on Firebase Library
             // https://github.com/xamarin/GoogleApisForiOSComponents/issues/368
             Firebase.Core.App.Configure();

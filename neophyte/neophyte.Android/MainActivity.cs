@@ -3,7 +3,6 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using GoogleVisionBarCodeScanner.Droid;
 using Rg.Plugins.Popup;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -24,7 +23,6 @@ namespace neophyte.Droid
 
             base.OnCreate(savedInstanceState);
 
-            RendererInitializer.Init();
             Platform.Init(this, savedInstanceState);
             Popup.Init(this);
             Forms.SetFlags("SwipeView_Experimental");

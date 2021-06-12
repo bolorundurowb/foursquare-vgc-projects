@@ -1,7 +1,9 @@
 using System;
+using System.Net;
 using System.Net.Http;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.Binding;
+using neophyte.Models.View;
 using neophyte.Services.Implementations;
 using Refit;
 using Rg.Plugins.Popup.Pages;
@@ -31,7 +33,7 @@ namespace neophyte.Components
 
         protected async void RegisterAttendance(object sender, EventArgs e)
         {
-            btnSubmit.IsVisible = false;
+            stkButtons.IsVisible = false;
             prgSubmit.IsVisible = true;
 
             try
@@ -50,9 +52,15 @@ namespace neophyte.Components
 
                 await Navigation.PopModalAsync();
             }
+            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.NotFound ||
+                                          ex.StatusCode == HttpStatusCode.Conflict)
+            {
+                var error = await ex.GetContentAsAsync<ErrorViewModel>();
+                ToastService.DisplayError(error.Message);
+            }
             catch (ApiException ex)
             {
-                ToastService.DisplayError(ex.Content);
+                ToastService.DisplayError(ex.Content ?? "An error occured.");
             }
             catch (HttpRequestException)
             {
@@ -61,8 +69,13 @@ namespace neophyte.Components
             finally
             {
                 prgSubmit.IsVisible = false;
-                btnSubmit.IsVisible = true;
+                stkButtons.IsVisible = true;
             }
+        }
+
+        protected async void ClosePopup(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
         }
     }
 }
