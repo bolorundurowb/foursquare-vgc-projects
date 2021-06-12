@@ -31,7 +31,9 @@
       </div>
     </div>
 
-    <VueModal v-model="showRegisterModal" title="Register">
+    <VueModal
+        title="Register"
+        v-model="showRegisterModal">
       <form @submit.prevent="register">
         <fieldset>
           <label for="first-name">First Name</label>
