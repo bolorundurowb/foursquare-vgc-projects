@@ -21,7 +21,7 @@
             </StackLayout>
 
             <StackLayout
-                Padding="20">
+                Padding="20, 10, 20, 10">
                 <Label
                     Text="Login Email:"
                     Style="{StaticResource FormLabelStyle}" />
