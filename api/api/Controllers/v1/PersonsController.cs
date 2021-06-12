@@ -44,6 +44,7 @@ namespace api.Controllers.v1
         {
             var (isValid, errorMessages) =
                 await IsValid<PersonCreationBindingModelValidator, PersonCreationBindingModel>(bm);
+
             if (!isValid)
             {
                 return BadRequest(errorMessages);
