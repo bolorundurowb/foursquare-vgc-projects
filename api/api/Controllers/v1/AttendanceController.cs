@@ -55,6 +55,7 @@ namespace api.Controllers.v1
         {
             var (isValid, errorMessages) =
                 await IsValid<AttendeeRegistrationBindingModelValidator, AttendeeRegistrationBindingModel>(bm);
+            
             if (!isValid)
             {
                 return BadRequest(errorMessages);
@@ -85,8 +86,7 @@ namespace api.Controllers.v1
             try
             {
                 var attendee = await _attendanceRepo.UpdateAttendee(id, bm.Date, bm.FullName, bm.EmailAddress, bm.Age,
-                    bm.Phone,
-                    bm.ResidentialAddress, bm.Gender, bm.ReturnedInLastTenDays, bm.LiveWithCovidCaregivers,
+                    bm.Phone, bm.ResidentialAddress, bm.Gender, bm.ReturnedInLastTenDays, bm.LiveWithCovidCaregivers,
                     bm.CaredForSickPerson, bm.HaveCovidSymptoms, bm.SeatNumber);
                 return Ok(Mapper.Map<AttendeeViewModel>(attendee));
             }
