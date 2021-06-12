@@ -78,6 +78,7 @@ namespace api.Data.Repositories.Implementations
 
         public async Task<Attendee> AddAttendee(string personId, int? seatNumber)
         {
+            var today = DateTime.UtcNow.Date;
             var person = await _dbContext.Persons
                 .AsQueryable()
                 .FirstOrDefaultAsync(x => x.Id == ObjectId.Parse(personId));
@@ -86,8 +87,16 @@ namespace api.Data.Repositories.Implementations
             {
                 throw new NotFoundException("User not pre-registered.");
             }
-            
-            var attendee = new Attendee(person.FirstName, person.LastName, person?.Phone, seatNumber);
+
+            var attendee = await Query()
+                .FirstOrDefaultAsync(x => x.Phone == person.Phone && x.Date == today);
+
+            if (attendee != null)
+            {
+                throw new ConflictException("Attendee is registered for today's service.");
+            }
+
+            attendee = new Attendee(person.FirstName, person.LastName, person?.Phone, seatNumber);
             await _dbContext.Attendance
                 .InsertOneAsync(attendee);
 
