@@ -81,8 +81,13 @@ namespace api.Data.Repositories.Implementations
             var person = await _dbContext.Persons
                 .AsQueryable()
                 .FirstOrDefaultAsync(x => x.Id == ObjectId.Parse(personId));
+
+            if (person == null)
+            {
+                throw new NotFoundException("User not pre-registered.");
+            }
             
-            var attendee = new Attendee(person?.FirstName, person?.LastName, person?.Phone, seatNumber);
+            var attendee = new Attendee(person.FirstName, person.LastName, person?.Phone, seatNumber);
             await _dbContext.Attendance
                 .InsertOneAsync(attendee);
 
