@@ -1,10 +1,10 @@
 <template>
   <div class="page">
     <div class="header">
-      <img src="./assets/logo.png" />
+      <img src="./assets/logo.png"/>
     </div>
     <div class="container">
-      <router-view />
+      <router-view/>
     </div>
   </div>
 </template>
