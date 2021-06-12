@@ -18,12 +18,14 @@
                 id="phone-number"
                 v-model="phoneNumber"/>
 
-            <button
-                class="button"
-                type="submit"
-                v-bind:disabled="isLoading">
-              Check
-            </button>
+            <div style="text-align: center">
+              <button
+                  class="button"
+                  type="submit"
+                  v-bind:disabled="isLoading">
+                Check
+              </button>
+            </div>
           </fieldset>
         </form>
       </div>
@@ -46,21 +48,23 @@
               id="last-name"
               v-model="newPerson.lastName"/>
 
-          <label for="reg-phone-number"
-          >Phone Number <span style="color: red">*</span></label
-          >
+          <label for="reg-phone-number">
+            Phone Number <span style="color: red">*</span>
+          </label>
           <input
               type="tel"
               placeholder="e.g 08012345678"
               id="reg-phone-number"
               v-model="newPerson.phone"/>
 
-          <button
-              class="button"
-              type="submit"
-              v-bind:disabled="isRegistering">
-            Register
-          </button>
+          <div style="text-align: center">
+            <button
+                class="button"
+                type="submit"
+                v-bind:disabled="isRegistering">
+              Register
+            </button>
+          </div>
         </fieldset>
       </form>
     </VueModal>
@@ -215,12 +219,11 @@ export default {
   padding-left: 2rem;
   padding-right: 2rem;
 }
-</style>
 
-<style>
-.swal-button {
-  padding: 0 3rem !important;
-  border: 0.1rem solid #9b4dca !important;
-  background-color: #9b4dca !important;
+@media only screen and (max-device-width: 768px) {
+  .form-container {
+    padding: 3rem 2rem;
+    width: 100%;
+  }
 }
 </style>

@@ -30,4 +30,22 @@
   justify-content: center;
   align-items: center;
 }
+
+@media only screen and (max-device-width: 768px) {
+  .page {
+    padding: 1rem;
+  }
+
+  .page .header img {
+    width: 12rem;
+  }
+}
+</style>
+
+<style>
+.swal-button {
+  padding: 0 3rem !important;
+  border: 0.1rem solid #9b4dca !important;
+  background-color: #9b4dca !important;
+}
 </style>
