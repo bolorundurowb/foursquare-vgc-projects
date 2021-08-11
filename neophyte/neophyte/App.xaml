@@ -16,6 +16,7 @@
             <Color x:Key="FrameBackgroundColour">#E5E5E2</Color>
             <Color x:Key="GreenColour">#4D9947</Color>
             <Color x:Key="RedColour">#B80711</Color>
+            <Color x:Key="AccentColour">#336b87</Color>
 
             <Style x:Key="PageStyle" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="{StaticResource LightGreyColour}" />
