@@ -59,7 +59,7 @@ namespace neophyte.Views.Newcomers
                 return;
             }
 
-            if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
+            if (((SwipeItemView)sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _newcomerClient.SendNewcomersReport(summary.Date, email);
                 ToastService.DisplaySuccess("Report successfully generated and sent.");
