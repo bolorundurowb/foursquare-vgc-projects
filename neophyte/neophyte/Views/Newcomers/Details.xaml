@@ -7,12 +7,12 @@
     x:Class="neophyte.Views.Newcomers.NewcomerDetailsPage"
     Style="{StaticResource PageStyle}">
     <ContentPage.Content>
-        <ScrollView
-            x:Name="scrollView">
+        <StackLayout
+            Orientation="Vertical">
             <StackLayout
                 Orientation="Vertical"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill">
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
                 <StackLayout
                     Orientation="Horizontal">
                     <Button
@@ -29,193 +29,198 @@
                         Clicked="EnableEditMode" />
                 </StackLayout>
 
-                <Label
-                    Text="Entry Date:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <DatePicker
-                    x:Name="dtpDate"
-                    IsEnabled="False"
-                    Date="{Binding Date}"
-                    Style="{StaticResource FormDatePickerStyle}" />
+                <ScrollView
+                    x:Name="scrollView">
+                    <StackLayout>
+                        <Label
+                            Text="Entry Date:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <DatePicker
+                            x:Name="dtpDate"
+                            IsEnabled="False"
+                            Date="{Binding Date}"
+                            Style="{StaticResource FormDatePickerStyle}" />
 
-                <Label
-                    Text="Full Name:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <Label
-                    x:Name="lblFullName"
-                    Text="{Binding FullName}"
-                    Style="{StaticResource FormDisplayLabelStyle}" />
-                <Entry
-                    x:Name="txtFullName"
-                    IsVisible="False"
-                    Text="{Binding FullName, Mode=TwoWay}"
-                    Style="{StaticResource FormEntryStyle}" />
+                        <Label
+                            Text="Full Name:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblFullName"
+                            Text="{Binding FullName}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Entry
+                            x:Name="txtFullName"
+                            IsVisible="False"
+                            Text="{Binding FullName, Mode=TwoWay}"
+                            Style="{StaticResource FormEntryStyle}" />
 
-                <Label
-                    Text="Home Address:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <Label
-                    x:Name="lblHomeAddress"
-                    Text="{Binding HomeAddress}"
-                    Style="{StaticResource FormDisplayLabelStyle}" />
-                <Entry
-                    x:Name="txtHomeAddress"
-                    IsVisible="False"
-                    Text="{Binding HomeAddress, Mode=TwoWay}"
-                    Style="{StaticResource FormEntryStyle}" />
+                        <Label
+                            Text="Home Address:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblHomeAddress"
+                            Text="{Binding HomeAddress}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Entry
+                            x:Name="txtHomeAddress"
+                            IsVisible="False"
+                            Text="{Binding HomeAddress, Mode=TwoWay}"
+                            Style="{StaticResource FormEntryStyle}" />
 
-                <Label
-                    Text="Phone Number:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <Label
-                    x:Name="lblPhone"
-                    Text="{Binding Phone}"
-                    Style="{StaticResource FormDisplayLabelStyle}" />
-                <Entry
-                    x:Name="txtPhone"
-                    IsVisible="False"
-                    Keyboard="Telephone"
-                    Text="{Binding Phone, Mode=TwoWay}"
-                    Style="{StaticResource FormEntryStyle}" />
+                        <Label
+                            Text="Phone Number:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblPhone"
+                            Text="{Binding Phone}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Entry
+                            x:Name="txtPhone"
+                            IsVisible="False"
+                            Keyboard="Telephone"
+                            Text="{Binding Phone, Mode=TwoWay}"
+                            Style="{StaticResource FormEntryStyle}" />
 
-                <Label
-                    Text="Email Address:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <Label
-                    x:Name="lblEmailAddress"
-                    Text="{Binding EmailAddress}"
-                    Style="{StaticResource FormDisplayLabelStyle}" />
-                <Entry
-                    x:Name="txtEmail"
-                    IsVisible="False"
-                    Keyboard="Email"
-                    Text="{Binding EmailAddress, Mode=TwoWay}"
-                    Style="{StaticResource FormEntryStyle}" />
+                        <Label
+                            Text="Email Address:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblEmailAddress"
+                            Text="{Binding EmailAddress}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Entry
+                            x:Name="txtEmail"
+                            IsVisible="False"
+                            Keyboard="Email"
+                            Text="{Binding EmailAddress, Mode=TwoWay}"
+                            Style="{StaticResource FormEntryStyle}" />
 
-                <Label
-                    Text="Birthday:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <Label
-                    x:Name="lblBirthday"
-                    Text="{Binding BirthDay}"
-                    Style="{StaticResource FormDisplayLabelStyle}" />
-                <StackLayout
-                    x:Name="stkBirthday"
-                    Orientation="Horizontal"
-                    HorizontalOptions="Fill"
-                    IsVisible="False">
-                    <Picker
-                        x:Name="cmbMonths"
-                        Style="{StaticResource FormPickerStyle}" />
-                    <Picker
-                        x:Name="cmbDays"
-                        Style="{StaticResource FormPickerStyle}" />
-                </StackLayout>
+                        <Label
+                            Text="Birthday:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblBirthday"
+                            Text="{Binding BirthDay}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <StackLayout
+                            x:Name="stkBirthday"
+                            Orientation="Horizontal"
+                            HorizontalOptions="Fill"
+                            IsVisible="False">
+                            <Picker
+                                x:Name="cmbMonths"
+                                Style="{StaticResource FormPickerStyle}" />
+                            <Picker
+                                x:Name="cmbDays"
+                                Style="{StaticResource FormPickerStyle}" />
+                        </StackLayout>
 
-                <Label
-                    Text="Gender:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <Label
-                    x:Name="lblGender"
-                    Text="{Binding Gender}"
-                    Style="{StaticResource FormDisplayLabelStyle}" />
-                <Picker
-                    x:Name="cmbGender"
-                    IsVisible="False"
-                    SelectedItem="{Binding Gender, Mode=TwoWay}"
-                    Style="{StaticResource FormPickerStyle}" />
+                        <Label
+                            Text="Gender:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblGender"
+                            Text="{Binding Gender}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Picker
+                            x:Name="cmbGender"
+                            IsVisible="False"
+                            SelectedItem="{Binding Gender, Mode=TwoWay}"
+                            Style="{StaticResource FormPickerStyle}" />
 
-                <Label
-                    Text="Age Group:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <Label
-                    x:Name="lblAgeGroup"
-                    Text="{Binding AgeGroup}"
-                    Style="{StaticResource FormDisplayLabelStyle}" />
-                <Picker
-                    x:Name="cmbAgeGroup"
-                    IsVisible="False"
-                    SelectedItem="{Binding AgeGroup, Mode=TwoWay}"
-                    Style="{StaticResource FormPickerStyle}" />
+                        <Label
+                            Text="Age Group:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblAgeGroup"
+                            Text="{Binding AgeGroup}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Picker
+                            x:Name="cmbAgeGroup"
+                            IsVisible="False"
+                            SelectedItem="{Binding AgeGroup, Mode=TwoWay}"
+                            Style="{StaticResource FormPickerStyle}" />
 
-                <Label
-                    Text="Comments/Prayer Points:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <Label
-                    x:Name="lblCommentsPrayers"
-                    Text="{Binding CommentsOrPrayers}"
-                    Style="{StaticResource FormDisplayLabelStyle}" />
-                <Editor
-                    x:Name="txtPrayersComments"
-                    IsVisible="False"
-                    Text="{Binding CommentsOrPrayers, Mode=TwoWay}"
-                    Style="{StaticResource FormEditorStyle}" />
+                        <Label
+                            Text="Comments/Prayer Points:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblCommentsPrayers"
+                            Text="{Binding CommentsOrPrayers}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Editor
+                            x:Name="txtPrayersComments"
+                            IsVisible="False"
+                            Text="{Binding CommentsOrPrayers, Mode=TwoWay}"
+                            Style="{StaticResource FormEditorStyle}" />
 
-                <Label
-                    Text="How Did You Get To Know About Us:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <Label
-                    x:Name="lblHowYouFoundUs"
-                    Text="{Binding HowYouFoundUs}"
-                    Style="{StaticResource FormDisplayLabelStyle}" />
-                <Entry
-                    x:Name="txtHowYouFoundUs"
-                    IsVisible="False"
-                    Text="{Binding HowYouFoundUs, Mode=TwoWay}"
-                    Style="{StaticResource FormEntryStyle}" />
+                        <Label
+                            Text="How Did You Get To Know About Us:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblHowYouFoundUs"
+                            Text="{Binding HowYouFoundUs}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Entry
+                            x:Name="txtHowYouFoundUs"
+                            IsVisible="False"
+                            Text="{Binding HowYouFoundUs, Mode=TwoWay}"
+                            Style="{StaticResource FormEntryStyle}" />
 
-                <Label
-                    Text="Are You Born Again?:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <input:RadioButtonGroupView
-                    SelectedItem="{Binding BornAgain, Mode=TwoWay}"
-                    Style="{StaticResource FormRadioGroupStyle}">
-                    <input:RadioButton
-                        Text="Yes"
-                        Value="Yes"
-                        Style="{StaticResource FormRadioButtonStyle}" />
-                    <input:RadioButton
-                        Text="No"
-                        Value="No"
-                        Style="{StaticResource FormRadioButtonStyle}" />
-                    <input:RadioButton
-                        Text="Interested In"
-                        Value="Maybe"
-                        Style="{StaticResource FormRadioButtonStyle}" />
-                </input:RadioButtonGroupView>
+                        <Label
+                            Text="Are You Born Again?:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <input:RadioButtonGroupView
+                            SelectedItem="{Binding BornAgain, Mode=TwoWay}"
+                            Style="{StaticResource FormRadioGroupStyle}">
+                            <input:RadioButton
+                                Text="Yes"
+                                Value="Yes"
+                                Style="{StaticResource FormRadioButtonStyle}" />
+                            <input:RadioButton
+                                Text="No"
+                                Value="No"
+                                Style="{StaticResource FormRadioButtonStyle}" />
+                            <input:RadioButton
+                                Text="Interested In"
+                                Value="Maybe"
+                                Style="{StaticResource FormRadioButtonStyle}" />
+                        </input:RadioButtonGroupView>
 
-                <Label
-                    Text="Would You Like To Become A Member Of This Church?:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <input:RadioButtonGroupView
-                    SelectedItem="{Binding BecomeMember, Mode=TwoWay}"
-                    Style="{StaticResource FormRadioGroupStyle}">
-                    <input:RadioButton
-                        Text="Yes"
-                        Value="Yes"
-                        Style="{StaticResource FormRadioButtonStyle}" />
-                    <input:RadioButton
-                        Text="No"
-                        Value="No"
-                        Style="{StaticResource FormRadioButtonStyle}" />
-                    <input:RadioButton
-                        Text="Maybe"
-                        Value="Maybe"
-                        Style="{StaticResource FormRadioButtonStyle}" />
-                </input:RadioButtonGroupView>
+                        <Label
+                            Text="Would You Like To Become A Member Of This Church?:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <input:RadioButtonGroupView
+                            SelectedItem="{Binding BecomeMember, Mode=TwoWay}"
+                            Style="{StaticResource FormRadioGroupStyle}">
+                            <input:RadioButton
+                                Text="Yes"
+                                Value="Yes"
+                                Style="{StaticResource FormRadioButtonStyle}" />
+                            <input:RadioButton
+                                Text="No"
+                                Value="No"
+                                Style="{StaticResource FormRadioButtonStyle}" />
+                            <input:RadioButton
+                                Text="Maybe"
+                                Value="Maybe"
+                                Style="{StaticResource FormRadioButtonStyle}" />
+                        </input:RadioButtonGroupView>
 
-                <Label
-                    Text="Remarks:"
-                    Style="{StaticResource FormLabelStyle}" />
-                <Label
-                    x:Name="lblRemarks"
-                    Text="{Binding Remarks}"
-                    Style="{StaticResource FormDisplayLabelStyle}" />
-                <Editor
-                    x:Name="txtRemarks"
-                    IsVisible="False"
-                    Text="{Binding Remarks, Mode=TwoWay}"
-                    Style="{StaticResource FormEditorStyle}" />
+                        <Label
+                            Text="Remarks:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblRemarks"
+                            Text="{Binding Remarks}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Editor
+                            x:Name="txtRemarks"
+                            IsVisible="False"
+                            Text="{Binding Remarks, Mode=TwoWay}"
+                            Style="{StaticResource FormEditorStyle}" />
+                    </StackLayout>
+                </ScrollView>
 
                 <Button
                     x:Name="btnUpdate"
@@ -229,6 +234,6 @@
                     IsVisible="False"
                     Style="{StaticResource ProgressStyle}" />
             </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
