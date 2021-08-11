@@ -7,7 +7,7 @@ namespace neophyte
 #if DEBUG
         public const string V1BaseUrl = "https://neophyte-dev-api.herokuapp.com/v1";
         public const string V2BaseUrl = "https://neophyte-dev-api.herokuapp.com/v2";
-#elif
+#else
         public const string V1BaseUrl = "https://neophyte-prod-api.herokuapp.com/v1";
         public const string V2BaseUrl = "https://neophyte-prod-api.herokuapp.com/v2";
 #endif

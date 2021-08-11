@@ -28,8 +28,6 @@ namespace neophyte.Views.Newcomers
         {
             base.OnAppearing();
             await LoadDateRecords();
-            prgLoading.IsVisible = false;
-            collectionDateEntries.IsVisible = true;
         }
 
         protected async void OpenDateRecordsPage(object sender, EventArgs e)
@@ -72,6 +70,11 @@ namespace neophyte.Views.Newcomers
             }
         }
 
+        protected async void OnRefresh(object sender, EventArgs e)
+        {
+            await LoadDateRecords();
+        }
+
         private async Task LoadDateRecords()
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -83,6 +86,7 @@ namespace neophyte.Views.Newcomers
 
             try
             {
+                rfsLoading.IsRefreshing = true;
                 collectionDateEntries.ItemsSource = await _newcomerClient.GetAll();
             }
             catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
@@ -90,6 +94,10 @@ namespace neophyte.Views.Newcomers
                 // logout and redirect to login
                 new TokenClient().Logout();
                 Application.Current.MainPage = new NavigationPage(new SignIn());
+            }
+            finally
+            {
+                rfsLoading.IsRefreshing = false;
             }
         }
     }
