@@ -4,10 +4,13 @@ namespace neophyte
 {
     public static class Constants
     {
-        // public const string V1BaseUrl = "https://neophyte-dev-api.herokuapp.com/v1";
-        // public const string V2BaseUrl = "https://neophyte-dev-api.herokuapp.com/v2";
+#if DEBUG
+        public const string V1BaseUrl = "https://neophyte-dev-api.herokuapp.com/v1";
+        public const string V2BaseUrl = "https://neophyte-dev-api.herokuapp.com/v2";
+#else
         public const string V1BaseUrl = "https://neophyte-prod-api.herokuapp.com/v1";
         public const string V2BaseUrl = "https://neophyte-prod-api.herokuapp.com/v2";
+#endif
 
         public static List<string> Months = new List<string>
         {

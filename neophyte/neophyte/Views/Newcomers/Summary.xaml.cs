@@ -28,8 +28,6 @@ namespace neophyte.Views.Newcomers
         {
             base.OnAppearing();
             await LoadDateRecords();
-            prgLoading.IsVisible = false;
-            collectionDateEntries.IsVisible = true;
         }
 
         protected async void OpenDateRecordsPage(object sender, EventArgs e)
@@ -61,7 +59,7 @@ namespace neophyte.Views.Newcomers
                 return;
             }
 
-            if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
+            if (((SwipeItemView)sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _newcomerClient.SendNewcomersReport(summary.Date, email);
                 ToastService.DisplaySuccess("Report successfully generated and sent.");
@@ -70,6 +68,11 @@ namespace neophyte.Views.Newcomers
             {
                 ToastService.DisplayError("An error occurred when sending the report.");
             }
+        }
+
+        protected async void OnRefresh(object sender, EventArgs e)
+        {
+            await LoadDateRecords();
         }
 
         private async Task LoadDateRecords()
@@ -83,6 +86,7 @@ namespace neophyte.Views.Newcomers
 
             try
             {
+                rfsLoading.IsRefreshing = true;
                 collectionDateEntries.ItemsSource = await _newcomerClient.GetAll();
             }
             catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
@@ -90,6 +94,10 @@ namespace neophyte.Views.Newcomers
                 // logout and redirect to login
                 new TokenClient().Logout();
                 Application.Current.MainPage = new NavigationPage(new SignIn());
+            }
+            finally
+            {
+                rfsLoading.IsRefreshing = false;
             }
         }
     }

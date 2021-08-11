@@ -94,25 +94,23 @@
                             Clicked="OpenSettingsPage" />
                     </StackLayout>
 
-                    <ActivityIndicator
-                        x:Name="prgLoading"
+                    <RefreshView
+                        x:Name="rfsLoading"
                         Grid.Row="1"
-                        Style="{StaticResource ProgressStyle}"
-                        IsVisible="True" />
-
-                    <CollectionView
-                        x:Name="collectionDateEntries"
-                        Grid.Row="1"
-                        ItemTemplate="{StaticResource EntryTemplate}"
-                        Margin="12, 12, 12, 0"
-                        SelectionMode="Single"
-                        SelectionChanged="OpenDateRecordsPage">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout
-                                Orientation="Vertical"
-                                ItemSpacing="12" />
-                        </CollectionView.ItemsLayout>
-                    </CollectionView>
+                        Refreshing="OnRefresh">
+                        <CollectionView
+                            x:Name="collectionDateEntries"
+                            ItemTemplate="{StaticResource EntryTemplate}"
+                            Margin="12, 12, 12, 0"
+                            SelectionMode="Single"
+                            SelectionChanged="OpenDateRecordsPage">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout
+                                    Orientation="Vertical"
+                                    ItemSpacing="12" />
+                            </CollectionView.ItemsLayout>
+                        </CollectionView>
+                    </RefreshView>
                 </Grid>
             </Grid>
 

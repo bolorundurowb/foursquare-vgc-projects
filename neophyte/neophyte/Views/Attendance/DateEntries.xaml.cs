@@ -35,8 +35,6 @@ namespace neophyte.Views.Attendance
 
             // load page data
             await LoadDateRecords();
-            prgLoading.IsVisible = false;
-            collectionDateEntries.IsVisible = true;
         }
 
         protected async void DeleteRecord(object sender, EventArgs e)
@@ -109,6 +107,11 @@ namespace neophyte.Views.Attendance
             await Navigation.PopAsync(true);
         }
 
+        protected async void OnRefresh(object sender, EventArgs e)
+        {
+            await LoadDateRecords();
+        }
+
         private async Task LoadDateRecords()
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -118,8 +121,10 @@ namespace neophyte.Views.Attendance
                 return;
             }
 
+            rfsLoading.IsRefreshing = true;
             _dateRecords = await _attendanceClient.GetAttendanceForDate(_date);
             collectionDateEntries.ItemsSource = _dateRecords;
+            rfsLoading.IsRefreshing = false;
         }
     }
 }

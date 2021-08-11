@@ -16,6 +16,7 @@
             <Color x:Key="FrameBackgroundColour">#E5E5E2</Color>
             <Color x:Key="GreenColour">#4D9947</Color>
             <Color x:Key="RedColour">#B80711</Color>
+            <Color x:Key="AccentColour">#336b87</Color>
 
             <Style x:Key="PageStyle" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="{StaticResource LightGreyColour}" />
@@ -161,14 +162,14 @@
             <Style x:Key="SharedButtonStyle" TargetType="Button">
                 <Setter Property="Margin" Value="0,20,0,0" />
                 <Setter Property="Padding" Value="20,0,20,0" />
-                <Setter Property="BackgroundColor" Value="#3E3E3E" />
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColour}" />
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="FontFamily" Value="NexaB" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontSize" Value="16" />
             </Style>
 
             <Style x:Key="CancelButtonStyle" BasedOn="{StaticResource SharedButtonStyle}" TargetType="Button">
@@ -231,7 +232,7 @@
                 <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="Margin" Value="0,0,0,15" />
+                <Setter Property="Margin" Value="0,0,0,10" />
             </Style>
 
             <Style x:Key="FormRadioButtonStyle" TargetType="controls:RadioButton">

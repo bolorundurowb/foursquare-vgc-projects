@@ -30,8 +30,6 @@ namespace neophyte.Views.Attendance
         {
             base.OnAppearing();
             await LoadDateRecords();
-            prgLoading.IsVisible = false;
-            collectionDateEntries.IsVisible = true;
         }
 
         protected async void OpenDateRecordsPage(object sender, EventArgs e)
@@ -73,7 +71,7 @@ namespace neophyte.Views.Attendance
                 return;
             }
 
-            if (((SwipeItemView) sender).BindingContext is DateSummaryViewModel summary)
+            if (((SwipeItemView)sender).BindingContext is DateSummaryViewModel summary)
             {
                 await _attendanceClient.SendAttendanceReport(summary.Date, email);
                 ToastService.DisplaySuccess("Report successfully generated and sent.");
@@ -82,6 +80,11 @@ namespace neophyte.Views.Attendance
             {
                 ToastService.DisplayError("An error occurred when sending the report.");
             }
+        }
+
+        protected async void OnRefresh(object sender, EventArgs e)
+        {
+            await LoadDateRecords();
         }
 
         private async Task LoadDateRecords()
@@ -95,6 +98,7 @@ namespace neophyte.Views.Attendance
 
             try
             {
+                rfsLoading.IsRefreshing = true;
                 collectionDateEntries.ItemsSource = await _attendanceClient.GetAll();
             }
             catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
@@ -102,6 +106,10 @@ namespace neophyte.Views.Attendance
                 // logout and redirect to login
                 new TokenClient().Logout();
                 Application.Current.MainPage = new NavigationPage(new SignIn());
+            }
+            finally
+            {
+                rfsLoading.IsRefreshing = false;
             }
         }
     }
