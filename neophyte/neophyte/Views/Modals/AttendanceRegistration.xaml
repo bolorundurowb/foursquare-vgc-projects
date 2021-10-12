@@ -9,10 +9,11 @@
     <Frame Style="{StaticResource ModalFrmStyle}">
         <ScrollView
             HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand">
+            VerticalOptions="FillAndExpand"
+            Orientation="Vertical">
             <Grid
                 HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"
+                VerticalOptions="CenterAndExpand"
                 BackgroundColor="Transparent"
                 Padding="10, 0, 10, 0">
                 <Grid.RowDefinitions>
