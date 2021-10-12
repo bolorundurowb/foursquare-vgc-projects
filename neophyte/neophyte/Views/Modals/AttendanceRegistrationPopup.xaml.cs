@@ -6,10 +6,9 @@ using neophyte.Models.Binding;
 using neophyte.Models.View;
 using neophyte.Services.Implementations;
 using Refit;
-using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms.Xaml;
 
-namespace neophyte.Components
+namespace neophyte.Views.Modals
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AttendanceRegistrationPopup : PopupPage

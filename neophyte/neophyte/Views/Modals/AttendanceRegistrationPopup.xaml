@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<popups:PopupPage
+<xct:Popup
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:popups="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-    x:Class="neophyte.Components.AttendanceRegistrationPopup">
-    <Grid
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Class="neophyte.Views.Modals.AttendanceRegistrationPopup">
+    <Frame>
+        <Grid
         HorizontalOptions="Center"
         VerticalOptions="Center"
         Padding="15"
@@ -84,4 +85,5 @@
                 Style="{StaticResource ProgressStyle}" />
         </StackLayout>
     </Grid>
-</popups:PopupPage>
+    </Frame>
+</xct:Popup>

@@ -1,13 +1,13 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using neophyte.Components;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using neophyte.Services.Implementations;
 using neophyte.Services.Interfaces;
 using neophyte.Views.Auth;
 using neophyte.Views.General;
+using neophyte.Views.Modals;
 using Refit;
 using Xamarin.Essentials;
 using Xamarin.Forms;
