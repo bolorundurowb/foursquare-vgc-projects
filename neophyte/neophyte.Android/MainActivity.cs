@@ -3,7 +3,6 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Rg.Plugins.Popup;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
@@ -24,7 +23,6 @@ namespace neophyte.Droid
             base.OnCreate(savedInstanceState);
 
             Platform.Init(this, savedInstanceState);
-            Popup.Init(this);
             Forms.SetFlags("SwipeView_Experimental");
             Forms.Init(this, savedInstanceState);
             Config.Init(this, savedInstanceState);
@@ -40,11 +38,6 @@ namespace neophyte.Droid
         {
             Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-
-        public override void OnBackPressed()
-        {
-            Popup.SendBackPressed(base.OnBackPressed);
         }
     }
 }

@@ -1,14 +1,15 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using neophyte.Components;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using neophyte.Services.Implementations;
 using neophyte.Services.Interfaces;
 using neophyte.Views.Auth;
 using neophyte.Views.General;
+using neophyte.Views.Modals;
 using Refit;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -51,8 +52,8 @@ namespace neophyte.Views.Attendance
                 return;
             }
 
-            var popup = new AttendanceRegistrationPopup(result);
-            await Navigation.PushModalAsync(popup);
+            var popup = new AttendanceRegistration(result);
+            await Navigation.ShowPopupAsync(popup);
         }
 
         protected async void OpenSettingsPage(object sender, EventArgs e)

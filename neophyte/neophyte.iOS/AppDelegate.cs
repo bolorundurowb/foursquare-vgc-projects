@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Foundation;
-using Rg.Plugins.Popup;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -28,7 +27,6 @@ namespace neophyte.iOS
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
 
-            Popup.Init();
             Forms.SetFlags("SwipeView_Experimental");
             Forms.Init();
             LoadApplication(new App());
