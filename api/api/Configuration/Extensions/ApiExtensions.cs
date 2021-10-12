@@ -28,6 +28,7 @@ namespace api.Configuration.Extensions
                 .AllowAnyOrigin());
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseSentryTracing();
             app.UseAuth();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
