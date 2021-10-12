@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xct:Popup
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Class="neophyte.Views.Modals.AttendanceRegistration"
+    Style="{StaticResource ModalStyle}">
+    <Frame Style="{StaticResource ModalFrmStyle}">
+        <Grid
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Padding="15"
+            BackgroundColor="WhiteSmoke">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Row="0"
+                FontFamily="NexaB"
+                FontSize="16"
+                Text="Complete Registration" />
+
+            <StackLayout
+                Grid.Row="1"
+                Orientation="Vertical"
+                HorizontalOptions="FillAndExpand"
+                Margin="0, 15, 0, 0">
+                <Label
+                    FontSize="13"
+                    Margin="0, 0, 0, 5"
+                    FontFamily="NexaB"
+                    Text="Scanned Id" />
+                <Entry
+                    x:Name="txtPersonId"
+                    FontFamily="NexaL"
+                    IsEnabled="False" />
+            </StackLayout>
+
+            <StackLayout
+                Grid.Row="2"
+                Orientation="Vertical"
+                HorizontalOptions="FillAndExpand"
+                Margin="0, 10, 0, 0">
+                <Label
+                    FontSize="13"
+                    Margin="0, 0, 0, 5"
+                    FontFamily="NexaB"
+                    Text="Assigned Seat Number" />
+                <Entry
+                    x:Name="txtSeatNumber"
+                    FontFamily="NexaL"
+                    Keyboard="Numeric" />
+            </StackLayout>
+
+            <StackLayout
+                Grid.Row="3"
+                Orientation="Vertical"
+                HorizontalOptions="FillAndExpand"
+                Margin="0, 10, 0, 0">
+                <StackLayout
+                    x:Name="stkButtons"
+                    Orientation="Horizontal">
+                    <Button
+                        Text="Cancel"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource CancelButtonStyle}"
+                        Clicked="ClosePopup" />
+                    <Button
+                        Text="Register"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource SharedButtonStyle}"
+                        Clicked="RegisterAttendance" />
+                </StackLayout>
+                <ProgressBar
+                    x:Name="prgSubmit"
+                    IsVisible="False"
+                    IsEnabled="True"
+                    Style="{StaticResource ProgressStyle}" />
+            </StackLayout>
+        </Grid>
+    </Frame>
+</xct:Popup>

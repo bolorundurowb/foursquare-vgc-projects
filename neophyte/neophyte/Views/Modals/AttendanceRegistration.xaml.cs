@@ -6,27 +6,23 @@ using neophyte.Models.Binding;
 using neophyte.Models.View;
 using neophyte.Services.Implementations;
 using Refit;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms.Xaml;
 
 namespace neophyte.Views.Modals
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AttendanceRegistrationPopup : PopupPage
+    public partial class AttendanceRegistration : Popup
     {
         private readonly AttendanceV2Client _attendanceClient;
         private readonly string _personId;
 
-        public AttendanceRegistrationPopup(string personId)
+        public AttendanceRegistration(string personId)
         {
             InitializeComponent();
 
             _personId = personId;
             _attendanceClient = new AttendanceV2Client();
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
             txtPersonId.Text = _personId;
         }
 
@@ -55,7 +51,7 @@ namespace neophyte.Views.Modals
                                           ex.StatusCode == HttpStatusCode.Conflict)
             {
                 var error = await ex.GetContentAsAsync<ErrorViewModel>();
-                ToastService.DisplayError(error.Message);
+                ToastService.DisplayError(error?.Message);
             }
             catch (ApiException ex)
             {
@@ -72,9 +68,14 @@ namespace neophyte.Views.Modals
             }
         }
 
-        protected async void ClosePopup(object sender, EventArgs e)
+        protected void ClosePopup(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            Dismiss(null);
+        }
+
+        protected override object GetLightDismissResult()
+        {
+            return null;
         }
     }
 }
