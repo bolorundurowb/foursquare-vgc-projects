@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="dotenv.net" Version="3.0.0" />
+      <PackageReference Include="dotenv.net" Version="3.1.1" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
       <PackageReference Include="QRCoder" Version="1.4.1" />
