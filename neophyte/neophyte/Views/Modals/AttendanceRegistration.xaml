@@ -42,9 +42,10 @@
                     Text="Scanned Id" />
                 <Label
                     x:Name="lblPersonId"
-                    FontFamily="NexaL"
+                    FontSize="18"
+                    FontFamily="NexaB"
                     IsEnabled="False"
-                    FontSize="16"/>
+                    TextColor="#9A9A9A"/>
             </StackLayout>
 
             <StackLayout
