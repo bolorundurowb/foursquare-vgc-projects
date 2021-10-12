@@ -23,7 +23,7 @@ namespace neophyte.Views.Modals
 
             _personId = personId;
             _attendanceClient = new AttendanceV2Client();
-            txtPersonId.Text = _personId;
+            lblPersonId.Text = _personId;
         }
 
         protected async void RegisterAttendance(object sender, EventArgs e)
@@ -45,13 +45,18 @@ namespace neophyte.Views.Modals
                 // alert the user
                 ToastService.DisplaySuccess("Attendee successfully registered.");
 
-                await Navigation.PopModalAsync();
+                Dismiss(null);
             }
-            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.NotFound ||
-                                          ex.StatusCode == HttpStatusCode.Conflict)
+            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {
                 var error = await ex.GetContentAsAsync<ErrorViewModel>();
                 ToastService.DisplayError(error?.Message);
+            }
+            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Conflict)
+            {
+                var error = await ex.GetContentAsAsync<ErrorViewModel>();
+                ToastService.DisplayError(error?.Message);
+                Dismiss(null);
             }
             catch (ApiException ex)
             {
