@@ -36,7 +36,8 @@ namespace api.Data.Models
 
         public string SeatAssigned { get; private set; }
 
-        [BsonIgnore] public int SerialNo { get; set; }
+        [BsonIgnore] 
+        public int SerialNo { get; set; }
 
         private Attendee()
         {
