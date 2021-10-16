@@ -42,12 +42,12 @@ namespace api.Data.Models
         {
         }
 
-        public Attendee(string firstName, string lastName, string phone, int? seatNumber)
+        public Attendee(string firstName, string lastName, string phone, string seatNumber)
         {
             Date = DateTime.UtcNow.Date;
             FullName = $"{firstName} {lastName}";
             Phone = phone;
-            SeatNumber = seatNumber;
+            SeatAssigned = seatNumber;
         }
 
         public Attendee(string emailAddress, string fullName, int? age, string phone, string residentialAddress,
