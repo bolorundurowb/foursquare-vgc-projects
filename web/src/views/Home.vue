@@ -1,10 +1,14 @@
 <template>
   <div>
     <div class="form-container">
-      <h2>Check Your Status</h2>
-      <h5>
-        You can check to see if you have been registered to attend our services.
-      </h5>
+      <div class="form-header">
+        Check Your Registration Status
+      </div>
+
+      <div class="form-sub-header">
+        You can check to see if you have been registered to attend our services. If you haven't you'll be prompted
+        allowed to register. This is to avoid duplication.
+      </div>
 
       <div class="form">
         <form @submit.prevent="check">
@@ -207,8 +211,17 @@ export default {
   margin-right: auto;
 }
 
-.form-container h2 {
+.form-container .form-header {
   text-align: center;
+  font-weight: bold;
+  font-size: xx-large;
+  margin-bottom: 1.5rem;
+}
+
+.form-container .form-sub-header {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
 .form-container h5 {
