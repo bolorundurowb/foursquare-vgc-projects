@@ -65,7 +65,8 @@
                     <Entry
                         x:Name="txtSeatNumber"
                         FontFamily="NexaL"
-                        Keyboard="Text" />
+                        Keyboard="Text"
+                        TextTransform="Uppercase" />
                 </StackLayout>
 
                 <StackLayout
