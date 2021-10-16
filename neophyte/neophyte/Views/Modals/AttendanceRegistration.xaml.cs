@@ -33,10 +33,9 @@ namespace neophyte.Views.Modals
 
             try
             {
-                int.TryParse(txtSeatNumber.Text, out var seatNumber);
                 var attendee = new AttendeeV2BindingModel
                 {
-                    SeatNumber = seatNumber,
+                    SeatAssigned = txtSeatNumber.Text,
                     PersonId = _personId
                 };
 
