@@ -19,6 +19,7 @@
             <input
                 type="tel"
                 placeholder="e.g 08012345678"
+                maxlength="11"
                 id="phone-number"
                 v-model="phoneNumber"/>
 
@@ -45,6 +46,7 @@
               type="text"
               placeholder="e.g John"
               id="first-name"
+              maxlength="200"
               v-model="newPerson.firstName"/>
 
           <label for="last-name">Last Name</label>
@@ -52,6 +54,7 @@
               type="text"
               placeholder="e.g Doe"
               id="last-name"
+              maxlength="200"
               v-model="newPerson.lastName"/>
 
           <label for="reg-phone-number">
@@ -61,6 +64,7 @@
               type="tel"
               placeholder="e.g 08012345678"
               id="reg-phone-number"
+              maxlength="11"
               v-model="newPerson.phone"/>
 
           <div style="text-align: center">
