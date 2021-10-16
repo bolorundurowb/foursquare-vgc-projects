@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
-             mc:Ignorable="d"
-             x:Class="neophyte.App">
+<Application
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    mc:Ignorable="d"
+    x:Class="neophyte.App">
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="BlackColour">#000000</Color>
@@ -16,6 +18,7 @@
             <Color x:Key="FrameBackgroundColour">#E5E5E2</Color>
             <Color x:Key="GreenColour">#4D9947</Color>
             <Color x:Key="RedColour">#B80711</Color>
+            <Color x:Key="AccentColour">#336b87</Color>
 
             <Style x:Key="PageStyle" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="{StaticResource LightGreyColour}" />
@@ -161,20 +164,20 @@
             <Style x:Key="SharedButtonStyle" TargetType="Button">
                 <Setter Property="Margin" Value="0,20,0,0" />
                 <Setter Property="Padding" Value="20,0,20,0" />
-                <Setter Property="BackgroundColor" Value="#3E3E3E" />
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColour}" />
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="FontFamily" Value="NexaB" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontSize" Value="16" />
             </Style>
 
             <Style x:Key="CancelButtonStyle" BasedOn="{StaticResource SharedButtonStyle}" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="TextColor" Value="{StaticResource DarkColour}" />
-                <Setter Property="BorderColor" Value="{StaticResource DarkColour}" />
+                <Setter Property="BorderColor" Value="#EAEAEA" />
                 <Setter Property="BorderWidth" Value="2" />
             </Style>
 
@@ -231,7 +234,7 @@
                 <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="Margin" Value="0,0,0,15" />
+                <Setter Property="Margin" Value="0,0,0,10" />
             </Style>
 
             <Style x:Key="FormRadioButtonStyle" TargetType="controls:RadioButton">
@@ -262,6 +265,22 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource RedColour}" />
                 <Setter Property="CornerRadius" Value="0, 12, 0, 12" />
                 <Setter Property="Margin" Value="0, 12, 0, 0" />
+            </Style>
+            
+            <Style x:Key="ModalFrmStyle" TargetType="Frame">
+                <Setter Property="Opacity" Value="1" />
+                <Setter Property="Padding" Value="17, 20, 17, 20" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="BackgroundColor" Value="#ffffff" />
+            </Style>
+
+            <Style x:Key="ModalStyle" TargetType="xct:Popup">
+                <Setter Property="Size" Value="350, 400" />
+                <Setter Property="Color" Value="Transparent" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

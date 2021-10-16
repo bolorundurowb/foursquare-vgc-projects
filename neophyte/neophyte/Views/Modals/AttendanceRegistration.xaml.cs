@@ -6,29 +6,24 @@ using neophyte.Models.Binding;
 using neophyte.Models.View;
 using neophyte.Services.Implementations;
 using Refit;
-using Rg.Plugins.Popup.Pages;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms.Xaml;
 
-namespace neophyte.Components
+namespace neophyte.Views.Modals
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AttendanceRegistrationPopup : PopupPage
+    public partial class AttendanceRegistration : Popup
     {
         private readonly AttendanceV2Client _attendanceClient;
         private readonly string _personId;
 
-        public AttendanceRegistrationPopup(string personId)
+        public AttendanceRegistration(string personId)
         {
             InitializeComponent();
 
             _personId = personId;
             _attendanceClient = new AttendanceV2Client();
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            txtPersonId.Text = _personId;
+            lblPersonId.Text = _personId;
         }
 
         protected async void RegisterAttendance(object sender, EventArgs e)
@@ -50,13 +45,18 @@ namespace neophyte.Components
                 // alert the user
                 ToastService.DisplaySuccess("Attendee successfully registered.");
 
-                await Navigation.PopModalAsync();
+                Dismiss(null);
             }
-            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.NotFound ||
-                                          ex.StatusCode == HttpStatusCode.Conflict)
+            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {
                 var error = await ex.GetContentAsAsync<ErrorViewModel>();
-                ToastService.DisplayError(error.Message);
+                ToastService.DisplayError(error?.Message);
+            }
+            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Conflict)
+            {
+                var error = await ex.GetContentAsAsync<ErrorViewModel>();
+                ToastService.DisplayError(error?.Message);
+                Dismiss(null);
             }
             catch (ApiException ex)
             {
@@ -73,9 +73,14 @@ namespace neophyte.Components
             }
         }
 
-        protected async void ClosePopup(object sender, EventArgs e)
+        protected void ClosePopup(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            Dismiss(null);
+        }
+
+        protected override object GetLightDismissResult()
+        {
+            return null;
         }
     }
 }
