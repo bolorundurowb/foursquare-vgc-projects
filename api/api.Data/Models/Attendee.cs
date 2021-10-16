@@ -32,6 +32,7 @@ namespace api.Data.Models
 
         public MultiChoice? HaveCovidSymptoms { get; private set; }
 
+        [Obsolete("Replaced by 'SeatAssigned'")]
         public int? SeatNumber { get; private set; }
 
         public string SeatAssigned { get; private set; }
