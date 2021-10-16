@@ -51,6 +51,13 @@ namespace neophyte.Views.Attendance
                 ToastService.DisplayInfo("Scan unsuccessful.");
                 return;
             }
+            
+            // if the scanner scans a url then reject
+            if (result.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+            {
+                ToastService.DisplayInfo("Invalid scan result. Try again!");
+                return;
+            }
 
             var popup = new AttendanceRegistration(result);
             await Navigation.ShowPopupAsync(popup);
