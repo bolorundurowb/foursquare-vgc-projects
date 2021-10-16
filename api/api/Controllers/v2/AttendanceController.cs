@@ -28,7 +28,7 @@ namespace api.Controllers.v2
         {
             try
             {
-                var attendee = await _attendanceRepo.AddAttendee(bm.PersonId, bm.SeatNumber);
+                var attendee = await _attendanceRepo.AddAttendee(bm.PersonId, bm.SeatAssigned);
                 return Created(Mapper.Map<AttendeeViewModel>(attendee));
             }
             catch (ConflictException ex)
