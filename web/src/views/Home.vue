@@ -19,6 +19,7 @@
             <input
                 type="tel"
                 placeholder="e.g 08012345678"
+                maxlength="11"
                 id="phone-number"
                 v-model="phoneNumber"/>
 
