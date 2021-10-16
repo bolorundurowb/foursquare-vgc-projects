@@ -8,8 +8,7 @@ namespace api.Data.Models
 {
     public class Attendee : IEntity
     {
-        [BsonId] 
-        public ObjectId Id { get; private set; }
+        [BsonId] public ObjectId Id { get; private set; }
 
         public DateTime Date { get; private set; }
 
@@ -33,7 +32,10 @@ namespace api.Data.Models
 
         public MultiChoice? HaveCovidSymptoms { get; private set; }
 
+        [Obsolete("Replaced by 'SeatAssigned'")]
         public int? SeatNumber { get; private set; }
+
+        public string SeatAssigned { get; private set; }
 
         [BsonIgnore] 
         public int SerialNo { get; set; }
@@ -42,12 +44,12 @@ namespace api.Data.Models
         {
         }
 
-        public Attendee(string firstName, string lastName, string phone, int? seatNumber)
+        public Attendee(string firstName, string lastName, string phone, string seatNumber)
         {
             Date = DateTime.UtcNow.Date;
             FullName = $"{firstName} {lastName}";
             Phone = phone;
-            SeatNumber = seatNumber;
+            SeatAssigned = seatNumber;
         }
 
         public Attendee(string emailAddress, string fullName, int? age, string phone, string residentialAddress,
