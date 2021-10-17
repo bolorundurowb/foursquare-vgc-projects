@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using neophyte.Services.Implementations;
@@ -51,11 +52,11 @@ namespace neophyte.Views.Attendance
                 ToastService.DisplayInfo("Scan unsuccessful.");
                 return;
             }
-            
-            // if the scanner scans a url then reject
-            if (result.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+
+            // verify it is an object id
+            if (!ObjectId.TryParse(result, out _))
             {
-                ToastService.DisplayInfo("Invalid scan result. Try again!");
+                ToastService.DisplayError("Invalid scan result. Try again!");
                 return;
             }
 

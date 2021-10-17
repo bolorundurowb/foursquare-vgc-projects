@@ -12,6 +12,7 @@
         <PackageReference Include="Acr.UserDialogs" Version="7.2.0.534" />
         <PackageReference Include="FluentValidation" Version="10.3.3" />
         <PackageReference Include="Mapster" Version="7.2.0" />
+        <PackageReference Include="MongoDB.Bson" Version="2.13.2" />
         <PackageReference Include="NLog" Version="4.7.11" />
         <PackageReference Include="Refit" Version="6.0.94" />
         <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
