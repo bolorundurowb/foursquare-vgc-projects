@@ -37,6 +37,8 @@ namespace api.Data.Models
 
         public string SeatAssigned { get; private set; }
 
+        public string SeatType { get; private set; }
+
         [BsonIgnore] 
         public int SerialNo { get; set; }
 
@@ -44,12 +46,13 @@ namespace api.Data.Models
         {
         }
 
-        public Attendee(string firstName, string lastName, string phone, string seatNumber)
+        public Attendee(string firstName, string lastName, string phone, string seatNumber, string seatType)
         {
             Date = DateTime.UtcNow.Date;
             FullName = $"{firstName} {lastName}";
             Phone = phone;
             SeatAssigned = seatNumber;
+            SeatType = seatType;
         }
 
         public Attendee(string emailAddress, string fullName, int? age, string phone, string residentialAddress,
