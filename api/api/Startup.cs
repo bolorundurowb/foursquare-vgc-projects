@@ -1,4 +1,5 @@
 using api.Configuration.Extensions;
+using api.Data.Extensions;
 using dotenv.net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,13 +39,14 @@ namespace api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, DbContext context, IApiVersionDescriptionProvider provider)
+        public void Configure(IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
             app.UseExceptionHandling(_environment);
             app.UseLogging();
             app.UseApi();
             app.UseDocs(provider);
-            context.SeedDefaults();
+            
+            DbExtensions.SeedDefaults();
         }
     }
 }
