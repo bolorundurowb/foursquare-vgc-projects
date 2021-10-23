@@ -128,19 +128,33 @@
                             Style="{StaticResource FormEditorStyle}" />
 
                         <Label
-                            Text="Seat Number:"
+                            Text="Seat Assigned:"
                             Style="{StaticResource FormLabelStyle}" />
                         <Label
                             x:Name="lblSeatNumber"
-                            Text="{Binding SeatNumber}"
+                            Text="{Binding SeatAssigned}"
                             Style="{StaticResource FormDisplayLabelStyle}" />
                         <Entry
                             x:Name="txtSeatNumber"
                             IsVisible="False"
-                            Keyboard="Numeric"
+                            Keyboard="Text"
                             Placeholder="e.g 234"
-                            Text="{Binding SeatNumber, Mode=TwoWay}"
+                            TextTransform="Uppercase"
+                            Text="{Binding SeatAssigned, Mode=TwoWay}"
                             Style="{StaticResource FormEntryStyle}" />
+
+                        <Label
+                            Text="Seat Type:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblSeatType"
+                            Text="{Binding SeatType}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Picker
+                            x:Name="cmbSeatType"
+                            IsVisible="False"
+                            SelectedItem="{Binding SeatType, Mode=TwoWay}"
+                            Style="{StaticResource FormPickerStyle}" />
 
                         <controls:CheckBox
                             x:Name="chkReturnedInTenDays"
