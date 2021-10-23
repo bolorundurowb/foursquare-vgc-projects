@@ -20,6 +20,10 @@ namespace neophyte.Views.Modals
         public AttendanceRegistration(string personId)
         {
             InitializeComponent();
+            
+            // set the seat types values
+            cmbSeatType.ItemsSource = Constants.SeatTypes;
+            cmbSeatType.SelectedIndex = 0;
 
             _personId = personId;
             _attendanceClient = new AttendanceV2Client();
@@ -36,6 +40,7 @@ namespace neophyte.Views.Modals
                 var attendee = new AttendeeV2BindingModel
                 {
                     SeatAssigned = txtSeatNumber.Text,
+                    SeatType = cmbSeatType.SelectedItem.ToString(),
                     PersonId = _personId
                 };
 

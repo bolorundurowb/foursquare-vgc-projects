@@ -5,5 +5,7 @@ namespace neophyte.Models.Binding
         public string PersonId { get; set; }
 
         public string SeatAssigned { get; set; }
+
+        public string SeatType { get; set; }
     }
 }

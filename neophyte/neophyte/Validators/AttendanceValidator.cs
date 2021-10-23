@@ -11,12 +11,6 @@ namespace neophyte.Validators
                 .NotEmpty()
                 .WithMessage("The full name is missing");
 
-            RuleFor(x => x.EmailAddress)
-                .NotEmpty()
-                .WithMessage("An email address is missing")
-                .EmailAddress()
-                .WithMessage("The email address is invalid");
-
             RuleFor(x => x.Phone)
                 .NotEmpty()
                 .WithMessage("The phone number is missing");
