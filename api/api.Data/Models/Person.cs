@@ -1,13 +1,11 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using meerkat;
+using meerkat.Attributes;
 
 namespace api.Data.Models
 {
-    public class Person : IEntity
+    [Collection(TrackTimestamps = true)]
+    public class Person : Schema
     {
-        [BsonId] 
-        public ObjectId Id { get; private set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

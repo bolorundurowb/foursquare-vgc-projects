@@ -7,7 +7,7 @@ using api.Data.Models;
 
 namespace api.Data.Repositories.Interfaces
 {
-    public interface IAttendanceRepository : IRepository<Attendee>
+    public interface IAttendanceRepository 
     {
         Task<List<DateSummaryDto>> GetAttendanceDates();
 
