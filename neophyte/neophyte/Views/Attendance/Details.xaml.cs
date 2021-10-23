@@ -29,6 +29,7 @@ namespace neophyte.Views.Attendance
 
             // set dropdown values
             cmbGender.ItemsSource = Constants.Genders;
+            cmbSeatType.ItemsSource = Constants.SeatTypes;
 
             // initialize stuff
             _attendanceClient = new AttendanceClient();
@@ -117,6 +118,7 @@ namespace neophyte.Views.Attendance
             lblResidentialAddress.IsVisible = false;
             lblSeatNumber.IsVisible = false;
             lblCovidSymptoms.IsVisible = false;
+            lblSeatType.IsVisible = false;
             chkCaredForSick.IsVisible = false;
             chkLiveWithCaregivers.IsVisible = false;
             chkReturnedInTenDays.IsVisible = false;
@@ -131,7 +133,8 @@ namespace neophyte.Views.Attendance
             txtResidentialAddress.IsVisible = true;
             txtSeatNumber.IsVisible = true;
             cmbGender.IsVisible = true;
-            
+            cmbSeatType.IsVisible = true;
+
             // enable date picker
             dtpDate.IsEnabled = true;
         }
@@ -147,6 +150,7 @@ namespace neophyte.Views.Attendance
             lblResidentialAddress.IsVisible = true;
             lblSeatNumber.IsVisible = true;
             lblCovidSymptoms.IsVisible = true;
+            lblSeatType.IsVisible = true;
             chkCaredForSick.IsVisible = true;
             chkLiveWithCaregivers.IsVisible = true;
             chkReturnedInTenDays.IsVisible = true;
@@ -161,7 +165,8 @@ namespace neophyte.Views.Attendance
             txtResidentialAddress.IsVisible = false;
             txtSeatNumber.IsVisible = false;
             cmbGender.IsVisible = false;
-            
+            cmbSeatType.IsVisible = false;
+
             // disable date picker
             dtpDate.IsEnabled = false;
         }
