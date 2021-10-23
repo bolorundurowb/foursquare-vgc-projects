@@ -1,10 +1,12 @@
 ﻿using System;
 using api.Data.Enums;
 using meerkat;
+using meerkat.Attributes;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace api.Data.Models
 {
+    [Collection(TrackTimestamps = true)]
     public class Newcomer : Schema
     {
         public DateTime Date { get; private set; }

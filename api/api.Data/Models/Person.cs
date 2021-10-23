@@ -1,7 +1,9 @@
 ﻿using meerkat;
+using meerkat.Attributes;
 
 namespace api.Data.Models
 {
+    [Collection(TrackTimestamps = true)]
     public class Person : Schema
     {
         public string FirstName { get; set; }

@@ -1,11 +1,13 @@
 ﻿using System;
 using api.Data.Enums;
 using meerkat;
+using meerkat.Attributes;
 using moment.net;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace api.Data.Models
 {
+    [Collection(TrackTimestamps = true)]
     public class Attendee : Schema
     {
         public DateTime Date { get; private set; }
