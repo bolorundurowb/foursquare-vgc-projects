@@ -76,7 +76,7 @@ namespace api.Data.Repositories.Implementations
             return attendee;
         }
 
-        public async Task<Attendee> AddAttendee(string personId, string seatNumber)
+        public async Task<Attendee> AddAttendee(string personId, string seatNumber, string seatType)
         {
             var today = DateTime.UtcNow.Date;
             var person = await _dbContext.Persons
@@ -96,7 +96,7 @@ namespace api.Data.Repositories.Implementations
                 throw new ConflictException("Attendee is registered for today's service.");
             }
 
-            attendee = new Attendee(person.FirstName, person.LastName, person?.Phone, seatNumber);
+            attendee = new Attendee(person.FirstName, person.LastName, person?.Phone, seatNumber, seatType);
             await _dbContext.Attendance
                 .InsertOneAsync(attendee);
 
