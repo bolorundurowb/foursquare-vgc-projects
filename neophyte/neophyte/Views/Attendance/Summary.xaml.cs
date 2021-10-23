@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using neophyte.Services.Implementations;
+using neophyte.Services.Interfaces;
 using neophyte.Views.Auth;
 using neophyte.Views.General;
 using neophyte.Views.Modals;
