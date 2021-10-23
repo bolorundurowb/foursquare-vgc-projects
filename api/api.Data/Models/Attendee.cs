@@ -39,19 +39,18 @@ namespace api.Data.Models
 
         public string SeatType { get; private set; }
 
-        [BsonIgnore] 
-        public int SerialNo { get; set; }
+        [BsonIgnore] public int SerialNo { get; set; }
 
         private Attendee()
         {
         }
 
-        public Attendee(string firstName, string lastName, string phone, string seatNumber, string seatType)
+        public Attendee(string firstName, string lastName, string phone, string seatAssigned, string seatType)
         {
             Date = DateTime.UtcNow.Date;
             FullName = $"{firstName} {lastName}";
             Phone = phone;
-            SeatAssigned = seatNumber;
+            SeatAssigned = seatAssigned;
             SeatType = seatType;
         }
 
@@ -118,6 +117,22 @@ namespace api.Data.Models
             if (!string.IsNullOrWhiteSpace(email))
             {
                 EmailAddress = email;
+            }
+        }
+
+        public void UpdateSeatAssigned(string seatAssigned)
+        {
+            if (!string.IsNullOrWhiteSpace(seatAssigned))
+            {
+                SeatAssigned = seatAssigned;
+            }
+        }
+
+        public void UpdateSeatType(string seatType)
+        {
+            if (!string.IsNullOrWhiteSpace(seatType))
+            {
+                SeatType = seatType;
             }
         }
 

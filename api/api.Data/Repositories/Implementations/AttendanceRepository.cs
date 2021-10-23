@@ -90,7 +90,8 @@ namespace api.Data.Repositories.Implementations
 
         public async Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string email, int? age,
             string phone, string residentialAddress, Gender? gender, bool returnedInLastTenDays,
-            bool liveWithCovidCaregivers, bool caredForSickPerson, MultiChoice? haveCovidSymptoms, int? seatNumber)
+            bool liveWithCovidCaregivers, bool caredForSickPerson, MultiChoice? haveCovidSymptoms, string seatAssigned,
+            string seatType)
         {
             var attendeeId = ObjectId.Parse(id);
             var attendee = await Meerkat.FindByIdAsync<Attendee>(attendeeId);
@@ -108,10 +109,11 @@ namespace api.Data.Repositories.Implementations
             attendee.UpdateResidentialAddress(residentialAddress);
             attendee.UpdateHaveCovidSymptoms(haveCovidSymptoms);
             attendee.UpdateAge(age);
-            attendee.UpdateSeatNumber(seatNumber);
             attendee.UpdateReturnedInLastTenDays(returnedInLastTenDays);
             attendee.UpdateLiveWithCovidCaregivers(liveWithCovidCaregivers);
             attendee.UpdateCaredForSickPerson(caredForSickPerson);
+            attendee.UpdateSeatAssigned(seatAssigned);
+            attendee.UpdateSeatType(seatType);
             await attendee.SaveAsync();
 
             return attendee;
