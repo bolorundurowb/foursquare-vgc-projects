@@ -56,6 +56,50 @@
                             Style="{StaticResource FormEntryStyle}" />
 
                         <Label
+                            Text="Phone Number:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblPhoneNumber"
+                            Text="{Binding Phone}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Entry
+                            x:Name="txtPhoneNumber"
+                            IsVisible="False"
+                            Keyboard="Telephone"
+                            Placeholder="e.g 09023729364"
+                            Text="{Binding Phone, Mode=TwoWay}"
+                            Style="{StaticResource FormEntryStyle}" />
+
+                        <Label
+                            Text="Seat Assigned:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblSeatNumber"
+                            Text="{Binding SeatAssigned}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Entry
+                            x:Name="txtSeatNumber"
+                            IsVisible="False"
+                            Keyboard="Text"
+                            Placeholder="e.g 234"
+                            TextTransform="Uppercase"
+                            Text="{Binding SeatAssigned, Mode=TwoWay}"
+                            Style="{StaticResource FormEntryStyle}" />
+
+                        <Label
+                            Text="Seat Type:"
+                            Style="{StaticResource FormLabelStyle}" />
+                        <Label
+                            x:Name="lblSeatType"
+                            Text="{Binding SeatType}"
+                            Style="{StaticResource FormDisplayLabelStyle}" />
+                        <Picker
+                            x:Name="cmbSeatType"
+                            IsVisible="False"
+                            SelectedItem="{Binding SeatType, Mode=TwoWay}"
+                            Style="{StaticResource FormPickerStyle}" />
+
+                        <Label
                             Text="Email:"
                             Style="{StaticResource FormLabelStyle}" />
                         <Label
@@ -99,21 +143,6 @@
                             Style="{StaticResource FormPickerStyle}" />
 
                         <Label
-                            Text="Phone Number:"
-                            Style="{StaticResource FormLabelStyle}" />
-                        <Label
-                            x:Name="lblPhoneNumber"
-                            Text="{Binding Phone}"
-                            Style="{StaticResource FormDisplayLabelStyle}" />
-                        <Entry
-                            x:Name="txtPhoneNumber"
-                            IsVisible="False"
-                            Keyboard="Telephone"
-                            Placeholder="e.g 09023729364"
-                            Text="{Binding Phone, Mode=TwoWay}"
-                            Style="{StaticResource FormEntryStyle}" />
-
-                        <Label
                             Text="Residential Address:"
                             Style="{StaticResource FormLabelStyle}" />
                         <Label
@@ -126,35 +155,6 @@
                             Placeholder="e.g 12 Sample Street ..."
                             Text="{Binding ResidentialAddress, Mode=TwoWay}"
                             Style="{StaticResource FormEditorStyle}" />
-
-                        <Label
-                            Text="Seat Assigned:"
-                            Style="{StaticResource FormLabelStyle}" />
-                        <Label
-                            x:Name="lblSeatNumber"
-                            Text="{Binding SeatAssigned}"
-                            Style="{StaticResource FormDisplayLabelStyle}" />
-                        <Entry
-                            x:Name="txtSeatNumber"
-                            IsVisible="False"
-                            Keyboard="Text"
-                            Placeholder="e.g 234"
-                            TextTransform="Uppercase"
-                            Text="{Binding SeatAssigned, Mode=TwoWay}"
-                            Style="{StaticResource FormEntryStyle}" />
-
-                        <Label
-                            Text="Seat Type:"
-                            Style="{StaticResource FormLabelStyle}" />
-                        <Label
-                            x:Name="lblSeatType"
-                            Text="{Binding SeatType}"
-                            Style="{StaticResource FormDisplayLabelStyle}" />
-                        <Picker
-                            x:Name="cmbSeatType"
-                            IsVisible="False"
-                            SelectedItem="{Binding SeatType, Mode=TwoWay}"
-                            Style="{StaticResource FormPickerStyle}" />
 
                         <controls:CheckBox
                             x:Name="chkReturnedInTenDays"
