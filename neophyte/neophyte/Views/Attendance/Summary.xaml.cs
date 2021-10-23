@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using neophyte.Services.Implementations;
@@ -49,6 +50,13 @@ namespace neophyte.Views.Attendance
             if (string.IsNullOrWhiteSpace(result))
             {
                 ToastService.DisplayInfo("Scan unsuccessful.");
+                return;
+            }
+
+            // verify it is an object id
+            if (!ObjectId.TryParse(result, out _))
+            {
+                ToastService.DisplayError("Invalid scan result. Try again!");
                 return;
             }
 

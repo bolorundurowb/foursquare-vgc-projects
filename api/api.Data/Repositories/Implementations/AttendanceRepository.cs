@@ -7,6 +7,7 @@ using api.Data.Enums;
 using api.Data.Models;
 using api.Data.Repositories.Interfaces;
 using api.Shared.Exceptions;
+using meerkat;
 using moment.net;
 using moment.net.Enums;
 using MongoDB.Bson;
@@ -17,22 +18,10 @@ namespace api.Data.Repositories.Implementations
 {
     public class AttendanceRepository : IAttendanceRepository
     {
-        private readonly DbContext _dbContext;
+        private IMongoQueryable<Attendee> Query() => Meerkat.Query<Attendee>();
 
-        public AttendanceRepository(DbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
-        public IMongoQueryable<Attendee> Query()
-        {
-            return _dbContext.Attendance
-                .AsQueryable();
-        }
-
-        public Task<List<DateSummaryDto>> GetAttendanceDates()
-        {
-            return Query()
+        public Task<List<DateSummaryDto>> GetAttendanceDates() =>
+            Query()
                 .GroupBy(x => x.Date)
                 .Select(x => new DateSummaryDto
                 {
@@ -41,7 +30,6 @@ namespace api.Data.Repositories.Implementations
                 })
                 .OrderByDescending(x => x.Date)
                 .ToListAsync();
-        }
 
         public Task<List<Attendee>> GetAttendance(DateTime date)
         {
@@ -70,18 +58,16 @@ namespace api.Data.Repositories.Implementations
                 throw new InvalidOperationException("You cannot reserve a seat at this time.");
             }
 
-            await _dbContext.Attendance
-                .InsertOneAsync(attendee);
+            await attendee.SaveAsync();
 
             return attendee;
         }
 
-        public async Task<Attendee> AddAttendee(string personId, int? seatNumber)
+        public async Task<Attendee> AddAttendee(string id, string seatNumber, string seatType)
         {
             var today = DateTime.UtcNow.Date;
-            var person = await _dbContext.Persons
-                .AsQueryable()
-                .FirstOrDefaultAsync(x => x.Id == ObjectId.Parse(personId));
+            var personId = ObjectId.Parse(id);
+            var person = await Meerkat.FindByIdAsync<Person>(personId);
 
             if (person == null)
             {
@@ -96,20 +82,19 @@ namespace api.Data.Repositories.Implementations
                 throw new ConflictException("Attendee is registered for today's service.");
             }
 
-            attendee = new Attendee(person.FirstName, person.LastName, person?.Phone, seatNumber);
-            await _dbContext.Attendance
-                .InsertOneAsync(attendee);
+            attendee = new Attendee(person.FirstName, person.LastName, person?.Phone, seatNumber, seatType);
+            await attendee.SaveAsync();
 
             return attendee;
         }
 
         public async Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string email, int? age,
             string phone, string residentialAddress, Gender? gender, bool returnedInLastTenDays,
-            bool liveWithCovidCaregivers, bool caredForSickPerson, MultiChoice? haveCovidSymptoms, int? seatNumber)
+            bool liveWithCovidCaregivers, bool caredForSickPerson, MultiChoice? haveCovidSymptoms, string seatAssigned,
+            string seatType)
         {
             var attendeeId = ObjectId.Parse(id);
-            var attendee = await Query()
-                .FirstOrDefaultAsync(x => x.Id == attendeeId);
+            var attendee = await Meerkat.FindByIdAsync<Attendee>(attendeeId);
 
             if (attendee == null)
             {
@@ -124,13 +109,12 @@ namespace api.Data.Repositories.Implementations
             attendee.UpdateResidentialAddress(residentialAddress);
             attendee.UpdateHaveCovidSymptoms(haveCovidSymptoms);
             attendee.UpdateAge(age);
-            attendee.UpdateSeatNumber(seatNumber);
             attendee.UpdateReturnedInLastTenDays(returnedInLastTenDays);
             attendee.UpdateLiveWithCovidCaregivers(liveWithCovidCaregivers);
             attendee.UpdateCaredForSickPerson(caredForSickPerson);
-
-            await _dbContext.Attendance
-                .ReplaceOneAsync(x => x.Id == attendeeId, attendee);
+            attendee.UpdateSeatAssigned(seatAssigned);
+            attendee.UpdateSeatType(seatType);
+            await attendee.SaveAsync();
 
             return attendee;
         }
@@ -138,7 +122,7 @@ namespace api.Data.Repositories.Implementations
         public async Task RemoveAttendee(string id)
         {
             var attendeeId = ObjectId.Parse(id);
-            await _dbContext.Attendance.DeleteOneAsync(x => x.Id == attendeeId);
+            await Meerkat.RemoveByIdAsync<Attendee>(attendeeId);
         }
     }
 }

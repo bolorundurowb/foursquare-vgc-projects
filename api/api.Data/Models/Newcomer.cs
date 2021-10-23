@@ -1,15 +1,14 @@
 ﻿using System;
 using api.Data.Enums;
-using MongoDB.Bson;
+using meerkat;
+using meerkat.Attributes;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace api.Data.Models
 {
-    public class Newcomer : IEntity
+    [Collection(TrackTimestamps = true)]
+    public class Newcomer : Schema
     {
-        [BsonId] 
-        public ObjectId Id { get; private set; }
-
         public DateTime Date { get; private set; }
 
         public string FullName { get; private set; }

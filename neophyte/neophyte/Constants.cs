@@ -28,5 +28,10 @@ namespace neophyte
         {
             "Other", "Male", "Female"
         };
+
+        public static List<string> SeatTypes = new List<string>
+        {
+            "General", "Choir", "Usher", "Cadets", "Light Beam", "Cup Bearers", "Other"
+        };
     }
 }

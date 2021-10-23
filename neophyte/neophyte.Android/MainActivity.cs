@@ -28,6 +28,12 @@ namespace neophyte.Droid
             Config.Init(this, savedInstanceState);
             UserDialogs.Init(this);
             LoadApplication(new App());
+            
+            // set the bottom bar colour
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+            {
+                Window?.SetNavigationBarColor(new Android.Graphics.Color(0, 0, 0));
+            }
 
             Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>()
                 .UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);

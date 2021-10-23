@@ -87,7 +87,7 @@ namespace api.Controllers.v1
             {
                 var attendee = await _attendanceRepo.UpdateAttendee(id, bm.Date, bm.FullName, bm.EmailAddress, bm.Age,
                     bm.Phone, bm.ResidentialAddress, bm.Gender, bm.ReturnedInLastTenDays, bm.LiveWithCovidCaregivers,
-                    bm.CaredForSickPerson, bm.HaveCovidSymptoms, bm.SeatNumber);
+                    bm.CaredForSickPerson, bm.HaveCovidSymptoms, bm.SeatAssigned, bm.SeatType);
                 return Ok(Mapper.Map<AttendeeViewModel>(attendee));
             }
             catch (NotFoundException ex)

@@ -3,7 +3,7 @@ using api.Data.Models;
 
 namespace api.Data.Repositories.Interfaces
 {
-    public interface IPersonsRepository : IRepository<Person>
+    public interface IPersonsRepository
     {
         Task<Person> GetByPhone(string phoneNumber);
 

@@ -5,6 +5,7 @@ using api.Shared.Email.Implementations;
 using api.Shared.Email.Interfaces;
 using api.Shared.Media.Implementations;
 using api.Shared.Media.Interfaces;
+using meerkat;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace api.Configuration.Extensions
@@ -13,7 +14,7 @@ namespace api.Configuration.Extensions
     {
         public static void ConfigureInjection(this IServiceCollection services)
         {
-            services.AddSingleton(new DbContext(Config.DbServerUrl, Config.DbName));
+            Meerkat.Connect(Config.DbUrl);
             services.AddHttpClient();
             services.AddScoped<IEmailService, MailgunService>();
             services.AddScoped<IQrCodeService, QrCodeService>();

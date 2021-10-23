@@ -19,7 +19,8 @@ namespace api.Configuration
 
             config
                 .NewConfig<Attendee, AttendeeViewModel>()
-                .Map(x => x.Id, y => y.Id.ToString());
+                .Map(x => x.Id, y => y.Id.ToString())
+                .Map(x => x.SeatAssigned, y => y.SeatNumber.HasValue ? y.SeatNumber.Value.ToString(): y.SeatAssigned);
 
             config
                 .NewConfig<DateSummaryDto, DateSummaryViewModel>()

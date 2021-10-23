@@ -4,9 +4,7 @@ namespace api.Configuration
 {
     public static class Config
     {
-        public static string DbServerUrl => Environment.GetEnvironmentVariable("DB_SERVER");
-
-        public static string DbName => Environment.GetEnvironmentVariable("DB_NAME");
+        public static string DbUrl => Environment.GetEnvironmentVariable("DB_URL");
 
         public static string Secret => Environment.GetEnvironmentVariable("SECRET");
 

@@ -1,13 +1,10 @@
 ﻿using System;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using meerkat;
 
 namespace api.Data.Models
 {
-    public class Admin : IEntity
+    public class Admin : Schema
     {
-        [BsonId] public ObjectId Id { get; private set; }
-
         public string Name { get; private set; }
 
         public string EmailAddress { get; private set; }

@@ -1,16 +1,15 @@
 ﻿using System;
 using api.Data.Enums;
+using meerkat;
+using meerkat.Attributes;
 using moment.net;
-using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace api.Data.Models
 {
-    public class Attendee : IEntity
+    [Collection(TrackTimestamps = true)]
+    public class Attendee : Schema
     {
-        [BsonId] 
-        public ObjectId Id { get; private set; }
-
         public DateTime Date { get; private set; }
 
         public string EmailAddress { get; private set; }
@@ -33,21 +32,26 @@ namespace api.Data.Models
 
         public MultiChoice? HaveCovidSymptoms { get; private set; }
 
+        [Obsolete("Replaced by 'SeatAssigned'")]
         public int? SeatNumber { get; private set; }
 
-        [BsonIgnore] 
-        public int SerialNo { get; set; }
+        public string SeatAssigned { get; private set; }
+
+        public string SeatType { get; private set; }
+
+        [BsonIgnore] public int SerialNo { get; set; }
 
         private Attendee()
         {
         }
 
-        public Attendee(string firstName, string lastName, string phone, int? seatNumber)
+        public Attendee(string firstName, string lastName, string phone, string seatAssigned, string seatType)
         {
             Date = DateTime.UtcNow.Date;
             FullName = $"{firstName} {lastName}";
             Phone = phone;
-            SeatNumber = seatNumber;
+            SeatAssigned = seatAssigned;
+            SeatType = seatType;
         }
 
         public Attendee(string emailAddress, string fullName, int? age, string phone, string residentialAddress,
@@ -113,6 +117,22 @@ namespace api.Data.Models
             if (!string.IsNullOrWhiteSpace(email))
             {
                 EmailAddress = email;
+            }
+        }
+
+        public void UpdateSeatAssigned(string seatAssigned)
+        {
+            if (!string.IsNullOrWhiteSpace(seatAssigned))
+            {
+                SeatAssigned = seatAssigned;
+            }
+        }
+
+        public void UpdateSeatType(string seatType)
+        {
+            if (!string.IsNullOrWhiteSpace(seatType))
+            {
+                SeatType = seatType;
             }
         }
 

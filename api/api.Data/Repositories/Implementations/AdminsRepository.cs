@@ -2,6 +2,7 @@
 using api.Data.Models;
 using api.Data.Repositories.Interfaces;
 using api.Shared.Exceptions;
+using meerkat;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
@@ -9,24 +10,10 @@ namespace api.Data.Repositories.Implementations
 {
     public class AdminsRepository : IAdminsRepository
     {
-        private readonly DbContext _dbContext;
-
-        public AdminsRepository(DbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
-        public IMongoQueryable<Admin> Query()
-        {
-            return _dbContext.Admins
-                .AsQueryable();
-        }
-
         public async Task<Admin> Login(string email)
         {
             var normalizedEmail = email?.ToLowerInvariant();
-            var admin = await Query()
-                .FirstOrDefaultAsync(x => x.EmailAddress == normalizedEmail);
+            var admin = await Meerkat.FindOneAsync<Admin>(x => x.EmailAddress == normalizedEmail);
 
             if (admin == null)
             {

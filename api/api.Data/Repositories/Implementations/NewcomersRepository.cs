@@ -7,6 +7,7 @@ using api.Data.Enums;
 using api.Data.Models;
 using api.Data.Repositories.Interfaces;
 using api.Shared.Exceptions;
+using meerkat;
 using moment.net;
 using moment.net.Enums;
 using MongoDB.Bson;
@@ -17,22 +18,9 @@ namespace api.Data.Repositories.Implementations
 {
     public class NewcomersRepository : INewcomersRepository
     {
-        private readonly DbContext _dbContext;
-
-        public NewcomersRepository(DbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
-        public IMongoQueryable<Newcomer> Query()
-        {
-            return _dbContext.Newcomers
-                .AsQueryable();
-        }
-
         public Task<List<DateSummaryDto>> GetNewcomersDates()
         {
-            return Query()
+            return Meerkat.Query<Newcomer>()
                 .GroupBy(x => x.Date)
                 .Select(x => new DateSummaryDto
                 {
@@ -47,7 +35,7 @@ namespace api.Data.Repositories.Implementations
         {
             var dayStart = date.StartOf(DateTimeAnchor.Day);
             var dayEnd = date.EndOf(DateTimeAnchor.Day);
-            return Query()
+            return Meerkat.Query<Newcomer>()
                 .Where(x => x.Date >= dayStart && x.Date < dayEnd)
                 .ToListAsync();
         }
@@ -58,8 +46,7 @@ namespace api.Data.Repositories.Implementations
         {
             var newcomer = new Newcomer(fullName, homeAddress, phone, email, birthDay, gender, ageGroup,
                 commentsOrPrayers, howYouFoundUs, bornAgain, becomeMember);
-            await _dbContext.Newcomers
-                .InsertOneAsync(newcomer);
+            await newcomer.SaveAsync();
 
             return newcomer;
         }
@@ -69,8 +56,7 @@ namespace api.Data.Repositories.Implementations
             string howYouFoundUs, MultiChoice? bornAgain, MultiChoice? becomeMember, string remarks)
         {
             var newcomerId = ObjectId.Parse(id);
-            var newcomer = await Query()
-                .FirstOrDefaultAsync(x => x.Id == newcomerId);
+            var newcomer = await Meerkat.FindByIdAsync<Newcomer>(newcomerId);
 
             if (newcomer == null)
             {
@@ -90,9 +76,7 @@ namespace api.Data.Repositories.Implementations
             newcomer.UpdateBornAgain(bornAgain);
             newcomer.UpdateBecomeMember(becomeMember);
             newcomer.UpdateRemarks(remarks);
-
-            await _dbContext.Newcomers
-                .ReplaceOneAsync(x => x.Id == newcomerId, newcomer);
+            await newcomer.SaveAsync();
 
             return newcomer;
         }
@@ -100,7 +84,7 @@ namespace api.Data.Repositories.Implementations
         public async Task RemoveNewcomer(string id)
         {
             var newcomerId = ObjectId.Parse(id);
-            await _dbContext.Newcomers.DeleteOneAsync(x => x.Id == newcomerId);
+            await Meerkat.RemoveByIdAsync<Person>(newcomerId);
         }
     }
 }
