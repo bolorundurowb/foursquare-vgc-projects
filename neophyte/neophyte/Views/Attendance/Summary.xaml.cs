@@ -43,9 +43,8 @@ namespace neophyte.Views.Attendance
 
         protected async void OpenScanner(object sender, EventArgs e)
         {
-            // var scanner = DependencyService.Get<IQrScanService>();
-            // var result = await scanner.ScanAsync();
-            var result = "60bc771eca2d86f07128d2d9";
+            var scanner = DependencyService.Get<IQrScanService>();
+            var result = await scanner.ScanAsync();
 
             if (string.IsNullOrWhiteSpace(result))
             {
