@@ -1,12 +1,13 @@
 using System.Linq;
 using api.Data.Models;
+using meerkat;
 using MongoDB.Driver;
 
 namespace api.Data.Extensions
 {
-    public static class DbContextExtensions
+    public static class DbExtensions
     {
-        public static void SeedDefaults(this DbContext context)
+        public static void SeedDefaults()
         {
             var adminEmails = new[]
             {
@@ -16,17 +17,15 @@ namespace api.Data.Extensions
 
             foreach (var adminEmail in adminEmails)
             {
-                var exists = context.Admins
-                    .AsQueryable()
-                    .Any(x => x.EmailAddress == adminEmail);
+                var admin = Meerkat.FindOne<Admin>(x => x.EmailAddress == adminEmail);
 
-                if (exists)
+                if (admin != null)
                 {
                     continue;
                 }
-                
-                var admin = new Admin(string.Empty, adminEmail);
-                context.Admins.InsertOne(admin);
+
+                admin = new Admin(string.Empty, adminEmail);
+                admin.Save();
             }
         }
     }
