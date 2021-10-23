@@ -5,7 +5,6 @@ using MongoDB.Bson;
 using neophyte.DataAccess.Implementations;
 using neophyte.Models.View;
 using neophyte.Services.Implementations;
-using neophyte.Services.Interfaces;
 using neophyte.Views.Auth;
 using neophyte.Views.General;
 using neophyte.Views.Modals;
@@ -46,7 +45,7 @@ namespace neophyte.Views.Attendance
         {
             // var scanner = DependencyService.Get<IQrScanService>();
             // var result = await scanner.ScanAsync();
-            var result = "61740f9c317188ac70fbb9de";
+            var result = "60bc771eca2d86f07128d2d9";
 
             if (string.IsNullOrWhiteSpace(result))
             {
