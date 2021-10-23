@@ -1,5 +1,6 @@
 using System.Linq;
 using api.Data.Models;
+using dotenv.net.Utilities;
 using MongoDB.Driver;
 
 namespace api.Data.Extensions
@@ -8,13 +9,11 @@ namespace api.Data.Extensions
     {
         public static void SeedDefaults(this DbContext context)
         {
-            var adminEmails = new[]
-            {
-                "carol_okpei@gmail.com", "jummya2002@yahoo.co.uk", "ogatimo@gmail.com", "olufemiolagunju@yahoo.com",
-                "overcommeregegba@gmail.com", "tab@foursquarevgc.org"
-            };
+            EnvReader.TryGetStringValue("AUTH_EMAILS", out var adminEmails);
+            var emailAddresses = adminEmails.Split(",")
+                .Select(x => x.ToLowerInvariant().Trim());
 
-            foreach (var adminEmail in adminEmails)
+            foreach (var adminEmail in emailAddresses)
             {
                 var exists = context.Admins
                     .AsQueryable()
