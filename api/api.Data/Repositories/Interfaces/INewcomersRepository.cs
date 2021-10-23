@@ -7,7 +7,7 @@ using api.Data.Models;
 
 namespace api.Data.Repositories.Interfaces
 {
-    public interface INewcomersRepository : IRepository<Newcomer>
+    public interface INewcomersRepository 
     {
         Task<List<DateSummaryDto>> GetNewcomersDates();
 
