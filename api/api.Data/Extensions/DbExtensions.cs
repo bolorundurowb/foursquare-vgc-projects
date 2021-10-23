@@ -1,7 +1,7 @@
 using System.Linq;
 using api.Data.Models;
 using meerkat;
-using MongoDB.Driver;
+using dotenv.net.Utilities;
 
 namespace api.Data.Extensions
 {
@@ -9,13 +9,11 @@ namespace api.Data.Extensions
     {
         public static void SeedDefaults()
         {
-            var adminEmails = new[]
-            {
-                "carol_okpei@gmail.com", "jummya2002@yahoo.co.uk", "ogatimo@gmail.com", "olufemiolagunju@yahoo.com",
-                "overcommeregegba@gmail.com", "tab@foursquarevgc.org"
-            };
+            EnvReader.TryGetStringValue("AUTH_EMAILS", out var adminEmails);
+            var emailAddresses = adminEmails.Split(",")
+                .Select(x => x.ToLowerInvariant().Trim());
 
-            foreach (var adminEmail in adminEmails)
+            foreach (var adminEmail in emailAddresses)
             {
                 var admin = Meerkat.FindOne<Admin>(x => x.EmailAddress == adminEmail);
 
