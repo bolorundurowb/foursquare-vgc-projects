@@ -1,6 +1,4 @@
 using api.Configuration.Extensions;
-using api.Data;
-using api.Data.Extensions;
 using dotenv.net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

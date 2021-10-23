@@ -1,13 +1,9 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using meerkat;
 
 namespace api.Data.Models
 {
-    public class Person : IEntity
+    public class Person : Schema
     {
-        [BsonId] 
-        public ObjectId Id { get; private set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

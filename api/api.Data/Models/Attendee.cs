@@ -1,15 +1,13 @@
 ﻿using System;
 using api.Data.Enums;
+using meerkat;
 using moment.net;
-using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace api.Data.Models
 {
-    public class Attendee : IEntity
+    public class Attendee : Schema
     {
-        [BsonId] public ObjectId Id { get; private set; }
-
         public DateTime Date { get; private set; }
 
         public string EmailAddress { get; private set; }
