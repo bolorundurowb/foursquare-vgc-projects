@@ -7,7 +7,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace api.Data.Models
 {
-    [Collection(TrackTimestamps = true)]
+    [Collection(Name = "attendance", TrackTimestamps = true)]
     public class Attendee : Schema
     {
         public DateTime Date { get; private set; }
