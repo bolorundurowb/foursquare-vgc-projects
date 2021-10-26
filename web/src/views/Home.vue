@@ -19,7 +19,7 @@
             <input
                 type="tel"
                 placeholder="e.g 08012345678"
-                maxlength="11"
+                maxlength="25"
                 id="phone-number"
                 v-model="phoneNumber"/>
 
@@ -62,7 +62,7 @@
               type="tel"
               placeholder="e.g 08012345678"
               id="reg-phone-number"
-              maxlength="11"
+              maxlength="25"
               v-model="newPerson.phone"/>
 
           <div style="text-align: center">
@@ -123,7 +123,7 @@ export default {
       }
 
       // validate phone number
-      if (!this.phoneNumber || !/0\d{10}$/g.test(this.phoneNumber)) {
+      if (!this.phoneNumber || !/^[+]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/g.test(this.phoneNumber)) {
         this.$swal({
           title: 'Error',
           text: 'A valid phone number is required.',
@@ -177,7 +177,7 @@ export default {
       }
 
       // validate phone number
-      if (!this.newPerson.phone || !/0\d{10}$/g.test(this.newPerson.phone)) {
+      if (!this.newPerson.phone || !/^[+]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/g.test(this.newPerson.phone)) {
         this.$swal({
           title: 'Error',
           text: 'A valid phone number is required.',
