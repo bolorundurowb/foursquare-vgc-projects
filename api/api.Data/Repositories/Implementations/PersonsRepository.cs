@@ -11,7 +11,7 @@ namespace api.Data.Repositories.Implementations
     {
         public Task<Person> GetByPhone(string phoneNumber)
         {
-            phoneNumber = phoneNumber?.Trim();
+            phoneNumber = phoneNumber?.Normalize().Trim();
             return Meerkat.FindOneAsync<Person>(x => x.Phone == phoneNumber);
         }
 
