@@ -6,7 +6,7 @@ namespace api.Shared.Extensions
     {
         private static readonly char _plusChar = '+';
 
-        public static string Normalize(this string phoneNumber)
+        public static string Regularize(this string phoneNumber)
         {
             var validChars = phoneNumber.ToCharArray()
                 .Where(x => char.IsDigit(x) || x == _plusChar);

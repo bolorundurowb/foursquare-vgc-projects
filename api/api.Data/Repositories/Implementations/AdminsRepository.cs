@@ -3,8 +3,6 @@ using api.Data.Models;
 using api.Data.Repositories.Interfaces;
 using api.Shared.Exceptions;
 using meerkat;
-using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 
 namespace api.Data.Repositories.Implementations
 {

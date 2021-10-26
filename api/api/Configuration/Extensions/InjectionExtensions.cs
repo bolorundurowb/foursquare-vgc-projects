@@ -1,5 +1,4 @@
-﻿using api.Data;
-using api.Data.Repositories.Implementations;
+﻿using api.Data.Repositories.Implementations;
 using api.Data.Repositories.Interfaces;
 using api.Shared.Email.Implementations;
 using api.Shared.Email.Interfaces;

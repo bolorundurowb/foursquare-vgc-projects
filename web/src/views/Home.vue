@@ -143,6 +143,7 @@ export default {
 
         // show the modal
         this.showInfoModal = true;
+        this.isLoading = false;
       } catch (err) {
         const error = err.response;
 
@@ -155,9 +156,8 @@ export default {
             text: 'An error occurred when checking your registration status.',
             icon: 'error'
           });
+          this.isLoading = false;
         }
-      } finally {
-        this.isLoading = false;
       }
     },
     async register() {
@@ -199,6 +199,7 @@ export default {
         // show modal
         this.showRegisterModal = false;
         this.showInfoModal = true;
+        this.isLoading = false;
       } catch (err) {
         const error = err.response;
         let message;
@@ -206,7 +207,7 @@ export default {
         if (error && error.data) {
           message = error.data.message;
         } else {
-          message = 'An error occurred when checking your registration status.';
+          message = 'An error occurred when registering you.';
         }
 
         this.$swal({
@@ -214,7 +215,6 @@ export default {
           text: message,
           icon: 'error'
         });
-      } finally {
         this.isLoading = false;
       }
     }

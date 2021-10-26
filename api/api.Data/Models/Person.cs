@@ -1,4 +1,5 @@
-﻿using meerkat;
+﻿using api.Shared.Extensions;
+using meerkat;
 using meerkat.Attributes;
 
 namespace api.Data.Models
@@ -20,7 +21,7 @@ namespace api.Data.Models
         {
             FirstName = firstName?.Trim();
             LastName = lastName?.Trim();
-            Phone = phone?.Normalize();
+            Phone = phone?.Regularize();
         }
     }
 }
