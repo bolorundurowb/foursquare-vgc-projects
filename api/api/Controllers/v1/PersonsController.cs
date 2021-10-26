@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
+using api.Models.View;
 using api.Shared.Media.Interfaces;
 using api.Validators;
 using MapsterMapper;
@@ -24,7 +25,7 @@ namespace api.Controllers.v1
         }
 
         [HttpGet("check")]
-        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(PersonViewModel), 200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> CheckPerson(string phoneNumber = null)
         {
@@ -35,11 +36,15 @@ namespace api.Controllers.v1
                 return NotFound();
             }
 
-            return Ok(_qrCodeService.CreateQrFromCode(person.Id.ToString()));
+            var response = Mapper.Map<PersonViewModel>(person);
+            response.QrUrl = _qrCodeService.CreateQrFromCode(person.Id.ToString());
+
+            return Ok(response);
         }
 
         [HttpPost("")]
-        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(PersonViewModel), 201)]
+        [ProducesResponseType(typeof(GenericViewModel), 400)]
         public async Task<IActionResult> Add([FromBody] PersonCreationBindingModel bm)
         {
             var (isValid, errorMessages) =
@@ -51,7 +56,11 @@ namespace api.Controllers.v1
             }
 
             var person = await _personsRepo.Create(bm.FirstName, bm.LastName, bm.Phone);
-            return Ok(_qrCodeService.CreateQrFromCode(person.Id.ToString()));
+
+            var response = Mapper.Map<PersonViewModel>(person);
+            response.QrUrl = _qrCodeService.CreateQrFromCode(person.Id.ToString());
+
+            return Created(response);
         }
     }
 }

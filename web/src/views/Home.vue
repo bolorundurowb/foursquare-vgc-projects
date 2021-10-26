@@ -19,7 +19,7 @@
             <input
                 type="tel"
                 placeholder="e.g 08012345678"
-                maxlength="11"
+                maxlength="25"
                 id="phone-number"
                 v-model="phoneNumber"/>
 
@@ -64,7 +64,7 @@
               type="tel"
               placeholder="e.g 08012345678"
               id="reg-phone-number"
-              maxlength="11"
+              maxlength="25"
               v-model="newPerson.phone"/>
 
           <div style="text-align: center">
@@ -86,6 +86,10 @@
           You can save a screenshot of this QR code and present it to check in
           at the church premises
         </h6>
+
+        <div class="name-header">
+          {{ fullName || '(None Provided)' }}
+        </div>
 
         <img v-bind:src="qrUrl" alt="QR code"/>
       </div>
@@ -109,7 +113,8 @@ export default {
       isRegistering: false,
       newPerson: {},
       showInfoModal: false,
-      qrUrl: ''
+      qrUrl: '',
+      fullName: ''
     };
   },
   methods: {
@@ -119,8 +124,8 @@ export default {
         return;
       }
 
-      // validate input
-      if (!this.phoneNumber || !/0\d{10}$/g.test(this.phoneNumber)) {
+      // validate phone number
+      if (!this.phoneNumber || !/^[+]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/g.test(this.phoneNumber)) {
         this.$swal({
           title: 'Error',
           text: 'A valid phone number is required.',
@@ -132,13 +137,15 @@ export default {
       this.isLoading = true;
 
       try {
-        const response = await this.axios.get(
-            `/v1/persons/check?phoneNumber=${this.phoneNumber}`
+        const {data} = await this.axios.get(
+            `/v1/persons/check?phoneNumber=${encodeURIComponent(this.phoneNumber)}`
         );
-        this.qrUrl = `data:image/png;base64,${response.data}`;
+        this.qrUrl = `data:image/png;base64,${data.qrUrl}`;
+        this.fullName = data.fullName;
 
         // show the modal
         this.showInfoModal = true;
+        this.isLoading = false;
       } catch (err) {
         const error = err.response;
 
@@ -151,9 +158,8 @@ export default {
             text: 'An error occurred when checking your registration status.',
             icon: 'error'
           });
+          this.isLoading = false;
         }
-      } finally {
-        this.isLoading = false;
       }
     },
     async register() {
@@ -162,10 +168,18 @@ export default {
         return;
       }
 
-      this.isRegistering = true;
+      // validate that at least one name is supplied
+      if (!this.newPerson.firstName && !this.newPerson.lastName) {
+        this.$swal({
+          title: 'Error',
+          text: 'At least one name is required.',
+          icon: 'error'
+        });
+        return;
+      }
 
-      // validate input
-      if (!this.newPerson.phone || !/0\d{10}$/g.test(this.newPerson.phone)) {
+      // validate phone number
+      if (!this.newPerson.phone || !/^[+]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/g.test(this.newPerson.phone)) {
         this.$swal({
           title: 'Error',
           text: 'A valid phone number is required.',
@@ -174,9 +188,12 @@ export default {
         return;
       }
 
+      this.isRegistering = true;
+
       try {
-        const response = await this.axios.post('/v1/persons', this.newPerson);
-        this.qrUrl = `data:image/png;base64,${response.data}`;
+        const {data} = await this.axios.post('/v1/persons', this.newPerson);
+        this.qrUrl = `data:image/png;base64,${data.qrUrl}`;
+        this.fullName = data.fullName;
 
         // reset the input
         this.newPerson = {};
@@ -184,6 +201,7 @@ export default {
         // show modal
         this.showRegisterModal = false;
         this.showInfoModal = true;
+        this.isLoading = false;
       } catch (err) {
         const error = err.response;
         let message;
@@ -191,7 +209,7 @@ export default {
         if (error && error.data) {
           message = error.data.message;
         } else {
-          message = 'An error occurred when checking your registration status.';
+          message = 'An error occurred when registering you.';
         }
 
         this.$swal({
@@ -199,7 +217,6 @@ export default {
           text: message,
           icon: 'error'
         });
-      } finally {
         this.isLoading = false;
       }
     }
@@ -237,6 +254,15 @@ export default {
 .form {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.name-header {
+  text-transform: uppercase;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 0;
+  font-size: 2.2rem
 }
 
 @media only screen and (max-device-width: 768px) {
