@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using api.Data.Models;
 using api.Data.Repositories.Interfaces;
+using api.Shared.Extensions;
 using meerkat;
-using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 
 namespace api.Data.Repositories.Implementations
 {
@@ -11,7 +10,7 @@ namespace api.Data.Repositories.Implementations
     {
         public Task<Person> GetByPhone(string phoneNumber)
         {
-            phoneNumber = phoneNumber?.Trim();
+            phoneNumber = phoneNumber?.Regularize().Trim();
             return Meerkat.FindOneAsync<Person>(x => x.Phone == phoneNumber);
         }
 

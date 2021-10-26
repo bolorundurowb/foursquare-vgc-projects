@@ -1,4 +1,5 @@
-﻿using meerkat;
+﻿using api.Shared.Extensions;
+using meerkat;
 using meerkat.Attributes;
 
 namespace api.Data.Models
@@ -18,9 +19,9 @@ namespace api.Data.Models
 
         public Person(string firstName, string lastName, string phone)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Phone = phone;
+            FirstName = firstName?.Trim();
+            LastName = lastName?.Trim();
+            Phone = phone?.Regularize().Trim();
         }
     }
 }
