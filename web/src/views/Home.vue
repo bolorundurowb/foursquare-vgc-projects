@@ -107,7 +107,8 @@ export default {
       isRegistering: false,
       newPerson: {},
       showInfoModal: false,
-      qrUrl: ''
+      qrUrl: '',
+      fullName: ''
     };
   },
   methods: {
