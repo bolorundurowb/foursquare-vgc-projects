@@ -21,7 +21,7 @@ namespace api.Data.Models
         {
             FirstName = firstName?.Trim();
             LastName = lastName?.Trim();
-            Phone = phone?.Regularize();
+            Phone = phone?.Regularize().Trim();
         }
     }
 }

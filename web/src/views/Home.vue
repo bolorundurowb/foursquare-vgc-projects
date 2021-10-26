@@ -136,7 +136,7 @@ export default {
 
       try {
         const {data} = await this.axios.get(
-            `/v1/persons/check?phoneNumber=${this.phoneNumber}`
+            `/v1/persons/check?phoneNumber=${encodeURIComponent(this.phoneNumber)}`
         );
         this.qrUrl = `data:image/png;base64,${data.qrUrl}`;
         this.fullName = data.fullName;
