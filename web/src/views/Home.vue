@@ -131,10 +131,11 @@ export default {
       this.isLoading = true;
 
       try {
-        const response = await this.axios.get(
+        const {data} = await this.axios.get(
             `/v1/persons/check?phoneNumber=${this.phoneNumber}`
         );
-        this.qrUrl = `data:image/png;base64,${response.data}`;
+        this.qrUrl = `data:image/png;base64,${data.qrUrl}`;
+        this.fullName = data.fullName;
 
         // show the modal
         this.showInfoModal = true;
