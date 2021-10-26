@@ -118,7 +118,7 @@ export default {
         return;
       }
 
-      // validate input
+      // validate phone number
       if (!this.phoneNumber || !/0\d{10}$/g.test(this.phoneNumber)) {
         this.$swal({
           title: 'Error',
@@ -162,9 +162,17 @@ export default {
         return;
       }
 
-      this.isRegistering = true;
+      // validate that at least one name is supplied
+      if (!this.newPerson.firstName && !this.newPerson.lastName) {
+        this.$swal({
+          title: 'Error',
+          text: 'At least one name is required.',
+          icon: 'error'
+        });
+        return;
+      }
 
-      // validate input
+      // validate phone number
       if (!this.newPerson.phone || !/0\d{10}$/g.test(this.newPerson.phone)) {
         this.$swal({
           title: 'Error',
@@ -173,6 +181,8 @@ export default {
         });
         return;
       }
+
+      this.isRegistering = true;
 
       try {
         const response = await this.axios.post('/v1/persons', this.newPerson);
