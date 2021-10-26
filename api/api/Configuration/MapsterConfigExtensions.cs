@@ -23,6 +23,7 @@ namespace api.Configuration
                 .AfterMapping((x, y) => { y.HumanReadableDate = y.Date.ToString("ddd, dd MMM yyyy"); });
 
             config.NewConfig<Person, PersonViewModel>()
+                .Ignore(x => x.QrUrl)
                 .Map(x => x.FullName, y => $"{y.FirstName} {y.LastName}".Trim());
         }
     }
