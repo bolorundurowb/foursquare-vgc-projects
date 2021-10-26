@@ -185,8 +185,9 @@ export default {
       this.isRegistering = true;
 
       try {
-        const response = await this.axios.post('/v1/persons', this.newPerson);
-        this.qrUrl = `data:image/png;base64,${response.data}`;
+        const {data} = await this.axios.post('/v1/persons', this.newPerson);
+        this.qrUrl = `data:image/png;base64,${data.qrUrl}`;
+        this.fullName = data.fullName;
 
         // reset the input
         this.newPerson = {};
