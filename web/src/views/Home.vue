@@ -85,6 +85,10 @@
           at the church premises
         </h6>
 
+        <div class="name-header">
+          {{ fullName || '(None Provided)' }}
+        </div>
+
         <img v-bind:src="qrUrl" alt="QR code"/>
       </div>
     </VueModal>
@@ -248,6 +252,15 @@ export default {
 .form {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.name-header {
+  text-transform: uppercase;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 0;
+  font-size: 2.2rem
 }
 
 @media only screen and (max-device-width: 768px) {
