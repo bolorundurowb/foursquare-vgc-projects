@@ -1,6 +1,6 @@
 ﻿namespace api.Models.View
 {
-    public class PersonCreationViewModel
+    public class PersonViewModel
     {
         public string FullName { get; set; }
 

@@ -9,25 +9,21 @@ namespace api.Configuration
     {
         public static void ConfigureMappings(TypeAdapterConfig config)
         {
-            config
-                .NewConfig<Admin, AdminViewModel>()
+            config.NewConfig<Admin, AdminViewModel>()
                 .Map(x => x.Id, y => y.Id.ToString());
 
-            config
-                .NewConfig<Newcomer, NewcomerViewModel>()
+            config.NewConfig<Newcomer, NewcomerViewModel>()
                 .Map(x => x.Id, y => y.Id.ToString());
 
-            config
-                .NewConfig<Attendee, AttendeeViewModel>()
+            config.NewConfig<Attendee, AttendeeViewModel>()
                 .Map(x => x.Id, y => y.Id.ToString())
-                .Map(x => x.SeatAssigned, y => y.SeatNumber.HasValue ? y.SeatNumber.Value.ToString(): y.SeatAssigned);
+                .Map(x => x.SeatAssigned, y => y.SeatNumber.HasValue ? y.SeatNumber.Value.ToString() : y.SeatAssigned);
 
-            config
-                .NewConfig<DateSummaryDto, DateSummaryViewModel>()
-                .AfterMapping((x, y) =>
-                {
-                    y.HumanReadableDate = y.Date.ToString("ddd, dd MMM yyyy");
-                });
+            config.NewConfig<DateSummaryDto, DateSummaryViewModel>()
+                .AfterMapping((x, y) => { y.HumanReadableDate = y.Date.ToString("ddd, dd MMM yyyy"); });
+
+            config.NewConfig<Person, PersonViewModel>()
+                .Map(x => x.FullName, y => $"{y.FirstName} {y.LastName}".Trim());
         }
     }
 }
