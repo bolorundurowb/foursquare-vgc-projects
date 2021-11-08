@@ -29,7 +29,8 @@ namespace api.Data.CsvMappers
 
             Map(x => x.SeatNumber)
                 .Name("Seat Number")
-                .Index(5);
+                .Index(5)
+                .Convert(x => x.Value.SeatNumber.HasValue ? x.Value.SeatNumber.Value.ToString() : x.Value.SeatAssigned);
 
             Map(x => x.Gender)
                 .Name("Gender")
