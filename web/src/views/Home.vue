@@ -41,7 +41,7 @@
         v-model="showRegisterModal">
       <form @submit.prevent="register">
         <fieldset>
-          <label for="first-name">First Name</label>
+          <label for="first-name">Given Name</label>
           <input
               type="text"
               placeholder="e.g John"
@@ -49,7 +49,7 @@
               maxlength="200"
               v-model="newPerson.firstName"/>
 
-          <label for="last-name">Last Name</label>
+          <label for="last-name">Surname</label>
           <input
               type="text"
               placeholder="e.g Doe"
