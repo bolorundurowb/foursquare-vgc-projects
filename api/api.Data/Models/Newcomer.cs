@@ -2,7 +2,6 @@
 using api.Data.Enums;
 using meerkat;
 using meerkat.Attributes;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace api.Data.Models
 {
@@ -35,7 +34,7 @@ namespace api.Data.Models
 
         public string Remarks { get; private set; }
         
-        [BsonIgnore]
+        [Ignore]
         public int SerialNo { get; set; }
 
         private Newcomer()
