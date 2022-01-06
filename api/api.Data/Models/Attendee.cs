@@ -3,7 +3,6 @@ using api.Data.Enums;
 using meerkat;
 using meerkat.Attributes;
 using moment.net;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace api.Data.Models
 {
@@ -39,7 +38,8 @@ namespace api.Data.Models
 
         public string SeatType { get; private set; }
 
-        [BsonIgnore] public int SerialNo { get; set; }
+        [Ignore] 
+        public int SerialNo { get; set; }
 
         private Attendee()
         {
