@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using api.Data.Models;
+using api.Data.Entities;
 using api.Data.Repositories.Interfaces;
 using api.Shared.Extensions;
 using meerkat;

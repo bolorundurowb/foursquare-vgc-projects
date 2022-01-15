@@ -4,7 +4,7 @@ using meerkat;
 using meerkat.Attributes;
 using moment.net;
 
-namespace api.Data.Models
+namespace api.Data.Entities
 {
     [Collection(Name = "attendance", TrackTimestamps = true)]
     public class Attendee : Schema

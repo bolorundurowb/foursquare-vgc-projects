@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using api.Data.CsvMappers;
-using api.Data.Models;
+using api.Data.Entities;
 using CsvHelper;
 
 namespace api.Data.Helpers

@@ -1,5 +1,5 @@
 ﻿using api.Data.DTOs;
-using api.Data.Models;
+using api.Data.Entities;
 using api.Models.View;
 using Mapster;
 

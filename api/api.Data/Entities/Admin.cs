@@ -1,7 +1,7 @@
 ﻿using System;
 using meerkat;
 
-namespace api.Data.Models
+namespace api.Data.Entities
 {
     public class Admin : Schema
     {

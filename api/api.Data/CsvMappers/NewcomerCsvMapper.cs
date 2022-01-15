@@ -1,4 +1,4 @@
-using api.Data.Models;
+using api.Data.Entities;
 using CsvHelper.Configuration;
 
 namespace api.Data.CsvMappers

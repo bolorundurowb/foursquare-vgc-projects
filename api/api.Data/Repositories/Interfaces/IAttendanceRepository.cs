@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using api.Data.DTOs;
+using api.Data.Entities;
 using api.Data.Enums;
-using api.Data.Models;
 
 namespace api.Data.Repositories.Interfaces
 {
