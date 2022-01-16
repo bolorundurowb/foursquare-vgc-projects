@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using api.Data.Enums;
+using api.Data.ValueObjects;
 using meerkat;
 using meerkat.Attributes;
 
@@ -10,7 +13,7 @@ public class Venue : Schema
 {
     public string Name { get; private set; }
 
-    public List<string> Seats { get; private set; }
+    public List<Seat> Seats { get; private set; }
 
     private Venue()
     {
@@ -24,29 +27,30 @@ public class Venue : Schema
             Name = name.Trim();
     }
 
-    public void AddSeat(string seat)
+    public void AddSeat(SeatCategory category, string seatNumber)
     {
-        if (string.IsNullOrWhiteSpace(seat))
-            throw new ArgumentException("Invalid seat name.", nameof(seat));
+        if (string.IsNullOrWhiteSpace(seatNumber))
+            throw new ArgumentException("Invalid seatNumber number.", nameof(seatNumber));
 
-        seat = seat.ToUpperInvariant();
-        Seats ??= new List<string>();
+        seatNumber = seatNumber.ToUpperInvariant();
+        Seats ??= new List<Seat>();
 
-        if (Seats.Contains(seat))
+        if (Seats.Any(x => x.Category == category && x.Number == seatNumber))
             return;
 
-        Seats.Add(seat);
+        Seats.Add(new Seat(category, seatNumber));
     }
 
-    public void RemoveSeat(string seat)
+    public void RemoveSeat(SeatCategory category, string seatNumber)
     {
-        if (string.IsNullOrWhiteSpace(seat))
-            throw new ArgumentException("Invalid seat name.", nameof(seat));
+        if (string.IsNullOrWhiteSpace(seatNumber))
+            throw new ArgumentException("Invalid seat number.", nameof(seatNumber));
 
-        seat = seat.ToUpperInvariant();
-        Seats ??= new List<string>();
+        seatNumber = seatNumber.ToUpperInvariant();
+        Seats ??= new List<Seat>();
+        var seat = Seats.FirstOrDefault(x => x.Category == category && x.Number == seatNumber);
 
-        if (!Seats.Contains(seat))
+        if (seat == null)
             return;
 
         Seats.Remove(seat);
