@@ -1,5 +1,5 @@
 using System.Linq;
-using api.Data.Models;
+using api.Data.Entities;
 using meerkat;
 using dotenv.net.Utilities;
 

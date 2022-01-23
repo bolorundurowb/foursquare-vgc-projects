@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using api.Data.Models;
+using api.Data.Entities;
 using ClosedXML.Excel;
 
 namespace api.Utils

@@ -2,7 +2,7 @@
 using meerkat;
 using meerkat.Attributes;
 
-namespace api.Data.Models
+namespace api.Data.Entities
 {
     [Collection(TrackTimestamps = true)]
     public class Person : Schema
