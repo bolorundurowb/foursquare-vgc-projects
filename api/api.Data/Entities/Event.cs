@@ -11,5 +11,7 @@ public class Event : Schema
     
     public DateOnly Date { get; private set; }
     
-    public DateOnly Date { get; private set; }
+    public string Url { get; private set; }
+    
+    public string QrBase64 { get; private set; }
 }
