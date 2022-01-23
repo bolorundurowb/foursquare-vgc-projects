@@ -59,9 +59,7 @@ namespace api.Data.Repositories.Implementations
             var newcomer = await Meerkat.FindByIdAsync<Newcomer>(newcomerId);
 
             if (newcomer == null)
-            {
                 throw new NotFoundException("Newcomer not found.");
-            }
 
             newcomer.UpdateDate(date);
             newcomer.UpdateFullName(fullName);

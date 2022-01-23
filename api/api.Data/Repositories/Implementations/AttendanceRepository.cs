@@ -48,15 +48,11 @@ namespace api.Data.Repositories.Implementations
             var attendee = new Attendee(normalizedEmail, fullName, age, phone, residentialAddress, gender,
                 returnedInLastTenDays, liveWithCovidCaregivers, caredForSickPerson, haveCovidSymptoms);
 
-            if (seatNumber.HasValue)
-            {
+            if (seatNumber.HasValue) 
                 attendee.UpdateSeatNumber(seatNumber);
-            }
 
             if (!attendee.CanRegister())
-            {
                 throw new InvalidOperationException("You cannot reserve a seat at this time.");
-            }
 
             await attendee.SaveAsync();
 
@@ -70,17 +66,13 @@ namespace api.Data.Repositories.Implementations
             var person = await Meerkat.FindByIdAsync<Person>(personId);
 
             if (person == null)
-            {
                 throw new NotFoundException("User not pre-registered.");
-            }
 
             var attendee = await Query()
                 .FirstOrDefaultAsync(x => x.Phone == person.Phone && x.Date == today);
 
             if (attendee != null)
-            {
                 throw new ConflictException("Attendee is registered for today's service.");
-            }
 
             attendee = new Attendee(person.FirstName, person.LastName, person?.Phone, seatNumber, seatType);
             await attendee.SaveAsync();
@@ -97,9 +89,7 @@ namespace api.Data.Repositories.Implementations
             var attendee = await Meerkat.FindByIdAsync<Attendee>(attendeeId);
 
             if (attendee == null)
-            {
                 throw new NotFoundException("Attendee not found.");
-            }
 
             attendee.UpdateDate(date);
             attendee.UpdateFullName(fullName);

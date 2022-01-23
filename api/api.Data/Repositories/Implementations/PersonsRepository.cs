@@ -18,11 +18,11 @@ namespace api.Data.Repositories.Implementations
         {
             var person = await GetByPhone(phoneNumber);
 
-            if (person == null)
-            {
-                person = new Person(firstName, lastName, phoneNumber);
-                await person.SaveAsync();
-            }
+            if (person != null)
+                return person;
+
+            person = new Person(firstName, lastName, phoneNumber);
+            await person.SaveAsync();
 
             return person;
         }

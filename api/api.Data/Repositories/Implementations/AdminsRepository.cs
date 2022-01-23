@@ -14,9 +14,7 @@ namespace api.Data.Repositories.Implementations
             var admin = await Meerkat.FindOneAsync<Admin>(x => x.EmailAddress == normalizedEmail);
 
             if (admin == null)
-            {
                 throw new NotFoundException("Admin not found.");
-            }
 
             return admin;
         }
