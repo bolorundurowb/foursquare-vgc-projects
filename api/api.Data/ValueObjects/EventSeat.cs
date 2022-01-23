@@ -7,11 +7,13 @@ namespace api.Data.ValueObjects;
 
 public class EventSeat : ValueObject
 {
-    public int Order { get; private set; }
+    public int Priority { get; private set; }
 
     public SeatCategory Category { get; private set; }
 
     public string Number { get; private set; }
+
+    public string AttachedNumber { get; private set; }
 
     public ObjectId? PersonId { get; private set; }
 
@@ -19,11 +21,12 @@ public class EventSeat : ValueObject
     {
     }
 
-    public EventSeat(int order, Seat seat)
+    public EventSeat(int priority, Seat seat)
     {
-        Order = order;
+        Priority = priority;
         Category = seat.Category;
         Number = seat.Number;
+        AttachedNumber = seat.AttachedNumber;
     }
 
     public void Assign(ObjectId personId)
@@ -36,7 +39,7 @@ public class EventSeat : ValueObject
 
     protected override IEnumerable<object> GetAtomicValues()
     {
-        yield return Order;
+        yield return Priority;
         yield return Category;
         yield return Number;
         yield return PersonId;
