@@ -1,9 +1,8 @@
-﻿namespace api.Models.View
-{
-    public class PersonViewModel
-    {
-        public string FullName { get; set; }
+﻿namespace api.Models.View;
 
-        public string QrUrl { get; set; }
-    }
+public class PersonViewModel
+{
+    public string FullName { get; set; }
+
+    public string QrUrl { get; set; }
 }

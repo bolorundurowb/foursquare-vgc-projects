@@ -4,27 +4,26 @@ using api.Data.Repositories.Interfaces;
 using api.Shared.Extensions;
 using meerkat;
 
-namespace api.Data.Repositories.Implementations
+namespace api.Data.Repositories.Implementations;
+
+public class PersonsRepository : IPersonsRepository
 {
-    public class PersonsRepository : IPersonsRepository
+    public Task<Person> GetByPhone(string phoneNumber)
     {
-        public Task<Person> GetByPhone(string phoneNumber)
-        {
-            phoneNumber = phoneNumber?.Regularize().Trim();
-            return Meerkat.FindOneAsync<Person>(x => x.Phone == phoneNumber);
-        }
+        phoneNumber = phoneNumber?.Regularize().Trim();
+        return Meerkat.FindOneAsync<Person>(x => x.Phone == phoneNumber);
+    }
 
-        public async Task<Person> Create(string firstName, string lastName, string phoneNumber)
-        {
-            var person = await GetByPhone(phoneNumber);
+    public async Task<Person> Create(string firstName, string lastName, string phoneNumber)
+    {
+        var person = await GetByPhone(phoneNumber);
 
-            if (person != null)
-                return person;
-
-            person = new Person(firstName, lastName, phoneNumber);
-            await person.SaveAsync();
-
+        if (person != null)
             return person;
-        }
+
+        person = new Person(firstName, lastName, phoneNumber);
+        await person.SaveAsync();
+
+        return person;
     }
 }

@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 
-namespace api.Models.View
+namespace api.Models.View;
+
+public class ValidationErrorsViewModel
 {
-    public class ValidationErrorsViewModel
+    public IEnumerable<string> Messages { get; set; }
+
+    public ValidationErrorsViewModel()
     {
-        public IEnumerable<string> Messages { get; set; }
+    }
 
-        public ValidationErrorsViewModel()
-        {
-        }
-
-        public ValidationErrorsViewModel(IEnumerable<string> messages)
-        {
-            Messages = messages;
-        }
+    public ValidationErrorsViewModel(IEnumerable<string> messages)
+    {
+        Messages = messages;
     }
 }

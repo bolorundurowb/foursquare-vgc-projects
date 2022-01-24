@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace api.Shared.Exceptions
+namespace api.Shared.Exceptions;
+
+public class AuthException : Exception
 {
-    public class AuthException : Exception
+    public AuthException(string message) : base(message)
     {
-        public AuthException(string message) : base(message)
-        {
-        }
     }
 }

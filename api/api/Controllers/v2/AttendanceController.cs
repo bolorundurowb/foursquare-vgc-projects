@@ -6,39 +6,38 @@ using api.Shared.Exceptions;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api.Controllers.v2
+namespace api.Controllers.v2;
+
+[ApiVersion("2.0")]
+public class AttendanceController : ApiController
 {
-    [ApiVersion("2.0")]
-    public class AttendanceController : ApiController
+    private readonly IAttendanceRepository _attendanceRepo;
+
+    public AttendanceController(IMapper mapper, IAttendanceRepository attendanceRepo) :
+        base(mapper)
     {
-        private readonly IAttendanceRepository _attendanceRepo;
+        _attendanceRepo = attendanceRepo;
+    }
 
-        public AttendanceController(IMapper mapper, IAttendanceRepository attendanceRepo) :
-            base(mapper)
+    [HttpPost("")]
+    [ProducesResponseType(typeof(AttendeeViewModel), 201)]
+    [ProducesResponseType(typeof(GenericViewModel), 400)]
+    [ProducesResponseType(typeof(GenericViewModel), 404)]
+    [ProducesResponseType(typeof(GenericViewModel), 409)]
+    public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationV2BindingModel bm)
+    {
+        try
         {
-            _attendanceRepo = attendanceRepo;
+            var attendee = await _attendanceRepo.AddAttendee(bm.PersonId, bm.SeatAssigned, bm.SeatType);
+            return Created(Mapper.Map<AttendeeViewModel>(attendee));
         }
-
-        [HttpPost("")]
-        [ProducesResponseType(typeof(AttendeeViewModel), 201)]
-        [ProducesResponseType(typeof(GenericViewModel), 400)]
-        [ProducesResponseType(typeof(GenericViewModel), 404)]
-        [ProducesResponseType(typeof(GenericViewModel), 409)]
-        public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationV2BindingModel bm)
+        catch (ConflictException ex)
         {
-            try
-            {
-                var attendee = await _attendanceRepo.AddAttendee(bm.PersonId, bm.SeatAssigned, bm.SeatType);
-                return Created(Mapper.Map<AttendeeViewModel>(attendee));
-            }
-            catch (ConflictException ex)
-            {
-                return Conflict(ex.Message);
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            return Conflict(ex.Message);
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(ex.Message);
         }
     }
 }

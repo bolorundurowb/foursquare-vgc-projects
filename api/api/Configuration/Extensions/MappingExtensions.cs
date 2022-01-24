@@ -2,16 +2,15 @@
 using MapsterMapper;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace api.Configuration.Extensions
+namespace api.Configuration.Extensions;
+
+internal static class MappingExtensions
 {
-    internal static class MappingExtensions
+    public static void ConfigureMapping(this IServiceCollection services)
     {
-        public static void ConfigureMapping(this IServiceCollection services)
-        {
-            var config = TypeAdapterConfig.GlobalSettings;
-            services.AddSingleton(config);
-            services.AddScoped<IMapper, ServiceMapper>();
-            MapsterConfigExtensions.ConfigureMappings(config);
-        }
+        var config = TypeAdapterConfig.GlobalSettings;
+        services.AddSingleton(config);
+        services.AddScoped<IMapper, ServiceMapper>();
+        MapsterConfigExtensions.ConfigureMappings(config);
     }
 }

@@ -1,9 +1,8 @@
-﻿namespace api.Data.Enums
-{
-    public enum SeatCategory
-    {
-        Single = 1,
+﻿namespace api.Data.Enums;
 
-        Couples = 2
-    }
+public enum SeatCategory
+{
+    Single = 1,
+
+    Couples = 2
 }

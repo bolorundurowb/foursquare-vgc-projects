@@ -1,11 +1,10 @@
 using System;
 
-namespace api.Data.DTOs
-{
-    public class DateSummaryDto
-    {
-        public DateTime Date { get; set; }
+namespace api.Data.DTOs;
 
-        public int NumOfEntries { get; set; }
-    }
+public class DateSummaryDto
+{
+    public DateTime Date { get; set; }
+
+    public int NumOfEntries { get; set; }
 }

@@ -1,11 +1,10 @@
-﻿namespace api.Data.Enums
+﻿namespace api.Data.Enums;
+
+public enum Gender
 {
-    public enum Gender
-    {
-        Other = 0,
+    Other = 0,
         
-        Female = 1,
+    Female = 1,
         
-        Male = 2
-    }
+    Male = 2
 }

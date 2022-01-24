@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
 using api.Data.Entities;
 
-namespace api.Data.Repositories.Interfaces
-{
-    public interface IPersonsRepository
-    {
-        Task<Person> GetByPhone(string phoneNumber);
+namespace api.Data.Repositories.Interfaces;
 
-        Task<Person> Create(string firstName, string lastName, string phoneNumber);
-    }
+public interface IPersonsRepository
+{
+    Task<Person> GetByPhone(string phoneNumber);
+
+    Task<Person> Create(string firstName, string lastName, string phoneNumber);
 }

@@ -6,44 +6,43 @@ using System.Text;
 using api.Shared;
 using Microsoft.IdentityModel.Tokens;
 
-namespace api.Configuration
+namespace api.Configuration;
+
+public static class Helpers
 {
-    public static class Helpers
+    internal static (string, DateTime) GenerateToken(string id, string emailAddress)
     {
-        internal static (string, DateTime) GenerateToken(string id, string emailAddress)
+        var now = DateTime.UtcNow;
+        var expiry = Constants.MaxTokenExpiry;
+        var claims = new[]
         {
-            var now = DateTime.UtcNow;
-            var expiry = Constants.MaxTokenExpiry;
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, emailAddress),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("id", id)
-            };
+            new Claim(JwtRegisteredClaimNames.Sub, emailAddress),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim("id", id)
+        };
 
-            var token = new JwtSecurityToken
-            (
-                Config.Issuer,
-                Config.Audience,
-                claims,
-                expires: expiry,
-                notBefore: now,
-                signingCredentials: new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Config.Secret)),
-                    SecurityAlgorithms.HmacSha256)
-            );
+        var token = new JwtSecurityToken
+        (
+            Config.Issuer,
+            Config.Audience,
+            claims,
+            expires: expiry,
+            notBefore: now,
+            signingCredentials: new SigningCredentials(
+                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Config.Secret)),
+                SecurityAlgorithms.HmacSha256)
+        );
 
-            return (new JwtSecurityTokenHandler().WriteToken(token), expiry);
+        return (new JwtSecurityTokenHandler().WriteToken(token), expiry);
+    }
+
+    internal static string GetUserId(this ClaimsPrincipal claimsPrincipal)
+    {
+        if (!(claimsPrincipal.Identity is ClaimsIdentity identity))
+        {
+            throw new Exception("User identity could not be retrieved.");
         }
 
-        internal static string GetUserId(this ClaimsPrincipal claimsPrincipal)
-        {
-            if (!(claimsPrincipal.Identity is ClaimsIdentity identity))
-            {
-                throw new Exception("User identity could not be retrieved.");
-            }
-
-            return identity.Claims.First(x => x.Type == "id").Value;
-        }
+        return identity.Claims.First(x => x.Type == "id").Value;
     }
 }
