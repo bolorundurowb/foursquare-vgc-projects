@@ -17,10 +17,11 @@ internal static class InjectionExtensions
         services.AddHttpClient();
         services.AddScoped<IEmailService, MailgunService>();
         services.AddScoped<IQrCodeService, QrCodeService>();
+        services.AddScoped<IVenueRepository, VenueRepository>();
+        services.AddScoped<IEventRepository, EventRepository>();
         services.AddScoped<IAdminsRepository, AdminsRepository>();
+        services.AddScoped<IPersonsRepository, PersonsRepository>();
         services.AddScoped<INewcomersRepository, NewcomersRepository>();
         services.AddScoped<IAttendanceRepository, AttendanceRepository>();
-        services.AddScoped<IPersonsRepository, PersonsRepository>();
-        services.AddScoped<IVenueRepository, VenueRepository>();
     }
 }
