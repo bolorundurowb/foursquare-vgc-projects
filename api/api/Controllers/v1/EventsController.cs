@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Data.Entities;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
@@ -13,10 +14,12 @@ namespace api.Controllers.v1;
 public class EventsController : ApiController
 {
     private readonly IEventRepository _eventRepo;
+    private readonly IVenueRepository _venueRepo;
 
-    public EventsController(IMapper mapper, IEventRepository eventRepo) : base(mapper)
+    public EventsController(IMapper mapper, IEventRepository eventRepo, IVenueRepository venueRepo) : base(mapper)
     {
         _eventRepo = eventRepo;
+        _venueRepo = venueRepo;
     }
 
     [HttpGet("")]
@@ -30,17 +33,21 @@ public class EventsController : ApiController
     [HttpPost("")]
     [ProducesResponseType(typeof(EventViewModel), 201)]
     [ProducesResponseType(typeof(GenericViewModel), 409)]
-    public async Task<IActionResult> Create([FromBody] VenueCreationBindingModel bm)
+    public async Task<IActionResult> Create([FromBody] EventCreationBindingModel bm)
     {
-        var venue = await _eventRepo.FindByNameAndDate(bm.Name);
+        var _event = await _eventRepo.FindByNameAndDate(bm.Name, bm.Date);
 
-        if (venue != null)
-            return Conflict("A venue exists with the same name.");
+        if (_event != null)
+            return Conflict("An event exists with the same name and date.");
 
-        var seatRanges = bm.SeatRanges
-            .Select(x => (x.Category, x.Number))
-            .ToList();
-        venue = await _venueRepo.Create(bm.Name, seatRanges);
-        return Ok(Mapper.Map<VenueViewModel>(venue));
+        var venueMap = await _venueRepo.GetAll(bm.Venues.Select(x => x.VenueId));
+        var venues = new List<(int, Venue)>();
+
+        foreach (var venuePriority in bm.Venues)
+            if (venueMap.ContainsKey(venuePriority.VenueId))
+                venues.Add((venuePriority.Priority, venueMap[venuePriority.VenueId]));
+
+        _event = await _eventRepo.Create(bm.Name, bm.Date, venues);
+        return Ok(Mapper.Map<EventViewModel>(_event));
     }
 }

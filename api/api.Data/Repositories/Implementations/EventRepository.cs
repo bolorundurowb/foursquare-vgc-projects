@@ -18,7 +18,7 @@ public class EventRepository : IEventRepository
             .Take(limit)
             .ToListAsync();
 
-    public Task<Event> FindByNameAndDate(DateTime date, string name) =>
+    public Task<Event> FindByNameAndDate(string name, DateTime date) =>
         Meerkat.FindOneAsync<Event>(x => x.Name == name && x.Date == date);
 
     public async Task<Event> Create(string name, DateTime date, List<(int Priority, Venue Venue)> venuePriority)

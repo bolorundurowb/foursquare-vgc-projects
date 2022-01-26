@@ -8,8 +8,10 @@ namespace api.Data.Repositories.Interfaces;
 public interface IVenueRepository
 {
     Task<List<Venue>> GetAll();
-    
+
+    Task<Dictionary<string, Venue>> GetAll(IEnumerable<string> venueIds);
+
     Task<Venue> FindByName(string name);
-    
+
     Task<Venue> Create(string name, List<(SeatCategory Category, string Range)> seatRanges);
 }
