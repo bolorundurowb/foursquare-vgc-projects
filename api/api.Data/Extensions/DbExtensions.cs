@@ -18,9 +18,7 @@ public static class DbExtensions
             var admin = Meerkat.FindOne<Admin>(x => x.EmailAddress == adminEmail);
 
             if (admin != null)
-            {
                 continue;
-            }
 
             admin = new Admin(string.Empty, adminEmail);
             admin.Save();
