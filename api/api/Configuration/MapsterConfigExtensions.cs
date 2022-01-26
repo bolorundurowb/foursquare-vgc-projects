@@ -2,6 +2,7 @@
 using api.Data.Entities;
 using api.Data.ValueObjects;
 using api.Models.View;
+using api.Shared.Media.Implementations;
 using Mapster;
 
 namespace api.Configuration;
@@ -31,5 +32,11 @@ public static class MapsterConfigExtensions
             .Map(x => x.FullName, y => $"{y.FirstName} {y.LastName}".Trim());
 
         config.NewConfig<Venue, VenueViewModel>();
+
+        config.NewConfig<Event, EventViewModel>()
+            .AfterMapping((model, vm) =>
+            {
+                vm.RegistrationUrlQrCode = QrCodeService.GenerateQrCode(model.RegistrationUrl);
+            });
     }
 }
