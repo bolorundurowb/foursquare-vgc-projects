@@ -29,5 +29,7 @@ public static class MapsterConfigExtensions
         config.NewConfig<Person, PersonViewModel>()
             .Ignore(x => x.QrUrl)
             .Map(x => x.FullName, y => $"{y.FirstName} {y.LastName}".Trim());
+
+        config.NewConfig<Venue, VenueViewModel>();
     }
 }
