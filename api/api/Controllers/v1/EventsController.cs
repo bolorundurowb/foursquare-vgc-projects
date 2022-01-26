@@ -10,29 +10,29 @@ using Microsoft.AspNetCore.Mvc;
 namespace api.Controllers.v1;
 
 [ApiVersion("1.0")]
-public class VenuesController : ApiController
+public class EventsController : ApiController
 {
-    private readonly IVenueRepository _venueRepo;
+    private readonly IEventRepository _eventRepo;
 
-    public VenuesController(IMapper mapper, IVenueRepository venueRepo) : base(mapper)
+    public EventsController(IMapper mapper, IEventRepository eventRepo) : base(mapper)
     {
-        _venueRepo = venueRepo;
+        _eventRepo = eventRepo;
     }
 
     [HttpGet("")]
-    [ProducesResponseType(typeof(List<VenueViewModel>), 200)]
-    public async Task<IActionResult> GetAll()
+    [ProducesResponseType(typeof(List<EventViewModel>), 200)]
+    public async Task<IActionResult> GetAll([FromQuery] CollectionQueryModel qm)
     {
-        var venues = await _venueRepo.GetAll();
-        return Ok(Mapper.Map<List<VenueViewModel>>(venues));
+        var events = await _eventRepo.GetAll(qm.Skip.Value, qm.Limit.Value);
+        return Ok(Mapper.Map<List<EventViewModel>>(events));
     }
 
     [HttpPost("")]
-    [ProducesResponseType(typeof(VenueViewModel), 201)]
+    [ProducesResponseType(typeof(EventViewModel), 201)]
     [ProducesResponseType(typeof(GenericViewModel), 409)]
     public async Task<IActionResult> Create([FromBody] VenueCreationBindingModel bm)
     {
-        var venue = await _venueRepo.FindByName(bm.Name);
+        var venue = await _eventRepo.FindByNameAndDate(bm.Name);
 
         if (venue != null)
             return Conflict("A venue exists with the same name.");
