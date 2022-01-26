@@ -27,7 +27,7 @@ public class VenuesController : ApiController
         return Ok(Mapper.Map<List<VenueViewModel>>(venues));
     }
 
-    [HttpGet("")]
+    [HttpPost("")]
     [ProducesResponseType(typeof(VenueViewModel), 201)]
     [ProducesResponseType(typeof(GenericViewModel), 409)]
     public async Task<IActionResult> Create([FromBody] VenueCreationBindingModel bm)

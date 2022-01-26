@@ -2,7 +2,7 @@
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
-using api.Shared.Media.Interfaces;
+using api.Shared.Media.Implementations;
 using api.Validators;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -15,13 +15,11 @@ namespace api.Controllers.v1;
 public class PersonsController : ApiController
 {
     private readonly IPersonsRepository _personsRepo;
-    private readonly IQrCodeService _qrCodeService;
 
-    public PersonsController(IMapper mapper, IPersonsRepository personsRepo, IQrCodeService qrCodeService) :
+    public PersonsController(IMapper mapper, IPersonsRepository personsRepo) :
         base(mapper)
     {
         _personsRepo = personsRepo;
-        _qrCodeService = qrCodeService;
     }
 
     [HttpGet("check")]
@@ -37,7 +35,7 @@ public class PersonsController : ApiController
         }
 
         var response = Mapper.Map<PersonViewModel>(person);
-        response.QrUrl = _qrCodeService.CreateQrFromCode(person.Id.ToString());
+        response.QrUrl = QrCodeService.GenerateQrCode(person.Id.ToString());
 
         return Ok(response);
     }
@@ -58,7 +56,7 @@ public class PersonsController : ApiController
         var person = await _personsRepo.Create(bm.FirstName, bm.LastName, bm.Phone);
 
         var response = Mapper.Map<PersonViewModel>(person);
-        response.QrUrl = _qrCodeService.CreateQrFromCode(person.Id.ToString());
+        response.QrUrl = QrCodeService.GenerateQrCode(person.Id.ToString());
 
         return Created(response);
     }

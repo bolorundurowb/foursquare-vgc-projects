@@ -22,13 +22,11 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         if (_environment.IsDevelopment())
-        {
             DotEnv.Fluent()
                 .WithDefaultEncoding()
                 .WithProbeForEnv()
                 .WithExceptions()
                 .Load();
-        }
 
         services.ConfigureLogging();
         services.ConfigureApi();

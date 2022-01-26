@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using api.Core.Utilities;
 using api.Data.Entities;
@@ -16,6 +17,16 @@ public class VenueRepository : IVenueRepository
         Meerkat.Query<Venue>()
             .OrderBy(x => x.Name)
             .ToListAsync();
+
+    public async Task<Dictionary<string, Venue>> GetAll(IEnumerable<string> venueIds)
+    {
+        var ids = venueIds.Select(x => (object)x);
+        var venues = await Meerkat.Query<Venue>()
+            .Where(x => ids.Contains(x.Id))
+            .ToListAsync();
+
+        return venues.ToDictionary(x => x.Id.ToString(), y => y);
+    }
 
     public Task<Venue> FindByName(string name) => Meerkat.FindOneAsync<Venue>(x => x.Name == name);
 

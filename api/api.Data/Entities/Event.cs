@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using api.Data.Enums;
 using api.Data.ValueObjects;
-using api.Shared.Media.Implementations;
 using dotenv.net.Utilities;
 using meerkat;
 using meerkat.Attributes;
@@ -18,9 +17,7 @@ public class Event : Schema
 
     public DateTime Date { get; private set; }
 
-    public string Url { get; private set; }
-
-    public string QrCodePngBase64 { get; private set; }
+    public string RegistrationUrl { get; private set; }
 
     public List<EventSeat> AvailableSeats { get; private set; }
 
@@ -34,12 +31,11 @@ public class Event : Schema
 
         foreach (var (priority, venue) in venuePriority)
         foreach (var seat in venue.Seats)
-            AvailableSeats.Add(new EventSeat(priority, seat));
+            AvailableSeats.Add(new EventSeat(priority, venue.Name, seat));
 
         // generate url and QR code
         EnvReader.TryGetStringValue("UI_URL", out var baseUrl);
-        Url = $"{baseUrl}/events/{Id}";
-        QrCodePngBase64 = new QrCodeService().CreateQrFromCode(Url);
+        RegistrationUrl = $"{baseUrl}/events/{Id}";
     }
 
     public EventSeat SelectSeat(SeatCategory category, ObjectId personId)
