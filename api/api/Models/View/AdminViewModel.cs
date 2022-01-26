@@ -1,11 +1,10 @@
-﻿namespace api.Models.View
+﻿namespace api.Models.View;
+
+public class AdminViewModel
 {
-    public class AdminViewModel
-    {
-        public string Id { get; set; }
+    public string Id { get; set; }
 
-        public string Name { get; set; }
+    public string Name { get; set; }
 
-        public string EmailAddress { get; set; }
-    }
+    public string EmailAddress { get; set; }
 }

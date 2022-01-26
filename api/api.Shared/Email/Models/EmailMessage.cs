@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 
-namespace api.Shared.Email.Models
+namespace api.Shared.Email.Models;
+
+public class EmailMessage
 {
-    public class EmailMessage
-    {
-        public string Subject { get; set; }
+    public string Subject { get; set; }
 
-        public string Content { get; set; }
+    public string Content { get; set; }
 
-        public List<EmailAttachment> Attachments { get; set; }
+    public List<EmailAttachment> Attachments { get; set; }
 
-        public string Sender { get; set; }
-    }
+    public string Sender { get; set; }
 }

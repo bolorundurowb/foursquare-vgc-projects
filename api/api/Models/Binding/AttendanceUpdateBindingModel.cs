@@ -1,13 +1,12 @@
 using System;
 
-namespace api.Models.Binding
+namespace api.Models.Binding;
+
+public class AttendanceUpdateBindingModel :  AttendeeRegistrationBindingModel
 {
-    public class AttendanceUpdateBindingModel :  AttendeeRegistrationBindingModel
-    {
-        public DateTime? Date { get; set; }
+    public DateTime? Date { get; set; }
 
-        public string SeatAssigned { get; set; }
+    public string SeatAssigned { get; set; }
 
-        public string SeatType { get; set; }
-    }
+    public string SeatType { get; set; }
 }

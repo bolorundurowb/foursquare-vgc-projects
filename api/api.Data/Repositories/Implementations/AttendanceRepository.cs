@@ -14,105 +14,104 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace api.Data.Repositories.Implementations
+namespace api.Data.Repositories.Implementations;
+
+public class AttendanceRepository : IAttendanceRepository
 {
-    public class AttendanceRepository : IAttendanceRepository
+    private IMongoQueryable<Attendee> Query() => Meerkat.Query<Attendee>();
+
+    public Task<List<DateSummaryDto>> GetAttendanceDates() =>
+        Query()
+            .GroupBy(x => x.Date)
+            .Select(x => new DateSummaryDto
+            {
+                Date = x.Key,
+                NumOfEntries = x.Count()
+            })
+            .OrderByDescending(x => x.Date)
+            .ToListAsync();
+
+    public Task<List<Attendee>> GetAttendance(DateTime date)
     {
-        private IMongoQueryable<Attendee> Query() => Meerkat.Query<Attendee>();
+        var dayStart = date.StartOf(DateTimeAnchor.Day);
+        var dayEnd = date.EndOf(DateTimeAnchor.Day);
+        return Query()
+            .Where(x => x.Date >= dayStart && x.Date < dayEnd)
+            .ToListAsync();
+    }
 
-        public Task<List<DateSummaryDto>> GetAttendanceDates() =>
-            Query()
-                .GroupBy(x => x.Date)
-                .Select(x => new DateSummaryDto
-                {
-                    Date = x.Key,
-                    NumOfEntries = x.Count()
-                })
-                .OrderByDescending(x => x.Date)
-                .ToListAsync();
+    public async Task<Attendee> AddAttendee(string fullName, string email, int? age, string phone,
+        string residentialAddress, Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers,
+        bool caredForSickPerson, MultiChoice? haveCovidSymptoms, int? seatNumber)
+    {
+        var normalizedEmail = email?.ToLowerInvariant();
+        var attendee = new Attendee(normalizedEmail, fullName, age, phone, residentialAddress, gender,
+            returnedInLastTenDays, liveWithCovidCaregivers, caredForSickPerson, haveCovidSymptoms);
 
-        public Task<List<Attendee>> GetAttendance(DateTime date)
-        {
-            var dayStart = date.StartOf(DateTimeAnchor.Day);
-            var dayEnd = date.EndOf(DateTimeAnchor.Day);
-            return Query()
-                .Where(x => x.Date >= dayStart && x.Date < dayEnd)
-                .ToListAsync();
-        }
+        if (seatNumber.HasValue) 
+            attendee.UpdateSeatNumber(seatNumber);
 
-        public async Task<Attendee> AddAttendee(string fullName, string email, int? age, string phone,
-            string residentialAddress, Gender? gender, bool returnedInLastTenDays, bool liveWithCovidCaregivers,
-            bool caredForSickPerson, MultiChoice? haveCovidSymptoms, int? seatNumber)
-        {
-            var normalizedEmail = email?.ToLowerInvariant();
-            var attendee = new Attendee(normalizedEmail, fullName, age, phone, residentialAddress, gender,
-                returnedInLastTenDays, liveWithCovidCaregivers, caredForSickPerson, haveCovidSymptoms);
+        if (!attendee.CanRegister())
+            throw new InvalidOperationException("You cannot reserve a seat at this time.");
 
-            if (seatNumber.HasValue) 
-                attendee.UpdateSeatNumber(seatNumber);
+        await attendee.SaveAsync();
 
-            if (!attendee.CanRegister())
-                throw new InvalidOperationException("You cannot reserve a seat at this time.");
+        return attendee;
+    }
 
-            await attendee.SaveAsync();
+    public async Task<Attendee> AddAttendee(string id, string seatNumber, string seatType)
+    {
+        var today = DateTime.UtcNow.Date;
+        var personId = ObjectId.Parse(id);
+        var person = await Meerkat.FindByIdAsync<Person>(personId);
 
-            return attendee;
-        }
+        if (person == null)
+            throw new NotFoundException("User not pre-registered.");
 
-        public async Task<Attendee> AddAttendee(string id, string seatNumber, string seatType)
-        {
-            var today = DateTime.UtcNow.Date;
-            var personId = ObjectId.Parse(id);
-            var person = await Meerkat.FindByIdAsync<Person>(personId);
+        var attendee = await Query()
+            .FirstOrDefaultAsync(x => x.Phone == person.Phone && x.Date == today);
 
-            if (person == null)
-                throw new NotFoundException("User not pre-registered.");
+        if (attendee != null)
+            throw new ConflictException("Attendee is registered for today's service.");
 
-            var attendee = await Query()
-                .FirstOrDefaultAsync(x => x.Phone == person.Phone && x.Date == today);
+        attendee = new Attendee(person.FirstName, person.LastName, person?.Phone, seatNumber, seatType);
+        await attendee.SaveAsync();
 
-            if (attendee != null)
-                throw new ConflictException("Attendee is registered for today's service.");
+        return attendee;
+    }
 
-            attendee = new Attendee(person.FirstName, person.LastName, person?.Phone, seatNumber, seatType);
-            await attendee.SaveAsync();
+    public async Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string email, int? age,
+        string phone, string residentialAddress, Gender? gender, bool returnedInLastTenDays,
+        bool liveWithCovidCaregivers, bool caredForSickPerson, MultiChoice? haveCovidSymptoms, string seatAssigned,
+        string seatType)
+    {
+        var attendeeId = ObjectId.Parse(id);
+        var attendee = await Meerkat.FindByIdAsync<Attendee>(attendeeId);
 
-            return attendee;
-        }
+        if (attendee == null)
+            throw new NotFoundException("Attendee not found.");
 
-        public async Task<Attendee> UpdateAttendee(string id, DateTime? date, string fullName, string email, int? age,
-            string phone, string residentialAddress, Gender? gender, bool returnedInLastTenDays,
-            bool liveWithCovidCaregivers, bool caredForSickPerson, MultiChoice? haveCovidSymptoms, string seatAssigned,
-            string seatType)
-        {
-            var attendeeId = ObjectId.Parse(id);
-            var attendee = await Meerkat.FindByIdAsync<Attendee>(attendeeId);
+        attendee.UpdateDate(date);
+        attendee.UpdateFullName(fullName);
+        attendee.UpdatePhone(phone);
+        attendee.UpdateEmail(email);
+        attendee.UpdateGender(gender);
+        attendee.UpdateResidentialAddress(residentialAddress);
+        attendee.UpdateHaveCovidSymptoms(haveCovidSymptoms);
+        attendee.UpdateAge(age);
+        attendee.UpdateReturnedInLastTenDays(returnedInLastTenDays);
+        attendee.UpdateLiveWithCovidCaregivers(liveWithCovidCaregivers);
+        attendee.UpdateCaredForSickPerson(caredForSickPerson);
+        attendee.UpdateSeatAssigned(seatAssigned);
+        attendee.UpdateSeatType(seatType);
+        await attendee.SaveAsync();
 
-            if (attendee == null)
-                throw new NotFoundException("Attendee not found.");
+        return attendee;
+    }
 
-            attendee.UpdateDate(date);
-            attendee.UpdateFullName(fullName);
-            attendee.UpdatePhone(phone);
-            attendee.UpdateEmail(email);
-            attendee.UpdateGender(gender);
-            attendee.UpdateResidentialAddress(residentialAddress);
-            attendee.UpdateHaveCovidSymptoms(haveCovidSymptoms);
-            attendee.UpdateAge(age);
-            attendee.UpdateReturnedInLastTenDays(returnedInLastTenDays);
-            attendee.UpdateLiveWithCovidCaregivers(liveWithCovidCaregivers);
-            attendee.UpdateCaredForSickPerson(caredForSickPerson);
-            attendee.UpdateSeatAssigned(seatAssigned);
-            attendee.UpdateSeatType(seatType);
-            await attendee.SaveAsync();
-
-            return attendee;
-        }
-
-        public async Task RemoveAttendee(string id)
-        {
-            var attendeeId = ObjectId.Parse(id);
-            await Meerkat.RemoveByIdAsync<Attendee>(attendeeId);
-        }
+    public async Task RemoveAttendee(string id)
+    {
+        var attendeeId = ObjectId.Parse(id);
+        await Meerkat.RemoveByIdAsync<Attendee>(attendeeId);
     }
 }

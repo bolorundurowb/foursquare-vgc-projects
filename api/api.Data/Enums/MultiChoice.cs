@@ -1,11 +1,10 @@
-﻿namespace api.Data.Enums
+﻿namespace api.Data.Enums;
+
+public enum MultiChoice
 {
-    public enum MultiChoice
-    {
-        Yes = 1,
+    Yes = 1,
         
-        No = 2,
+    No = 2,
         
-        Maybe = 3
-    }
+    Maybe = 3
 }

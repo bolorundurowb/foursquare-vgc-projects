@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using api.Shared.Email.Models;
 
-namespace api.Shared.Email.Interfaces
+namespace api.Shared.Email.Interfaces;
+
+public interface IEmailService
 {
-    public interface IEmailService
-    {
-        Task<bool> SendAsync(string recipient, EmailMessage emailMessage);
-    }
+    Task<bool> SendAsync(string recipient, EmailMessage emailMessage);
 }

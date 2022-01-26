@@ -1,7 +1,6 @@
-﻿namespace api.Shared.Media.Interfaces
+﻿namespace api.Shared.Media.Interfaces;
+
+public interface IQrCodeService
 {
-    public interface IQrCodeService
-    {
-        string CreateQrFromCode(string payload);
-    }
+    string CreateQrFromCode(string payload);
 }

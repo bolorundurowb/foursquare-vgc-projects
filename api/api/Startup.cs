@@ -7,46 +7,45 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace api
+namespace api;
+
+public class Startup
 {
-    public class Startup
+    private readonly IWebHostEnvironment _environment;
+
+    public Startup(IWebHostEnvironment environment)
     {
-        private readonly IWebHostEnvironment _environment;
+        _environment = environment;
+    }
 
-        public Startup(IWebHostEnvironment environment)
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+        if (_environment.IsDevelopment())
         {
-            _environment = environment;
+            DotEnv.Fluent()
+                .WithDefaultEncoding()
+                .WithProbeForEnv()
+                .WithExceptions()
+                .Load();
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            if (_environment.IsDevelopment())
-            {
-                DotEnv.Fluent()
-                    .WithDefaultEncoding()
-                    .WithProbeForEnv()
-                    .WithExceptions()
-                    .Load();
-            }
+        services.ConfigureLogging();
+        services.ConfigureApi();
+        services.ConfigureDocs();
+        services.ConfigureAuth();
+        services.ConfigureMapping();
+        services.ConfigureInjection();
+    }
 
-            services.ConfigureLogging();
-            services.ConfigureApi();
-            services.ConfigureDocs();
-            services.ConfigureAuth();
-            services.ConfigureMapping();
-            services.ConfigureInjection();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IApiVersionDescriptionProvider provider)
-        {
-            app.UseExceptionHandling(_environment);
-            app.UseLogging();
-            app.UseApi();
-            app.UseDocs(provider);
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IApiVersionDescriptionProvider provider)
+    {
+        app.UseExceptionHandling(_environment);
+        app.UseLogging();
+        app.UseApi();
+        app.UseDocs(provider);
             
-            DbExtensions.SeedDefaults();
-        }
+        DbExtensions.SeedDefaults();
     }
 }

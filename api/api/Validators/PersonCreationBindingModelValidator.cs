@@ -1,15 +1,14 @@
 ﻿using api.Models.Binding;
 using FluentValidation;
 
-namespace api.Validators
+namespace api.Validators;
+
+public class PersonCreationBindingModelValidator : AbstractValidator<PersonCreationBindingModel>
 {
-    public class PersonCreationBindingModelValidator : AbstractValidator<PersonCreationBindingModel>
+    public PersonCreationBindingModelValidator()
     {
-        public PersonCreationBindingModelValidator()
-        {
-            RuleFor(x => x.Phone)
-                .NotEmpty()
-                .WithMessage("A phone number is required.");
-        }
+        RuleFor(x => x.Phone)
+            .NotEmpty()
+            .WithMessage("A phone number is required.");
     }
 }

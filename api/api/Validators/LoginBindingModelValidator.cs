@@ -1,17 +1,16 @@
 ﻿using api.Models.Binding;
 using FluentValidation;
 
-namespace api.Validators
+namespace api.Validators;
+
+public class LoginBindingModelValidator : AbstractValidator<LoginBindingModel>
 {
-    public class LoginBindingModelValidator : AbstractValidator<LoginBindingModel>
+    public LoginBindingModelValidator()
     {
-        public LoginBindingModelValidator()
-        {
-            RuleFor(x => x.EmailAddress)
-                .NotEmpty()
-                .WithMessage("Your email address is required.")
-                .EmailAddress()
-                .WithMessage("EmailAddress is invalid.");
-        }
+        RuleFor(x => x.EmailAddress)
+            .NotEmpty()
+            .WithMessage("Your email address is required.")
+            .EmailAddress()
+            .WithMessage("EmailAddress is invalid.");
     }
 }

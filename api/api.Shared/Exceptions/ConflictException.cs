@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace api.Shared.Exceptions
+namespace api.Shared.Exceptions;
+
+public class ConflictException : Exception
 {
-    public class ConflictException : Exception
+    public ConflictException(string message) : base(message)
     {
-        public ConflictException(string message) : base(message)
-        {
-        }
     }
 }

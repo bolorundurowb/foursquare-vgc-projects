@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using api.Data.Entities;
 
-namespace api.Data.Repositories.Interfaces
+namespace api.Data.Repositories.Interfaces;
+
+public interface IAdminsRepository
 {
-    public interface IAdminsRepository
-    {
-        Task<Admin> Login(string email);
-    }
+    Task<Admin> Login(string email);
 }

@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\api.Core\api.Core.csproj" />
       <ProjectReference Include="..\api.Shared\api.Shared.csproj" />
     </ItemGroup>
 

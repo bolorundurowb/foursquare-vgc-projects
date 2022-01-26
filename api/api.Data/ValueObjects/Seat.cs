@@ -9,23 +9,23 @@ public class Seat : ValueObject
 
     public string Number { get; private set; }
 
-    public string AttachedNumber { get; private set; }
+    public string AssociatedNumber { get; private set; }
 
     private Seat()
     {
     }
 
-    public Seat(SeatCategory category, string number, string coupleNumber = null)
+    public Seat(SeatCategory category, string number)
     {
         Category = category;
         Number = number;
-        AttachedNumber = coupleNumber;
+        AssociatedNumber = category == SeatCategory.Couples ? number + "A" : null;
     }
 
     protected override IEnumerable<object> GetAtomicValues()
     {
         yield return Category;
         yield return Number;
-        yield return AttachedNumber;
+        yield return AssociatedNumber;
     }
 }

@@ -1,7 +1,6 @@
-﻿namespace api.Models.Binding
+﻿namespace api.Models.Binding;
+
+public class LoginBindingModel
 {
-    public class LoginBindingModel
-    {
-        public string EmailAddress { get; set; }
-    }
+    public string EmailAddress { get; set; }
 }
