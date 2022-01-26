@@ -12,12 +12,12 @@ namespace api.Data.Repositories.Implementations;
 
 public class VenueRepository : IVenueRepository
 {
-    public Task<List<Venue>> GetAll()
-    {
-        return Meerkat.Query<Venue>()
+    public Task<List<Venue>> GetAll() =>
+        Meerkat.Query<Venue>()
             .OrderBy(x => x.Name)
             .ToListAsync();
-    }
+
+    public Task<Venue> FindByName(string name) => Meerkat.FindOneAsync<Venue>(x => x.Name == name);
 
     public async Task<Venue> Create(string name, List<(SeatCategory Category, string Range)> seatRanges)
     {

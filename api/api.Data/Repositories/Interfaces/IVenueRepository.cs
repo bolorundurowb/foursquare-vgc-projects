@@ -9,5 +9,7 @@ public interface IVenueRepository
 {
     Task<List<Venue>> GetAll();
     
+    Task<Venue> FindByName(string name);
+    
     Task<Venue> Create(string name, List<(SeatCategory Category, string Range)> seatRanges);
 }
