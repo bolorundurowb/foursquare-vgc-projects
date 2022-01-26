@@ -4,16 +4,26 @@ using api.Core.Utilities;
 using api.Data.Entities;
 using api.Data.Enums;
 using api.Data.Repositories.Interfaces;
+using meerkat;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace api.Data.Repositories.Implementations;
 
 public class VenueRepository : IVenueRepository
 {
+    public Task<List<Venue>> GetAll()
+    {
+        return Meerkat.Query<Venue>()
+            .OrderBy(x => x.Name)
+            .ToListAsync();
+    }
+
     public async Task<Venue> Create(string name, List<(SeatCategory Category, string Range)> seatRanges)
     {
         var venue = new Venue(name);
 
-        foreach ((var category, var range) in seatRanges)
+        foreach (var (category, range) in seatRanges)
         {
             var seatValues = SeatRange.Parse(range);
             foreach (var seatValue in seatValues)

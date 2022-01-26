@@ -7,5 +7,7 @@ namespace api.Data.Repositories.Interfaces;
 
 public interface IVenueRepository
 {
+    Task<List<Venue>> GetAll();
+    
     Task<Venue> Create(string name, List<(SeatCategory Category, string Range)> seatRanges);
 }
