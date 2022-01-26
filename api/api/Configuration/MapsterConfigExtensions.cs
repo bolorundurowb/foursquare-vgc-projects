@@ -1,5 +1,6 @@
 ﻿using api.Data.DTOs;
 using api.Data.Entities;
+using api.Data.ValueObjects;
 using api.Models.View;
 using Mapster;
 
@@ -9,6 +10,9 @@ public static class MapsterConfigExtensions
 {
     public static void ConfigureMappings(TypeAdapterConfig config)
     {
+        config.NewConfig<Seat, SeatViewModel>()
+            .Map(x => x.Category, y => y.Category.ToString());
+
         config.NewConfig<Admin, AdminViewModel>()
             .Map(x => x.Id, y => y.Id.ToString());
 
