@@ -31,7 +31,7 @@ public class Event : Schema
 
         foreach (var (priority, venue) in venuePriority)
         foreach (var seat in venue.Seats)
-            AvailableSeats.Add(new EventSeat(priority, seat));
+            AvailableSeats.Add(new EventSeat(priority, venue.Name, seat));
 
         // generate url and QR code
         EnvReader.TryGetStringValue("UI_URL", out var baseUrl);

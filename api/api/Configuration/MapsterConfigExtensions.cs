@@ -31,9 +31,14 @@ public static class MapsterConfigExtensions
             .Ignore(x => x.QrUrl)
             .Map(x => x.FullName, y => $"{y.FirstName} {y.LastName}".Trim());
 
-        config.NewConfig<Venue, VenueViewModel>();
+        config.NewConfig<Venue, VenueViewModel>()
+            .Map(x => x.Id, y => y.Id.ToString());
+
+        config.NewConfig<EventSeat, EventSeatViewModel>()
+            .Map(x => x.Category, y => y.Category.ToString());
 
         config.NewConfig<Event, EventViewModel>()
+            .Map(x => x.Id, y => y.Id.ToString())
             .AfterMapping((model, vm) =>
             {
                 vm.RegistrationUrlQrCode = QrCodeService.GenerateQrCode(model.RegistrationUrl);

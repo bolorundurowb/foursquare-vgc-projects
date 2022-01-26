@@ -11,6 +11,8 @@ public class EventSeat : ValueObject
 
     public SeatCategory Category { get; private set; }
 
+    public string VenueName { get; private set; }
+
     public string Number { get; private set; }
 
     public string AssociatedNumber { get; private set; }
@@ -21,11 +23,12 @@ public class EventSeat : ValueObject
     {
     }
 
-    public EventSeat(int priority, Seat seat)
+    public EventSeat(int priority, string venueName, Seat seat)
     {
         Priority = priority;
-        Category = seat.Category;
+        VenueName = venueName;
         Number = seat.Number;
+        Category = seat.Category;
         AssociatedNumber = seat.AssociatedNumber;
     }
 
