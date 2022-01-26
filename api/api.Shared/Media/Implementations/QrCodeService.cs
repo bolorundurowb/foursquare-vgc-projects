@@ -1,5 +1,4 @@
 ﻿using System;
-using api.Shared.Media.Interfaces;
 using QRCoder;
 
 namespace api.Shared.Media.Implementations;

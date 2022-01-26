@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using api.Data.Enums;
 using api.Data.ValueObjects;
-using api.Shared.Media.Implementations;
 using dotenv.net.Utilities;
 using meerkat;
 using meerkat.Attributes;
