@@ -13,7 +13,7 @@ public class EventSeat : ValueObject
 
     public string Number { get; private set; }
 
-    public string AttachedNumber { get; private set; }
+    public string AssociatedNumber { get; private set; }
 
     public ObjectId? PersonId { get; private set; }
 
@@ -26,7 +26,7 @@ public class EventSeat : ValueObject
         Priority = priority;
         Category = seat.Category;
         Number = seat.Number;
-        AttachedNumber = seat.AttachedNumber;
+        AssociatedNumber = seat.AssociatedNumber;
     }
 
     public void Assign(ObjectId personId)
