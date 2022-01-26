@@ -4,7 +4,7 @@ namespace api.Core.Utilities;
 
 public static class SeatRange
 {
-    private static readonly Regex Matcher = new Regex("([A-Z]+)([0-9]+)", RegexOptions.Compiled);
+    private static readonly Regex Matcher = new("([A-Z]+)([0-9]+)", RegexOptions.Compiled);
     private const char Separator = '-';
 
     public static List<string> Parse(string seatRange)
