@@ -18,9 +18,7 @@ public class Event : Schema
 
     public DateTime Date { get; private set; }
 
-    public string Url { get; private set; }
-
-    public string QrCodePngBase64 { get; private set; }
+    public string RegistrationUrl { get; private set; }
 
     public List<EventSeat> AvailableSeats { get; private set; }
 
@@ -38,8 +36,7 @@ public class Event : Schema
 
         // generate url and QR code
         EnvReader.TryGetStringValue("UI_URL", out var baseUrl);
-        Url = $"{baseUrl}/events/{Id}";
-        QrCodePngBase64 = new QrCodeService().CreateQrFromCode(Url);
+        RegistrationUrl = $"{baseUrl}/events/{Id}";
     }
 
     public EventSeat SelectSeat(SeatCategory category, ObjectId personId)

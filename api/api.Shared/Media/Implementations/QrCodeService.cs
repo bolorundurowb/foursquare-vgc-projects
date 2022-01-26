@@ -4,11 +4,11 @@ using QRCoder;
 
 namespace api.Shared.Media.Implementations;
 
-public class QrCodeService : IQrCodeService
+public static class QrCodeService
 {
-    private readonly QRCodeGenerator _generator = new();
+    private static readonly QRCodeGenerator _generator = new();
 
-    public string CreateQrFromCode(string payload)
+    public static string GenerateQrCode(string payload)
     {
         var data = _generator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.Q);
         var qrCode = new PngByteQRCode(data);
