@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Reflection;
+using System.Text.Json.Serialization;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +13,17 @@ internal static class ApiExtensions
         services.AddCors();
         services.AddRouting(option => option.LowercaseUrls = true);
         services.AddControllers()
-            .AddJsonOptions(x => x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+            .AddJsonOptions(x => x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
+            .AddFluentValidation(opts =>
+            {
+                opts.DisableDataAnnotationsValidation = true;
+                opts.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            })
+            .ConfigureApiBehaviorOptions(opts =>
+            {
+                opts.InvalidModelStateResponseFactory = context => context.Format();
+            });
+
         services.AddApiVersioning(options => { options.ReportApiVersions = true; });
         services.AddVersionedApiExplorer(options =>
         {
