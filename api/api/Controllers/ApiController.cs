@@ -24,50 +24,31 @@ public class ApiController : ControllerBase
         Mapper = mapper;
     }
         
-    protected BadRequestObjectResult BadRequest(string message)
-    {
-        return BadRequest(new GenericViewModel
+    protected BadRequestObjectResult BadRequest(string message) =>
+        BadRequest(new GenericViewModel
         {
             Message = message
         });
-    }
 
-    protected BadRequestObjectResult BadRequest(IEnumerable<string> messages)
-    {
-        return BadRequest(new ValidationErrorsViewModel
-        {
-            Messages = messages
-        });
-    }
-
-    protected NotFoundObjectResult NotFound(string message)
-    {
-        return NotFound(new GenericViewModel
+    protected NotFoundObjectResult NotFound(string message) =>
+        NotFound(new GenericViewModel
         {
             Message = message
         });
-    }
 
-    protected ObjectResult Conflict(string message)
-    {
-        return StatusCode((int) HttpStatusCode.Conflict, new GenericViewModel
+    protected ObjectResult Conflict(string message) =>
+        StatusCode((int) HttpStatusCode.Conflict, new GenericViewModel
         {
             Message = message
         });
-    }
 
-    protected CreatedResult Created<T>(T data)
-    {
-        return Created(string.Empty, data);
-    }
+    protected CreatedResult Created<T>(T data) => Created(string.Empty, data);
 
-    protected ObjectResult Forbidden(string message)
-    {
-        return StatusCode((int) HttpStatusCode.Forbidden, new GenericViewModel
+    protected ObjectResult Forbidden(string message) =>
+        StatusCode((int) HttpStatusCode.Forbidden, new GenericViewModel
         {
             Message = message
         });
-    }
 
     internal static async Task<(bool, IEnumerable<string>)> IsValid<TValidator, TModel>(TModel model) where TValidator : IValidator<TModel>, new()
     {
