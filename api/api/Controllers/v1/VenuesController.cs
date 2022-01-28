@@ -41,6 +41,7 @@ public class VenuesController : ApiController
             .Select(x => (x.Category, x.Number))
             .ToList();
         venue = await _venueRepo.Create(bm.Name, seatRanges);
+
         return Ok(Mapper.Map<VenueViewModel>(venue));
     }
 }
