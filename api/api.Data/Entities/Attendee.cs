@@ -82,113 +82,71 @@ public class Attendee : Schema
 
     public void UpdateDate(DateTime? date)
     {
-        if (date.HasValue)
-        {
-            Date = date.Value.Date;
-        }
+        if (date.HasValue) Date = date.Value.Date;
     }
 
     public void UpdateFullName(string fullName)
     {
-        if (!string.IsNullOrWhiteSpace(fullName))
-        {
-            FullName = fullName;
-        }
+        if (!string.IsNullOrWhiteSpace(fullName)) FullName = fullName;
     }
 
     public void UpdateResidentialAddress(string residentialAddress)
     {
-        if (!string.IsNullOrWhiteSpace(residentialAddress))
-        {
-            ResidentialAddress = residentialAddress;
-        }
+        if (!string.IsNullOrWhiteSpace(residentialAddress)) ResidentialAddress = residentialAddress;
     }
 
     public void UpdatePhone(string phone)
     {
-        if (!string.IsNullOrWhiteSpace(phone))
-        {
-            Phone = phone;
-        }
+        if (!string.IsNullOrWhiteSpace(phone)) Phone = phone;
     }
 
     public void UpdateEmail(string email)
     {
-        if (!string.IsNullOrWhiteSpace(email))
-        {
-            EmailAddress = email;
-        }
+        if (!string.IsNullOrWhiteSpace(email)) EmailAddress = email;
     }
 
     public void UpdateSeatAssigned(string seatAssigned)
     {
-        if (!string.IsNullOrWhiteSpace(seatAssigned))
-        {
-            SeatAssigned = seatAssigned;
-        }
+        if (!string.IsNullOrWhiteSpace(seatAssigned)) SeatAssigned = seatAssigned;
     }
 
     public void UpdateSeatType(string seatType)
     {
-        if (!string.IsNullOrWhiteSpace(seatType))
-        {
-            SeatType = seatType;
-        }
+        if (!string.IsNullOrWhiteSpace(seatType)) SeatType = seatType;
     }
 
     public void UpdateGender(Gender? gender)
     {
-        if (gender.HasValue)
-        {
-            Gender = gender.Value;
-        }
+        if (gender.HasValue) Gender = gender.Value;
     }
 
     public void UpdateHaveCovidSymptoms(MultiChoice? haveCovidSymptoms)
     {
-        if (haveCovidSymptoms.HasValue)
-        {
-            HaveCovidSymptoms = haveCovidSymptoms.Value;
-        }
+        if (haveCovidSymptoms.HasValue) HaveCovidSymptoms = haveCovidSymptoms.Value;
     }
 
     public void UpdateAge(int? age)
     {
-        if (age.HasValue)
-        {
-            Age = age.Value;
-        }
+        if (age.HasValue) Age = age.Value;
     }
 
     public void UpdateSeatNumber(int? seatNumber)
     {
-        if (seatNumber.HasValue)
-        {
-            SeatNumber = seatNumber.Value;
-        }
+        if (seatNumber.HasValue) SeatNumber = seatNumber.Value;
     }
 
     public void UpdateReturnedInLastTenDays(bool? returnedInLastTen)
     {
-        if (returnedInLastTen.HasValue)
-        {
-            ReturnedInLastTenDays = returnedInLastTen.Value;
-        }
+        if (returnedInLastTen.HasValue) ReturnedInLastTenDays = returnedInLastTen.Value;
     }
 
     public void UpdateLiveWithCovidCaregivers(bool? liveWithCaregivers)
     {
-        if (liveWithCaregivers.HasValue)
-        {
-            LiveWithCovidCaregivers = liveWithCaregivers.Value;
-        }
+        if (liveWithCaregivers.HasValue) LiveWithCovidCaregivers = liveWithCaregivers.Value;
     }
 
     public void UpdateCaredForSickPerson(bool? caredForSickPerson)
     {
-        if (caredForSickPerson.HasValue)
-        {
-            CaredForSickPerson = caredForSickPerson.Value;
-        }
+        if (caredForSickPerson.HasValue) CaredForSickPerson = caredForSickPerson.Value;
     }
 }

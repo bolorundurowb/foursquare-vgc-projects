@@ -38,10 +38,7 @@ public static class Helpers
 
     internal static string GetUserId(this ClaimsPrincipal claimsPrincipal)
     {
-        if (!(claimsPrincipal.Identity is ClaimsIdentity identity))
-        {
-            throw new Exception("User identity could not be retrieved.");
-        }
+        if (!(claimsPrincipal.Identity is ClaimsIdentity identity)) throw new Exception("User identity could not be retrieved.");
 
         return identity.Claims.First(x => x.Type == "id").Value;
     }

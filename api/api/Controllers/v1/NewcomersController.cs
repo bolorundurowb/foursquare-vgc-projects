@@ -44,6 +44,7 @@ public class NewcomersController : ApiController
         return Ok(Mapper.Map<IEnumerable<NewcomerViewModel>>(newcomers));
     }
 
+    [Obsolete("Deprecated")]
     [HttpPost("")]
     [ProducesResponseType(typeof(NewcomerViewModel), 201)]
     public async Task<IActionResult> AddNewcomer([FromBody] NewcomerBindingModel bm)

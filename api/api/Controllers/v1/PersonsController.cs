@@ -22,24 +22,6 @@ public class PersonsController : ApiController
         _personsRepo = personsRepo;
     }
 
-    [HttpGet("check")]
-    [ProducesResponseType(typeof(PersonViewModel), 200)]
-    [ProducesResponseType(404)]
-    public async Task<IActionResult> CheckPerson(string phoneNumber = null)
-    {
-        var person = await _personsRepo.GetByPhone(phoneNumber);
-
-        if (person == null)
-        {
-            return NotFound();
-        }
-
-        var response = Mapper.Map<PersonViewModel>(person);
-        response.QrUrl = QrCodeService.GenerateQrCode(person.Id.ToString());
-
-        return Ok(response);
-    }
-
     [HttpPost("")]
     [ProducesResponseType(typeof(PersonViewModel), 201)]
     [ProducesResponseType(typeof(GenericViewModel), 400)]
@@ -48,16 +30,29 @@ public class PersonsController : ApiController
         var (isValid, errorMessages) =
             await IsValid<PersonCreationBindingModelValidator, PersonCreationBindingModel>(bm);
 
-        if (!isValid)
-        {
+        if (!isValid) 
             return BadRequest(errorMessages);
-        }
 
         var person = await _personsRepo.Create(bm.FirstName, bm.LastName, bm.Phone);
-
         var response = Mapper.Map<PersonViewModel>(person);
         response.QrUrl = QrCodeService.GenerateQrCode(person.Id.ToString());
 
         return Created(response);
+    }
+
+    [HttpGet("check")]
+    [ProducesResponseType(typeof(PersonViewModel), 200)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> CheckPerson(string phoneNumber = null)
+    {
+        var person = await _personsRepo.GetByPhone(phoneNumber);
+
+        if (person == null)
+            return NotFound();
+
+        var response = Mapper.Map<PersonViewModel>(person);
+        response.QrUrl = QrCodeService.GenerateQrCode(person.Id.ToString());
+
+        return Ok(response);
     }
 }

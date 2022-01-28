@@ -15,11 +15,14 @@ public class EventsController : ApiController
 {
     private readonly IEventRepository _eventRepo;
     private readonly IVenueRepository _venueRepo;
+    private readonly IPersonsRepository _personsRepo;
 
-    public EventsController(IMapper mapper, IEventRepository eventRepo, IVenueRepository venueRepo) : base(mapper)
+    public EventsController(IMapper mapper, IEventRepository eventRepo, IVenueRepository venueRepo,
+        IPersonsRepository personsRepo) : base(mapper)
     {
         _eventRepo = eventRepo;
         _venueRepo = venueRepo;
+        _personsRepo = personsRepo;
     }
 
     [HttpGet("")]
@@ -35,9 +38,9 @@ public class EventsController : ApiController
     [ProducesResponseType(typeof(GenericViewModel), 409)]
     public async Task<IActionResult> Create([FromBody] EventCreationBindingModel bm)
     {
-        var _event = await _eventRepo.FindByNameAndDate(bm.Name, bm.Date);
+        var @event = await _eventRepo.FindByNameAndDate(bm.Name, bm.Date);
 
-        if (_event != null)
+        if (@event != null)
             return Conflict("An event exists with the same name and date.");
 
         var venueMap = await _venueRepo.GetAll(bm.Venues.Select(x => x.VenueId));
@@ -47,7 +50,32 @@ public class EventsController : ApiController
             if (venueMap.ContainsKey(venuePriority.VenueId))
                 venues.Add((venuePriority.Priority, venueMap[venuePriority.VenueId]));
 
-        _event = await _eventRepo.Create(bm.Name, bm.Date, venues);
-        return Ok(Mapper.Map<EventViewModel>(_event));
+        @event = await _eventRepo.Create(bm.Name, bm.Date, venues);
+        return Ok(Mapper.Map<EventViewModel>(@event));
+    }
+
+    [HttpPost("{eventId}/checkin")]
+    [ProducesResponseType(typeof(EventViewModel), 201)]
+    [ProducesResponseType(typeof(GenericViewModel), 404)]
+    [ProducesResponseType(typeof(GenericViewModel), 409)]
+    public async Task<IActionResult> CheckIn(string eventId, [FromBody] SeatAssignmentBindingModel bm)
+    {
+        var @event = await _eventRepo.FindById(eventId);
+
+        if (@event == null)
+            return NotFound("Event not found.");
+
+        var person = await _personsRepo.FindById(bm.PersonId);
+
+        if (person == null)
+            return NotFound("Person not found.");
+
+        var eventSeat = _eventRepo.FindSeat(@event, bm.PersonId);
+
+        if (eventSeat != null)
+            return Conflict("A seat has been assigned.");
+
+        eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
+        return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
     }
 }

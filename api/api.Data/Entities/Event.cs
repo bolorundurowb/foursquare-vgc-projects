@@ -38,8 +38,9 @@ public class Event : Schema
         RegistrationUrl = $"{baseUrl}/events/{Id}";
     }
 
-    public EventSeat SelectSeat(SeatCategory category, ObjectId personId)
+    public EventSeat SelectSeat(SeatCategory category, Person person)
     {
+        var personId = (ObjectId)person.Id;
         var seat = AssignedSeats.FirstOrDefault(x => x.PersonId == personId);
 
         if (seat != null)

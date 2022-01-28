@@ -37,10 +37,7 @@ public class VenueRepository : IVenueRepository
         foreach (var (category, range) in seatRanges)
         {
             var seatValues = SeatRange.Parse(range);
-            foreach (var seatValue in seatValues)
-            {
-                venue.AddSeat(category, seatValue);
-            }
+            foreach (var seatValue in seatValues) venue.AddSeat(category, seatValue);
         }
 
         await venue.SaveAsync();

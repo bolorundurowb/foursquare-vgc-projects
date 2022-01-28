@@ -8,6 +8,8 @@ namespace api.Data.Repositories.Implementations;
 
 public class PersonsRepository : IPersonsRepository
 {
+    public Task<Person> FindById(string personId) => Meerkat.FindByIdAsync<Person>(personId);
+
     public Task<Person> GetByPhone(string phoneNumber)
     {
         phoneNumber = phoneNumber?.Regularize().Trim();

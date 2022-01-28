@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace api.Controllers.v1;
 
 [ApiVersion("1.0")]
+[Obsolete("Attendance is now event based")]
 public class AttendanceController : ApiController
 {
     private readonly IAttendanceRepository _attendanceRepo;
@@ -44,38 +45,6 @@ public class AttendanceController : ApiController
     {
         var attendees = await _attendanceRepo.GetAttendance(date);
         return Ok(Mapper.Map<IEnumerable<AttendeeViewModel>>(attendees));
-    }
-
-    [AllowAnonymous]
-    [HttpPost("")]
-    [ProducesResponseType(typeof(AttendeeViewModel), 201)]
-    [ProducesResponseType(typeof(GenericViewModel), 400)]
-    [ProducesResponseType(typeof(GenericViewModel), 409)]
-    public async Task<IActionResult> AddAttendee([FromBody] AttendeeRegistrationBindingModel bm)
-    {
-        var (isValid, errorMessages) =
-            await IsValid<AttendeeRegistrationBindingModelValidator, AttendeeRegistrationBindingModel>(bm);
-            
-        if (!isValid)
-        {
-            return BadRequest(errorMessages);
-        }
-
-        try
-        {
-            var attendee = await _attendanceRepo.AddAttendee(bm.FullName, bm.EmailAddress, bm.Age, bm.Phone,
-                bm.ResidentialAddress, bm.Gender, bm.ReturnedInLastTenDays, bm.LiveWithCovidCaregivers,
-                bm.CaredForSickPerson, bm.HaveCovidSymptoms, bm.SeatNumber);
-            return Created(Mapper.Map<AttendeeViewModel>(attendee));
-        }
-        catch (ConflictException ex)
-        {
-            return Conflict(ex.Message);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest(ex.Message);
-        }
     }
 
     [HttpPut("{id}")]

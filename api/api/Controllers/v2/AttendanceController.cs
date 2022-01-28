@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace api.Controllers.v2;
 
 [ApiVersion("2.0")]
+[Obsolete("Attendance is now event based")]
 public class AttendanceController : ApiController
 {
     private readonly IAttendanceRepository _attendanceRepo;
