@@ -29,10 +29,7 @@ public class AuthController : ApiController
     {
         var (isValid, errorMessages) = await IsValid<LoginBindingModelValidator, LoginBindingModel>(bm);
 
-        if (!isValid)
-        {
-            return BadRequest(errorMessages);
-        }
+        if (!isValid) return BadRequest(errorMessages);
 
         try
         {

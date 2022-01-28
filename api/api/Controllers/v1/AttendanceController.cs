@@ -56,10 +56,7 @@ public class AttendanceController : ApiController
         var (isValid, errorMessages) =
             await IsValid<AttendeeRegistrationBindingModelValidator, AttendeeRegistrationBindingModel>(bm);
             
-        if (!isValid)
-        {
-            return BadRequest(errorMessages);
-        }
+        if (!isValid) return BadRequest(errorMessages);
 
         try
         {

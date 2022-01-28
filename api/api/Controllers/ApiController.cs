@@ -72,10 +72,7 @@ public class ApiController : ControllerBase
     internal static async Task<(bool, IEnumerable<string>)> IsValid<TValidator, TModel>(TModel model) where TValidator : IValidator<TModel>, new()
     {
         var results = await Validate<TValidator, TModel>(model);
-        if (results.IsValid)
-        {
-            return (true, Array.Empty<string>());
-        }
+        if (results.IsValid) return (true, Array.Empty<string>());
 
         var errorMessages = results.Errors
             .Select(x => x.ErrorMessage);

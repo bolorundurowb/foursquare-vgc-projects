@@ -9,19 +9,14 @@ internal static class ExceptionExtensions
 {
     public static void UseExceptionHandling(this IApplicationBuilder app, IWebHostEnvironment environment)
     {
-        if (environment.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
+        if (environment.IsDevelopment()) app.UseDeveloperExceptionPage();
 
         if (!environment.IsProduction())
-        {
             app.UseLogly(opts => opts
                 .AddRequestMethod()
                 .AddStatusCode()
                 .AddResponseTime()
                 .AddUrl()
                 .AddResponseLength());
-        }
     }
 }

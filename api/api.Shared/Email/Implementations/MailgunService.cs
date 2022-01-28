@@ -57,15 +57,11 @@ public class MailgunService : IEmailService
             var isSuccessful = response.IsSuccessStatusCode;
 
             if (isSuccessful)
-            {
                 _logger.LogInformation(
                     $"Email with subject '{emailMessage.Subject}' successfully sent to '{recipient}'.");
-            }
             else
-            {
                 _logger.LogCritical(
                     $"Email with subject '{emailMessage.Subject}' failed being sent to '{recipient}'. Error message: {await response.Content.ReadAsStringAsync()}");
-            }
 
             return isSuccessful;
         }

@@ -30,9 +30,7 @@ public class PersonsController : ApiController
         var person = await _personsRepo.GetByPhone(phoneNumber);
 
         if (person == null)
-        {
             return NotFound();
-        }
 
         var response = Mapper.Map<PersonViewModel>(person);
         response.QrUrl = QrCodeService.GenerateQrCode(person.Id.ToString());
@@ -48,13 +46,10 @@ public class PersonsController : ApiController
         var (isValid, errorMessages) =
             await IsValid<PersonCreationBindingModelValidator, PersonCreationBindingModel>(bm);
 
-        if (!isValid)
-        {
+        if (!isValid) 
             return BadRequest(errorMessages);
-        }
 
         var person = await _personsRepo.Create(bm.FirstName, bm.LastName, bm.Phone);
-
         var response = Mapper.Map<PersonViewModel>(person);
         response.QrUrl = QrCodeService.GenerateQrCode(person.Id.ToString());
 
