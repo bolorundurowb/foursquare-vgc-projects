@@ -3,14 +3,12 @@ using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
 using api.Shared.Media.Implementations;
-using api.Validators;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers.v1;
 
-[AllowAnonymous]
 [ApiVersion("1.0")]
 public class PersonsController : ApiController
 {
@@ -22,6 +20,7 @@ public class PersonsController : ApiController
         _personsRepo = personsRepo;
     }
 
+    [AllowAnonymous]
     [HttpPost("")]
     [ProducesResponseType(typeof(PersonViewModel), 201)]
     [ProducesResponseType(typeof(GenericViewModel), 400)]
@@ -34,6 +33,7 @@ public class PersonsController : ApiController
         return Created(response);
     }
 
+    [AllowAnonymous]
     [HttpGet("check")]
     [ProducesResponseType(typeof(PersonViewModel), 200)]
     [ProducesResponseType(404)]
