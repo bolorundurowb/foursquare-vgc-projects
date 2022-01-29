@@ -27,11 +27,11 @@ public class EventsController : ApiController
     }
 
     [HttpGet("")]
-    [ProducesResponseType(typeof(List<EventViewModel>), 200)]
+    [ProducesResponseType(typeof(List<BaseEventViewModel>), 200)]
     public async Task<IActionResult> GetAll([FromQuery] CollectionQueryModel qm)
     {
         var events = await _eventRepo.GetAll(qm.Skip.Value, qm.Limit.Value);
-        return Ok(Mapper.Map<List<EventViewModel>>(events));
+        return Ok(Mapper.Map<List<BaseEventViewModel>>(events));
     }
 
     [HttpPost("")]
