@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
@@ -18,6 +19,14 @@ public class PersonsController : ApiController
         base(mapper)
     {
         _personsRepo = personsRepo;
+    }
+
+    [HttpGet("")]
+    [ProducesResponseType(typeof(List<BasePersonViewModel>), 200)]
+    public async Task<IActionResult> GetAll([FromQuery] string name = null)
+    {
+        var persons = await _personsRepo.GetAll(name);
+        return Ok(Mapper.Map<List<PersonViewModel>>(persons));
     }
 
     [AllowAnonymous]
