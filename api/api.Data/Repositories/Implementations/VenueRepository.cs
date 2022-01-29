@@ -18,7 +18,7 @@ public class VenueRepository : IVenueRepository
             .OrderBy(x => x.Name)
             .ToListAsync();
 
-    public async Task<Dictionary<string, Venue>> GetAll(IEnumerable<string> venueIds)
+    public async Task<Dictionary<string, Venue>> FindAndMapById(IEnumerable<string> venueIds)
     {
         var ids = venueIds.Select(x => (object)x);
         var venues = await Meerkat.Query<Venue>()

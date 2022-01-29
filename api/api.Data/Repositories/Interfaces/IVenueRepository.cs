@@ -9,7 +9,7 @@ public interface IVenueRepository
 {
     Task<List<Venue>> GetAll();
 
-    Task<Dictionary<string, Venue>> GetAll(IEnumerable<string> venueIds);
+    Task<Dictionary<string, Venue>> FindAndMapById(IEnumerable<string> venueIds);
 
     Task<Venue> FindById(string venueId);
 
