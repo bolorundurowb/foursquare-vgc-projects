@@ -31,8 +31,12 @@ public static class MapsterConfigExtensions
             .Ignore(x => x.QrUrl)
             .Map(x => x.FullName, y => $"{y.FirstName} {y.LastName}".Trim());
 
+        config.NewConfig<Venue, BaseVenueViewModel>()
+            .Map(x => x.Id, y => y.Id.ToString())
+            .Map(x => x.NumOfSeats, y => y.Seats.Count);
+
         config.NewConfig<Venue, VenueViewModel>()
-            .Map(x => x.Id, y => y.Id.ToString());
+            .Inherits<Venue, BaseVenueViewModel>();
 
         config.NewConfig<EventSeat, EventSeatViewModel>()
             .Map(x => x.Category, y => y.Category.ToString());

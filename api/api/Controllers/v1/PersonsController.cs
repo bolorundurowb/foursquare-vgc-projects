@@ -27,12 +27,6 @@ public class PersonsController : ApiController
     [ProducesResponseType(typeof(GenericViewModel), 400)]
     public async Task<IActionResult> Add([FromBody] PersonCreationBindingModel bm)
     {
-        var (isValid, errorMessages) =
-            await IsValid<PersonCreationBindingModelValidator, PersonCreationBindingModel>(bm);
-
-        if (!isValid) 
-            return BadRequest(errorMessages);
-
         var person = await _personsRepo.Create(bm.FirstName, bm.LastName, bm.Phone);
         var response = Mapper.Map<PersonViewModel>(person);
         response.QrUrl = QrCodeService.GenerateQrCode(person.Id.ToString());

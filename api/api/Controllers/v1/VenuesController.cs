@@ -20,11 +20,24 @@ public class VenuesController : ApiController
     }
 
     [HttpGet("")]
-    [ProducesResponseType(typeof(List<VenueViewModel>), 200)]
+    [ProducesResponseType(typeof(List<BaseVenueViewModel>), 200)]
     public async Task<IActionResult> GetAll()
     {
         var venues = await _venueRepo.GetAll();
-        return Ok(Mapper.Map<List<VenueViewModel>>(venues));
+        return Ok(Mapper.Map<List<BaseVenueViewModel>>(venues));
+    }
+
+    [HttpGet("{venueId}")]
+    [ProducesResponseType(typeof(VenueViewModel), 200)]
+    [ProducesResponseType(typeof(GenericViewModel), 404)]
+    public async Task<IActionResult> GetOne(string venueId)
+    {
+        var venue = await _venueRepo.FindById(venueId);
+
+        if (venue == null)
+            return NotFound("Venue not found.");
+
+        return Ok(Mapper.Map<VenueViewModel>(venue));
     }
 
     [HttpPost("")]

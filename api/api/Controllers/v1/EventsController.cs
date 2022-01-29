@@ -43,7 +43,7 @@ public class EventsController : ApiController
         if (@event != null)
             return Conflict("An event exists with the same name and date.");
 
-        var venueMap = await _venueRepo.GetAll(bm.Venues.Select(x => x.VenueId));
+        var venueMap = await _venueRepo.FindAndMapById(bm.Venues.Select(x => x.VenueId));
         var venues = new List<(int, Venue)>();
 
         foreach (var venuePriority in bm.Venues)
