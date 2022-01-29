@@ -34,6 +34,19 @@ public class EventsController : ApiController
         return Ok(Mapper.Map<List<BaseEventViewModel>>(events));
     }
 
+    [HttpGet("{eventId}")]
+    [ProducesResponseType(typeof(EventViewModel), 200)]
+    [ProducesResponseType(typeof(GenericViewModel), 404)]
+    public async Task<IActionResult> GetOne(string eventId)
+    {
+        var @event = await _eventRepo.FindById(eventId);
+
+        if (@event == null)
+            return NotFound("Event not found.");
+
+        return Ok(Mapper.Map<EventViewModel>(@event));
+    }
+
     [HttpPost("")]
     [ProducesResponseType(typeof(EventViewModel), 201)]
     [ProducesResponseType(typeof(GenericViewModel), 409)]
