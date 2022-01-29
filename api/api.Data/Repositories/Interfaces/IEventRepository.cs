@@ -18,4 +18,6 @@ public interface IEventRepository
     Task<Event> Create(string name, DateTime date, List<(int Priority, Venue Venue)> venuePriority);
 
     Task<EventSeat> AssignSeat(Event @event, SeatCategory category, Person person);
+
+    Task<EventSeat> ChangeSeat(Event @event, Person person, string seatNumber);
 }

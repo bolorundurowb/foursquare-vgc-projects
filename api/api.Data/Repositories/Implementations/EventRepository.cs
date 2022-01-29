@@ -7,7 +7,6 @@ using api.Data.Enums;
 using api.Data.Repositories.Interfaces;
 using api.Data.ValueObjects;
 using meerkat;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
@@ -29,15 +28,23 @@ public class EventRepository : IEventRepository
 
     public async Task<Event> Create(string name, DateTime date, List<(int Priority, Venue Venue)> venuePriority)
     {
-        var _event = new Event(name, date, venuePriority);
-        await _event.SaveAsync();
+        var @event = new Event(name, date, venuePriority);
+        await @event.SaveAsync();
 
-        return _event;
+        return @event;
     }
 
     public async Task<EventSeat> AssignSeat(Event @event, SeatCategory category, Person person)
     {
         var eventSeat = @event.SelectSeat(category, person);
+        await @event.SaveAsync();
+
+        return eventSeat;
+    }
+
+    public async Task<EventSeat> ChangeSeat(Event @event, Person person, string seatNumber)
+    {
+        var eventSeat = @event.ChangeSeat(category, person);
         await @event.SaveAsync();
 
         return eventSeat;
