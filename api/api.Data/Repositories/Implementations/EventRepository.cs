@@ -27,9 +27,6 @@ public class EventRepository : IEventRepository
     public Task<Event> FindByNameAndDate(string name, DateTime date) =>
         Meerkat.FindOneAsync<Event>(x => x.Name == name && x.Date == date);
 
-    public EventSeat FindSeat(Event @event, string personId) =>
-        @event.AssignedSeats.FirstOrDefault(x => x.PersonId == ObjectId.Parse(personId));
-
     public async Task<Event> Create(string name, DateTime date, List<(int Priority, Venue Venue)> venuePriority)
     {
         var _event = new Event(name, date, venuePriority);

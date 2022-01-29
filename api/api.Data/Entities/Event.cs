@@ -23,6 +23,10 @@ public class Event : Schema
 
     public List<EventSeat> AssignedSeats { get; private set; } = new();
 
+    private Event()
+    {
+    }
+
     public Event(string name, DateTime eventDate, List<(int Priority, Venue Venue)> venuePriority)
     {
         Name = name;
@@ -59,4 +63,7 @@ public class Event : Schema
 
         return seat;
     }
+
+    public bool HasSeatAssigned(string personId) => AssignedSeats.Any(x => x.PersonId == ObjectId.Parse(personId));
+
 }

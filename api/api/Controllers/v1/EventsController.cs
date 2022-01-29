@@ -80,17 +80,15 @@ public class EventsController : ApiController
         if (@event == null)
             return NotFound("Event not found.");
 
+        if (@event.HasSeatAssigned(bm.PersonId))
+            return Conflict("A seat has been assigned.");
+
         var person = await _personsRepo.FindById(bm.PersonId);
 
         if (person == null)
             return NotFound("Person not found.");
 
-        var eventSeat = _eventRepo.FindSeat(@event, bm.PersonId);
-
-        if (eventSeat != null)
-            return Conflict("A seat has been assigned.");
-
-        eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
+        var eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
         return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
     }
 }
