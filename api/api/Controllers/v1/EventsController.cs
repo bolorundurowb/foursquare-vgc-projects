@@ -6,6 +6,7 @@ using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers.v1;
@@ -54,6 +55,7 @@ public class EventsController : ApiController
         return Ok(Mapper.Map<EventViewModel>(@event));
     }
 
+    [AllowAnonymous]
     [HttpPost("{eventId}/checkin")]
     [ProducesResponseType(typeof(EventViewModel), 201)]
     [ProducesResponseType(typeof(GenericViewModel), 404)]

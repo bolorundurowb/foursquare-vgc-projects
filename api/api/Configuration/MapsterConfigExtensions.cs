@@ -37,8 +37,12 @@ public static class MapsterConfigExtensions
         config.NewConfig<EventSeat, EventSeatViewModel>()
             .Map(x => x.Category, y => y.Category.ToString());
 
-        config.NewConfig<Event, EventViewModel>()
+        config.NewConfig<Event, BaseEventViewModel>()
             .Map(x => x.Id, y => y.Id.ToString())
+            .Map(x => x.NumOfAttendees, y => y.AssignedSeats.Count);
+
+        config.NewConfig<Event, EventViewModel>()
+            .Inherits<Event, BaseEventViewModel>()
             .AfterMapping((model, vm) =>
             {
                 vm.RegistrationUrlQrCode = QrCodeService.GenerateQrCode(model.RegistrationUrl);
