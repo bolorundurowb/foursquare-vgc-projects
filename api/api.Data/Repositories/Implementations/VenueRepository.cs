@@ -28,6 +28,8 @@ public class VenueRepository : IVenueRepository
         return venues.ToDictionary(x => x.Id.ToString(), y => y);
     }
 
+    public Task<Venue> FindById(string venueId) => Meerkat.FindByIdAsync<Venue>(venueId);
+
     public Task<Venue> FindByName(string name) => Meerkat.FindOneAsync<Venue>(x => x.Name == name);
 
     public async Task<Venue> Create(string name, List<(SeatCategory Category, string Range)> seatRanges)

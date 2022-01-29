@@ -11,6 +11,8 @@ public interface IVenueRepository
 
     Task<Dictionary<string, Venue>> GetAll(IEnumerable<string> venueIds);
 
+    Task<Venue> FindById(string venueId);
+
     Task<Venue> FindByName(string name);
 
     Task<Venue> Create(string name, List<(SeatCategory Category, string Range)> seatRanges);
