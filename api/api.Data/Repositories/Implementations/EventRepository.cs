@@ -44,7 +44,7 @@ public class EventRepository : IEventRepository
 
     public async Task<EventSeat> ChangeSeat(Event @event, Person person, string seatNumber)
     {
-        var eventSeat = @event.ChangeSeat(category, person);
+        var eventSeat = @event.ChangeSeat(person, seatNumber);
         await @event.SaveAsync();
 
         return eventSeat;

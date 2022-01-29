@@ -91,4 +91,27 @@ public class EventsController : ApiController
         var eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
         return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
     }
+
+    [HttpPost("{eventId}/change-seats")]
+    [ProducesResponseType(typeof(EventViewModel), 201)]
+    [ProducesResponseType(typeof(GenericViewModel), 404)]
+    [ProducesResponseType(typeof(GenericViewModel), 409)]
+    public async Task<IActionResult> CheckIn(string eventId, [FromBody] SeatAssignmentBindingModel bm)
+    {
+        var @event = await _eventRepo.FindById(eventId);
+
+        if (@event == null)
+            return NotFound("Event not found.");
+
+        if (@event.HasSeatAssigned(bm.PersonId))
+            return Conflict("A seat has been assigned.");
+
+        var person = await _personsRepo.FindById(bm.PersonId);
+
+        if (person == null)
+            return NotFound("Person not found.");
+
+        var eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
+        return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
+    }
 }
