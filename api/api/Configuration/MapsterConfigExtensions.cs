@@ -27,7 +27,11 @@ public static class MapsterConfigExtensions
         config.NewConfig<DateSummaryDto, DateSummaryViewModel>()
             .AfterMapping((x, y) => { y.HumanReadableDate = y.Date.ToString("ddd, dd MMM yyyy"); });
 
+        config.NewConfig<Person, BasePersonViewModel>()
+            .Map(x => x.Id, y => y.Id.ToString());
+
         config.NewConfig<Person, PersonViewModel>()
+            .Inherits<Person, BasePersonViewModel>()
             .Ignore(x => x.QrUrl)
             .Map(x => x.FullName, y => $"{y.FirstName} {y.LastName}".Trim());
 
@@ -41,8 +45,12 @@ public static class MapsterConfigExtensions
         config.NewConfig<EventSeat, EventSeatViewModel>()
             .Map(x => x.Category, y => y.Category.ToString());
 
-        config.NewConfig<Event, EventViewModel>()
+        config.NewConfig<Event, BaseEventViewModel>()
             .Map(x => x.Id, y => y.Id.ToString())
+            .Map(x => x.NumOfAttendees, y => y.AssignedSeats.Count);
+
+        config.NewConfig<Event, EventViewModel>()
+            .Inherits<Event, BaseEventViewModel>()
             .AfterMapping((model, vm) =>
             {
                 vm.RegistrationUrlQrCode = QrCodeService.GenerateQrCode(model.RegistrationUrl);

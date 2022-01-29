@@ -6,6 +6,7 @@ using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers.v1;
@@ -26,11 +27,24 @@ public class EventsController : ApiController
     }
 
     [HttpGet("")]
-    [ProducesResponseType(typeof(List<EventViewModel>), 200)]
+    [ProducesResponseType(typeof(List<BaseEventViewModel>), 200)]
     public async Task<IActionResult> GetAll([FromQuery] CollectionQueryModel qm)
     {
         var events = await _eventRepo.GetAll(qm.Skip.Value, qm.Limit.Value);
-        return Ok(Mapper.Map<List<EventViewModel>>(events));
+        return Ok(Mapper.Map<List<BaseEventViewModel>>(events));
+    }
+
+    [HttpGet("{eventId}")]
+    [ProducesResponseType(typeof(EventViewModel), 200)]
+    [ProducesResponseType(typeof(GenericViewModel), 404)]
+    public async Task<IActionResult> GetOne(string eventId)
+    {
+        var @event = await _eventRepo.FindById(eventId);
+
+        if (@event == null)
+            return NotFound("Event not found.");
+
+        return Ok(Mapper.Map<EventViewModel>(@event));
     }
 
     [HttpPost("")]
@@ -54,6 +68,7 @@ public class EventsController : ApiController
         return Ok(Mapper.Map<EventViewModel>(@event));
     }
 
+    [AllowAnonymous]
     [HttpPost("{eventId}/checkin")]
     [ProducesResponseType(typeof(EventViewModel), 201)]
     [ProducesResponseType(typeof(GenericViewModel), 404)]
@@ -65,17 +80,41 @@ public class EventsController : ApiController
         if (@event == null)
             return NotFound("Event not found.");
 
+        if (@event.HasSeatAssigned(bm.PersonId))
+            return Conflict("A seat has been assigned.");
+
         var person = await _personsRepo.FindById(bm.PersonId);
 
         if (person == null)
             return NotFound("Person not found.");
 
-        var eventSeat = _eventRepo.FindSeat(@event, bm.PersonId);
+        var eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
+        return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
+    }
 
-        if (eventSeat != null)
-            return Conflict("A seat has been assigned.");
+    [HttpPost("{eventId}/change-seats")]
+    [ProducesResponseType(typeof(EventViewModel), 201)]
+    [ProducesResponseType(typeof(GenericViewModel), 404)]
+    [ProducesResponseType(typeof(GenericViewModel), 409)]
+    public async Task<IActionResult> ChangeSeat(string eventId, [FromBody] SeatChangeBindingModel bm)
+    {
+        var @event = await _eventRepo.FindById(eventId);
 
-        eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
+        if (@event == null)
+            return NotFound("Event not found.");
+
+        if (@event.HasSeatAssigned(bm.PersonId))
+            return BadRequest("A seat has not been assigned for this person.");
+
+        if (@event.IsSeatAvailable(bm.SeatNumber))
+            return BadRequest("The seat selected is not available.");
+
+        var person = await _personsRepo.FindById(bm.PersonId);
+
+        if (person == null)
+            return NotFound("Person not found.");
+
+        var eventSeat = await _eventRepo.ChangeSeat(@event, person, bm.SeatNumber);
         return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
     }
 }

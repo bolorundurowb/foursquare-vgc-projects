@@ -9,9 +9,7 @@ using api.Models.View;
 using api.Shared.Email.Interfaces;
 using api.Shared.Email.Models;
 using api.Shared.Exceptions;
-using api.Validators;
 using MapsterMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers.v1;
