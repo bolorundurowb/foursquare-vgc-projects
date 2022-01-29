@@ -20,11 +20,11 @@ public class VenuesController : ApiController
     }
 
     [HttpGet("")]
-    [ProducesResponseType(typeof(List<VenueViewModel>), 200)]
+    [ProducesResponseType(typeof(List<BaseVenueViewModel>), 200)]
     public async Task<IActionResult> GetAll()
     {
         var venues = await _venueRepo.GetAll();
-        return Ok(Mapper.Map<List<VenueViewModel>>(venues));
+        return Ok(Mapper.Map<List<BaseVenueViewModel>>(venues));
     }
 
     [HttpPost("")]
