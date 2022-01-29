@@ -96,7 +96,7 @@ public class EventsController : ApiController
     [ProducesResponseType(typeof(EventViewModel), 201)]
     [ProducesResponseType(typeof(GenericViewModel), 404)]
     [ProducesResponseType(typeof(GenericViewModel), 409)]
-    public async Task<IActionResult> CheckIn(string eventId, [FromBody] SeatAssignmentBindingModel bm)
+    public async Task<IActionResult> ChangeSeat(string eventId, [FromBody] SeatChangeBindingModel bm)
     {
         var @event = await _eventRepo.FindById(eventId);
 
@@ -104,14 +104,17 @@ public class EventsController : ApiController
             return NotFound("Event not found.");
 
         if (@event.HasSeatAssigned(bm.PersonId))
-            return Conflict("A seat has been assigned.");
+            return BadRequest("A seat has not been assigned for this person.");
+
+        if (@event.IsSeatAvailable(bm.SeatNumber))
+            return BadRequest("The seat selected is not available.");
 
         var person = await _personsRepo.FindById(bm.PersonId);
 
         if (person == null)
             return NotFound("Person not found.");
 
-        var eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
+        var eventSeat = await _eventRepo.ChangeSeat(@event, person, bm.SeatNumber);
         return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
     }
 }
