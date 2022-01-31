@@ -4,7 +4,6 @@ using api.Configuration;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
 using api.Models.View;
-using api.Shared.Exceptions;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,21 +27,18 @@ public class AuthController : ApiController
     [ProducesResponseType(typeof(GenericViewModel), 400)]
     public async Task<IActionResult> Login([FromBody] LoginBindingModel bm)
     {
-        try
-        {
-            var admin = await _adminsRepo.Login(bm.EmailAddress);
-            var (token, expiry) = Helpers.GenerateToken(admin.Id.ToString(), admin.EmailAddress);
+        var admin = await _adminsRepo.FindByEmail(bm.EmailAddress);
 
-            return Ok(new AuthViewModel
-            {
-                Token = token,
-                ExpiresAt = expiry,
-                Admin = Mapper.Map<AdminViewModel>(admin)
-            });
-        }
-        catch (NotFoundException ex)
+        if (admin == null)
+            return NotFound("Admin account not found.");
+
+        var (token, expiry) = Helpers.GenerateToken(admin.Id.ToString(), admin.EmailAddress);
+
+        return Ok(new AuthViewModel
         {
-            return NotFound(ex.Message);
-        }
+            Token = token,
+            ExpiresAt = expiry,
+            Admin = Mapper.Map<AdminViewModel>(admin)
+        });
     }
 }
