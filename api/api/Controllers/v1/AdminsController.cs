@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using api.Configuration;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
@@ -16,6 +17,14 @@ public class AdminsController : ApiController
     public AdminsController(IMapper mapper, IAdminsRepository adminsRepo) : base(mapper)
     {
         _adminsRepo = adminsRepo;
+    }
+
+    [HttpGet("")]
+    [ProducesResponseType(typeof(List<AdminViewModel>), 200)]
+    public async Task<IActionResult> GetAll()
+    {
+        var admins = await _adminsRepo.GetAll();
+        return Ok(Mapper.Map<List<AdminViewModel>>(admins));
     }
 
     [HttpPut("current/password")]
