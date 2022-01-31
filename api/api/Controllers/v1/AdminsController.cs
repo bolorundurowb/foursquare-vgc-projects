@@ -27,6 +27,21 @@ public class AdminsController : ApiController
         return Ok(Mapper.Map<List<AdminViewModel>>(admins));
     }
 
+    [HttpPost("")]
+    [ProducesResponseType(typeof(AdminViewModel), 201)]
+    [ProducesResponseType(typeof(GenericViewModel), 400)]
+    [ProducesResponseType(typeof(GenericViewModel), 409)]
+    public async Task<IActionResult> Create([FromBody] CreateAdminBindingModel bm)
+    {
+        var admin = await _adminsRepo.FindByEmail(bm.EmailAddress);
+
+        if (admin != null)
+            return Conflict("Admin already exists.");
+
+        admin = await _adminsRepo.Create(bm.Name, bm.EmailAddress, bm.Password);
+        return Created(Mapper.Map<AdminViewModel>(admin));
+    }
+
     [HttpPut("current/password")]
     [ProducesResponseType(typeof(GenericViewModel), 200)]
     [ProducesResponseType(typeof(GenericViewModel), 400)]
