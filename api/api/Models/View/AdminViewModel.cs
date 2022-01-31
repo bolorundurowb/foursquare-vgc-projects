@@ -1,4 +1,6 @@
-﻿namespace api.Models.View;
+﻿using System;
+
+namespace api.Models.View;
 
 public class AdminViewModel
 {
@@ -7,4 +9,8 @@ public class AdminViewModel
     public string Name { get; set; }
 
     public string EmailAddress { get; set; }
+
+    public bool IsUsingDefaultPassword { get; set; }
+
+    public DateTime AddedAt { get; set; }
 }
