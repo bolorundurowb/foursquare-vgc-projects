@@ -48,7 +48,7 @@ public class Event : Schema
         var eventSeat = AssignedSeats.FirstOrDefault(x => x.PersonId == personId);
 
         if (eventSeat != null)
-            throw new Exception("A seat has been assigned to this person for this event.");
+            return eventSeat;
 
         eventSeat = AvailableSeats.OrderBy(x => x.Priority)
             .ThenBy(x => x.Number)

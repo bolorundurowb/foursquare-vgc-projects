@@ -11,6 +11,10 @@ public class Admin : Schema
 
     public string EmailAddress { get; private set; }
 
+    public string PasswordHash { get; private set; }
+
+    public bool IsUsingDefaultPassword { get; private set; }
+
     public DateTime AddedAt { get; private set; }
 
     private Admin()
@@ -23,4 +27,14 @@ public class Admin : Schema
         Name = name;
         EmailAddress = emailAddress;
     }
+
+    public void SetPassword(string password, bool isDefaultPassword = false)
+    {
+        IsUsingDefaultPassword = isDefaultPassword;
+        var salt = BCrypt.Net.BCrypt.GenerateSalt();
+        PasswordHash = BCrypt.Net.BCrypt.HashPassword(password, salt);
+    }
+
+    public bool VerifyPassword(string password) =>
+        !string.IsNullOrWhiteSpace(password) && BCrypt.Net.BCrypt.Verify(password, PasswordHash);
 }

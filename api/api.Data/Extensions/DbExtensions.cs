@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using api.Data.Entities;
 using meerkat;
@@ -9,19 +10,26 @@ public static class DbExtensions
 {
     public static void SeedDefaults()
     {
-        EnvReader.TryGetStringValue("AUTH_EMAILS", out var adminEmails);
-        var emailAddresses = adminEmails.Split(",")
-            .Select(x => x.ToLowerInvariant().Trim());
+        EnvReader.TryGetStringValue("DEFAULT_ADMIN_EMAIL", out var adminEmail);
+        EnvReader.TryGetStringValue("DEFAULT_ADMIN_PASS", out var adminPass);
 
-        foreach (var adminEmail in emailAddresses)
+        if (string.IsNullOrWhiteSpace(adminEmail) || string.IsNullOrWhiteSpace(adminPass))
         {
-            var admin = Meerkat.FindOne<Admin>(x => x.EmailAddress == adminEmail);
-
-            if (admin != null)
-                continue;
-
-            admin = new Admin(string.Empty, adminEmail);
-            admin.Save();
+            Console.WriteLine("Either the default admin email address or password is not provided. Skipping...");
+            return;
         }
+
+        var adminExists = Meerkat.Query<Admin>()
+            .Any(x => x.EmailAddress == adminEmail);
+
+        if (adminExists)
+        {
+            Console.WriteLine("A default admin already exists. Skipping...");
+            return;
+        }
+
+        var admin = new Admin("Default Admin", adminEmail);
+        admin.SetPassword(adminPass);
+        admin.Save();
     }
 }

@@ -103,7 +103,7 @@ public class NewcomersController : ApiController
                 }
             }
         };
-        await _emailService.SendAsync(bm?.EmailAddress ?? Config.DestinationEmail, emailMessage);
+        await _emailService.SendAsync(bm?.EmailAddress, emailMessage);
 
         return NoContent();
     }

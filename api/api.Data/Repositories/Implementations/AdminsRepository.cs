@@ -1,21 +1,39 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using api.Data.Entities;
 using api.Data.Repositories.Interfaces;
-using api.Shared.Exceptions;
 using meerkat;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace api.Data.Repositories.Implementations;
 
 public class AdminsRepository : IAdminsRepository
 {
-    public async Task<Admin> Login(string email)
+    public Task<List<Admin>> GetAll() => Meerkat.Query<Admin>()
+        .OrderBy(x => x.Name)
+        .ToListAsync();
+
+    public Task<Admin> FindById(string adminId) => Meerkat.FindByIdAsync<Admin>(adminId);
+
+    public Task<Admin> FindByEmail(string email)
     {
         var normalizedEmail = email?.ToLowerInvariant();
-        var admin = await Meerkat.FindOneAsync<Admin>(x => x.EmailAddress == normalizedEmail);
+        return Meerkat.FindOneAsync<Admin>(x => x.EmailAddress == normalizedEmail);
+    }
 
-        if (admin == null)
-            throw new NotFoundException("Admin not found.");
+    public async Task<Admin> Create(string name, string email, string password)
+    {
+        var admin = new Admin(name, email);
+        admin.SetPassword(password, true);
+        await admin.SaveAsync();
 
         return admin;
+    }
+
+    public Task UpdatePassword(Admin admin, string password)
+    {
+        admin.SetPassword(password);
+        return admin.SaveAsync();
     }
 }
