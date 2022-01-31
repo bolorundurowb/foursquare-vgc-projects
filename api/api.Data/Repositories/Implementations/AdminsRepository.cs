@@ -22,6 +22,15 @@ public class AdminsRepository : IAdminsRepository
         return Meerkat.FindOneAsync<Admin>(x => x.EmailAddress == normalizedEmail);
     }
 
+    public async Task<Admin> Create(string name, string email, string password)
+    {
+        var admin = new Admin(name, email);
+        admin.SetPassword(password, true);
+        await admin.SaveAsync();
+
+        return admin;
+    }
+
     public Task UpdatePassword(Admin admin, string password)
     {
         admin.SetPassword(password);

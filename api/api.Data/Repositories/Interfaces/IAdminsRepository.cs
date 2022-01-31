@@ -12,5 +12,7 @@ public interface IAdminsRepository
 
     Task<Admin> FindByEmail(string email);
 
+    Task<Admin> Create(string name, string email, string password);
+
     Task UpdatePassword(Admin admin, string password);
 }
