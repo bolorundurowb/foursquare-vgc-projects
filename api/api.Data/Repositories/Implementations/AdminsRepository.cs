@@ -14,4 +14,10 @@ public class AdminsRepository : IAdminsRepository
         var normalizedEmail = email?.ToLowerInvariant();
         return Meerkat.FindOneAsync<Admin>(x => x.EmailAddress == normalizedEmail);
     }
+
+    public Task UpdatePassword(Admin admin, string password)
+    {
+        admin.SetPassword(password);
+        return admin.SaveAsync();
+    }
 }

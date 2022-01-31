@@ -8,4 +8,6 @@ public interface IAdminsRepository
     Task<Admin> FindById(string adminId);
 
     Task<Admin> FindByEmail(string email);
+
+    Task UpdatePassword(Admin admin, string password);
 }

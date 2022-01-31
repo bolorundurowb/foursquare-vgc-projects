@@ -12,13 +12,11 @@ namespace api.Controllers.v1;
 public class AdminsController : ApiController
 {
     private readonly IAdminsRepository _adminsRepo;
-    
+
     public AdminsController(IMapper mapper, IAdminsRepository adminsRepo) : base(mapper)
     {
         _adminsRepo = adminsRepo;
     }
-    
-    
 
     [HttpPut("current/password")]
     [ProducesResponseType(typeof(GenericViewModel), 200)]
