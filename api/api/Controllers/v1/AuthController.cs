@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using api.Configuration;
 using api.Data.Repositories.Interfaces;
 using api.Models.Binding;
@@ -20,6 +21,7 @@ public class AuthController : ApiController
         _adminsRepo = adminsRepo;
     }
 
+    [Obsolete]
     [AllowAnonymous]
     [HttpPost("login")]
     [ProducesResponseType(typeof(AuthViewModel), 200)]
