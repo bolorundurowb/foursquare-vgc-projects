@@ -13,7 +13,7 @@ public static class DbExtensions
         EnvReader.TryGetStringValue("DEFAULT_ADMIN_EMAIL", out var adminEmail);
         EnvReader.TryGetStringValue("DEFAULT_ADMIN_PASS", out var adminPass);
 
-        if (!string.IsNullOrWhiteSpace(adminEmail) || !string.IsNullOrWhiteSpace(adminPass))
+        if (string.IsNullOrWhiteSpace(adminEmail) || string.IsNullOrWhiteSpace(adminPass))
         {
             Console.WriteLine("Either the default admin email address or password is not provided. Skipping...");
             return;
@@ -23,7 +23,10 @@ public static class DbExtensions
             .Any(x => x.EmailAddress == adminEmail);
 
         if (adminExists)
+        {
+            Console.WriteLine("A default admin already exists. Skipping...");
             return;
+        }
 
         var admin = new Admin("Default Admin", adminEmail);
         admin.SetPassword(adminPass);
