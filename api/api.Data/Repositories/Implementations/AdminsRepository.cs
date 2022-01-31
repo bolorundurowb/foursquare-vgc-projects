@@ -10,12 +10,17 @@ public class AdminsRepository : IAdminsRepository
 {
     public async Task<Admin> Login(string email)
     {
-        var normalizedEmail = email?.ToLowerInvariant();
-        var admin = await Meerkat.FindOneAsync<Admin>(x => x.EmailAddress == normalizedEmail);
+        var admin = await FindByEmail(email);
 
         if (admin == null)
             throw new NotFoundException("Admin not found.");
 
         return admin;
+    }
+
+    public Task<Admin> FindByEmail(string email)
+    {
+        var normalizedEmail = email?.ToLowerInvariant();
+        return Meerkat.FindOneAsync<Admin>(x => x.EmailAddress == normalizedEmail);
     }
 }

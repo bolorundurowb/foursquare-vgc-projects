@@ -6,4 +6,6 @@ namespace api.Data.Repositories.Interfaces;
 public interface IAdminsRepository
 {
     Task<Admin> Login(string email);
+
+    Task<Admin> FindByEmail(string email);
 }
