@@ -55,5 +55,7 @@ public static class MapsterConfigExtensions
             {
                 vm.RegistrationUrlQrCode = QrCodeService.GenerateQrCode(model.RegistrationUrl);
             });
+
+        config.NewConfig<EventAttendeeDto, EventAttendeeViewModel>();
     }
 }
