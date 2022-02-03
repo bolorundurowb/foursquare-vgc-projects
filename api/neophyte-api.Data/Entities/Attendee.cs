@@ -1,10 +1,10 @@
 ﻿using System;
-using api.Data.Enums;
 using meerkat;
 using meerkat.Attributes;
 using moment.net;
+using neophyte.api.Data.Enums;
 
-namespace api.Data.Entities;
+namespace neophyte.api.Data.Entities;
 
 [Collection(Name = "attendance", TrackTimestamps = true)]
 public class Attendee : Schema

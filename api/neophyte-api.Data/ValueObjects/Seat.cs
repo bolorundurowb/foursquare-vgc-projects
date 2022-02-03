@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using api.Data.Enums;
+using neophyte.api.Data.Enums;
 
-namespace api.Data.ValueObjects;
+namespace neophyte.api.Data.ValueObjects;
 
 public class Seat : ValueObject
 {

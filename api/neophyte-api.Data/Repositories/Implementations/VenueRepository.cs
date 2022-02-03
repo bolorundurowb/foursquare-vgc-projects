@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using api.Core.Utilities;
-using api.Data.Entities;
-using api.Data.Enums;
-using api.Data.Repositories.Interfaces;
 using meerkat;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using neophyte.api.Core.Utilities;
+using neophyte.api.Data.Entities;
+using neophyte.api.Data.Enums;
+using neophyte.api.Data.Repositories.Interfaces;
 
-namespace api.Data.Repositories.Implementations;
+namespace neophyte.api.Data.Repositories.Implementations;
 
 public class VenueRepository : IVenueRepository
 {

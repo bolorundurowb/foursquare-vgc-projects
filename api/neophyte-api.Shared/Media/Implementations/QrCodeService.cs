@@ -1,7 +1,7 @@
 ﻿using System;
 using QRCoder;
 
-namespace api.Shared.Media.Implementations;
+namespace neophyte.api.Shared.Media.Implementations;
 
 public static class QrCodeService
 {

@@ -1,9 +1,9 @@
 ﻿using System;
-using api.Data.Enums;
 using meerkat;
 using meerkat.Attributes;
+using neophyte.api.Data.Enums;
 
-namespace api.Data.Entities;
+namespace neophyte.api.Data.Entities;
 
 [Collection(TrackTimestamps = true)]
 public class Newcomer : Schema

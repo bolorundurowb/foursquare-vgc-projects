@@ -1,8 +1,8 @@
-﻿using api.Shared.Extensions;
-using meerkat;
+﻿using meerkat;
 using meerkat.Attributes;
+using neophyte.api.Shared.Extensions;
 
-namespace api.Data.Entities;
+namespace neophyte.api.Data.Entities;
 
 [Collection(TrackTimestamps = true)]
 public class Person : Schema

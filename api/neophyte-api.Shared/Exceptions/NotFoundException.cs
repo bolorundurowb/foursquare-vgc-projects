@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace api.Shared.Exceptions;
+namespace neophyte.api.Shared.Exceptions;
 
 public class NotFoundException : Exception
 {

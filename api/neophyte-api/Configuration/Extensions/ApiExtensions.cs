@@ -4,7 +4,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace neophyte;
+namespace neophyte.api.Configuration.Extensions;
 
 internal static class ApiExtensions
 {

@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using api.Data.Repositories.Interfaces;
-using api.Models.Binding;
-using api.Models.View;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
+using neophyte.api.Data.Repositories.Interfaces;
+using neophyte.api.Models.Binding;
+using neophyte.api.Models.View;
 
-namespace neophyte;
+namespace neophyte.api.Controllers.v2;
 
 [ApiVersion("2.0")]
 public class NewcomersController : ApiController

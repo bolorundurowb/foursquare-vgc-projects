@@ -1,6 +1,6 @@
 using System;
 
-namespace api.Data.DTOs;
+namespace neophyte.api.Data.DTOs;
 
 public class DateSummaryDto
 {

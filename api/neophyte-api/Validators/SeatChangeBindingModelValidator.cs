@@ -1,7 +1,7 @@
-﻿using api.Models.Binding;
-using FluentValidation;
+﻿using FluentValidation;
+using neophyte.api.Models.Binding;
 
-namespace neophyte;
+namespace neophyte.api.Validators;
 
 public class SeatChangeBindingModelValidator : AbstractValidator<SeatChangeBindingModel>
 {

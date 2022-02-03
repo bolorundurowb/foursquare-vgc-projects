@@ -1,11 +1,11 @@
-﻿using api.Data.Repositories.Implementations;
-using api.Data.Repositories.Interfaces;
-using api.Shared.Email.Implementations;
-using api.Shared.Email.Interfaces;
-using meerkat;
+﻿using meerkat;
 using Microsoft.Extensions.DependencyInjection;
+using neophyte.api.Data.Repositories.Implementations;
+using neophyte.api.Data.Repositories.Interfaces;
+using neophyte.api.Shared.Email.Implementations;
+using neophyte.api.Shared.Email.Interfaces;
 
-namespace neophyte;
+namespace neophyte.api.Configuration.Extensions;
 
 internal static class InjectionExtensions
 {

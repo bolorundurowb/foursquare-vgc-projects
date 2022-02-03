@@ -1,7 +1,7 @@
-using api.Data.Entities;
 using CsvHelper.Configuration;
+using neophyte.api.Data.Entities;
 
-namespace api.Data.CsvMappers;
+namespace neophyte.api.Data.CsvMappers;
 
 public sealed class NewcomerCsvMapper : ClassMap<Newcomer>
 {

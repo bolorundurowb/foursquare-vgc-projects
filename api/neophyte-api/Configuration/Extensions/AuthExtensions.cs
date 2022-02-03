@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace neophyte;
+namespace neophyte.api.Configuration.Extensions;
 
 internal static class AuthExtensions
 {

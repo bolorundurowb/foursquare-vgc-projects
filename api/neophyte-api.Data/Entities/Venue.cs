@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using api.Data.Enums;
-using api.Data.ValueObjects;
 using meerkat;
 using meerkat.Attributes;
+using neophyte.api.Data.Enums;
+using neophyte.api.Data.ValueObjects;
 
-namespace api.Data.Entities;
+namespace neophyte.api.Data.Entities;
 
 [Collection(TrackTimestamps = true)]
 public class Venue : Schema

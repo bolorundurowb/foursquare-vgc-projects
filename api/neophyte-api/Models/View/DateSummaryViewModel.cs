@@ -1,6 +1,6 @@
 using System;
 
-namespace neophyte;
+namespace neophyte.api.Models.View;
 
 public class DateSummaryViewModel
 {

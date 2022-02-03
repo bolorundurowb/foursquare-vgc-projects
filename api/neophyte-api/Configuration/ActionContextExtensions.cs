@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using api.Models.View;
 using Microsoft.AspNetCore.Mvc;
+using neophyte.api.Models.View;
 
-namespace neophyte;
+namespace neophyte.api.Configuration;
 
 public static class ActionContextExtensions
 {

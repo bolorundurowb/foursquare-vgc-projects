@@ -1,7 +1,7 @@
 using System;
-using api.Data.Enums;
+using neophyte.api.Data.Enums;
 
-namespace neophyte;
+namespace neophyte.api.Models.View;
 
 public class AttendeeViewModel
 {

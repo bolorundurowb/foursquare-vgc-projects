@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
-using api.Data.Entities;
-using meerkat;
 using dotenv.net.Utilities;
+using meerkat;
+using neophyte.api.Data.Entities;
 
-namespace api.Data.Extensions;
+namespace neophyte.api.Data.Extensions;
 
 public static class DbExtensions
 {

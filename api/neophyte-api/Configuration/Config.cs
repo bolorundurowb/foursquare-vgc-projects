@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace neophyte;
+namespace neophyte.api.Configuration;
 
 public static class Config
 {

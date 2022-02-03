@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using api.Data.Entities;
-using api.Data.Enums;
-using api.Data.Repositories.Interfaces;
-using api.Data.ValueObjects;
 using meerkat;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using neophyte.api.Data.Entities;
+using neophyte.api.Data.Enums;
+using neophyte.api.Data.Repositories.Interfaces;
+using neophyte.api.Data.ValueObjects;
 
-namespace api.Data.Repositories.Implementations;
+namespace neophyte.api.Data.Repositories.Implementations;
 
 public class EventRepository : IEventRepository
 {

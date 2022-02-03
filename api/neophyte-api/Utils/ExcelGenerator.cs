@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using api.Data.Entities;
 using ClosedXML.Excel;
+using neophyte.api.Data.Entities;
 
-namespace neophyte;
+namespace neophyte.api.Utils;
 
 public static class ExcelGenerator
 {

@@ -3,11 +3,11 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using api.Data.CsvMappers;
-using api.Data.Entities;
 using CsvHelper;
+using neophyte.api.Data.CsvMappers;
+using neophyte.api.Data.Entities;
 
-namespace api.Data.Helpers;
+namespace neophyte.api.Data.Helpers;
 
 public static class CsvHelpers
 {

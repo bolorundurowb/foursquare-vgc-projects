@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace neophyte;
+namespace neophyte.api.Configuration.Extensions;
 
 internal static class ExceptionExtensions
 {

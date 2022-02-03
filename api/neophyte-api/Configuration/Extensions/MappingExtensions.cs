@@ -2,7 +2,7 @@
 using MapsterMapper;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace neophyte;
+namespace neophyte.api.Configuration.Extensions;
 
 internal static class MappingExtensions
 {

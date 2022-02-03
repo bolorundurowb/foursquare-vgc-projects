@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using api.Data.Entities;
+using neophyte.api.Data.Entities;
 
-namespace api.Data.Repositories.Interfaces;
+namespace neophyte.api.Data.Repositories.Interfaces;
 
 public interface IAdminsRepository
 {

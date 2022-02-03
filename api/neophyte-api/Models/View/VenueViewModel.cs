@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace neophyte;
+namespace neophyte.api.Models.View;
 
 public class VenueViewModel : BaseVenueViewModel
 {

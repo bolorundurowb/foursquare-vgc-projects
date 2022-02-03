@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace neophyte;
+namespace neophyte.api.Configuration.Extensions.SwaggerFilters;
 
 public class SwaggerDefaultValues : IOperationFilter
 {

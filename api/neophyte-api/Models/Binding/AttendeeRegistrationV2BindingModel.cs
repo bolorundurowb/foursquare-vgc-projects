@@ -1,4 +1,4 @@
-﻿namespace neophyte;
+﻿namespace neophyte.api.Models.Binding;
 
 public class AttendeeRegistrationV2BindingModel
 {

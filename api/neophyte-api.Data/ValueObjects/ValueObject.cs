@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace api.Data.ValueObjects;
+namespace neophyte.api.Data.ValueObjects;
 
 public abstract class ValueObject : IEquatable<ValueObject>
 {

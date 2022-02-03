@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace api.Core.Utilities;
+namespace neophyte.api.Core.Utilities;
 
 public static class SeatRange
 {

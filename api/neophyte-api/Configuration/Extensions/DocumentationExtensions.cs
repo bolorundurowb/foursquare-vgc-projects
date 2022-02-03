@@ -1,11 +1,11 @@
-﻿using api.Configuration.Extensions.SwaggerFilters;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using neophyte.api.Configuration.Extensions.SwaggerFilters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace neophyte;
+namespace neophyte.api.Configuration.Extensions;
 
 internal static class DocumentationExtensions
 {

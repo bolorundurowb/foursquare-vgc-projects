@@ -1,4 +1,4 @@
-﻿namespace api.Shared.Email.Models;
+﻿namespace neophyte.api.Shared.Email.Models;
 
 public class EmailAttachment
 {

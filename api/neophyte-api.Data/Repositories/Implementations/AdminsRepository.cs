@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using api.Data.Entities;
-using api.Data.Repositories.Interfaces;
 using meerkat;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using neophyte.api.Data.Entities;
+using neophyte.api.Data.Repositories.Interfaces;
 
-namespace api.Data.Repositories.Implementations;
+namespace neophyte.api.Data.Repositories.Implementations;
 
 public class AdminsRepository : IAdminsRepository
 {

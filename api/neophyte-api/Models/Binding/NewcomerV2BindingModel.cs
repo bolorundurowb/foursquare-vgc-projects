@@ -1,6 +1,6 @@
-﻿using api.Data.Enums;
+﻿using neophyte.api.Data.Enums;
 
-namespace neophyte;
+namespace neophyte.api.Models.Binding;
 
 public class NewcomerV2BindingModel
 {

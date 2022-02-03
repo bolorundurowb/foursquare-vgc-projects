@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace api.Shared;
+namespace neophyte.api.Shared;
 
 public static class Constants
 {

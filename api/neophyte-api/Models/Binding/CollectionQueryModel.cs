@@ -1,6 +1,6 @@
-﻿using api.Shared;
+﻿using neophyte.api.Shared;
 
-namespace neophyte;
+namespace neophyte.api.Models.Binding;
 
 public class CollectionQueryModel
 {

@@ -3,12 +3,12 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using api.Shared.Email.Interfaces;
-using api.Shared.Email.Models;
 using dotenv.net.Utilities;
 using Microsoft.Extensions.Logging;
+using neophyte.api.Shared.Email.Interfaces;
+using neophyte.api.Shared.Email.Models;
 
-namespace api.Shared.Email.Implementations;
+namespace neophyte.api.Shared.Email.Implementations;
 
 public class MailgunService : IEmailService
 {

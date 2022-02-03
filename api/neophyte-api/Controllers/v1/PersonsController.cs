@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using api.Data.Repositories.Interfaces;
-using api.Models.Binding;
-using api.Models.View;
-using api.Shared.Media.Implementations;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using neophyte.api.Data.Repositories.Interfaces;
+using neophyte.api.Models.Binding;
+using neophyte.api.Models.View;
+using neophyte.api.Shared.Media.Implementations;
 
-namespace neophyte;
+namespace neophyte.api.Controllers.v1;
 
 [ApiVersion("1.0")]
 public class PersonsController : ApiController

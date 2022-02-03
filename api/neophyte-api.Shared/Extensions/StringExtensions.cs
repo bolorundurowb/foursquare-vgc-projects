@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace api.Shared.Extensions;
+namespace neophyte.api.Shared.Extensions;
 
 public static class StringExtensions
 {

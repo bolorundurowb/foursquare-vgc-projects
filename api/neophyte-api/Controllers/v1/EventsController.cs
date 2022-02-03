@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using api.Data.Entities;
-using api.Data.Repositories.Interfaces;
-using api.Models.Binding;
-using api.Models.View;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using neophyte.api.Data.Entities;
+using neophyte.api.Data.Repositories.Interfaces;
+using neophyte.api.Models.Binding;
+using neophyte.api.Models.View;
 
-namespace neophyte;
+namespace neophyte.api.Controllers.v1;
 
 [ApiVersion("1.0")]
 public class EventsController : ApiController

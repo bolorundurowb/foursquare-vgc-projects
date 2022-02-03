@@ -1,11 +1,11 @@
-﻿using api.Data.DTOs;
-using api.Data.Entities;
-using api.Data.ValueObjects;
-using api.Models.View;
-using api.Shared.Media.Implementations;
-using Mapster;
+﻿using Mapster;
+using neophyte.api.Data.DTOs;
+using neophyte.api.Data.Entities;
+using neophyte.api.Data.ValueObjects;
+using neophyte.api.Models.View;
+using neophyte.api.Shared.Media.Implementations;
 
-namespace neophyte;
+namespace neophyte.api.Configuration;
 
 public static class MapsterConfigExtensions
 {

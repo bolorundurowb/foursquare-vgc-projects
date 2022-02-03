@@ -1,4 +1,4 @@
-﻿namespace api.Data.Enums;
+﻿namespace neophyte.api.Data.Enums;
 
 public enum MultiChoice
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using api.Data.Enums;
 using MongoDB.Bson;
+using neophyte.api.Data.Enums;
 
-namespace api.Data.ValueObjects;
+namespace neophyte.api.Data.ValueObjects;
 
 public class EventSeat : ValueObject
 {

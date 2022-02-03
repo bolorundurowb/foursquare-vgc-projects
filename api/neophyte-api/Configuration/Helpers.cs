@@ -3,10 +3,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using api.Shared;
 using Microsoft.IdentityModel.Tokens;
+using neophyte.api.Shared;
 
-namespace neophyte;
+namespace neophyte.api.Configuration;
 
 public static class Helpers
 {

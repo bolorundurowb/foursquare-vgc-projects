@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using api.Configuration;
-using api.Data.Helpers;
-using api.Data.Repositories.Interfaces;
-using api.Models.Binding;
-using api.Models.View;
-using api.Shared.Email.Interfaces;
-using api.Shared.Email.Models;
-using api.Shared.Exceptions;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
+using neophyte.api.Data.Helpers;
+using neophyte.api.Data.Repositories.Interfaces;
+using neophyte.api.Models.Binding;
+using neophyte.api.Models.View;
+using neophyte.api.Shared.Email.Interfaces;
+using neophyte.api.Shared.Email.Models;
+using neophyte.api.Shared.Exceptions;
 
-namespace neophyte;
+namespace neophyte.api.Controllers.v1;
 
 [ApiVersion("1.0")]
 public class NewcomersController : ApiController

@@ -1,13 +1,13 @@
-using api.Configuration.Extensions;
-using api.Data.Extensions;
 using dotenv.net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using neophyte.api.Configuration.Extensions;
+using neophyte.api.Data.Extensions;
 
-namespace neophyte;
+namespace neophyte.api;
 
 public class Startup
 {

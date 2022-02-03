@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using api.Data.Entities;
-using api.Data.Enums;
-using api.Data.ValueObjects;
+using neophyte.api.Data.Entities;
+using neophyte.api.Data.Enums;
+using neophyte.api.Data.ValueObjects;
 
-namespace api.Data.Repositories.Interfaces;
+namespace neophyte.api.Data.Repositories.Interfaces;
 
 public interface IEventRepository
 {

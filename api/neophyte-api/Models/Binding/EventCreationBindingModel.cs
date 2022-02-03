@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace neophyte;
+namespace neophyte.api.Models.Binding;
 
 public class EventCreationBindingModel
 {

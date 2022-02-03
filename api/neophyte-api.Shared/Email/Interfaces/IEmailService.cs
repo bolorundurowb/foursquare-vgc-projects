@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using api.Shared.Email.Models;
+using neophyte.api.Shared.Email.Models;
 
-namespace api.Shared.Email.Interfaces;
+namespace neophyte.api.Shared.Email.Interfaces;
 
 public interface IEmailService
 {

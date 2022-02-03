@@ -2,7 +2,7 @@ using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace neophyte;
+namespace neophyte.api;
 
 public class Program
 {

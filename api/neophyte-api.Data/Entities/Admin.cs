@@ -2,7 +2,7 @@
 using meerkat;
 using meerkat.Attributes;
 
-namespace api.Data.Entities;
+namespace neophyte.api.Data.Entities;
 
 [Collection(TrackTimestamps = true)]
 public class Admin : Schema

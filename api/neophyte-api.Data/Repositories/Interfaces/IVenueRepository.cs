@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using api.Data.Entities;
-using api.Data.Enums;
+using neophyte.api.Data.Entities;
+using neophyte.api.Data.Enums;
 
-namespace api.Data.Repositories.Interfaces;
+namespace neophyte.api.Data.Repositories.Interfaces;
 
 public interface IVenueRepository
 {

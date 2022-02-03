@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System;
 using System.Threading.Tasks;
-using api.Models.View;
 using FluentValidation;
 using FluentValidation.Results;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using neophyte.api.Models.View;
 
-namespace neophyte;
+namespace neophyte.api.Controllers;
 
 [Authorize]
 [ApiController]
