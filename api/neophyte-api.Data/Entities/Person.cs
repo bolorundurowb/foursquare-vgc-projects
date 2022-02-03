@@ -7,11 +7,11 @@ namespace neophyte.api.Data.Entities;
 [Collection(TrackTimestamps = true)]
 public class Person : Schema
 {
-    public string FirstName { get; set; }
+    public string FirstName { get; private set; }
 
-    public string LastName { get; set; }
+    public string LastName { get; private set; }
 
-    public string Phone { get; set; }
+    public string Phone { get; private set; }
 
     private Person()
     {
