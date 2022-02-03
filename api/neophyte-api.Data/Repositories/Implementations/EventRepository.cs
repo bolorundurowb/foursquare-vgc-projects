@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using meerkat;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using neophyte.api.Data.DTOs;
 using neophyte.api.Data.Entities;
 using neophyte.api.Data.Enums;
 using neophyte.api.Data.Repositories.Interfaces;
@@ -47,5 +50,56 @@ public class EventRepository : IEventRepository
         await @event.SaveAsync();
 
         return eventSeat;
+    }
+
+    public async Task<List<EventAttendeeDto>> GetAttendees(Event @event)
+    {
+        var personIds = @event.AssignedSeats
+            .Where(x => x.PersonId != null)
+            .Select(x => (object)x.PersonId)
+            .Distinct()
+            .ToList();
+        var persons = await Meerkat.Query<Person>()
+            .Where(x => personIds.Contains(x.Id))
+            .ToListAsync();
+        var personMap = new Dictionary<ObjectId, Person>();
+
+        foreach (var personId in personIds)
+        {
+            var person = persons.FirstOrDefault(x => x.Id == personId);
+            personMap[(ObjectId)personId] = person;
+        }
+
+        var response = new List<EventAttendeeDto>();
+
+        foreach (var eventSeat in @event.AssignedSeats)
+        {
+            var attendee = new EventAttendeeDto();
+            attendee.Venue = eventSeat.VenueName;
+            attendee.Category = eventSeat.Category;
+            attendee.Seat = eventSeat.Number;
+            attendee.AccompanyingSeat = eventSeat.AssociatedNumber;
+
+            if (eventSeat.PersonId.HasValue)
+            {
+                var personId = eventSeat.PersonId.Value;
+
+                if (personMap.ContainsKey(personId))
+                {
+                    var person = personMap[personId];
+
+                    if (person != null)
+                    {
+                        attendee.FirstName = person.FirstName;
+                        attendee.LastName = person.LastName;
+                        attendee.Phone = person.Phone;
+                    }
+                }
+            }
+
+            response.Add(attendee);
+        }
+
+        return response;
     }
 }
