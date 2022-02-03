@@ -6,6 +6,11 @@
         <RootNamespace>neophyte.api</RootNamespace>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\neophyte-api.xml</DocumentationFile>
+      <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
     <ItemGroup>
       <PackageReference Include="ClosedXML" Version="0.95.4" />
       <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />

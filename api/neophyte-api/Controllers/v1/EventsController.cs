@@ -118,6 +118,10 @@ public class EventsController : ApiController
         return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
     }
 
+    /// <summary>
+    /// Returns a list of attendees for the given Event
+    /// </summary>
+    /// <param name="eventId">The id for the event</param>
     [HttpGet("{eventId}/attendees")]
     [ProducesResponseType(typeof(List<EventAttendeeViewModel>), 200)]
     public async Task<IActionResult> GetAttendees(string eventId)
