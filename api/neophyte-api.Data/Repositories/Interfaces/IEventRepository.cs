@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using neophyte.api.Data.DTOs;
 using neophyte.api.Data.Entities;
 using neophyte.api.Data.Enums;
 using neophyte.api.Data.ValueObjects;
@@ -20,4 +21,6 @@ public interface IEventRepository
     Task<EventSeat> AssignSeat(Event @event, SeatCategory category, Person person);
 
     Task<EventSeat> ChangeSeat(Event @event, Person person, string seatNumber);
+
+    Task<List<EventAttendeeDto>> GetAttendees(Event @event);
 }
