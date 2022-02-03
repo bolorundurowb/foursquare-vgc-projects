@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>10</LangVersion>
-        <RootNamespace>api.Shared</RootNamespace>
+        <RootNamespace>neophyte.api.Shared</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
