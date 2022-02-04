@@ -20,8 +20,9 @@ internal static class DocumentationExtensions
             options.EnableAnnotations();
             options.OperationFilter<SwaggerDefaultValues>();
 
-            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            // var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            var xmlPath = @"bin\Debug\neophyte-api.xml";
             options.IncludeXmlComments(xmlPath);
         });
     }

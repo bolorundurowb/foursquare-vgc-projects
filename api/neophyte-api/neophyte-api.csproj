@@ -7,9 +7,8 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
+        <DocumentationFile>bin\Debug\neophyte-api.xml</DocumentationFile>
         <NoWarn>1701;1702;1591</NoWarn>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
