@@ -22,7 +22,11 @@ internal static class DocumentationExtensions
 
             // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             // var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-            var xmlPath = @"bin/Debug/neophyte-api.xml";
+            // var xmlPath = @"bin/Debug/neophyte-api.xml";
+            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            var xmlFile = "neophyte-api.xml";
+            var xmlPath = Path.Combine(baseDirectory, xmlFile);
+            
             options.IncludeXmlComments(xmlPath);
         });
     }
