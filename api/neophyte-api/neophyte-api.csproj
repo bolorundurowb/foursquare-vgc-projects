@@ -29,5 +29,7 @@
       <ProjectReference Include="..\neophyte-api.Data\neophyte-api.Data.csproj" />
     </ItemGroup>
 
-
+    <Target Name="CopyCustomContentOnPublish" AfterTargets="Publish">
+        <Copy SourceFiles="neophyte-api.xml" DestinationFolder="$(PublishDir)/neophyte-api.xml" />
+    </Target>
 </Project>
