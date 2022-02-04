@@ -17,6 +17,7 @@ internal static class DocumentationExtensions
         services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
         services.AddSwaggerGen(options =>
         {
+            options.EnableAnnotations();
             options.OperationFilter<SwaggerDefaultValues>();
 
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
