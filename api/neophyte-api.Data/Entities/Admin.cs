@@ -4,7 +4,7 @@ using meerkat.Attributes;
 
 namespace neophyte.api.Data.Entities;
 
-[Collection(TrackTimestamps = true)]
+[Collection(TrackTimestamps = true), IgnoreUnknownFields]
 public class Admin : Schema
 {
     public string Name { get; private set; }
