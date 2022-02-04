@@ -10,6 +10,7 @@ using neophyte.api.Models.View;
 
 namespace neophyte.api.Controllers.v1;
 
+[Obsolete("Utilize auth with email and password")]
 [ApiVersion("1.0")]
 public class AuthController : ApiController
 {
@@ -20,7 +21,6 @@ public class AuthController : ApiController
         _adminsRepo = adminsRepo;
     }
 
-    [Obsolete]
     [AllowAnonymous]
     [HttpPost("login")]
     [ProducesResponseType(typeof(AuthViewModel), 200)]

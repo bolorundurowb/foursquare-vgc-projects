@@ -1,14 +1,19 @@
-﻿namespace neophyte.api.Models.View;
+﻿using Swashbuckle.AspNetCore.Annotations;
 
-public class EventSeatViewModel
+namespace neophyte.api.Models.View;
+
+public class EventSeatViewModel : SeatViewModel
 {
+    /// <summary>
+    /// The seat priority (obtained from the venue it is in). Lower values mean higher priority
+    /// </summary>
+    /// <example>2</example>
     public int Priority { get; private set; }
 
-    public string Category { get; private set; }
-
+    /// <summary>
+    /// The name of the venue that the seat is in
+    /// </summary>
+    /// <example>Main Auditorium</example>
+    [SwaggerSchema(Nullable = false)]
     public string VenueName { get; private set; }
-
-    public string Number { get; private set; }
-
-    public string AssociatedNumber { get; private set; }
 }
