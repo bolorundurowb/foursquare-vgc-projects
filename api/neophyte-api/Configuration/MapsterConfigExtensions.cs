@@ -42,8 +42,7 @@ public static class MapsterConfigExtensions
         config.NewConfig<Venue, VenueViewModel>()
             .Inherits<Venue, BaseVenueViewModel>();
 
-        config.NewConfig<EventSeat, EventSeatViewModel>()
-            .Map(x => x.Category, y => y.Category.ToString());
+        config.NewConfig<EventSeat, EventSeatViewModel>();
 
         config.NewConfig<Event, BaseEventViewModel>()
             .Map(x => x.Id, y => y.Id.ToString())
