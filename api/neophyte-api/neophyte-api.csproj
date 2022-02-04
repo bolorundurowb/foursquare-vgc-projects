@@ -4,10 +4,11 @@
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>10</LangVersion>
         <RootNamespace>neophyte.api</RootNamespace>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <DocumentationFile>bin\Debug\neophyte-api.xml</DocumentationFile>
+        <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
         <NoWarn>1701;1702;1591</NoWarn>
     </PropertyGroup>
 
