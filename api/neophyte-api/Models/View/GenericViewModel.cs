@@ -5,9 +5,9 @@ namespace neophyte.api.Models.View;
 public class GenericViewModel
 {
     /// <summary>
-    /// The error message
+    /// The API response message
     /// </summary>
-    /// <example>An error occurred</example>
+    /// <example>A response message</example>
     [SwaggerSchema(Nullable = false)]
     public string Message { get; set; }
 }

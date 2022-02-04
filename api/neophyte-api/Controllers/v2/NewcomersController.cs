@@ -22,7 +22,7 @@ public class NewcomersController : ApiController
     public async Task<IActionResult> AddNewcomer([FromBody] NewcomerV2BindingModel bm)
     {
         var newcomer = await _newcomersRepo.AddNewcomer(bm.FullName, bm.HomeAddress, bm.Phone, bm.EmailAddress,
-            bm.BirthDay, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs, bm.BecomeMember);
+            bm.BirthDay, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs, bm.BecomeMember, bm.Gender, bm.BornAgain);
         return Created(Mapper.Map<NewcomerViewModel>(newcomer));
     }
 }

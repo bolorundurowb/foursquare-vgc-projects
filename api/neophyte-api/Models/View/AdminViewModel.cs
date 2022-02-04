@@ -25,12 +25,15 @@ public class AdminViewModel
     [SwaggerSchema(Nullable = false)]
     public string EmailAddress { get; set; }
 
+    /// <summary>
+    /// Whether or not this admin is using the default password assigned to him/her
+    /// </summary>
+    /// <example>false</example>
     public bool IsUsingDefaultPassword { get; set; }
 
     /// <summary>
     /// The date and time this admins account was created
     /// </summary>
     /// <example>2022-02-04T08:28:10.519Z</example>
-    [SwaggerSchema(Nullable = false)]
     public DateTime AddedAt { get; set; }
 }
