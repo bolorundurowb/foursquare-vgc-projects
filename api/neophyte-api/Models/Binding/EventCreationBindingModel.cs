@@ -22,5 +22,6 @@ public class EventCreationBindingModel
     /// <summary>
     /// The list of venues to be used in order of priority
     /// </summary>
+    [SwaggerSchema(Nullable = false)]
     public List<VenuePriorityBindingModel> Venues { get; set; }
 }

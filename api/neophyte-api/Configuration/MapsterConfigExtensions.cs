@@ -11,8 +11,7 @@ public static class MapsterConfigExtensions
 {
     public static void ConfigureMappings(TypeAdapterConfig config)
     {
-        config.NewConfig<Seat, SeatViewModel>()
-            .Map(x => x.Category, y => y.Category.ToString());
+        config.NewConfig<Seat, SeatViewModel>();
 
         config.NewConfig<Admin, AdminViewModel>()
             .Map(x => x.Id, y => y.Id.ToString());

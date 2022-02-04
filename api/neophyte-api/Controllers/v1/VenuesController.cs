@@ -51,7 +51,7 @@ public class VenuesController : ApiController
             return Conflict("A venue exists with the same name.");
 
         var seatRanges = bm.SeatRanges
-            .Select(x => (x.Category, x.Number))
+            .Select(x => (x.Category, Number: x.NumberRange))
             .ToList();
         venue = await _venueRepo.Create(bm.Name, seatRanges);
 

@@ -10,7 +10,7 @@ public class SeatRangeBindingModelValidator : AbstractValidator<SeatRangeBinding
         RuleFor(x => x.Category)
             .IsInEnum();
 
-        RuleFor(x => x.Number)
+        RuleFor(x => x.NumberRange)
             .NotEmpty();
     }
 }

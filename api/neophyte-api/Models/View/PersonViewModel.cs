@@ -12,6 +12,12 @@ public class PersonViewModel : BasePersonViewModel
     public string FullName { get; set; }
 
     /// <summary>
+    /// The church attendee's mobile phone number
+    /// </summary>
+    /// <example>0801243567</example>
+    public string Phone { get; set; }
+
+    /// <summary>
     /// The church attendee's identifier encoded as a QR code PNG in base64
     /// </summary>
     /// <example>782hjwe87432yu2784iun3780hyd4yur879348374</example>

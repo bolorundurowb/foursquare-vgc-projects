@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using neophyte.api.Data.Repositories.Interfaces;
 using neophyte.api.Models.Binding;
 using neophyte.api.Models.View;
 using neophyte.api.Shared.Media.Implementations;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace neophyte.api.Controllers.v1;
 
@@ -45,7 +47,7 @@ public class PersonsController : ApiController
     [AllowAnonymous]
     [HttpGet("check")]
     [ProducesResponseType(typeof(PersonViewModel), 200)]
-    [ProducesResponseType(404)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> CheckPerson(string phoneNumber = null)
     {
         var person = await _personsRepo.GetByPhone(phoneNumber);
