@@ -23,7 +23,7 @@ public class EventRepository : IEventRepository
             .Take(limit)
             .ToListAsync();
 
-    public Task<Event> FindById(string eventId) => Meerkat.FindByIdAsync<Event>(eventId);
+    public Task<Event> FindById(string eventId) => Meerkat.FindByIdAsync<Event>(ObjectId.Parse(eventId));
 
     public Task<Event> FindByNameAndDate(string name, DateTime date) =>
         Meerkat.FindOneAsync<Event>(x => x.Name == name && x.Date == date);
@@ -44,9 +44,9 @@ public class EventRepository : IEventRepository
         return eventSeat;
     }
 
-    public async Task<EventSeat> ChangeSeat(Event @event, Person person, string seatNumber)
+    public async Task<EventSeat> ChangeSeat(Event @event, Person person, ObjectId venueId, string seatNumber)
     {
-        var eventSeat = @event.ChangeSeat(person, seatNumber);
+        var eventSeat = @event.ChangeSeat(person, venueId, seatNumber);
         await @event.SaveAsync();
 
         return eventSeat;

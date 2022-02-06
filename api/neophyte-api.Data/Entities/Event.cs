@@ -64,20 +64,18 @@ public class Event : Schema
         return eventSeat;
     }
 
-    public EventSeat ChangeSeat(Person person, string seatNumber)
+    public EventSeat ChangeSeat(Person person, ObjectId venueId, string seatNumber)
     {
         var personId = (ObjectId)person.Id;
         seatNumber = seatNumber?.ToUpperInvariant();
-        var currentSeat = AssignedSeats.FirstOrDefault(x => x.PersonId == personId);
-
-        if (currentSeat == null)
-            throw new Exception("There is no assigned seat for this person. So it cant be changed.");
+        var currentSeat = AssignedSeats.First(x => x.PersonId == personId);
 
         // put back into the pool
-        AvailableSeats.Insert(0, (EventSeat)currentSeat.GetCopy());
+        AssignedSeats.Remove(currentSeat);
+        AvailableSeats.Insert(0, currentSeat);
 
         // assign the new seats
-        var eventSeat = AvailableSeats.First(x => x.Number == seatNumber);
+        var eventSeat = AvailableSeats.First(x => x.VenueId == venueId && x.Number == seatNumber);
         AvailableSeats.Remove(eventSeat);
 
         eventSeat.Assign(personId);
