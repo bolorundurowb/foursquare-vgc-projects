@@ -13,20 +13,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ClosedXML" Version="0.95.4"/>
-        <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6"/>
-        <PackageReference Include="logly" Version="2.0.0"/>
-        <PackageReference Include="Mapster" Version="7.2.0"/>
-        <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1"/>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0"/>
-        <PackageReference Include="Sentry.AspNetCore" Version="3.13.0"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
-        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.3"/>
+        <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
+        <PackageReference Include="logly" Version="2.0.0" />
+        <PackageReference Include="Mapster" Version="7.2.0" />
+        <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+        <PackageReference Include="Sentry.AspNetCore" Version="3.13.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.3" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\neophyte-api.Data\neophyte-api.Data.csproj"/>
+        <ProjectReference Include="..\neophyte-api.Data\neophyte-api.Data.csproj" />
     </ItemGroup>
 </Project>

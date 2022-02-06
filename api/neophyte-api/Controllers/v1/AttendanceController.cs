@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
-using neophyte.api.Data.Helpers;
+using neophyte.api.Data.Generators;
 using neophyte.api.Data.Repositories.Interfaces;
 using neophyte.api.Models.Binding;
 using neophyte.api.Models.View;
@@ -76,7 +76,7 @@ public class AttendanceController : ApiController
     {
         var formattedDateString = date.Date.ToString("yyyy-MM-dd");
         var attendance = await _attendanceRepo.GetAttendance(date);
-        var attendanceCsv = await CsvHelpers.GenerateCsvFromAttendance(attendance);
+        var attendanceCsv = await CsvGenerator.ForAttendees(attendance);
 
         var emailMessage = new EmailMessage
         {
