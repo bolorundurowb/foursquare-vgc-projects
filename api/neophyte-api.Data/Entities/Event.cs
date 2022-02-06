@@ -86,6 +86,8 @@ public class Event : Schema
 
     public bool HasSeatAssigned(string personId) => AssignedSeats.Any(x => x.PersonId == ObjectId.Parse(personId));
 
+    public bool IsSeatAvailable() => AvailableSeats.Any();
+
     public bool IsSeatAvailable(ObjectId venueId, string seatNumber)
     {
         seatNumber = seatNumber?.ToUpperInvariant();

@@ -85,12 +85,15 @@ public class EventsController : ApiController
             return NotFound("Event not found.");
 
         if (@event.HasSeatAssigned(bm.PersonId))
-            return Conflict("A seat has been assigned.");
+            return Conflict("A seat has been assigned for this attendee.");
 
         var person = await _personsRepo.FindById(bm.PersonId);
 
         if (person == null)
             return NotFound("Person not found.");
+
+        if (!@event.IsSeatAvailable())
+            return BadRequest("No more seats available.");
 
         var eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
         return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
@@ -111,8 +114,8 @@ public class EventsController : ApiController
         if (!@event.HasSeatAssigned(bm.PersonId))
             return BadRequest("A seat has not been assigned for this person. Register them afresh.");
 
-        if (@event.IsSeatAvailable(venueId, bm.SeatNumber))
-            return BadRequest("The seat selected has already been assigned.");
+        if (!@event.IsSeatAvailable(venueId, bm.SeatNumber))
+            return BadRequest("The seat selected does not exist or has already been assigned.");
 
         var person = await _personsRepo.FindById(bm.PersonId);
 
