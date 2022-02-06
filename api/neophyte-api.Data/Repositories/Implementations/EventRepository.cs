@@ -9,6 +9,7 @@ using MongoDB.Driver.Linq;
 using neophyte.api.Data.DTOs;
 using neophyte.api.Data.Entities;
 using neophyte.api.Data.Enums;
+using neophyte.api.Data.Generators;
 using neophyte.api.Data.Repositories.Interfaces;
 using neophyte.api.Data.ValueObjects;
 
@@ -101,5 +102,13 @@ public class EventRepository : IEventRepository
         }
 
         return response;
+    }
+
+    public async Task<(string, byte[])> GetAttendeeReport(Event @event)
+    {
+        var attendees = await GetAttendees(@event);
+        var fileName = $"{@event.Name}_{@event.Date:yyyy-MMM-dd}_attendees.xlsx";
+        var data = ExcelGenerator.ForEventAttendees(attendees);
+        return (fileName, data);
     }
 }
