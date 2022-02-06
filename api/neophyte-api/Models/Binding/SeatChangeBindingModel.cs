@@ -7,8 +7,17 @@ public class SeatChangeBindingModel
     /// <summary>
     /// The church attendee identifier
     /// </summary>
-    /// <example>123e4567-e89b-12d3-a456-426614174000</example>
+    /// <example>61fff8966b22c10a9e790d57</example>
+    [SwaggerSchema(Nullable = false)]
     public string PersonId { get; set; }
+
+    /// <summary>
+    /// The venue which the seat number should be assigned in
+    /// </summary>
+    /// <example>C5</example>
+    /// <example>61fff8966b22c10a9e790d57</example>
+    [SwaggerSchema(Nullable = false)]
+    public string VenueId { get; set; }
 
     /// <summary>
     /// The seat number
