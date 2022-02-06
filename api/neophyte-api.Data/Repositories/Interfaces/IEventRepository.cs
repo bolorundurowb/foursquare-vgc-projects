@@ -23,4 +23,6 @@ public interface IEventRepository
     Task<EventSeat> ChangeSeat(Event @event, Person person, string seatNumber);
 
     Task<List<EventAttendeeDto>> GetAttendees(Event @event);
+
+    Task<(string, byte[])> GetAttendeeReport(Event @event);
 }

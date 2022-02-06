@@ -4,7 +4,8 @@ namespace neophyte.api.Core.Utilities;
 
 public static class SeatRange
 {
-    private static readonly Regex Matcher = new("([A-Z]+)([0-9]+)", RegexOptions.Compiled);
+    private static readonly Regex IsDigitMatcher = new(@"\D", RegexOptions.Compiled);
+    private static readonly Regex IsLetterMatcher = new(@"\d", RegexOptions.Compiled);
     private const char Separator = '-';
 
     public static List<string> Parse(string seatRange)
@@ -19,7 +20,7 @@ public static class SeatRange
         seatRange = seatRange.Trim().ToUpperInvariant();
 
         // if the value doesnt contain a '-' to show it is a range then return the value
-        if (seatRange.Contains(Separator))
+        if (!seatRange.Contains(Separator))
             return new List<string>
             {
                 seatRange
@@ -40,9 +41,8 @@ public static class SeatRange
 
     private static (string Prefix, int Value) Split(string seatNumber)
     {
-        var matches = Matcher.Matches(seatNumber);
-        var prefix = matches[0].Value;
-        var value = int.Parse(matches[1].Value);
+        var prefix = IsLetterMatcher.Replace(seatNumber, string.Empty);
+        var value = int.Parse(IsDigitMatcher.Replace(seatNumber, string.Empty));
         return (prefix, value);
     }
 }

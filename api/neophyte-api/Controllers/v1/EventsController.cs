@@ -3,11 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using neophyte.api.Data.Entities;
 using neophyte.api.Data.Repositories.Interfaces;
 using neophyte.api.Models.Binding;
 using neophyte.api.Models.View;
+using neophyte.api.Shared;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace neophyte.api.Controllers.v1;
 
@@ -133,5 +136,27 @@ public class EventsController : ApiController
 
         var attendees = await _eventRepo.GetAttendees(@event);
         return Ok(Mapper.Map<List<EventAttendeeViewModel>>(attendees));
+    }
+
+    /// <summary>
+    /// Returns an Excel file with the attendees for the given Event
+    /// </summary>
+    /// <param name="eventId">The id for the event</param>
+    [HttpGet("{eventId}/attendees/report")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAttendeeReport(string eventId)
+    {
+        var @event = await _eventRepo.FindById(eventId);
+
+        if (@event == null)
+            return NotFound("Event not found.");
+
+        var (fileName, data) = await _eventRepo.GetAttendeeReport(@event);
+
+        return File(
+            data,
+            Constants.ExcelMimeType,
+            fileName
+        );
     }
 }
