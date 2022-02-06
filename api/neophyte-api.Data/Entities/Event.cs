@@ -90,9 +90,9 @@ public class Event : Schema
 
     public bool HasSeatAssigned(string personId) => AssignedSeats.Any(x => x.PersonId == ObjectId.Parse(personId));
 
-    public bool IsSeatAvailable(string seatNumber)
+    public bool IsSeatAvailable(ObjectId venueId, string seatNumber)
     {
         seatNumber = seatNumber?.ToUpperInvariant();
-        return AvailableSeats.Any(x => x.Number == seatNumber);
+        return AvailableSeats.Any(x => x.VenueId == venueId && x.Number == seatNumber);
     }
 }

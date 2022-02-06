@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MongoDB.Bson;
+using neophyte.api.Data.Entities;
 using neophyte.api.Data.Enums;
 
 namespace neophyte.api.Data.ValueObjects;
@@ -10,6 +11,8 @@ public class EventSeat : ValueObject
     public int Priority { get; private set; }
 
     public SeatCategory Category { get; private set; }
+
+    public ObjectId VenueId { get; private set; }
 
     public string VenueName { get; private set; }
 
@@ -23,10 +26,11 @@ public class EventSeat : ValueObject
     {
     }
 
-    public EventSeat(int priority, string venueName, Seat seat)
+    public EventSeat(int priority, Venue venue, Seat seat)
     {
         Priority = priority;
-        VenueName = venueName;
+        VenueId = (ObjectId)venue.Id;
+        VenueName = venue.Name;
         Number = seat.Number;
         Category = seat.Category;
         AssociatedNumber = seat.AssociatedNumber;

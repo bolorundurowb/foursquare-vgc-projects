@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using neophyte.api.Data.Entities;
 using neophyte.api.Data.Repositories.Interfaces;
 using neophyte.api.Models.Binding;
@@ -99,15 +100,16 @@ public class EventsController : ApiController
     public async Task<IActionResult> ChangeSeat(string eventId, [FromBody] SeatChangeBindingModel bm)
     {
         var @event = await _eventRepo.FindById(eventId);
+        var venueId = ObjectId.Parse(bm.VenueId);
 
         if (@event == null)
             return NotFound("Event not found.");
 
         if (@event.HasSeatAssigned(bm.PersonId))
-            return BadRequest("A seat has not been assigned for this person.");
+            return BadRequest("A seat has not been assigned for this person. Register them afresh.");
 
-        if (@event.IsSeatAvailable(bm.SeatNumber))
-            return BadRequest("The seat selected is not available.");
+        if (@event.IsSeatAvailable(venueId, bm.SeatNumber))
+            return BadRequest("The seat selected has already been assigned.");
 
         var person = await _personsRepo.FindById(bm.PersonId);
 
