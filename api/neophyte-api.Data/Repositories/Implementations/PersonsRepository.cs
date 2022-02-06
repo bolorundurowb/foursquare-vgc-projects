@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using meerkat;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using neophyte.api.Data.Entities;
@@ -23,7 +24,7 @@ public class PersonsRepository : IPersonsRepository
         return queryable.ToListAsync();
     }
 
-    public Task<Person> FindById(string personId) => Meerkat.FindByIdAsync<Person>(personId);
+    public Task<Person> FindById(string personId) => Meerkat.FindByIdAsync<Person>(ObjectId.Parse(personId));
 
     public Task<Person> GetByPhone(string phoneNumber)
     {

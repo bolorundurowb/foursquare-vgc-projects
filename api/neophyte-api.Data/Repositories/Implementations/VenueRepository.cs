@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using meerkat;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using neophyte.api.Core.Utilities;
@@ -20,7 +21,7 @@ public class VenueRepository : IVenueRepository
 
     public async Task<Dictionary<string, Venue>> FindAndMapById(IEnumerable<string> venueIds)
     {
-        var ids = venueIds.Select(x => (object)x);
+        var ids = venueIds.Select(x => (object) ObjectId.Parse(x));
         var venues = await Meerkat.Query<Venue>()
             .Where(x => ids.Contains(x.Id))
             .ToListAsync();
@@ -28,7 +29,7 @@ public class VenueRepository : IVenueRepository
         return venues.ToDictionary(x => x.Id.ToString(), y => y);
     }
 
-    public Task<Venue> FindById(string venueId) => Meerkat.FindByIdAsync<Venue>(venueId);
+    public Task<Venue> FindById(string venueId) => Meerkat.FindByIdAsync<Venue>(ObjectId.Parse(venueId));
 
     public Task<Venue> FindByName(string name) => Meerkat.FindOneAsync<Venue>(x => x.Name == name);
 

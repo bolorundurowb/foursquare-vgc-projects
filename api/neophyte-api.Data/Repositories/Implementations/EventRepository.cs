@@ -24,7 +24,7 @@ public class EventRepository : IEventRepository
             .Take(limit)
             .ToListAsync();
 
-    public Task<Event> FindById(string eventId) => Meerkat.FindByIdAsync<Event>(eventId);
+    public Task<Event> FindById(string eventId) => Meerkat.FindByIdAsync<Event>(ObjectId.Parse(eventId));
 
     public Task<Event> FindByNameAndDate(string name, DateTime date) =>
         Meerkat.FindOneAsync<Event>(x => x.Name == name && x.Date == date);
