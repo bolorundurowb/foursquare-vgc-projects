@@ -8,7 +8,7 @@ public class EventViewModel : BaseEventViewModel
     /// <summary>
     /// The event registration url
     /// </summary>
-    /// <example>https://example.com/events/123e4567-e89b-12d3-a456-426614174000</example>
+    /// <example>https://example.com/events/61fff8966b22c10a9e790d57</example>
     [SwaggerSchema(Nullable = false)]
     public string RegistrationUrl { get; set; }
 

@@ -9,7 +9,7 @@ public class NewcomerViewModel
     /// <summary>
     /// The newcomers internal identifier
     /// </summary>
-    /// <example>123e4567-e89b-12d3-a456-426614174000</example>
+    /// <example>61fff8966b22c10a9e790d57</example>
     [SwaggerSchema(Nullable = false)]
     public string Id { get; set; }
         
