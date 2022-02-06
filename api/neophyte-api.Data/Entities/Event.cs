@@ -35,7 +35,7 @@ public class Event : Schema
 
         foreach (var (priority, venue) in venuePriority)
         foreach (var seat in venue.Seats)
-            AvailableSeats.Add(new EventSeat(priority, venue.Name, seat));
+            AvailableSeats.Add(new EventSeat(priority, venue, seat));
 
         // generate url and QR code
         EnvReader.TryGetStringValue("UI_URL", out var baseUrl);
@@ -74,9 +74,7 @@ public class Event : Schema
             throw new Exception("There is no assigned seat for this person. So it cant be changed.");
 
         // put back into the pool
-        AvailableSeats.Insert(0,
-            new EventSeat(currentSeat.Priority, currentSeat.VenueName,
-                new Seat(currentSeat.Category, currentSeat.Number)));
+        AvailableSeats.Insert(0, (EventSeat)currentSeat.GetCopy());
 
         // assign the new seats
         var eventSeat = AvailableSeats.First(x => x.Number == seatNumber);
