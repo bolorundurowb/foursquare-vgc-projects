@@ -19,7 +19,7 @@ public static class SeatRange
         seatRange = seatRange.Trim().ToUpperInvariant();
 
         // if the value doesnt contain a '-' to show it is a range then return the value
-        if (seatRange.Contains(Separator))
+        if (!seatRange.Contains(Separator))
             return new List<string>
             {
                 seatRange

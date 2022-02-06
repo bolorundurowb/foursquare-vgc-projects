@@ -47,8 +47,8 @@ public class VenuesController : ApiController
     {
         var venue = await _venueRepo.FindByName(bm.Name);
 
-        if (venue != null)
-            return Conflict("A venue exists with the same name.");
+        // if (venue != null)
+        //     return Conflict("A venue exists with the same name.");
 
         var seatRanges = bm.SeatRanges
             .Select(x => (x.Category, Number: x.NumberRange))
