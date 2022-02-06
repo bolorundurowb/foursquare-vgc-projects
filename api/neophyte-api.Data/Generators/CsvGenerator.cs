@@ -7,11 +7,11 @@ using CsvHelper;
 using neophyte.api.Data.CsvMappers;
 using neophyte.api.Data.Entities;
 
-namespace neophyte.api.Data.Helpers;
+namespace neophyte.api.Data.Generators;
 
-public static class CsvHelpers
+public static class CsvGenerator
 {
-    public static async Task<byte[]> GenerateCsvFromAttendance(List<Attendee> attendees)
+    public static async Task<byte[]> ForAttendees(List<Attendee> attendees)
     {
         // add in the serial numbers, since the csv mapper doesnt work
         var attendanceSerialNo = 1;
@@ -29,7 +29,7 @@ public static class CsvHelpers
         return Encoding.UTF8.GetBytes(csvString);
     }
 
-    public static async Task<byte[]> GenerateCsvFromNewcomers(List<Newcomer> newcomers)
+    public static async Task<byte[]> ForNewcomers(List<Newcomer> newcomers)
     {
         // add in the serial numbers, since the csv mapper doesnt work
         var newcomerSerialNo = 1;
