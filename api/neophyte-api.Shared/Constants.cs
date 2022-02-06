@@ -8,4 +8,6 @@ public static class Constants
     public static readonly DateTime MaxTokenExpiry = new DateTime(2038, 1, 19, 3, 14, 06);
 
     public const int MaxItemsPerPage = 35;
+
+    public const string ExcelMimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 }
