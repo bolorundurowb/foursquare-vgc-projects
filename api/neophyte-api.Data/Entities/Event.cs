@@ -35,7 +35,7 @@ public class Event : Schema
 
         foreach (var (priority, venue) in venuePriority)
         foreach (var seat in venue.Seats)
-            AvailableSeats.Add(new EventSeat(priority, venue.Name, seat));
+            AvailableSeats.Add(new EventSeat(priority, venue, seat));
 
         // generate url and QR code
         EnvReader.TryGetStringValue("UI_URL", out var baseUrl);
@@ -64,22 +64,18 @@ public class Event : Schema
         return eventSeat;
     }
 
-    public EventSeat ChangeSeat(Person person, string seatNumber)
+    public EventSeat ChangeSeat(Person person, ObjectId venueId, string seatNumber)
     {
         var personId = (ObjectId)person.Id;
         seatNumber = seatNumber?.ToUpperInvariant();
-        var currentSeat = AssignedSeats.FirstOrDefault(x => x.PersonId == personId);
-
-        if (currentSeat == null)
-            throw new Exception("There is no assigned seat for this person. So it cant be changed.");
+        var currentSeat = AssignedSeats.First(x => x.PersonId == personId);
 
         // put back into the pool
-        AvailableSeats.Insert(0,
-            new EventSeat(currentSeat.Priority, currentSeat.VenueName,
-                new Seat(currentSeat.Category, currentSeat.Number)));
+        AssignedSeats.Remove(currentSeat);
+        AvailableSeats.Insert(0, currentSeat);
 
         // assign the new seats
-        var eventSeat = AvailableSeats.First(x => x.Number == seatNumber);
+        var eventSeat = AvailableSeats.First(x => x.VenueId == venueId && x.Number == seatNumber);
         AvailableSeats.Remove(eventSeat);
 
         eventSeat.Assign(personId);
@@ -90,9 +86,11 @@ public class Event : Schema
 
     public bool HasSeatAssigned(string personId) => AssignedSeats.Any(x => x.PersonId == ObjectId.Parse(personId));
 
-    public bool IsSeatAvailable(string seatNumber)
+    public bool IsSeatAvailable() => AvailableSeats.Any();
+
+    public bool IsSeatAvailable(ObjectId venueId, string seatNumber)
     {
         seatNumber = seatNumber?.ToUpperInvariant();
-        return AvailableSeats.Any(x => x.Number == seatNumber);
+        return AvailableSeats.Any(x => x.VenueId == venueId && x.Number == seatNumber);
     }
 }

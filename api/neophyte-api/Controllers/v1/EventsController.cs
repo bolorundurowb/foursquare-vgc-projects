@@ -5,6 +5,7 @@ using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using neophyte.api.Data.Entities;
 using neophyte.api.Data.Repositories.Interfaces;
 using neophyte.api.Models.Binding;
@@ -84,12 +85,15 @@ public class EventsController : ApiController
             return NotFound("Event not found.");
 
         if (@event.HasSeatAssigned(bm.PersonId))
-            return Conflict("A seat has been assigned.");
+            return Conflict("A seat has been assigned for this attendee.");
 
         var person = await _personsRepo.FindById(bm.PersonId);
 
         if (person == null)
             return NotFound("Person not found.");
+
+        if (!@event.IsSeatAvailable())
+            return BadRequest("No more seats available.");
 
         var eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
         return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
@@ -102,22 +106,23 @@ public class EventsController : ApiController
     public async Task<IActionResult> ChangeSeat(string eventId, [FromBody] SeatChangeBindingModel bm)
     {
         var @event = await _eventRepo.FindById(eventId);
+        var venueId = ObjectId.Parse(bm.VenueId);
 
         if (@event == null)
             return NotFound("Event not found.");
 
-        if (@event.HasSeatAssigned(bm.PersonId))
-            return BadRequest("A seat has not been assigned for this person.");
+        if (!@event.HasSeatAssigned(bm.PersonId))
+            return BadRequest("A seat has not been assigned for this person. Register them afresh.");
 
-        if (@event.IsSeatAvailable(bm.SeatNumber))
-            return BadRequest("The seat selected is not available.");
+        if (!@event.IsSeatAvailable(venueId, bm.SeatNumber))
+            return BadRequest("The seat selected does not exist or has already been assigned.");
 
         var person = await _personsRepo.FindById(bm.PersonId);
 
         if (person == null)
             return NotFound("Person not found.");
 
-        var eventSeat = await _eventRepo.ChangeSeat(@event, person, bm.SeatNumber);
+        var eventSeat = await _eventRepo.ChangeSeat(@event, person, venueId, bm.SeatNumber);
         return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
     }
 
