@@ -16,4 +16,6 @@ public interface IVenueRepository
     Task<Venue> FindByName(string name);
 
     Task<Venue> Create(string name, List<(SeatCategory Category, string Range)> seatRanges);
+
+    Task Remove(string venueId);
 }
