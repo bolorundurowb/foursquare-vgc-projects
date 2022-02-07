@@ -15,7 +15,7 @@
       stripe
       style="width: 100%"
       :data="venues"
-      :loading="isLoadingVenues"
+      v-loading="isLoadingVenues || isDeleteingVenue || isCreatingVenue"
       v-if="venues.length > 0"
     >
       <el-table-column
@@ -24,14 +24,14 @@
       <el-table-column
         prop="numOfSeats"
         label="Number of seats" />
-        <el-table-column
-          label=""
-          width="120">
-          <template slot-scope="">
-            <el-button type="text" size="small">Details</el-button>
-            <el-button type="danger" size="mini" icon="el-icon-delete" circle />
-          </template>
-        </el-table-column>
+      <el-table-column
+        label=""
+        width="120">
+        <template slot-scope="{ row }">
+          <el-button type="text" size="small">Details</el-button>
+          <el-button type="danger" size="mini" icon="el-icon-delete" circle @click="handleDeleteVenue(row)" />
+        </template>
+      </el-table-column>
     </el-table>
 
     <el-dialog
@@ -122,7 +122,8 @@ export default {
   data() {
     return {
       isLoadingVenues: false,
-      isCreatingVenues: false,
+      isCreatingVenue: false,
+      isDeleteingVenue: false,
       venues: [],
       showVenueForm: false,
       venueForm: {
@@ -175,7 +176,7 @@ export default {
       }
     },
     async createVenue(body) {
-      this.isCreatingVenues = true;
+      this.isCreatingVenue = true;
 
       try {
         await api.post('/v1/venues', body);
@@ -187,7 +188,23 @@ export default {
 
         console.log(status, data.message);
       } finally {
-        this.isCreatingVenues = false;
+        this.isCreatingVenue = false;
+      }
+    },
+    async deleteVenue(id) {
+      this.isDeleteingVenue = true;
+
+      try {
+        await api.delete(`/v1/venues/${id}`);
+
+        this.getVenues();
+        this.showVenueForm = false;
+      } catch (error) {
+        const { data, status } = error.response;
+
+        console.log(status, data.message);
+      } finally {
+        this.isDeleteingVenue = false;
       }
     },
     handleAddSeatCategory() {
@@ -208,6 +225,9 @@ export default {
           return false;
         }
       });
+    },
+    handleDeleteVenue({ id }) {
+      this.deleteVenue(id);
     }
   },
   mounted() {
