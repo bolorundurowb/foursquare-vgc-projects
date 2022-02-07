@@ -11,6 +11,13 @@
       </el-button>
     </el-empty>
 
+    <el-row class="Venues__header-row">
+      <el-button type="primary" @click="showVenueForm = true" size="small">
+        <i class="el-icon-plus" />
+        Add Venue
+      </el-button>
+    </el-row>
+
     <el-table
       stripe
       style="width: 100%"
@@ -29,7 +36,22 @@
         width="120">
         <template slot-scope="{ row }">
           <el-button type="text" size="small">Details</el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" circle @click="handleDeleteVenue(row)" />
+          <el-popconfirm
+            title="Are you sure to delete this?"
+            class="Venues__table-delete-button"
+            icon-color="red"
+            confirm-button-text="Delete"
+            cancel-button-text="No"
+            @confirm="handleDeleteVenue(row)"
+          >
+            <el-button
+              slot="reference"
+              type="danger"
+              size="mini"
+              icon="el-icon-delete"
+              circle
+            />
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
@@ -104,6 +126,8 @@
             <el-button
               type="primary"
               @click="handleAddVenue"
+              :disabled="isCreatingVenue"
+              v-loading="isCreatingVenue"
             >
               Add Venue
             </el-button>
@@ -237,6 +261,15 @@ export default {
 </script>
 
 <style lang="scss">
+.Venues {
+  &__header-row {
+    margin-bottom: 20px;
+  }
+
+  &__table-delete-button {
+    margin-left: 7px;
+  }
+}
 .VenuesDialog {
   &__content {
     max-height: 500px;
