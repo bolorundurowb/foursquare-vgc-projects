@@ -2,10 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using MapsterMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using neophyte.api.Data.Repositories.Interfaces;
 using neophyte.api.Models.Binding;
 using neophyte.api.Models.View;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace neophyte.api.Controllers.v1;
 
@@ -56,5 +58,13 @@ public class VenuesController : ApiController
         venue = await _venueRepo.Create(bm.Name, seatRanges);
 
         return Ok(Mapper.Map<VenueViewModel>(venue));
+    }
+
+    [HttpDelete("{venueId}")]
+    [SwaggerResponse(StatusCodes.Status200OK, "Venue removed successfully.", typeof(GenericViewModel))]
+    public async Task<IActionResult> Remove(string venueId)
+    {
+        await _venueRepo.Remove(venueId);
+        return Ok("Venue removed successfully.");
     }
 }
