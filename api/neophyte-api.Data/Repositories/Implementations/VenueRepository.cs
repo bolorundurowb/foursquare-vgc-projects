@@ -21,7 +21,7 @@ public class VenueRepository : IVenueRepository
 
     public async Task<Dictionary<string, Venue>> FindAndMapById(IEnumerable<string> venueIds)
     {
-        var ids = venueIds.Select(x => (object) ObjectId.Parse(x));
+        var ids = venueIds.Select(x => (object)ObjectId.Parse(x));
         var venues = await Meerkat.Query<Venue>()
             .Where(x => ids.Contains(x.Id))
             .ToListAsync();
@@ -47,4 +47,6 @@ public class VenueRepository : IVenueRepository
 
         return venue;
     }
+
+    public Task RemoveVenue(string venueId) => Meerkat.RemoveByIdAsync<Venue>(ObjectId.Parse(venueId));
 }
