@@ -4,9 +4,7 @@ import router from './router';
 // import VueModal from '@kouts/vue-modal';
 
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-
-import '@kouts/vue-modal/dist/vue-modal.css';
+import './sass/style.scss';
 
 Vue.config.productionTip = false;
 
