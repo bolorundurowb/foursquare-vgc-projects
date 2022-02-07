@@ -65,10 +65,8 @@ export default {
           password
         });
 
-        console.log(data);
         const { token, admin, expiresAt } = data
 
-        // do something with the data here
         Cookies.set('token', token);
         Cookies.set('admin', admin);
         Cookies.set('expiresAt', expiresAt);
