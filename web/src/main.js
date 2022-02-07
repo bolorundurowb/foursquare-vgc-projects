@@ -1,23 +1,16 @@
 import Vue from 'vue';
-import axios from 'axios';
 import App from './App.vue';
 import router from './router';
-import VueSwal from 'vue-swal';
-import VueAxios from 'vue-axios';
-import VueModal from '@kouts/vue-modal';
+// import VueModal from '@kouts/vue-modal';
 
-import '@kouts/vue-modal/dist/vue-modal.css';
+import ElementUI from 'element-ui';
+import './sass/style.scss';
 
 Vue.config.productionTip = false;
 
-Vue.use(VueSwal);
+Vue.use(ElementUI);
 
-Vue.component('VueModal', VueModal);
-
-const instance = axios.create({
-  baseURL: process.env.VUE_APP_API_URL || 'http://localhost:5089/'
-});
-Vue.use(VueAxios, instance);
+// Vue.component('VueModal', VueModal);
 
 new Vue({
   router,
