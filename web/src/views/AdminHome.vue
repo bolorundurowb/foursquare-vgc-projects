@@ -1,26 +1,23 @@
 <template>
   <el-container class="AdminHome">
     <el-header class="AdminHome__header">
-      <div class="AdminHome__logo" />
+      <div class="AdminHome__logo"/>
 
       <el-menu
-        class="AdminHome__menu"
-        mode="horizontal"
-        :router="true"
-      >
+          class="AdminHome__menu"
+          mode="horizontal"
+          :router="true">
         <el-menu-item
-          class="AdminHome__menu-item"
-          :index="'/'"
-        >
-          <i class="el-icon-house"/>
-          Venues
-        </el-menu-item>
-        <el-menu-item
-          class="AdminHome__menu-item"
-          :index="'/events'"
-        >
+            class="AdminHome__menu-item"
+            :index="'/events'">
           <i class="el-icon-date"/>
           Events
+        </el-menu-item>
+        <el-menu-item
+            class="AdminHome__menu-item"
+            :index="'/venues'">
+          <i class="el-icon-house"/>
+          Venues
         </el-menu-item>
       </el-menu>
 
@@ -34,10 +31,10 @@
         </el-dropdown-menu>
       </el-dropdown>
     </el-header>
+
     <el-main class="AdminHome__content">
-      <router-view />
+      <router-view/>
     </el-main>
-    
   </el-container>
 </template>
 
@@ -78,7 +75,7 @@ export default {
     border-bottom: none;
     display: flex;
     align-items: center;
-    
+
     &:not(:first-of-type) {
       margin-left: 10px;
     }
