@@ -1,50 +1,60 @@
 <template>
   <el-container class="AdminHome">
     <el-header class="AdminHome__header">
-      <div class="AdminHome__logo" />
+      <div class="AdminHome__logo"/>
 
       <el-menu
-        class="AdminHome__menu"
-        mode="horizontal"
-        :router="true"
-      >
+          class="AdminHome__menu"
+          mode="horizontal"
+          :router="true">
         <el-menu-item
-          class="AdminHome__menu-item"
-          :index="'/'"
-        >
-          <i class="el-icon-house"/>
-          Venues
-        </el-menu-item>
-        <el-menu-item
-          class="AdminHome__menu-item"
-          :index="'/events'"
-        >
+            class="AdminHome__menu-item"
+            :index="'/events'">
           <i class="el-icon-date"/>
           Events
         </el-menu-item>
+        <el-menu-item
+            class="AdminHome__menu-item"
+            :index="'/venues'">
+          <i class="el-icon-house"/>
+          Venues
+        </el-menu-item>
       </el-menu>
 
-      <el-dropdown trigger="click">
+      <el-dropdown trigger="click" @command="commandHandlers">
         <span class="AdminHome__dropdown">
           Admin <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>Logout</el-dropdown-item>
-          <!-- <el-dropdown-item icon="el-icon-plus">Logout</el-dropdown-item> -->
+          <el-dropdown-item command="logout">Logout</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </el-header>
+
     <el-main class="AdminHome__content">
-      <router-view />
+      <router-view/>
     </el-main>
-    
   </el-container>
 </template>
 
 <script>
+import Cookies from 'js-cookie';
+
 export default {
-  name: 'AdminHome'
-}
+  name: 'AdminHome',
+  methods: {
+    commandHandlers(command) {
+      if (command === 'logout') {
+
+        Cookies.remove('token', { path: '' });
+        Cookies.remove('admin', { path: '' });
+        Cookies.remove('expiresAt', { path: '' });
+
+        this.$router.replace({ path: '/login' });
+      }
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -78,7 +88,7 @@ export default {
     border-bottom: none;
     display: flex;
     align-items: center;
-    
+
     &:not(:first-of-type) {
       margin-left: 10px;
     }

@@ -1,36 +1,36 @@
 <template>
   <div class="Events">
     <el-empty
-      description="No Events available" 
-      v-if="!isLoadingEvents && events.length < 1"
-      :image-size="250"
+        description="No Events available"
+        v-if="!isLoadingEvents && events.length < 1"
+        :image-size="250"
     >
-      <el-button  type="primary" @click="showEventForm = true">
-        <i class="el-icon-plus" />
+      <el-button type="primary" @click="showEventForm = true">
+        <i class="el-icon-plus"/>
         Add Event
       </el-button>
     </el-empty>
 
     <el-row class="Events__header-row" v-if="events.length > 0">
       <el-button type="primary" @click="showEventForm = true" size="small">
-        <i class="el-icon-plus" />
+        <i class="el-icon-plus"/>
         Add Event
       </el-button>
     </el-row>
 
     <event-table
-      :events="events"
-      :is-loading="isLoadingEvents || isDeleteingEvent || isCreatingEvent"
-      v-if="events.length > 0"
-      @delete-event="handleDeleteEvent"
+        :events="events"
+        :is-loading="isLoadingEvents || isDeleteingEvent || isCreatingEvent"
+        v-if="events.length > 0"
+        @delete-event="handleDeleteEvent"
     />
 
     <event-dialog
-      :show-event-form="showEventForm"
-      :venues="venues"
-      :is-creating-event="isCreatingEvent"
-      @create-event="handleAddEvent"
-      @close="showEventForm = false"
+        :show-event-form="showEventForm"
+        :venues="venues"
+        :is-creating-event="isCreatingEvent"
+        @create-event="handleAddEvent"
+        @close="showEventForm = false"
     />
   </div>
 </template>
@@ -62,8 +62,6 @@ export default {
 
       try {
         const { data } = await api.get('/v1/events');
-
-        console.log(data, 'data')
         this.events = data;
       } catch (error) {
         const { data, status } = error.response;
@@ -98,8 +96,7 @@ export default {
         this.showEventForm = false;
       } catch (error) {
         const { data, status } = error.response;
-
-        console.log(status, data.message);
+        console.error(status, data.message);
       } finally {
         this.isCreatingEvents = false;
       }
@@ -114,8 +111,7 @@ export default {
         this.showEventForm = false;
       } catch (error) {
         const { data, status } = error.response;
-
-        console.log(status, data.message);
+        console.error(status, data.message);
       } finally {
         this.isDeleteingEvent = false;
       }
@@ -131,7 +127,7 @@ export default {
     this.getEvents();
     this.getVenues();
   }
-}
+};
 </script>
 
 <style lang="scss">
