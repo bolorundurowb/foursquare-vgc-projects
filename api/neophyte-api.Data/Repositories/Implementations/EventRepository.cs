@@ -111,4 +111,6 @@ public class EventRepository : IEventRepository
         var data = ExcelGenerator.ForEventAttendees(attendees);
         return (fileName, data);
     }
+
+    public Task Remove(string eventId) => Meerkat.RemoveByIdAsync<Event>(ObjectId.Parse(eventId));
 }

@@ -164,4 +164,17 @@ public class EventsController : ApiController
             fileName
         );
     }
+
+    [HttpDelete("{eventId}")]
+    [SwaggerResponse(StatusCodes.Status200OK, "Event removed successfully.", typeof(GenericViewModel))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest, "Event cannot be removed.", typeof(GenericViewModel))]
+    public async Task<IActionResult> Remove(string eventId)
+    {
+        var @event = await _eventRepo.FindById(eventId);
+
+        if (@event != null && @event.AssignedSeats.Count > 0) 
+            return BadRequest("An event with attendees cannot be removed.");
+
+        return Ok("Event removed successfully.");
+    }
 }
