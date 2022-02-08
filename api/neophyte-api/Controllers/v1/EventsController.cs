@@ -175,6 +175,8 @@ public class EventsController : ApiController
         if (@event != null && @event.AssignedSeats.Count > 0) 
             return BadRequest("An event with attendees cannot be removed.");
 
+        await _eventRepo.Remove(eventId);
+
         return Ok("Event removed successfully.");
     }
 }
