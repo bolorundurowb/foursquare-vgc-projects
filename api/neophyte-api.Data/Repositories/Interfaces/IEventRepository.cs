@@ -26,4 +26,6 @@ public interface IEventRepository
     Task<List<EventAttendeeDto>> GetAttendees(Event @event);
 
     Task<(string, byte[])> GetAttendeeReport(Event @event);
+
+    Task Remove(string eventId);
 }
