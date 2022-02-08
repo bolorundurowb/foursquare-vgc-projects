@@ -50,7 +50,7 @@ export default {
         Cookies.remove('admin', { path: '' });
         Cookies.remove('expiresAt', { path: '' });
 
-        this.$router.replace({ path: '/' });
+        this.$router.replace({ path: '/login' });
       }
     }
   }
