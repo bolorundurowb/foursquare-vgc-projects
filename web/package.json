@@ -11,6 +11,7 @@
     "@kouts/vue-modal": "^2.1.0",
     "axios": "^0.23.0",
     "core-js": "^3.18.3",
+    "date-fns": "^2.28.0",
     "element-ui": "^2.15.6",
     "js-cookie": "^3.0.1",
     "vue": "^2.6.14",
