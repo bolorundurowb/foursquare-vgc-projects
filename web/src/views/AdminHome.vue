@@ -71,6 +71,7 @@ export default {
   &__menu {
     margin-left: 50px;
     border-bottom: none;
+    flex: 1;
   }
 
   &__menu-item {

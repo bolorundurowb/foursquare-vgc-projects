@@ -103,7 +103,6 @@ export default {
         this.isDeleteingVenue = false;
       }
     },
-
     handleAddVenue(data) {
       this.createVenue(data);
     },
