@@ -14,12 +14,11 @@
         :model="venueForm"
         ref="venueForm"
         label-position="top"
+        :rules="venueFormRules"
       >
-        <el-form-item label="Name" prop="name" :rules="venueFormRules.name">
+        <el-form-item label="Name" prop="name">
           <el-input v-model="venueForm.name" />
         </el-form-item>
-
-
 
         <el-row
           v-for="(range, index) in venueForm.seatRanges"
@@ -29,12 +28,20 @@
           type="flex"
         >
           <el-col :span="12">
-            <el-form-item label="Seat/Seat Range" :rules="venueFormRules.numberRange" :prop="`numberRage-${index}`">
+            <el-form-item
+              label="Seat/Seat Range"
+              :rules="{ required: true, message: 'Seat Range is required', trigger: 'blur' }"
+              :prop="`seatRanges.${index}.numberRange`"
+            >
               <el-input v-model="range.numberRange" placeholder="A12-A100/B12"/>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="Category" :rules="venueFormRules.category" :prop="`category-${index}`">
+            <el-form-item
+              label="Category"
+              :rules="{ required: true, message: 'Category is required', trigger: 'blur' }"
+              :prop="`seatRanges.${index}.category`"
+            >
               <el-select
                 v-model="range.category"
                 placeholder="Select a category"
@@ -106,15 +113,9 @@ export default {
         ]
       },
       venueFormRules: {
-        name: [
-          { required: true, message: 'Name is required' }
-        ],
-        numberRange: [
-          // { required: true, message: 'Number Range is required' }
-        ],
-        category: [
-          // { required: true, message: 'Category is required' }
-        ]
+        name: [{ required: true, message: 'Name is required' }],
+        numberRange: { required: true, message: 'Seat Range is required' },
+        category: { required: true, message: 'Category is required' }
       },
       categoryOptions: [
         {
