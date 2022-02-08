@@ -21,13 +21,12 @@
         </el-menu-item>
       </el-menu>
 
-      <el-dropdown trigger="click">
+      <el-dropdown trigger="click" @command="commandHandlers">
         <span class="AdminHome__dropdown">
           Admin <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>Logout</el-dropdown-item>
-          <!-- <el-dropdown-item icon="el-icon-plus">Logout</el-dropdown-item> -->
+          <el-dropdown-item command="logout">Logout</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </el-header>
@@ -39,9 +38,23 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie';
+
 export default {
-  name: 'AdminHome'
-}
+  name: 'AdminHome',
+  methods: {
+    commandHandlers(command) {
+      if (command === 'logout') {
+
+        Cookies.remove('token', { path: '' });
+        Cookies.remove('admin', { path: '' });
+        Cookies.remove('expiresAt', { path: '' });
+
+        this.$router.replace({ path: '/' });
+      }
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
