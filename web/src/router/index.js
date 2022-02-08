@@ -31,13 +31,17 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'Venues',
-        component: Venues
+        redirect: '/events'
       },
       {
         path: 'events',
         name: 'Events',
         component: Events
+      },
+      {
+        path: 'venues',
+        name: 'Venues',
+        component: Venues
       }
     ]
   }
