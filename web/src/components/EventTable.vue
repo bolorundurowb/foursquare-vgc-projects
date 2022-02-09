@@ -23,7 +23,13 @@
       label=""
       width="120">
       <template slot-scope="{ row }">
-        <el-button type="text" size="small">Details</el-button>
+        <el-button
+          type="text"
+          size="small"
+          @click="handleShowEventDetails(row)"
+        >
+          Details
+        </el-button>
         <el-popconfirm
           title="Are you sure to delete this?"
           class="Events__table-delete-button"
@@ -63,6 +69,9 @@ export default {
   methods: {
     handleDeleteEvent(row) {
       this.$emit('delete-event', row);
+    },
+    handleShowEventDetails(row) {
+      this.$router.push({ path: `/events/${row.id}` });
     }
   },
   filters: {
