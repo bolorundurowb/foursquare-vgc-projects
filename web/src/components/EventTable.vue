@@ -52,8 +52,6 @@
 </template>
 
 <script>
-import format from 'date-fns/format';
-
 export default {
   name: 'EventTable',
   props: {
@@ -72,11 +70,6 @@ export default {
     },
     handleShowEventDetails(row) {
       this.$router.push({ path: `/events/${row.id}` });
-    }
-  },
-  filters: {
-    dateFilter(value) {
-      return format(new Date(value), 'PPPP')
     }
   }
 }
