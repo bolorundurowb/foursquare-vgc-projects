@@ -5,15 +5,39 @@
       content="Event Details"
     />
 
-    <el-row :gutter="20">
-      <el-col :span="12">
-        <el-card>
-          <el-descriptions>
+    <el-divider />
 
+    <el-row :gutter="20">
+      <el-col :span="5">
+        <el-card>
+          <el-descriptions
+            :title="event.name"
+            v-if="event"
+            direction="vertical"
+            border
+            :column="3"
+          >
+            <el-descriptions-item label="Date">
+              {{ event.date | dateFilter }}
+            </el-descriptions-item>
+
+            <el-descriptions-item label="Number of registered Attendees" :span="2">
+              {{ event.numOfAttendees }}
+            </el-descriptions-item>
+
+            <el-descriptions-item label="Venues">
+              <el-tag
+                v-for="(venue, index) in venues"
+                :key="index"
+                class="EventDetails__venue-tag"
+              >
+                {{venue.venueName}} ({{venue.priority}})
+              </el-tag>
+            </el-descriptions-item>
           </el-descriptions>
         </el-card>
       </el-col>
-      <el-col :span="12">
+      <el-col :span="5">
         <el-card>
           <div>
             <el-image
@@ -33,6 +57,53 @@
           </el-button>
         </el-card>
 
+      </el-col>
+      <el-col :span="14">
+        <el-card>
+          <el-table
+            stripe
+            border
+            style="width: 100%"
+            :data="attendees"
+            v-loading="isLoadingEventAttendees"
+            class="EventTable"
+          >
+            <el-table-column
+              prop="Name"
+              label="Name"
+            >
+              <template v-slot="{ row }">
+                {{row.lastName}} {{row.firstName}}
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="phoneNumber"
+              label="Phone Number"
+            />
+            <el-table-column
+              prop="venue"
+              label="Venue"
+            />
+            <el-table-column
+              prop="category"
+              label="Category"
+            >
+              <template v-slot="{ row }">
+                <el-tag >
+                  {{row.category}}
+                </el-tag>
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="seat"
+              label="Seat"
+            />
+            <el-table-column
+              prop="accompanyingSeat"
+              label="Accompanying Seat"
+            />
+          </el-table>
+        </el-card>
       </el-col>
     </el-row>
   </div>
@@ -54,6 +125,7 @@ export default {
   data() {
     return {
       event: null,
+      attendees: [],
       isLoadingEvent: false
     }
   },
@@ -64,6 +136,21 @@ export default {
       }
 
       return '';
+    },
+    venues() {
+      if (this.event) {
+        return this.event.availableSeats.reduce((acc, { venueName, priority }) => {
+          const found = acc.find(v => v.venueName === venueName);
+
+          if (!found) {
+            acc.push({ venueName, priority });
+          }
+
+          return acc;
+        }, []);
+      }
+
+      return [];
     }
   },
   methods: {
@@ -85,6 +172,21 @@ export default {
         this.isLoadingEvent = false;
       }
     },
+    async getEventAttendees() {
+      this.isLoadingEventAttendees = true;
+
+      try {
+        const { data } = await api.get(`/v1/events/${this.eventId}/attendees`);
+
+        this.event = data;
+      } catch (error) {
+        const { data, status } = error.response;
+
+        console.log(status, data.message);
+      } finally {
+        this.isLoadingEventAttendees = false;
+      }
+    },
     printQrCode() {
       printJs({
         printable: this.qrCodeImage,
@@ -95,6 +197,7 @@ export default {
   },
   mounted() {
     this.getEventDetails();
+    this.getEventAttendees();
   }
 }
 </script>
@@ -102,9 +205,12 @@ export default {
 <style lang="scss">
   .EventDetails {
     &__qr-image {
-      width: 300px;
-      height: 300px;
+      width: 100%;
       border: 1px solid #d7dae2;
+    }
+
+    &__venue-tag:not(:first-of-type) {
+      margin-left: 4px;
     }
   }
 </style>
