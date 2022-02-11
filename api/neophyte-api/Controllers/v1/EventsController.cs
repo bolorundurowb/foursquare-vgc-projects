@@ -74,7 +74,7 @@ public class EventsController : ApiController
 
     [AllowAnonymous]
     [HttpPost("{eventId}/checkin")]
-    [ProducesResponseType(typeof(EventViewModel), 201)]
+    [ProducesResponseType(typeof(EventSeatViewModel), 201)]
     [ProducesResponseType(typeof(GenericViewModel), 404)]
     [ProducesResponseType(typeof(GenericViewModel), 409)]
     public async Task<IActionResult> CheckIn(string eventId, [FromBody] SeatAssignmentBindingModel bm)
