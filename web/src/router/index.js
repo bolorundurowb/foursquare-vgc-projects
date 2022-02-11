@@ -6,6 +6,7 @@ const AdminHome = () => import('../views/AdminHome.vue');
 const Login = () => import('../views/Login.vue');
 const Venues = () => import('../views/Venues.vue');
 const Events = () => import('../views/Events.vue');
+const EventDetails = () => import('../views/EventDetails');
 
 Vue.use(VueRouter);
 
@@ -30,18 +31,24 @@ const routes = [
     },
     children: [
       {
-        path: '',
-        redirect: '/events'
-      },
-      {
         path: 'events',
         name: 'Events',
         component: Events
       },
       {
+        path: 'events/:eventId',
+        name: 'EventDetails',
+        component: EventDetails,
+        props: true
+      },
+      {
         path: 'venues',
         name: 'Venues',
         component: Venues
+      },
+      {
+        path: '',
+        redirect: '/events'
       }
     ]
   }

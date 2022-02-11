@@ -23,7 +23,13 @@
       label=""
       width="120">
       <template slot-scope="{ row }">
-        <el-button type="text" size="small">Details</el-button>
+        <el-button
+          type="text"
+          size="small"
+          @click="handleShowEventDetails(row)"
+        >
+          Details
+        </el-button>
         <el-popconfirm
           title="Are you sure to delete this?"
           class="Events__table-delete-button"
@@ -46,8 +52,6 @@
 </template>
 
 <script>
-import format from 'date-fns/format';
-
 export default {
   name: 'EventTable',
   props: {
@@ -63,11 +67,9 @@ export default {
   methods: {
     handleDeleteEvent(row) {
       this.$emit('delete-event', row);
-    }
-  },
-  filters: {
-    dateFilter(value) {
-      return format(new Date(value), 'PPPP')
+    },
+    handleShowEventDetails(row) {
+      this.$router.push({ path: `/events/${row.id}` });
     }
   }
 }
