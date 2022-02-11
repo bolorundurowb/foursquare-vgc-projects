@@ -15,6 +15,7 @@
             direction="vertical"
             border
             :column="2"
+            v-loading="isLoadingEvent"
           >
             <el-descriptions-item label="Date">
               {{ event.date | dateFilter }}
@@ -49,7 +50,12 @@
               class="EventDetails__qr-image"
               :src="qrCodeImage"
               fit="contain"
-            />
+              v-loading="isLoadingEvent"
+            >
+              <div slot="error" class="EventDetails__qr-image-error-slot">
+                <i class="el-icon-picture-outline"></i>
+              </div>
+            </el-image>
           </div>
 
           <el-button
@@ -212,6 +218,19 @@ export default {
     &__qr-image {
       width: 100%;
       border: 1px solid #d7dae2;
+      min-height: 360px;
+    }
+
+    &__qr-image-error-slot {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      background: #f5f7fa;
+      color: #909399;
+      font-size: 30px;
     }
 
     &__venue-tag:not(:first-of-type) {
