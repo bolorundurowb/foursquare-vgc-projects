@@ -12,7 +12,6 @@
         <el-card>
           <el-descriptions
             :title="event.name"
-            v-if="event"
             direction="vertical"
             border
             :column="3"
@@ -124,9 +123,10 @@ export default {
   },
   data() {
     return {
-      event: null,
+      event: {},
       attendees: [],
-      isLoadingEvent: false
+      isLoadingEvent: false,
+      isLoadingEventAttendees: false
     }
   },
   computed: {
@@ -139,7 +139,7 @@ export default {
     },
     venues() {
       if (this.event) {
-        return this.event.availableSeats.reduce((acc, { venueName, priority }) => {
+        return (this.event.availableSeats || []).reduce((acc, { venueName, priority }) => {
           const found = acc.find(v => v.venueName === venueName);
 
           if (!found) {

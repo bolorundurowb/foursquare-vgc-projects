@@ -12,7 +12,7 @@ Vue.config.productionTip = false;
 Vue.use(ElementUI, { locale });
 
 Vue.filter('dateFilter', (value) => {
-  return format(new Date(value), 'PPPP')
+  return value ? format(new Date(value), 'PPPP') : '';
 });
 
 new Vue({
