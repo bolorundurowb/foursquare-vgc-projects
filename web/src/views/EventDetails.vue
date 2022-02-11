@@ -14,24 +14,30 @@
             :title="event.name"
             direction="vertical"
             border
-            :column="3"
+            :column="2"
           >
             <el-descriptions-item label="Date">
               {{ event.date | dateFilter }}
             </el-descriptions-item>
 
-            <el-descriptions-item label="Number of registered Attendees" :span="2">
+            <el-descriptions-item label="Number of registered Attendees">
               {{ event.numOfAttendees }}
             </el-descriptions-item>
 
-            <el-descriptions-item label="Venues">
+            <el-descriptions-item label="Venues" :span="2">
               <el-tag
                 v-for="(venue, index) in venues"
                 :key="index"
                 class="EventDetails__venue-tag"
+                size="small"
               >
                 {{venue.venueName}} ({{venue.priority}})
               </el-tag>
+            </el-descriptions-item>
+
+            <el-descriptions-item label="Event URL" :span="2">
+              <i class="el-icon-link" />
+              {{event.registrationUrl}}
             </el-descriptions-item>
           </el-descriptions>
         </el-card>
@@ -47,7 +53,6 @@
           </div>
 
           <el-button
-            plain
             type="primary"
             :disabled="!qrCodeImage"
             @click="printQrCode"

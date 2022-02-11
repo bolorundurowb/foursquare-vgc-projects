@@ -69,7 +69,7 @@ export default {
       this.$emit('delete-event', row);
     },
     handleShowEventDetails(row) {
-      this.$router.push({ path: `/events/${row.id}` });
+      this.$router.push({ path: `/admin/events/${row.id}` });
     }
   }
 }

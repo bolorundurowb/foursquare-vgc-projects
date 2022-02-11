@@ -22,7 +22,7 @@ const routes = [
     component: () => {}
   },
   {
-    path: '/',
+    path: '/admin',
     name: 'AdminHome',
     component: AdminHome,
     meta: {

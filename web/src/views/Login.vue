@@ -71,7 +71,7 @@ export default {
         Cookies.set('admin', admin);
         Cookies.set('expiresAt', expiresAt);
 
-        this.$router.replace({ path: '/' });
+        this.$router.replace({ path: '/admin' });
       } catch (err) {
         const { data, status } = err.response;
 
