@@ -21,7 +21,7 @@
         @click="handleSubmit"
         class="PersonCheckForm__submit-btn"
       >
-        Add Person
+        Get Info
       </el-button>
     </el-form-item>
   </el-form>

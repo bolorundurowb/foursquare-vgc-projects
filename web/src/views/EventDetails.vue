@@ -87,7 +87,7 @@
               </template>
             </el-table-column>
             <el-table-column
-              prop="phoneNumber"
+              prop="phone"
               label="Phone Number"
             />
             <el-table-column
@@ -111,7 +111,16 @@
             <el-table-column
               prop="accompanyingSeat"
               label="Accompanying Seat"
-            />
+            >
+              <template v-slot="{ row }">
+                <span v-if="row.accompanyingSeat">
+                  {{row.accompanyingSeat}}
+                </span>
+                <span v-else>
+                  --
+                </span>
+              </template>
+            </el-table-column>
           </el-table>
         </el-card>
       </el-col>
@@ -166,7 +175,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push({ path: '/events' });
+      this.$router.push({ path: '/admin/events' });
     },
     async getEventDetails() {
       this.isLoadingEvent = true;
@@ -189,7 +198,7 @@ export default {
       try {
         const { data } = await api.get(`/v1/events/${this.eventId}/attendees`);
 
-        this.event = data;
+        this.attendees = data;
       } catch (error) {
         const { data, status } = error.response;
 
