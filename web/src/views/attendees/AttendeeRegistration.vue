@@ -9,9 +9,9 @@
               alt="logo"
               class="AttendeeRegistration__logo"
             >
-            <p>
+            <h2 class="AttendeeRegistration__title">
               Foursquare Gospel Church Venue Mgt
-            </p>
+            </h2>
 
             <div v-if="showNewPersonForm">
               <new-person-form @submit="handleNewPersonSubmit" />
@@ -71,21 +71,26 @@
               <p>Choose a users registered on the device</p>
 
               <div
-                class="AttendeeRegistration__person-item"
-                v-for="person in cachedUsers"
+                class="AttendeeRegistration__person-item AttendeeRegistration__person"
+                v-for="(person, personIndex) in cachedUsers"
                 :key="person.id"
+                @click="handlePersonClick(personIndex)"
               >
-                {{ person.fullName }}
+                <el-avatar icon="el-icon-user-solid" />
+                <div class="AttendeeRegistration__person-details">
+                  <p class="AttendeeRegistration__person-name">{{ person.fullName }}</p>
+                  <p class="AttendeeRegistration__person-phone">{{ person.phone }}</p>
+                </div>
               </div>
 
               <div class="AttendeeRegistration__person-item">
-                <el-button type="text" size="small" @click="showCheckPersonForm = true">
+                <el-button type="text" size="mini" @click="showCheckPersonForm = true">
                   Registered User? Enter your phone number here.
                 </el-button>
               </div>
 
               <div class="AttendeeRegistration__person-item">
-                <el-button type="text" size="small" @click="showNewPersonForm = true">
+                <el-button type="text" size="mini" @click="showNewPersonForm = true">
                   Not Registered? Register here.
                 </el-button>
               </div>
@@ -203,7 +208,11 @@ export default {
 
       this.selectedPerson = null;
     },
-    handleClose() {}
+    handleClose() {},
+    handlePersonClick(index) {
+      this.selectedPerson = this.cachedUsers[index];
+      this.showSeatSelectionForm = true;
+    }
   },
   mounted() {
     const cachedUsers = localStorage.getItem('cachedusers');
@@ -220,7 +229,7 @@ export default {
   },
   beforeDestroy() {
     this.selectedPerson = null;
-    this.assignedSeat
+    this.assignedSeat = null;
   }
 }
 </script>
@@ -228,6 +237,7 @@ export default {
 <style lang="scss">
 .AttendeeRegistration {
   height: 100vh;
+  background-color: #F7F7F8;
 
   &__row-container {
     margin-top: 100px;
@@ -238,12 +248,40 @@ export default {
     width: 70px;
   }
 
-  &__person-item {
-    padding: 5px 0;
+  &__title {
+    font-weight: 500;
+    font-size: 20px;
+  }
 
-    &:not(:last-of-type) {
-      border-bottom: 1px solid #dcdfe6;
+  &__person-item {
+    padding: 5px;
+  }
+
+  &__person {
+    cursor: pointer;
+    display: flex;
+    padding: 10px;
+
+    p {
+      margin: 0;
     }
+
+    &:hover {
+      background-color: #F7F7F8;
+    }
+  }
+
+  &__person-details {
+    margin-left: 10px;
+  }
+
+  &__person-name {
+    font-size: 18px;
+  }
+
+  &__person-phone {
+    font-size: 16px;
+    color: #a9acb0;
   }
 
   &__close-btn {
