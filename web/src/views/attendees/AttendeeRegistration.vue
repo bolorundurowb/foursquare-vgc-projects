@@ -2,7 +2,7 @@
   <el-container class="AttendeeRegistration" v-loading="isLoading">
     <el-main class="AttendeeRegistration__main-content">
       <el-row type="flex" justify="center" class="AttendeeRegistration__row-container">
-        <el-col :span="6">
+        <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="5">
           <el-card shadow="never">
             <img
               src="@/assets/logo.png"

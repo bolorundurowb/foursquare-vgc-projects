@@ -62,7 +62,7 @@ export default {
       default: false
     },
     selectedPerson: {
-      type: Boolean,
+      type: Object,
       required: true
     }
   },
