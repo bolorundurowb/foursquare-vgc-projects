@@ -43,6 +43,8 @@ public static class ExcelGenerator
             worksheet.Cell(row, 6).Value = attendee.Category.ToString();
             worksheet.Cell(row, 7).Value = attendee.Seat;
             worksheet.Cell(row, 8).Value = attendee.AccompanyingSeat ?? "N/A";
+
+            row++;
         }
     }
 
