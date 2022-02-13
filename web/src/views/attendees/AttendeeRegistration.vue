@@ -29,6 +29,7 @@
 
             <div v-if="showSeatSelectionForm">
               <seat-selection-form
+                :selected-person="selectedPerson"
                 :loading="seatSelectionLoading"
                 @submit="handleSeatSelectionFormSubmit"
               />

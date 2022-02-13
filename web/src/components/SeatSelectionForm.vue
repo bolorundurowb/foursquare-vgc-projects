@@ -1,38 +1,56 @@
 <template>
-  <el-form
-    :model="seatSelectionForm"
-    ref="seatSelectionForm"
-    label-position="top"
-    :rules="seatSelectionRules"
-    class="SeatSelectionForm"
-  >
+  <div class="SeatSelectionForm">
+    <el-descriptions
+      title="Your Information"
+      direction="vertical"
+      border
+      :column="2"
+      class="SeatSelectionForm__description"
+    >
+      <el-descriptions-item label="Name">
+        {{selectedPerson.fullName}}
+      </el-descriptions-item>
 
-    <el-form-item label="Seat Category" prop="category">
-      <el-select
-        v-model="seatSelectionForm.category"
-        placeholder="Select a category"
-      >
-        <el-option
-          v-for="item in categoryOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-    </el-form-item>
+      <el-descriptions-item label="Phone">
+        {{selectedPerson.phone}}
+      </el-descriptions-item>
+    </el-descriptions>
 
-    <el-form-item>
-      <el-button
-        type="primary"
-        class="SeatSelectionForm__submit-btn"
-        v-loading="loading"
-        :disabled="loading"
-        @click="handleSubmit"
-      >
-        Checkin
-      </el-button>
-    </el-form-item>
-  </el-form>
+    <el-form
+      :model="seatSelectionForm"
+      ref="seatSelectionForm"
+      label-position="top"
+      :rules="seatSelectionRules"
+      class="SeatSelectionForm__form"
+    >
+
+      <el-form-item label="Seat Category" prop="category">
+        <el-select
+          v-model="seatSelectionForm.category"
+          placeholder="Select a category"
+        >
+          <el-option
+            v-for="item in categoryOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
+
+      <el-form-item>
+        <el-button
+          type="primary"
+          class="SeatSelectionForm__submit-btn"
+          v-loading="loading"
+          :disabled="loading"
+          @click="handleSubmit"
+        >
+          Checkin
+        </el-button>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
 <script>
@@ -42,6 +60,10 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    selectedPerson: {
+      type: Boolean,
+      required: true
     }
   },
   data() {
@@ -84,6 +106,10 @@ export default {
 .SeatSelectionForm {
   &__submit-btn {
     width: 100%;
+  }
+
+  &__description {
+    margin-bottom: 20px;
   }
 }
 </style>
