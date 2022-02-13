@@ -1,8 +1,8 @@
 <template>
   <div class="Login">
-    <el-row justify="center" align="center" type="flex" class="Login__row">
+    <el-row justify="center" align="middle" type="flex" class="Login__row">
       <el-col :sm="5" :span="5">
-        <el-card class="box-card">
+        <el-card class="box-card" shadow="never">
           <el-form ref="loginForm" :model="loginForm" :rules="rules">
             <el-form-item label="Email" prop="email">
               <el-input type="email" v-model="loginForm.email" autocomplete="off" />
@@ -71,7 +71,7 @@ export default {
         Cookies.set('admin', admin);
         Cookies.set('expiresAt', expiresAt);
 
-        this.$router.replace({ path: '/' });
+        this.$router.replace({ path: '/admin/events' });
       } catch (err) {
         const { data, status } = err.response;
 
@@ -84,8 +84,10 @@ export default {
 
 <style lang="scss" scoped>
 .Login {
+  min-height: 100vh;
+
   &__row {
-    // min-height: 100vh;
+    min-height: 100vh;
   }
 }
 </style>

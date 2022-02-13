@@ -9,13 +9,13 @@
           :router="true">
         <el-menu-item
             class="AdminHome__menu-item"
-            :index="'/events'">
+            :index="'/admin/events'">
           <i class="el-icon-date"/>
           Events
         </el-menu-item>
         <el-menu-item
             class="AdminHome__menu-item"
-            :index="'/venues'">
+            :index="'/admin/venues'">
           <i class="el-icon-house"/>
           Venues
         </el-menu-item>

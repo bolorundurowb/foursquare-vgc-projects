@@ -7,6 +7,7 @@ const Login = () => import('../views/Login.vue');
 const Venues = () => import('../views/Venues.vue');
 const Events = () => import('../views/Events.vue');
 const EventDetails = () => import('../views/EventDetails');
+const AttendeeRegistration = () => import('../views/attendees/AttendeeRegistration');
 
 Vue.use(VueRouter);
 
@@ -22,7 +23,13 @@ const routes = [
     component: () => {}
   },
   {
-    path: '/',
+    path: '/events/:eventId',
+    name: 'AttendeeRegistration',
+    component: AttendeeRegistration,
+    props: true
+  },
+  {
+    path: '/admin',
     name: 'AdminHome',
     component: AdminHome,
     meta: {
@@ -48,7 +55,7 @@ const routes = [
       },
       {
         path: '',
-        redirect: '/events'
+        redirect: '/admin/events'
       }
     ]
   }

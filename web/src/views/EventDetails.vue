@@ -8,46 +8,57 @@
     <el-divider />
 
     <el-row :gutter="20">
-      <el-col :span="5">
+      <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="5">
         <el-card>
           <el-descriptions
             :title="event.name"
             direction="vertical"
             border
-            :column="3"
+            :column="2"
+            v-loading="isLoadingEvent"
           >
             <el-descriptions-item label="Date">
               {{ event.date | dateFilter }}
             </el-descriptions-item>
 
-            <el-descriptions-item label="Number of registered Attendees" :span="2">
+            <el-descriptions-item label="Number of registered Attendees">
               {{ event.numOfAttendees }}
             </el-descriptions-item>
 
-            <el-descriptions-item label="Venues">
+            <el-descriptions-item label="Venues" :span="2">
               <el-tag
                 v-for="(venue, index) in venues"
                 :key="index"
                 class="EventDetails__venue-tag"
+                size="small"
               >
                 {{venue.venueName}} ({{venue.priority}})
               </el-tag>
             </el-descriptions-item>
+
+            <el-descriptions-item label="Event URL" :span="2">
+              <i class="el-icon-link" />
+              {{event.registrationUrl}}
+            </el-descriptions-item>
           </el-descriptions>
         </el-card>
       </el-col>
-      <el-col :span="5">
+      <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="5">
         <el-card>
           <div>
             <el-image
               class="EventDetails__qr-image"
               :src="qrCodeImage"
               fit="contain"
-            />
+              v-loading="isLoadingEvent"
+            >
+              <div slot="error" class="EventDetails__qr-image-error-slot">
+                <i class="el-icon-picture-outline"></i>
+              </div>
+            </el-image>
           </div>
 
           <el-button
-            plain
             type="primary"
             :disabled="!qrCodeImage"
             @click="printQrCode"
@@ -57,7 +68,7 @@
         </el-card>
 
       </el-col>
-      <el-col :span="14">
+      <el-col class="EventDetails__col" :xs="24" :lg="14">
         <el-card>
           <el-table
             stripe
@@ -76,7 +87,7 @@
               </template>
             </el-table-column>
             <el-table-column
-              prop="phoneNumber"
+              prop="phone"
               label="Phone Number"
             />
             <el-table-column
@@ -100,7 +111,16 @@
             <el-table-column
               prop="accompanyingSeat"
               label="Accompanying Seat"
-            />
+            >
+              <template v-slot="{ row }">
+                <span v-if="row.accompanyingSeat">
+                  {{row.accompanyingSeat}}
+                </span>
+                <span v-else>
+                  --
+                </span>
+              </template>
+            </el-table-column>
           </el-table>
         </el-card>
       </el-col>
@@ -155,7 +175,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push({ path: '/events' });
+      this.$router.push({ path: '/admin/events' });
     },
     async getEventDetails() {
       this.isLoadingEvent = true;
@@ -178,7 +198,7 @@ export default {
       try {
         const { data } = await api.get(`/v1/events/${this.eventId}/attendees`);
 
-        this.event = data;
+        this.attendees = data;
       } catch (error) {
         const { data, status } = error.response;
 
@@ -207,10 +227,27 @@ export default {
     &__qr-image {
       width: 100%;
       border: 1px solid #d7dae2;
+      min-height: 233px;
+    }
+
+    &__qr-image-error-slot {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      background: #f5f7fa;
+      color: #909399;
+      font-size: 30px;
     }
 
     &__venue-tag:not(:first-of-type) {
       margin-left: 4px;
+    }
+
+    &__col {
+      margin-bottom: 20px;
     }
   }
 </style>
