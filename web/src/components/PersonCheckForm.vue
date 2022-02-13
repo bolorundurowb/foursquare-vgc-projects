@@ -18,8 +18,10 @@
     <el-form-item>
       <el-button
         type="primary"
-        @click="handleSubmit"
         class="PersonCheckForm__submit-btn"
+        v-loading="loading"
+        :disabled="loading"
+        @click="handleSubmit"
       >
         Get Info
       </el-button>
@@ -30,7 +32,12 @@
 <script>
 export default {
   name: 'PersonCheckForm',
-  props: {},
+  props: {
+    loading: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       personCheckForm: {

@@ -14,15 +14,24 @@
             </h2>
 
             <div v-if="showNewPersonForm">
-              <new-person-form @submit="handleNewPersonSubmit" />
+              <new-person-form
+                :loading="newPersonLoading"
+                @submit="handleNewPersonSubmit"
+              />
             </div>
 
             <div v-if="showCheckPersonForm">
-              <person-check-form @submit="handlePersonCheckSubmit" />
+              <person-check-form
+                :loading="this.checkPersonLoading"
+                @submit="handlePersonCheckSubmit"
+              />
             </div>
 
             <div v-if="showSeatSelectionForm">
-              <seat-selection-form @submit="handleSeatSelectionFormSubmit" />
+              <seat-selection-form
+                :loading="seatSelectionLoading"
+                @submit="handleSeatSelectionFormSubmit"
+              />
             </div>
 
             <div v-if="showAssignedSeat">
@@ -128,13 +137,21 @@ export default {
       assignedSeat: null,
       selectedPerson: null,
       showAssignedSeat: false,
+
+      newPersonLoading: false,
       showNewPersonForm: false,
+
+      checkPersonLoading: false,
       showCheckPersonForm: false,
+
+      seatSelectionLoading: false,
       showSeatSelectionForm: false
     }
   },
   methods: {
     async checkPerson({ phoneNumber }) {
+      this.checkPersonLoading = true;
+
       try {
         const { data } = await api.get(`/v1/persons/check?phoneNumber=${phoneNumber}`);
 
@@ -146,9 +163,13 @@ export default {
         const { data } = error.response;
 
         this.handleError(data.message);
+      } finally {
+        this.checkPersonLoading = false;
       }
     },
     async registerNewPerson(body) {
+      this.newPersonLoading = true;
+
       try {
         const { data } = await api.post('/v1/persons', body);
 
@@ -160,9 +181,13 @@ export default {
         const { data } = error.response;
 
         this.handleError(data.message);
+      } finally {
+        this.newPersonLoading = false;
       }
     },
     async attenndeeCheckin(body) {
+      this.seatSelectionLoading = true;
+
       try {
         const { data } = await api.post(`/v1/events/${this.eventId}/checkin`, body);
 
@@ -175,6 +200,8 @@ export default {
         const { data } = error.response;
 
         this.handleError(data.message);
+      } finally {
+        this.seatSelectionLoading = false;
       }
     },
     handleShowRegisteredUser() {},

@@ -7,7 +7,7 @@
     class="SeatSelectionForm"
   >
 
-    <el-form-item label="Phone Number" prop="category">
+    <el-form-item label="Seat Category" prop="category">
       <el-select
         v-model="seatSelectionForm.category"
         placeholder="Select a category"
@@ -24,8 +24,10 @@
     <el-form-item>
       <el-button
         type="primary"
-        @click="handleSubmit"
         class="SeatSelectionForm__submit-btn"
+        v-loading="loading"
+        :disabled="loading"
+        @click="handleSubmit"
       >
         Checkin
       </el-button>
@@ -36,7 +38,12 @@
 <script>
 export default {
   name: 'SeatSelectionForm',
-  props: {},
+  props: {
+    loading: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       seatSelectionForm: {

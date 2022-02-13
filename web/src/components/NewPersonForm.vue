@@ -31,8 +31,10 @@
     <el-form-item>
       <el-button
         type="primary"
-        @click="handleSubmit"
         class="NewPersonForm__submit-btn"
+        v-loading="loading"
+        :disabled="loading"
+        @click="handleSubmit"
       >
         Add Person
       </el-button>
@@ -43,7 +45,12 @@
 <script>
 export default {
   name: 'NewPersonForm',
-  props: {},
+  props: {
+    loading: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       newPersonForm: {
