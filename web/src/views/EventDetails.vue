@@ -8,7 +8,7 @@
     <el-divider />
 
     <el-row :gutter="20">
-      <el-col :span="5">
+      <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="5">
         <el-card>
           <el-descriptions
             :title="event.name"
@@ -43,7 +43,7 @@
           </el-descriptions>
         </el-card>
       </el-col>
-      <el-col :span="5">
+      <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="5">
         <el-card>
           <div>
             <el-image
@@ -68,7 +68,7 @@
         </el-card>
 
       </el-col>
-      <el-col :span="14">
+      <el-col class="EventDetails__col" :xs="24" :lg="14">
         <el-card>
           <el-table
             stripe
@@ -227,7 +227,7 @@ export default {
     &__qr-image {
       width: 100%;
       border: 1px solid #d7dae2;
-      min-height: 360px;
+      min-height: 233px;
     }
 
     &__qr-image-error-slot {
@@ -244,6 +244,10 @@ export default {
 
     &__venue-tag:not(:first-of-type) {
       margin-left: 4px;
+    }
+
+    &__col {
+      margin-bottom: 20px;
     }
   }
 </style>
