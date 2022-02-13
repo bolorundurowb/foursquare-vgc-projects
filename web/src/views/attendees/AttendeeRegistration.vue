@@ -192,7 +192,6 @@ export default {
       try {
         const { data } = await api.post(`/v1/events/${this.eventId}/checkin`, body);
 
-        console.log(data, 'data');
         this.selectedPerson = null;
         this.showSeatSelectionForm = false;
         this.assignedSeat = data;
