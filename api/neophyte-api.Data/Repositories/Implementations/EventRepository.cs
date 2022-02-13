@@ -67,7 +67,7 @@ public class EventRepository : IEventRepository
 
         foreach (var personId in personIds)
         {
-            var person = persons.FirstOrDefault(x => x.Id == personId);
+            var person = persons.FirstOrDefault(x => personId.Equals(x.Id));
             personMap[(ObjectId)personId] = person;
         }
 
