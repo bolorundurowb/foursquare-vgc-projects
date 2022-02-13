@@ -44,7 +44,7 @@
                   <el-tag size="small">{{assignedSeat.number}}</el-tag>
                 </el-descriptions-item>
 
-                <el-descriptions-item label="Seat Number" v-if="assignedSeat.associatedNumber">
+                <el-descriptions-item label="Associated Seat Number" v-if="assignedSeat.associatedNumber">
                   <el-tag size="small">{{assignedSeat.associatedNumber}}</el-tag>
                 </el-descriptions-item>
               </el-descriptions>
@@ -143,9 +143,9 @@ export default {
         this.showCheckPersonForm = false;
         this.showSeatSelectionForm = true;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       }
     },
     async registerNewPerson(body) {
@@ -157,9 +157,9 @@ export default {
         this.showNewPersonForm = false;
         this.showSeatSelectionForm = true;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       }
     },
     async attenndeeCheckin(body) {
@@ -172,9 +172,9 @@ export default {
         this.assignedSeat = data;
         this.showAssignedSeat = true;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       }
     },
     handleShowRegisteredUser() {},
@@ -208,10 +208,19 @@ export default {
 
       this.selectedPerson = null;
     },
-    handleClose() {},
+    handleClose() {
+      window.close();
+    },
     handlePersonClick(index) {
       this.selectedPerson = this.cachedUsers[index];
       this.showSeatSelectionForm = true;
+    },
+    handleError(errorMessage) {
+      this.$message({
+        message: errorMessage,
+        showClose: true,
+        type: 'error'
+      });
     }
   },
   mounted() {
