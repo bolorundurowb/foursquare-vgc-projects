@@ -10,6 +10,14 @@ public class EventSeatViewModel : SeatViewModel
     /// <example>2</example>
     public int Priority { get; private set; }
 
+   
+    /// <summary>
+    /// The venue internal identifier
+    /// </summary>
+    /// <example>61fff8966b22c10a9e790d57</example>
+    [SwaggerSchema(Nullable = false)]
+    public string VenueId { get; private set; }
+
     /// <summary>
     /// The name of the venue that the seat is in
     /// </summary>

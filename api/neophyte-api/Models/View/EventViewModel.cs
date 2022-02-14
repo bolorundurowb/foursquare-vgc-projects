@@ -22,5 +22,6 @@ public class EventViewModel : BaseEventViewModel
     /// <summary>
     /// The list of seats available for this event in order of priority
     /// </summary>
-    public List<EventSeatViewModel> AvailableSeats { get; set; }
+    [SwaggerSchema(Nullable = false)]
+    public List<VenueViewModel> AvailableSeats { get; set; }
 }

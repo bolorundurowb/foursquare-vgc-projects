@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using System.Linq;
+using Mapster;
 using neophyte.api.Data.DTOs;
 using neophyte.api.Data.Entities;
 using neophyte.api.Data.ValueObjects;
@@ -41,7 +42,8 @@ public static class MapsterConfigExtensions
         config.NewConfig<Venue, VenueViewModel>()
             .Inherits<Venue, BaseVenueViewModel>();
 
-        config.NewConfig<EventSeat, EventSeatViewModel>();
+        config.NewConfig<EventSeat, EventSeatViewModel>()
+            .Map(x => x.VenueId, y => y.VenueId.ToString());
 
         config.NewConfig<Event, BaseEventViewModel>()
             .Map(x => x.Id, y => y.Id.ToString())
@@ -52,6 +54,30 @@ public static class MapsterConfigExtensions
             .AfterMapping((model, vm) =>
             {
                 vm.RegistrationUrlQrCode = QrCodeService.GenerateQrCode(model.RegistrationUrl);
+
+                // map seats
+                vm.AvailableSeats = model.AvailableSeats
+                    .GroupBy(x => x.VenueId)
+                    .Select(x =>
+                    {
+                        var venueId = x.Key;
+                        var venueName = x.First().VenueName;
+                        var seats = x.Select(y => new SeatViewModel
+                        {
+                            Category = y.Category,
+                            AssociatedNumber = y.AssociatedNumber,
+                            Number = y.Number
+                        }).ToList();
+
+                        return new VenueViewModel
+                        {
+                            Id = venueId.ToString(),
+                            Name = venueName,
+                            NumOfSeats = seats.Count,
+                            Seats = seats
+                        };
+                    })
+                    .ToList();
             });
 
         config.NewConfig<EventAttendeeDto, EventAttendeeViewModel>();
