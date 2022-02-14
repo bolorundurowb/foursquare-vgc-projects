@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using meerkat;
 using MongoDB.Bson;
@@ -18,8 +18,16 @@ public class PersonsRepository : IPersonsRepository
         var queryable = Meerkat.Query<Person>();
 
         if (!string.IsNullOrWhiteSpace(name))
-            queryable = (IMongoQueryable<Person>)Queryable.Where(queryable,
-                x => x.FirstName.Contains(name) || x.LastName.Contains(name));
+        {
+            var filter = Builders<Person>.Filter.Or(
+                new FilterDefinitionBuilder<Person>().Regex(x => x.FirstName,
+                    new BsonRegularExpression($"^{Regex.Escape(name)}", "i")),
+                new FilterDefinitionBuilder<Person>().Regex(x => x.LastName,
+                    new BsonRegularExpression($"^{Regex.Escape(name)}", "i"))
+            );
+            queryable = queryable.Where(_ => filter.Inject());
+            
+        }
 
         return queryable.ToListAsync();
     }
