@@ -69,8 +69,25 @@
               </el-button>
             </el-card>
 
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :xs="24">
+            <el-card>
+              <div slot="header" class="clearfix">
+                <span>Change Seats</span>
+              </div>
+              <change-seat-form
+                :is-loading="isChangeSeatLoading"
+                :available-seats-and-venues="availableVenuesAndSeats"
+                :has-error="changeSeatHasError"
+                @submit="handleChangeSeatFormSubmit"
+              />
+            </el-card>
+          </el-col>
+        </el-row>
       </el-col>
-      <el-col class="EventDetails__col" :xs="24" :lg="14">
+      <el-col class="EventDetails__col" :xs="24" :lg="12" :xl="14">
         <el-card>
           <el-table
             stripe
@@ -135,6 +152,8 @@ import printJs from 'print-js';
 import api from '@/utils/api';
 import { AlertMixin } from '@/mixins';
 
+import ChangeSeatForm from '@/components/ChangeSeatForm.vue';
+
 export default {
   name: 'EventDetails',
   mixins: [AlertMixin],
@@ -144,11 +163,16 @@ export default {
       required: true
     }
   },
+  components: {
+    ChangeSeatForm
+  },
   data() {
     return {
       event: {},
       attendees: [],
       isLoadingEvent: false,
+      changeSeatHasError: false,
+      isChangeSeatLoading: false,
       isLoadingEventAttendees: false
     }
   },
@@ -161,16 +185,15 @@ export default {
       return '';
     },
     venues() {
-      if (this.event) {
-        return (this.event.availableSeats || []).reduce((acc, { venueName, priority }) => {
-          const found = acc.find(v => v.venueName === venueName);
+      if (this.event && this.event.availableSeats) {
+        return this.event.availableSeats.map(({ name }) => ({ name }));
+      }
 
-          if (!found) {
-            acc.push({ venueName, priority });
-          }
-
-          return acc;
-        }, []);
+      return [];
+    },
+    availableVenuesAndSeats() {
+      if (this.event && this.event.availableSeats) {
+        return this.event.availableSeats;
       }
 
       return [];
@@ -210,12 +233,42 @@ export default {
         this.isLoadingEventAttendees = false;
       }
     },
+    async changeSeat(body) {
+      this.isChangeSeatLoading = true;
+      this.changeSeatHasError = false;
+
+      try {
+        await api.post(`/v1/events/${this.event.id}/change-seats`, body);
+
+        this.getEventDetails();
+        this.getEventAttendees();
+      } catch (error) {
+        this.changeSeatHasError = true;
+        let message;
+
+        if (error.response) {
+          const { data } = error.response;
+          message = data.message;
+        } else {
+          message = error.message;
+        }
+
+        this.handleError(message);
+      } finally {
+        this.isChangeSeatLoading = false;
+      }
+    },
     printQrCode() {
-      printJs({
-        printable: this.qrCodeImage,
-        type: 'image',
-        base64: true
-      });
+      if (this.qrCodeImage) {
+        printJs({
+          printable: this.qrCodeImage,
+          type: 'image',
+          base64: true
+        });
+      }
+    },
+    handleChangeSeatFormSubmit(body) {
+      this.changeSeat(body);
     }
   },
   mounted() {
