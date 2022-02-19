@@ -8,75 +8,91 @@
     <el-divider />
 
     <el-row :gutter="20">
-      <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="5">
-        <el-card>
-          <el-descriptions
-            :title="event.name"
-            direction="vertical"
-            border
-            :column="2"
-            v-loading="isLoadingEvent"
-          >
-            <el-descriptions-item label="Date">
-              {{ event.date | dateFilter }}
-            </el-descriptions-item>
-
-            <el-descriptions-item label="Number of registered Attendees">
-              {{ event.numOfAttendees }}
-            </el-descriptions-item>
-
-            <el-descriptions-item label="Venues" :span="2">
-              <el-tag
-                v-for="(venue, index) in venues"
-                :key="index"
-                class="EventDetails__venue-tag"
-                size="small"
+      <el-col :xs="24" :lg="12" :xl="10">
+        <el-row :gutter="20">
+          <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="14">
+            <el-card shadow="never">
+              <el-descriptions
+                :title="event.name"
+                direction="vertical"
+                border
+                :column="2"
+                v-loading="isLoadingEvent"
               >
-                {{venue.venueName}} ({{venue.priority}})
-              </el-tag>
-            </el-descriptions-item>
+                <el-descriptions-item label="Date">
+                  {{ event.date | dateFilter }}
+                </el-descriptions-item>
 
-            <el-descriptions-item label="Event URL" :span="2">
-              <i class="el-icon-link" />
-              {{event.registrationUrl}}
-            </el-descriptions-item>
-          </el-descriptions>
-        </el-card>
-      </el-col>
-      <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="5">
-        <el-card>
-          <div>
-            <el-image
-              class="EventDetails__qr-image"
-              :src="qrCodeImage"
-              fit="contain"
-              v-loading="isLoadingEvent"
-            >
-              <div slot="error" class="EventDetails__qr-image-error-slot">
-                <i class="el-icon-picture-outline"></i>
+                <el-descriptions-item label="Number of registered Attendees">
+                  {{ event.numOfAttendees }}
+                </el-descriptions-item>
+
+                <el-descriptions-item label="Venues" :span="2">
+                  <el-tag
+                    v-for="(venue, index) in venues"
+                    :key="index"
+                    class="EventDetails__venue-tag"
+                    size="small"
+                  >
+                    {{venue.name}}
+                  </el-tag>
+                </el-descriptions-item>
+
+                <el-descriptions-item label="Event URL" :span="2">
+                  <i class="el-icon-link" />
+                  {{event.registrationUrl}}
+                </el-descriptions-item>
+              </el-descriptions>
+            </el-card>
+          </el-col>
+          <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="10">
+            <el-card shadow="never">
+              <div>
+                <el-image
+                  class="EventDetails__qr-image"
+                  :src="qrCodeImage"
+                  fit="contain"
+                  v-loading="isLoadingEvent"
+                >
+                  <div slot="error" class="EventDetails__qr-image-error-slot">
+                    <i class="el-icon-picture-outline"></i>
+                  </div>
+                </el-image>
               </div>
-            </el-image>
-          </div>
 
-          <el-button
-            type="primary"
-            :disabled="!qrCodeImage"
-            @click="printQrCode"
-          >
-            Print QR Code
-          </el-button>
-        </el-card>
+              <el-button
+                type="primary"
+                :disabled="!qrCodeImage"
+                @click="printQrCode"
+              >
+                Print QR Code
+              </el-button>
+            </el-card>
 
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :xs="24" :lg="12" class="EventDetails__col">
+            <el-card shadow="never">
+              <div slot="header" class="clearfix">
+                <span>Change Seats</span>
+              </div>
+              <change-seat-form
+                :is-loading="isChangeSeatLoading"
+                :available-seats-and-venues="availableVenuesAndSeats"
+                :has-error="changeSeatHasError"
+                @submit="handleChangeSeatFormSubmit"
+              />
+            </el-card>
+          </el-col>
+        </el-row>
       </el-col>
-      <el-col class="EventDetails__col" :xs="24" :lg="14">
-        <el-card>
+      <el-col class="EventDetails__col" :xs="24" :lg="12" :xl="14">
+        <el-card shadow="never">
           <el-table
-            stripe
-            border
             style="width: 100%"
             :data="attendees"
             v-loading="isLoadingEventAttendees"
-            class="EventTable"
           >
             <el-table-column
               prop="Name"
@@ -130,22 +146,30 @@
 
 <script>
 import printJs from 'print-js';
-
 import api from '@/utils/api';
+import { AlertMixin } from '@/mixins';
+
+import ChangeSeatForm from '@/components/ChangeSeatForm.vue';
 
 export default {
   name: 'EventDetails',
+  mixins: [AlertMixin],
   props: {
     eventId: {
       type: String,
       required: true
     }
   },
+  components: {
+    ChangeSeatForm
+  },
   data() {
     return {
       event: {},
       attendees: [],
       isLoadingEvent: false,
+      changeSeatHasError: false,
+      isChangeSeatLoading: false,
       isLoadingEventAttendees: false
     }
   },
@@ -158,16 +182,15 @@ export default {
       return '';
     },
     venues() {
-      if (this.event) {
-        return (this.event.availableSeats || []).reduce((acc, { venueName, priority }) => {
-          const found = acc.find(v => v.venueName === venueName);
+      if (this.event && this.event.availableSeats) {
+        return this.event.availableSeats.map(({ name }) => ({ name }));
+      }
 
-          if (!found) {
-            acc.push({ venueName, priority });
-          }
-
-          return acc;
-        }, []);
+      return [];
+    },
+    availableVenuesAndSeats() {
+      if (this.event && this.event.availableSeats) {
+        return this.event.availableSeats;
       }
 
       return [];
@@ -185,9 +208,9 @@ export default {
 
         this.event = data;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       } finally {
         this.isLoadingEvent = false;
       }
@@ -200,19 +223,50 @@ export default {
 
         this.attendees = data;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       } finally {
         this.isLoadingEventAttendees = false;
       }
     },
+    async changeSeat(body) {
+      this.isChangeSeatLoading = true;
+      this.changeSeatHasError = false;
+
+      try {
+        await api.post(`/v1/events/${this.event.id}/change-seats`, body);
+
+        this.getEventDetails();
+        this.getEventAttendees();
+        this.handleSuccess('Seat changed successfully');
+      } catch (error) {
+        this.changeSeatHasError = true;
+        let message;
+
+        if (error.response) {
+          const { data } = error.response;
+          message = data.message;
+        } else {
+          message = error.message;
+        }
+
+        this.handleError(message);
+      } finally {
+        this.isChangeSeatLoading = false;
+      }
+    },
     printQrCode() {
-      printJs({
-        printable: this.qrCodeImage,
-        type: 'image',
-        base64: true
-      });
+      if (this.qrCodeImage) {
+        printJs({
+          printable: this.qrCodeImage,
+          type: 'image',
+          base64: true
+        });
+      }
+    },
+    handleChangeSeatFormSubmit(body) {
+      this.changeSeat(body);
     }
   },
   mounted() {

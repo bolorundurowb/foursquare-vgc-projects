@@ -1,7 +1,6 @@
 <template>
   <el-table
     class="VenueTable"
-    stripe
     style="width: 100%"
     :data="venues"
     v-loading="isLoading"

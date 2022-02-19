@@ -1,6 +1,5 @@
 <template>
   <el-table
-    stripe
     style="width: 100%"
     :data="events"
     v-loading="isLoading"
