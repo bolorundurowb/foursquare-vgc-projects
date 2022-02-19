@@ -8,64 +8,66 @@
     <el-divider />
 
     <el-row :gutter="20">
-      <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="5">
-        <el-card>
-          <el-descriptions
-            :title="event.name"
-            direction="vertical"
-            border
-            :column="2"
-            v-loading="isLoadingEvent"
-          >
-            <el-descriptions-item label="Date">
-              {{ event.date | dateFilter }}
-            </el-descriptions-item>
-
-            <el-descriptions-item label="Number of registered Attendees">
-              {{ event.numOfAttendees }}
-            </el-descriptions-item>
-
-            <el-descriptions-item label="Venues" :span="2">
-              <el-tag
-                v-for="(venue, index) in venues"
-                :key="index"
-                class="EventDetails__venue-tag"
-                size="small"
+      <el-col :xs="24" :lg="12" :xl="10">
+        <el-row :gutter="20">
+          <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="14">
+            <el-card>
+              <el-descriptions
+                :title="event.name"
+                direction="vertical"
+                border
+                :column="2"
+                v-loading="isLoadingEvent"
               >
-                {{venue.venueName}} ({{venue.priority}})
-              </el-tag>
-            </el-descriptions-item>
+                <el-descriptions-item label="Date">
+                  {{ event.date | dateFilter }}
+                </el-descriptions-item>
 
-            <el-descriptions-item label="Event URL" :span="2">
-              <i class="el-icon-link" />
-              {{event.registrationUrl}}
-            </el-descriptions-item>
-          </el-descriptions>
-        </el-card>
-      </el-col>
-      <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="5">
-        <el-card>
-          <div>
-            <el-image
-              class="EventDetails__qr-image"
-              :src="qrCodeImage"
-              fit="contain"
-              v-loading="isLoadingEvent"
-            >
-              <div slot="error" class="EventDetails__qr-image-error-slot">
-                <i class="el-icon-picture-outline"></i>
+                <el-descriptions-item label="Number of registered Attendees">
+                  {{ event.numOfAttendees }}
+                </el-descriptions-item>
+
+                <el-descriptions-item label="Venues" :span="2">
+                  <el-tag
+                    v-for="(venue, index) in venues"
+                    :key="index"
+                    class="EventDetails__venue-tag"
+                    size="small"
+                  >
+                    {{venue.name}}
+                  </el-tag>
+                </el-descriptions-item>
+
+                <el-descriptions-item label="Event URL" :span="2">
+                  <i class="el-icon-link" />
+                  {{event.registrationUrl}}
+                </el-descriptions-item>
+              </el-descriptions>
+            </el-card>
+          </el-col>
+          <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="10">
+            <el-card>
+              <div>
+                <el-image
+                  class="EventDetails__qr-image"
+                  :src="qrCodeImage"
+                  fit="contain"
+                  v-loading="isLoadingEvent"
+                >
+                  <div slot="error" class="EventDetails__qr-image-error-slot">
+                    <i class="el-icon-picture-outline"></i>
+                  </div>
+                </el-image>
               </div>
-            </el-image>
-          </div>
 
-          <el-button
-            type="primary"
-            :disabled="!qrCodeImage"
-            @click="printQrCode"
-          >
-            Print QR Code
-          </el-button>
-        </el-card>
+              <el-button
+                type="primary"
+                :disabled="!qrCodeImage"
+                @click="printQrCode"
+              >
+                Print QR Code
+              </el-button>
+            </el-card>
 
       </el-col>
       <el-col class="EventDetails__col" :xs="24" :lg="14">
