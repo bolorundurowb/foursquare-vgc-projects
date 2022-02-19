@@ -11,7 +11,7 @@
       <el-col :xs="24" :lg="12" :xl="10">
         <el-row :gutter="20">
           <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="14">
-            <el-card>
+            <el-card shadow="never">
               <el-descriptions
                 :title="event.name"
                 direction="vertical"
@@ -46,7 +46,7 @@
             </el-card>
           </el-col>
           <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="10">
-            <el-card>
+            <el-card shadow="never">
               <div>
                 <el-image
                   class="EventDetails__qr-image"
@@ -72,8 +72,8 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :xs="24">
-            <el-card>
+          <el-col :xs="24" :lg="12" class="EventDetails__col">
+            <el-card shadow="never">
               <div slot="header" class="clearfix">
                 <span>Change Seats</span>
               </div>
@@ -88,14 +88,11 @@
         </el-row>
       </el-col>
       <el-col class="EventDetails__col" :xs="24" :lg="12" :xl="14">
-        <el-card>
+        <el-card shadow="never">
           <el-table
-            stripe
-            border
             style="width: 100%"
             :data="attendees"
             v-loading="isLoadingEventAttendees"
-            class="EventTable"
           >
             <el-table-column
               prop="Name"
@@ -242,6 +239,7 @@ export default {
 
         this.getEventDetails();
         this.getEventAttendees();
+        this.handleSuccess('Seat changed successfully');
       } catch (error) {
         this.changeSeatHasError = true;
         let message;

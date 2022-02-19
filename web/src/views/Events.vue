@@ -18,12 +18,13 @@
       </el-button>
     </el-row>
 
-    <event-table
-        :events="events"
-        :is-loading="isLoadingEvents || isDeleteingEvent || isCreatingEvent"
-        v-if="events.length > 0"
-        @delete-event="handleDeleteEvent"
-    />
+    <el-card shadow="never" v-if="events.length > 0">
+      <event-table
+          :events="events"
+          :is-loading="isLoadingEvents || isDeleteingEvent || isCreatingEvent"
+          @delete-event="handleDeleteEvent"
+      />
+    </el-card>
 
     <event-dialog
         :show-event-form="showEventForm"

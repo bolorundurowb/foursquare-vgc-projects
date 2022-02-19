@@ -18,12 +18,14 @@
       </el-button>
     </el-row>
 
-    <venue-table
-      :venues="venues"
-      :is-loading="isLoadingVenues || isDeleteingVenue || isCreatingVenue"
-      v-if="venues.length > 0"
-      @delete-venue="handleDeleteVenue"
-    />
+    <el-card shadow="never" v-if="venues.length > 0">
+      <venue-table
+        :venues="venues"
+        :is-loading="isLoadingVenues || isDeleteingVenue || isCreatingVenue"
+        v-if="venues.length > 0"
+        @delete-venue="handleDeleteVenue"
+      />
+    </el-card>
 
     <!-- dialog here -->
     <venue-dialog
