@@ -85,6 +85,19 @@
               />
             </el-card>
           </el-col>
+          <el-col :xs="24" :lg="12" class="EventDetails__col">
+            <el-card shadow="never">
+              <div slot="header" class="clearfix">
+                <span>Checkin</span>
+              </div>
+
+              <person-checkin
+                :is-loading="personCheckinLoading"
+                :has-error="personCheckinError"
+                @submit="handlePersonCheckinSubmit"
+              />
+            </el-card>
+          </el-col>
         </el-row>
       </el-col>
       <el-col class="EventDetails__col" :xs="24" :lg="12" :xl="14">
@@ -150,6 +163,7 @@ import api from '@/utils/api';
 import { AlertMixin } from '@/mixins';
 
 import ChangeSeatForm from '@/components/ChangeSeatForm.vue';
+import PersonCheckin from '@/components/AdminPersonCheckin.vue'
 
 export default {
   name: 'EventDetails',
@@ -161,6 +175,7 @@ export default {
     }
   },
   components: {
+    PersonCheckin,
     ChangeSeatForm
   },
   data() {
@@ -169,6 +184,8 @@ export default {
       attendees: [],
       isLoadingEvent: false,
       changeSeatHasError: false,
+      personCheckinLoading: false,
+      personCheckinError: false,
       isChangeSeatLoading: false,
       isLoadingEventAttendees: false
     }
@@ -256,6 +273,32 @@ export default {
         this.isChangeSeatLoading = false;
       }
     },
+    async attenndeeCheckin(body) {
+      this.personCheckinLoading = true;
+      this.personCheckinError = false;
+
+      try {
+        await api.post(`/v1/events/${this.eventId}/checkin`, body);
+
+        this.getEventDetails();
+        this.getEventAttendees();
+        this.handleSuccess('Person Checked in successfully');
+      } catch (error) {
+        this.personCheckinError = true;
+        let message;
+
+        if (error.response) {
+          const { data } = error.response;
+          message = data.message;
+        } else {
+          message = error.message;
+        }
+
+        this.handleError(message);
+      } finally {
+        this.personCheckinLoading = false;
+      }
+    },
     printQrCode() {
       if (this.qrCodeImage) {
         printJs({
@@ -267,6 +310,9 @@ export default {
     },
     handleChangeSeatFormSubmit(body) {
       this.changeSeat(body);
+    },
+    handlePersonCheckinSubmit(body) {
+      this.attenndeeCheckin(body);
     }
   },
   mounted() {
