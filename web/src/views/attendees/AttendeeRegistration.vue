@@ -114,12 +114,14 @@
 
 <script>
 import api from '@/utils/api';
+import { AlertMixin } from '@/mixins';
 import NewPersonForm from '@/components/NewPersonForm.vue';
 import PersonCheckForm from '@/components/PersonCheckForm.vue';
 import SeatSelectionForm from '@/components/SeatSelectionForm.vue';
 
 export default {
   name: 'AttendeeRegistration',
+  mixins: [AlertMixin],
   components: {
     NewPersonForm,
     PersonCheckForm,
@@ -241,13 +243,6 @@ export default {
     handlePersonClick(index) {
       this.selectedPerson = this.cachedUsers[index];
       this.showSeatSelectionForm = true;
-    },
-    handleError(errorMessage) {
-      this.$message({
-        message: errorMessage,
-        showClose: true,
-        type: 'error'
-      });
     }
   },
   mounted() {

@@ -37,11 +37,13 @@
 
 <script>
 import api from '@/utils/api';
+import { AlertMixin } from '@/mixins';
 import VenueTable from '@/components/VenueTable.vue'
 import VenueDialog from '@/components/VenueDialog.vue'
 
 export default {
   name: 'Venues',
+  mixins: [AlertMixin],
   components: {
     VenueTable,
     VenueDialog
@@ -64,9 +66,9 @@ export default {
 
         this.venues = data;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       } finally {
         this.isLoadingVenues = false;
       }
@@ -80,9 +82,9 @@ export default {
         this.getVenues();
         this.showVenueForm = false;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       } finally {
         this.isCreatingVenue = false;
       }
@@ -96,9 +98,9 @@ export default {
         this.getVenues();
         this.showVenueForm = false;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       } finally {
         this.isDeleteingVenue = false;
       }

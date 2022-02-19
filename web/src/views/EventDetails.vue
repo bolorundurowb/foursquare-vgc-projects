@@ -130,11 +130,12 @@
 
 <script>
 import printJs from 'print-js';
-
 import api from '@/utils/api';
+import { AlertMixin } from '@/mixins';
 
 export default {
   name: 'EventDetails',
+  mixins: [AlertMixin],
   props: {
     eventId: {
       type: String,
@@ -185,9 +186,9 @@ export default {
 
         this.event = data;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       } finally {
         this.isLoadingEvent = false;
       }
@@ -200,9 +201,9 @@ export default {
 
         this.attendees = data;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       } finally {
         this.isLoadingEventAttendees = false;
       }

@@ -37,11 +37,13 @@
 
 <script>
 import api from '@/utils/api';
+import { AlertMixin } from '@/mixins';
 import EventDialog from '@/components/EventDialog.vue';
 import EventTable from '@/components/EventTable.vue';
 
 export default {
   name: 'Events',
+  mixins: [AlertMixin],
   components: {
     EventDialog,
     EventTable
@@ -64,9 +66,9 @@ export default {
         const { data } = await api.get('/v1/events');
         this.events = data;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       } finally {
         this.isLoadingEvents = false;
       }
@@ -79,9 +81,9 @@ export default {
 
         this.venues = data;
       } catch (error) {
-        const { data, status } = error.response;
+        const { data } = error.response;
 
-        console.log(status, data.message);
+        this.handleError(data.message);
       } finally {
         this.isLoadingVenues = false;
       }
@@ -95,8 +97,9 @@ export default {
         this.getEvents();
         this.showEventForm = false;
       } catch (error) {
-        const { data, status } = error.response;
-        console.error(status, data.message);
+        const { data } = error.response;
+
+        this.handleError(data.message);
       } finally {
         this.isCreatingEvents = false;
       }
@@ -110,8 +113,9 @@ export default {
         this.getEvents();
         this.showEventForm = false;
       } catch (error) {
-        const { data, status } = error.response;
-        console.error(status, data.message);
+        const { data } = error.response;
+
+        this.handleError(data.message);
       } finally {
         this.isDeleteingEvent = false;
       }
