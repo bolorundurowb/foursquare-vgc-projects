@@ -78,32 +78,41 @@ public class EventsController : ApiController
     [ProducesResponseType(typeof(EventSeatViewModel), 201)]
     [ProducesResponseType(typeof(GenericViewModel), 404)]
     [ProducesResponseType(typeof(GenericViewModel), 409)]
+    [ProducesResponseType(typeof(GenericViewModel), 500)]
     public async Task<IActionResult> CheckIn(string eventId, [FromBody] SeatAssignmentBindingModel bm)
     {
-        var @event = await _eventRepo.FindById(eventId);
+        try
+        {
+            var @event = await _eventRepo.FindById(eventId);
 
-        if (@event == null)
-            return NotFound("Event not found.");
+            if (@event == null)
+                return NotFound("Event not found.");
 
-        if (@event.HasSeatAssigned(bm.PersonId))
-            return Conflict("A seat has been assigned for this attendee.");
+            if (@event.HasSeatAssigned(bm.PersonId))
+                return Conflict("A seat has been assigned for this attendee.");
 
-        var person = await _personsRepo.FindById(bm.PersonId);
+            var person = await _personsRepo.FindById(bm.PersonId);
 
-        if (person == null)
-            return NotFound("Person not found.");
+            if (person == null)
+                return NotFound("Person not found.");
 
-        if (!@event.IsSeatAvailable())
-            return BadRequest("No more seats available.");
+            if (!@event.IsSeatAvailable())
+                return BadRequest("No more seats available.");
 
-        var eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
-        return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
+            var eventSeat = await _eventRepo.AssignSeat(@event, bm.Category, person);
+            return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
+        }
+        catch (Exception ex)
+        {
+            return Error(ex.Message);
+        }
     }
 
     [HttpPost("{eventId}/change-seats")]
     [ProducesResponseType(typeof(EventViewModel), 200)]
     [ProducesResponseType(typeof(GenericViewModel), 404)]
     [ProducesResponseType(typeof(GenericViewModel), 409)]
+    [ProducesResponseType(typeof(GenericViewModel), 500)]
     public async Task<IActionResult> ChangeSeat(string eventId, [FromBody] SeatChangeBindingModel bm)
     {
         try
