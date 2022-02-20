@@ -124,7 +124,7 @@ public class EventsController : ApiController
                 return NotFound("Event not found.");
 
             if (!@event.HasSeatAssigned(bm.PersonId))
-                return BadRequest("A seat has not been assigned for this person. Register them afresh.");
+                return BadRequest("A seat has not been assigned for this person. They can register.");
 
             if (!@event.IsSeatAvailable(venueId, bm.SeatNumber))
                 return BadRequest("The seat selected does not exist or has already been assigned.");

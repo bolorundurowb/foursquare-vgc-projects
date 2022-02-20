@@ -39,9 +39,17 @@ public class EventSeat : ValueObject
     public void Assign(ObjectId personId)
     {
         if (PersonId != null && PersonId != ObjectId.Empty)
-            throw new InvalidOperationException("This seat has been assigned.");
+            throw new InvalidOperationException("This seat has already been assigned.");
 
         PersonId = personId;
+    }
+
+    public void DeAssign()
+    {
+        if (PersonId == null || PersonId == ObjectId.Empty)
+            return;
+
+        PersonId = null;
     }
 
     protected override IEnumerable<object> GetAtomicValues()

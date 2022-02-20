@@ -72,10 +72,12 @@ public class Event : Schema
 
         // put back into the pool
         AssignedSeats.Remove(currentSeat);
+        currentSeat.DeAssign();
         AvailableSeats.Insert(0, currentSeat);
 
         // assign the new seats
-        var eventSeat = AvailableSeats.First(x => x.VenueId == venueId && x.Number == seatNumber);
+        var eventSeat = AvailableSeats.First(x =>
+            x.VenueId == venueId && (x.Number == seatNumber || x.AssociatedNumber == seatNumber));
         AvailableSeats.Remove(eventSeat);
 
         eventSeat.Assign(personId);
@@ -91,6 +93,7 @@ public class Event : Schema
     public bool IsSeatAvailable(ObjectId venueId, string seatNumber)
     {
         seatNumber = seatNumber?.ToUpperInvariant();
-        return AvailableSeats.Any(x => x.VenueId == venueId && x.Number == seatNumber);
+        return AvailableSeats.Any(x =>
+            x.VenueId == venueId && (x.Number == seatNumber || x.AssociatedNumber == seatNumber));
     }
 }
