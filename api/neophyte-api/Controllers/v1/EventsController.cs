@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MapsterMapper;
@@ -105,25 +106,32 @@ public class EventsController : ApiController
     [ProducesResponseType(typeof(GenericViewModel), 409)]
     public async Task<IActionResult> ChangeSeat(string eventId, [FromBody] SeatChangeBindingModel bm)
     {
-        var @event = await _eventRepo.FindById(eventId);
-        var venueId = ObjectId.Parse(bm.VenueId);
+        try
+        {
+            var @event = await _eventRepo.FindById(eventId);
+            var venueId = ObjectId.Parse(bm.VenueId);
 
-        if (@event == null)
-            return NotFound("Event not found.");
+            if (@event == null)
+                return NotFound("Event not found.");
 
-        if (!@event.HasSeatAssigned(bm.PersonId))
-            return BadRequest("A seat has not been assigned for this person. Register them afresh.");
+            if (!@event.HasSeatAssigned(bm.PersonId))
+                return BadRequest("A seat has not been assigned for this person. Register them afresh.");
 
-        if (!@event.IsSeatAvailable(venueId, bm.SeatNumber))
-            return BadRequest("The seat selected does not exist or has already been assigned.");
+            if (!@event.IsSeatAvailable(venueId, bm.SeatNumber))
+                return BadRequest("The seat selected does not exist or has already been assigned.");
 
-        var person = await _personsRepo.FindById(bm.PersonId);
+            var person = await _personsRepo.FindById(bm.PersonId);
 
-        if (person == null)
-            return NotFound("Person not found.");
+            if (person == null)
+                return NotFound("Person not found.");
 
-        var eventSeat = await _eventRepo.ChangeSeat(@event, person, venueId, bm.SeatNumber);
-        return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
+            var eventSeat = await _eventRepo.ChangeSeat(@event, person, venueId, bm.SeatNumber);
+            return Ok(Mapper.Map<EventSeatViewModel>(eventSeat));
+        }
+        catch (Exception ex)
+        {
+            return Error(ex.Message);
+        }
     }
 
     /// <summary>
@@ -172,7 +180,7 @@ public class EventsController : ApiController
     {
         var @event = await _eventRepo.FindById(eventId);
 
-        if (@event != null && @event.AssignedSeats.Count > 0) 
+        if (@event != null && @event.AssignedSeats.Count > 0)
             return BadRequest("An event with attendees cannot be removed.");
 
         await _eventRepo.Remove(eventId);

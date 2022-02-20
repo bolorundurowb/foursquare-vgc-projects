@@ -50,6 +50,12 @@ public class ApiController : ControllerBase
             Message = message
         });
 
+    protected ObjectResult Error(string message) =>
+        StatusCode((int) HttpStatusCode.InternalServerError, new GenericViewModel
+        {
+            Message = message
+        });
+
     internal static async Task<(bool, IEnumerable<string>)> IsValid<TValidator, TModel>(TModel model) where TValidator : IValidator<TModel>, new()
     {
         var results = await Validate<TValidator, TModel>(model);
