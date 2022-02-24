@@ -11,7 +11,7 @@ public class EventCreationBindingModelValidator: AbstractValidator<EventCreation
         RuleFor(x => x.Name)
             .NotEmpty();
         
-        RuleFor(x => x.Date)
+        RuleFor(x => x.StartsAt)
             .GreaterThan(GetCurrentDate());
         
         RuleFor(x => x.DurationInMinutes)

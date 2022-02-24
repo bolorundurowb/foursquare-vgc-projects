@@ -17,7 +17,7 @@ public class EventCreationBindingModel
     /// The event date and time. Must be in the future
     /// </summary>
     /// <example>2022-02-04T00:00:00.000Z</example>
-    public DateTime Date { get; set; }
+    public DateTime StartsAt { get; set; }
 
     /// <summary>
     /// The event duration in minutes

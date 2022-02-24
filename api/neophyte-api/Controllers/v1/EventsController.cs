@@ -57,7 +57,7 @@ public class EventsController : ApiController
     [ProducesResponseType(typeof(GenericViewModel), 409)]
     public async Task<IActionResult> Create([FromBody] EventCreationBindingModel bm)
     {
-        var @event = await _eventRepo.FindByNameAndDate(bm.Name, bm.Date);
+        var @event = await _eventRepo.FindByNameAndDate(bm.Name, bm.StartsAt);
 
         if (@event != null)
             return Conflict("An event exists with the same name and date.");
@@ -69,7 +69,7 @@ public class EventsController : ApiController
             if (venueMap.ContainsKey(venuePriority.VenueId))
                 venues.Add((venuePriority.Priority, venueMap[venuePriority.VenueId]));
 
-        @event = await _eventRepo.Create(bm.Name, bm.Date, bm.DurationInMinutes, venues);
+        @event = await _eventRepo.Create(bm.Name, bm.StartsAt, bm.DurationInMinutes, venues);
         return Ok(Mapper.Map<EventViewModel>(@event));
     }
 
