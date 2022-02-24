@@ -17,7 +17,7 @@ public interface IEventRepository
 
     Task<Event> FindByNameAndDate(string name, DateTime date);
 
-    Task<Event> Create(string name, DateTime date, List<(int Priority, Venue Venue)> venuePriority);
+    Task<Event> Create(string name, DateTime date, int durationInMinutes, List<(int Priority, Venue Venue)> venuePriority);
 
     Task<EventSeat> AssignSeat(Event @event, SeatCategory category, Person person);
 

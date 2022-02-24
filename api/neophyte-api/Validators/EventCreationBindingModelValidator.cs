@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System;
+using FluentValidation;
 using neophyte.api.Models.Binding;
 
 namespace neophyte.api.Validators;
@@ -9,6 +10,12 @@ public class EventCreationBindingModelValidator: AbstractValidator<EventCreation
     {
         RuleFor(x => x.Name)
             .NotEmpty();
+        
+        RuleFor(x => x.StartsAt)
+            .GreaterThan(GetCurrentDate());
+        
+        RuleFor(x => x.DurationInMinutes)
+            .GreaterThan(0);
 
         RuleFor(x => x.Venues)
             .NotEmpty();
@@ -16,4 +23,6 @@ public class EventCreationBindingModelValidator: AbstractValidator<EventCreation
         RuleForEach(x => x.Venues)
             .SetValidator(new VenuePriorityBindingModelValidator());
     }
+
+    private DateTime GetCurrentDate() => DateTime.Now;
 }

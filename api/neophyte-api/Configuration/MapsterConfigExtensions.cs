@@ -51,6 +51,7 @@ public static class MapsterConfigExtensions
 
         config.NewConfig<Event, EventViewModel>()
             .Inherits<Event, BaseEventViewModel>()
+            .Map(x => x.IsRegistrationClosed, y => y.CanRegister())
             .AfterMapping((model, vm) =>
             {
                 vm.RegistrationUrlQrCode = QrCodeService.GenerateQrCode(model.RegistrationUrl);
