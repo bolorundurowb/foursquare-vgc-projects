@@ -32,7 +32,7 @@ public class Event : Schema
     public Event(string name, DateTime startsAt, int durationInMinutes, List<(int Priority, Venue Venue)> venuePriority)
     {
         Name = name;
-        StartsAt = startsAt;
+        StartsAt = startsAt.ToUniversalTime();
         EndsAt = startsAt + TimeSpan.FromMinutes(durationInMinutes);
         AvailableSeats = new List<EventSeat>();
 
@@ -101,9 +101,9 @@ public class Event : Schema
     }
 
     // determine if the event has finished with a 30 minute buffer
-    public bool HasExpired()
+    public bool CanRegister()
     {
         var gracePeriod = TimeSpan.FromMinutes(30);
-        return DateTime.UtcNow > (EndsAt + gracePeriod);
+        return (EndsAt + gracePeriod) >= DateTime.UtcNow;
     }
 }
