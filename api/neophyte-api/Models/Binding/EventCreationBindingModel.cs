@@ -20,6 +20,12 @@ public class EventCreationBindingModel
     public DateTime Date { get; set; }
 
     /// <summary>
+    /// The event duration in minutes
+    /// </summary>
+    /// <example>30</example>
+    public int DurationInMinutes { get; set; }
+
+    /// <summary>
     /// The list of venues to be used in order of priority
     /// </summary>
     [SwaggerSchema(Nullable = false)]
