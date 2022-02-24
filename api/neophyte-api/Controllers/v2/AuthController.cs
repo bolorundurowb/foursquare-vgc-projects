@@ -14,10 +14,7 @@ public class AuthController : ApiController
 {
     private readonly IAdminsRepository _adminsRepo;
 
-    public AuthController(IMapper mapper, IAdminsRepository adminsRepo) : base(mapper)
-    {
-        _adminsRepo = adminsRepo;
-    }
+    public AuthController(IMapper mapper, IAdminsRepository adminsRepo) : base(mapper) => _adminsRepo = adminsRepo;
 
     [AllowAnonymous]
     [HttpPost("login")]
