@@ -19,7 +19,7 @@ public class EventRepository : IEventRepository
 {
     public Task<List<Event>> GetAll(int skip, int limit) =>
         Meerkat.Query<Event>()
-            .OrderByDescending(x => x.Date)
+            .OrderByDescending(x => x.StartsAt)
             .Skip(skip)
             .Take(limit)
             .ToListAsync();
@@ -27,7 +27,7 @@ public class EventRepository : IEventRepository
     public Task<Event> FindById(string eventId) => Meerkat.FindByIdAsync<Event>(ObjectId.Parse(eventId));
 
     public Task<Event> FindByNameAndDate(string name, DateTime date) =>
-        Meerkat.FindOneAsync<Event>(x => x.Name == name && x.Date == date);
+        Meerkat.FindOneAsync<Event>(x => x.Name == name && x.StartsAt == date);
 
     public async Task<Event> Create(string name, DateTime date, int durationInMinutes,
         List<(int Priority, Venue Venue)> venuePriority)
@@ -108,7 +108,7 @@ public class EventRepository : IEventRepository
     public async Task<(string, byte[])> GetAttendeeReport(Event @event)
     {
         var attendees = await GetAttendees(@event);
-        var fileName = $"{@event.Name}_{@event.Date:yyyy-MMM-dd}_attendees.xlsx";
+        var fileName = $"{@event.Name}_{@event.StartsAt:yyyy-MMM-dd}_attendees.xlsx";
         var data = ExcelGenerator.ForEventAttendees(attendees);
         return (fileName, data);
     }

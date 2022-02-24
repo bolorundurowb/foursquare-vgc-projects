@@ -15,9 +15,9 @@ public class Event : Schema
 {
     public string Name { get; private set; }
 
-    public DateTime Date { get; private set; }
+    public DateTime StartsAt { get; private set; }
 
-    public int DurationInMinutes { get; private set; }
+    public DateTime EndsAt { get; private set; }
 
     public string RegistrationUrl { get; private set; }
 
@@ -29,11 +29,11 @@ public class Event : Schema
     {
     }
 
-    public Event(string name, DateTime eventDate, int durationInMinutes, List<(int Priority, Venue Venue)> venuePriority)
+    public Event(string name, DateTime startsAt, int durationInMinutes, List<(int Priority, Venue Venue)> venuePriority)
     {
         Name = name;
-        Date = eventDate;
-        DurationInMinutes = durationInMinutes;
+        StartsAt = startsAt;
+        EndsAt = startsAt + TimeSpan.FromMinutes(durationInMinutes);
         AvailableSeats = new List<EventSeat>();
 
         foreach (var (priority, venue) in venuePriority)
@@ -98,5 +98,12 @@ public class Event : Schema
         seatNumber = seatNumber?.ToUpperInvariant();
         return AvailableSeats.Any(x =>
             x.VenueId == venueId && (x.Number == seatNumber || x.AssociatedNumber == seatNumber));
+    }
+
+    // determine if the event has finished with a 30 minute buffer
+    public bool HasExpired()
+    {
+        var gracePeriod = TimeSpan.FromMinutes(30);
+        return DateTime.UtcNow > (EndsAt + gracePeriod);
     }
 }
