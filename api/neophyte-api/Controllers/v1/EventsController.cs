@@ -69,7 +69,7 @@ public class EventsController : ApiController
             if (venueMap.ContainsKey(venuePriority.VenueId))
                 venues.Add((venuePriority.Priority, venueMap[venuePriority.VenueId]));
 
-        @event = await _eventRepo.Create(bm.Name, bm.Date, venues);
+        @event = await _eventRepo.Create(bm.Name, bm.Date, bm.DurationInMinutes, venues);
         return Ok(Mapper.Map<EventViewModel>(@event));
     }
 
