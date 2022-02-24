@@ -24,4 +24,10 @@ public class EventViewModel : BaseEventViewModel
     /// </summary>
     [SwaggerSchema(Nullable = false)]
     public List<VenueViewModel> AvailableSeats { get; set; }
+
+    /// <summary>
+    /// Whether a member cna register for this event or not
+    /// </summary>
+    [SwaggerSchema(Nullable = false)]
+    public bool IsRegistrationClosed { get; set; }
 }
