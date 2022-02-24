@@ -88,6 +88,9 @@ public class EventsController : ApiController
             if (@event == null)
                 return NotFound("Event not found.");
 
+            if (!@event.CanRegister())
+                return BadRequest("Event has been closed to registration.");
+
             if (@event.HasSeatAssigned(bm.PersonId))
                 return Conflict("A seat has been assigned for this attendee.");
 
