@@ -23,7 +23,13 @@ public class BaseEventViewModel
     /// The event date and time
     /// </summary>
     /// <example>2022-02-04T00:00:00.000Z</example>
-    public DateTime Date { get; set; }
+    public DateTime StartsAt { get; set; }
+
+    /// <summary>
+    /// The event end date and time
+    /// </summary>
+    /// <example>2022-02-04T00:00:00.000Z</example>
+    public DateTime EndsAt { get; set; }
 
     /// <summary>
     /// The number of attendees for the event. It would be 0 for future events
