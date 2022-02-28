@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Cookies from 'js-cookie';
 
+const Home = () => import('../views/attendees/Home.vue');
 const AdminHome = () => import('../views/admin/AdminHome.vue');
 const Login = () => import('../views/admin/auth/Login.vue');
 const Venues = () => import('../views/admin/Venues.vue');
@@ -12,6 +13,11 @@ const AttendeeRegistration = () => import('../views/attendees/AttendeeRegistrati
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
   {
     path: '/login',
     name: 'Login',
