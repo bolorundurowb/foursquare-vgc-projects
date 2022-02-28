@@ -1,7 +1,7 @@
 <template>
   <div class="Login">
     <el-row justify="center" align="middle" type="flex" class="Login__row">
-      <el-col :sm="5" :span="5">
+      <el-col :xs="16" :sm="10" :md="6"  :span="5">
         <el-card class="box-card" shadow="never">
           <el-form ref="loginForm" :model="loginForm" :rules="rules">
             <el-form-item label="Email" prop="email">
