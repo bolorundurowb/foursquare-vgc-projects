@@ -24,11 +24,6 @@ const routes = [
     component: Login
   },
   {
-    path: '/register',
-    name: 'Register',
-    component: () => {}
-  },
-  {
     path: '/events/:eventId',
     name: 'AttendeeRegistration',
     component: AttendeeRegistration,
