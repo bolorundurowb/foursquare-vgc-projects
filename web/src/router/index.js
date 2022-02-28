@@ -19,7 +19,7 @@ const routes = [
   },
   {
     path: '/register',
-    nme: 'Register',
+    name: 'Register',
     component: () => {}
   },
   {
@@ -58,6 +58,10 @@ const routes = [
         redirect: '/admin/events'
       }
     ]
+  },
+  {
+    path: '**',
+    redirect: '/'
   }
 ];
 
