@@ -2,25 +2,26 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Cookies from 'js-cookie';
 
-const AdminHome = () => import('../views/AdminHome.vue');
-const Login = () => import('../views/Login.vue');
-const Venues = () => import('../views/Venues.vue');
-const Events = () => import('../views/Events.vue');
-const EventDetails = () => import('../views/EventDetails');
+const Home = () => import('../views/attendees/Home.vue');
+const AdminHome = () => import('../views/admin/AdminHome.vue');
+const Login = () => import('../views/admin/auth/Login.vue');
+const Venues = () => import('../views/admin/Venues.vue');
+const Events = () => import('../views/admin/Events.vue');
+const EventDetails = () => import('../views/admin/EventDetails');
 const AttendeeRegistration = () => import('../views/attendees/AttendeeRegistration');
 
 Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
-  },
-  {
-    path: '/register',
-    nme: 'Register',
-    component: () => {}
   },
   {
     path: '/events/:eventId',
@@ -58,6 +59,10 @@ const routes = [
         redirect: '/admin/events'
       }
     ]
+  },
+  {
+    path: '**',
+    redirect: '/'
   }
 ];
 
