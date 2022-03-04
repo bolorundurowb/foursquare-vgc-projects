@@ -10,6 +10,7 @@ using neophyte.api.Data.ValueObjects;
 
 namespace neophyte.api.Data.Entities;
 
+[IgnoreUnknownFields]
 [Collection(TrackTimestamps = true)]
 public class Event : Schema
 {
