@@ -163,9 +163,7 @@ export default {
         this.showCheckPersonForm = false;
         this.showSeatSelectionForm = true;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.checkPersonLoading = false;
       }
@@ -181,9 +179,7 @@ export default {
         this.showNewPersonForm = false;
         this.showSeatSelectionForm = true;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.newPersonLoading = false;
       }
@@ -199,9 +195,7 @@ export default {
         this.assignedSeat = data;
         this.showAssignedSeat = true;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.seatSelectionLoading = false;
       }

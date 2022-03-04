@@ -225,9 +225,7 @@ export default {
 
         this.event = data;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isLoadingEvent = false;
       }
@@ -240,9 +238,7 @@ export default {
 
         this.attendees = data;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isLoadingEventAttendees = false;
       }

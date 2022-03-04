@@ -67,9 +67,7 @@ export default {
         const { data } = await api.get('/v1/events');
         this.events = data;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error);
       } finally {
         this.isLoadingEvents = false;
       }
@@ -82,9 +80,7 @@ export default {
 
         this.venues = data;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isLoadingVenues = false;
       }
@@ -98,9 +94,7 @@ export default {
         this.getEvents();
         this.showEventForm = false;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isCreatingEvents = false;
       }
@@ -114,9 +108,7 @@ export default {
         this.getEvents();
         this.showEventForm = false;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isDeleteingEvent = false;
       }

@@ -124,9 +124,7 @@ export default {
 
         this.persons = data;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isLoadingPersons = false;
       }
