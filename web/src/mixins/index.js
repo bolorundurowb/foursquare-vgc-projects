@@ -1,8 +1,11 @@
 export const AlertMixin = {
   methods: {
-    handleError(errorMessage) {
+    handleError(error) {
+      const { data = {} } = error.response || {};
+      const message = data.message || 'There was an error';
+
       this.$message({
-        message: errorMessage,
+        message,
         showClose: true,
         type: 'error'
       });

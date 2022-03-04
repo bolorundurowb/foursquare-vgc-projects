@@ -1,5 +1,5 @@
 <template>
-  <div class="Events">
+  <div class="Events" v-loading="isLoadingEvents">
     <el-empty
         description="No Events available"
         v-if="!isLoadingEvents && events.length < 1"
@@ -20,18 +20,18 @@
 
     <el-card shadow="never" v-if="events.length > 0">
       <event-table
-          :events="events"
-          :is-loading="isLoadingEvents || isDeleteingEvent || isCreatingEvent"
-          @delete-event="handleDeleteEvent"
+        :events="events"
+        :is-loading="isLoadingEvents || isDeleteingEvent || isCreatingEvent"
+        @delete-event="handleDeleteEvent"
       />
     </el-card>
 
     <event-dialog
-        :show-event-form="showEventForm"
-        :venues="venues"
-        :is-creating-event="isCreatingEvent"
-        @create-event="handleAddEvent"
-        @close="showEventForm = false"
+      :show-event-form="showEventForm"
+      :venues="venues"
+      :is-creating-event="isCreatingEvent"
+      @create-event="handleAddEvent"
+      @close="showEventForm = false"
     />
   </div>
 </template>
@@ -67,9 +67,7 @@ export default {
         const { data } = await api.get('/v1/events');
         this.events = data;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error);
       } finally {
         this.isLoadingEvents = false;
       }
@@ -82,9 +80,7 @@ export default {
 
         this.venues = data;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isLoadingVenues = false;
       }
@@ -98,9 +94,7 @@ export default {
         this.getEvents();
         this.showEventForm = false;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isCreatingEvents = false;
       }
@@ -114,9 +108,7 @@ export default {
         this.getEvents();
         this.showEventForm = false;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isDeleteingEvent = false;
       }

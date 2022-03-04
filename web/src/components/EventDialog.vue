@@ -20,13 +20,27 @@
           <el-input v-model="eventForm.name" />
         </el-form-item>
 
-        <el-form-item label="Date" prop="date">
-          <el-date-picker
-            v-model="eventForm.date" 
-            type="datetime"
-            placeholder="Select date and time"
-          />
-        </el-form-item>
+        <el-row :gutter="20">
+          <el-col :xs="24" :md="10">
+            <el-form-item label="Date" prop="startsAt">
+              <el-date-picker
+                v-model="eventForm.startsAt" 
+                type="datetime"
+                placeholder="Select date and time"
+              />
+            </el-form-item>
+          </el-col>
+
+          <el-col :xs="24" :md="14">
+            <el-form-item label="Duration" prop="durationInMinutes">
+              <el-input
+                v-model="eventForm.durationInMinutes" 
+                type="number"
+                placeholder="Enter event duraion in minutes"
+              />
+            </el-form-item>
+          </el-col>
+        </el-row>
 
         <el-row
           v-for="(venue, index) in eventForm.venues"
@@ -127,7 +141,8 @@ export default {
       },
       eventFormRules: {
         name: [{ required: true, message: 'Name is required' }],
-        date: [{ required: true, message: 'Date is required' }],
+        startsAt: [{ required: true, message: 'Date is required' }],
+        durationInMinutes: [{ required: true, message: 'Duration is required' }],
         venueId: { required: true, message: 'Venue is required' },
         priority: { required: true, message: 'Priority is required' }
       },

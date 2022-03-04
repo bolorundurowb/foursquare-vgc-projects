@@ -1,5 +1,5 @@
 <template>
-  <div class="Venues">
+  <div class="Venues" v-loading="isLoadingVenues">
     <el-empty
       description="No Venues available" 
       v-if="!isLoadingVenues && venues.length < 1"
@@ -68,9 +68,7 @@ export default {
 
         this.venues = data;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isLoadingVenues = false;
       }
@@ -84,9 +82,7 @@ export default {
         this.getVenues();
         this.showVenueForm = false;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isCreatingVenue = false;
       }
@@ -100,9 +96,7 @@ export default {
         this.getVenues();
         this.showVenueForm = false;
       } catch (error) {
-        const { data } = error.response;
-
-        this.handleError(data.message);
+        this.handleError(error)
       } finally {
         this.isDeleteingVenue = false;
       }
