@@ -3,6 +3,7 @@
     <el-row justify="center" align="middle" type="flex" class="Login__row">
       <el-col :xs="16" :sm="10" :md="6"  :span="5">
         <el-card class="box-card" shadow="never">
+          <img src="./../../../assets/logo.svg" alt="logo" class="Login__logo">
           <el-form ref="loginForm" :model="loginForm" :rules="rules">
             <el-form-item label="Email" prop="email">
               <el-input type="email" v-model="loginForm.email" autocomplete="off" />
@@ -14,6 +15,8 @@
               <el-button
                 type="primary"
                 @click="submitForm"
+                v-loading="isLoading"
+                :disabled="isLoading"
               >
                 Login
               </el-button>
@@ -33,6 +36,7 @@ export default {
   name: 'Login',
   data() {
     return {
+      isLoading: false,
       loginForm: {
         email: '',
         password: ''
@@ -59,6 +63,7 @@ export default {
       })
     },
     async login({ email, password }) {
+      this.isLoading = true;
       try {
         const { data } = await api.post('/v2/auth/login', {
           emailAddress: email,
@@ -76,6 +81,8 @@ export default {
         const { data, status } = err.response;
 
         console.log(status, data.message);
+      } finally {
+        this.isLoading = false;
       }
     }
   }
@@ -88,6 +95,11 @@ export default {
 
   &__row {
     min-height: 100vh;
+  }
+
+  &__logo {
+    height: 40px;
+    margin-bottom: 30px;
   }
 }
 </style>

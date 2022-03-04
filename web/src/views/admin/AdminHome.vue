@@ -1,25 +1,28 @@
 <template>
   <el-container class="AdminHome">
     <el-header class="AdminHome__header">
-      <div class="AdminHome__logo"/>
+      <div class="AdminHome__header-logo-container">
+        <img src="./../../assets/logo.svg" alt="logo" class="AdminHome__logo">
 
-      <el-menu
-          class="AdminHome__menu"
-          mode="horizontal"
-          :router="true">
-        <el-menu-item
-            class="AdminHome__menu-item"
-            :index="'/admin/events'">
-          <i class="el-icon-date"/>
-          Events
-        </el-menu-item>
-        <el-menu-item
-            class="AdminHome__menu-item"
-            :index="'/admin/venues'">
-          <i class="el-icon-house"/>
-          Venues
-        </el-menu-item>
-      </el-menu>
+        <!-- these guys don't have a mobile responsive menu so I am hiding it -->
+        <el-menu
+            class="AdminHome__menu hidden-sm-and-down"
+            mode="horizontal"
+            :router="true">
+          <el-menu-item
+              class="AdminHome__menu-item"
+              :index="'/admin/events'">
+            <i class="el-icon-date"/>
+            Events
+          </el-menu-item>
+          <el-menu-item
+              class="AdminHome__menu-item"
+              :index="'/admin/venues'">
+            <i class="el-icon-house"/>
+            Venues
+          </el-menu-item>
+        </el-menu>
+      </div>
 
       <el-dropdown trigger="click" @command="commandHandlers">
         <span class="AdminHome__dropdown">
@@ -65,6 +68,12 @@ export default {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
     display: flex;
     align-items: center;
+    justify-content: space-between;
+  }
+
+  &__header-logo-container {
+    display: flex;
+    align-items: center;
   }
 
   &__content {
@@ -73,9 +82,6 @@ export default {
 
   &__logo {
     height: 40px;
-    width: 40px;
-    background-color: #C4C4C4;
-    border-radius: 20px;
   }
 
   &__menu {
