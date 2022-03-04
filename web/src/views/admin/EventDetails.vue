@@ -43,7 +43,6 @@
                 </el-descriptions-item>
 
                 <el-descriptions-item label="Event URL" :span="2">
-                  <i class="" />
                   <el-link
                     :href="event.registrationUrl"
                     target="_blank"
