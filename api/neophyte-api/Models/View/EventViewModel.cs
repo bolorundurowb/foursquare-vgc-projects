@@ -26,6 +26,12 @@ public class EventViewModel : BaseEventViewModel
     public List<VenueViewModel> AvailableSeats { get; set; }
 
     /// <summary>
+    /// The event duration in minutes
+    /// </summary>
+    [SwaggerSchema(Nullable = false)]
+    public int DurationInMinutes { get; set; }
+
+    /// <summary>
     /// Whether a member cna register for this event or not
     /// </summary>
     [SwaggerSchema(Nullable = false)]

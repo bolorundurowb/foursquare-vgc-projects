@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Mapster;
 using neophyte.api.Data.DTOs;
 using neophyte.api.Data.Entities;
@@ -51,6 +52,7 @@ public static class MapsterConfigExtensions
 
         config.NewConfig<Event, EventViewModel>()
             .Inherits<Event, BaseEventViewModel>()
+            .Map(x => x.DurationInMinutes, y => Convert.ToInt32((y.EndsAt - y.StartsAt).TotalMinutes))
             .Map(x => x.IsRegistrationClosed, y => y.CanRegister())
             .AfterMapping((model, vm) =>
             {
