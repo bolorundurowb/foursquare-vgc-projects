@@ -19,12 +19,16 @@
                 :column="2"
                 v-loading="isLoadingEvent"
               >
-                <el-descriptions-item label="Date">
-                  {{ event.date | dateFilter }}
+                <el-descriptions-item label="Date" :span="2">
+                  {{ event.startsAt | dateFilter }}
                 </el-descriptions-item>
 
                 <el-descriptions-item label="Number of registered Attendees">
                   {{ event.numOfAttendees }}
+                </el-descriptions-item>
+
+                <el-descriptions-item label="Event Duration">
+                  {{ event.durationInMinutes }} minutes
                 </el-descriptions-item>
 
                 <el-descriptions-item label="Venues" :span="2">
@@ -39,8 +43,16 @@
                 </el-descriptions-item>
 
                 <el-descriptions-item label="Event URL" :span="2">
-                  <i class="el-icon-link" />
-                  {{event.registrationUrl}}
+                  <i class="" />
+                  <el-link
+                    :href="event.registrationUrl"
+                    target="_blank"
+                    type="primary"
+                    :underline="false"
+                    icon="el-icon-link"
+                  >
+                    {{event.registrationUrl}}
+                  </el-link>
                 </el-descriptions-item>
               </el-descriptions>
             </el-card>

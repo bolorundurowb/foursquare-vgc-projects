@@ -9,11 +9,11 @@
       prop="name"
       label="Name" />
     <el-table-column
-      prop="date"
+      prop="startsAt"
       label="Date"
       v-slot="{ row }"
     >
-      {{ row.date | dateFilter }}
+      {{ row.startsAt | dateFilter }}
     </el-table-column>
     <el-table-column
       prop="numOfAttendees"
