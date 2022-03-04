@@ -1,5 +1,5 @@
 <template>
-  <div class="Venues">
+  <div class="Venues" v-loading="isLoadingVenues">
     <el-empty
       description="No Venues available" 
       v-if="!isLoadingVenues && venues.length < 1"

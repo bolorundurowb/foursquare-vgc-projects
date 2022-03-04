@@ -1,5 +1,5 @@
 <template>
-  <div class="Events">
+  <div class="Events" v-loading="isLoadingEvents">
     <el-empty
         description="No Events available"
         v-if="!isLoadingEvents && events.length < 1"
@@ -20,18 +20,18 @@
 
     <el-card shadow="never" v-if="events.length > 0">
       <event-table
-          :events="events"
-          :is-loading="isLoadingEvents || isDeleteingEvent || isCreatingEvent"
-          @delete-event="handleDeleteEvent"
+        :events="events"
+        :is-loading="isLoadingEvents || isDeleteingEvent || isCreatingEvent"
+        @delete-event="handleDeleteEvent"
       />
     </el-card>
 
     <event-dialog
-        :show-event-form="showEventForm"
-        :venues="venues"
-        :is-creating-event="isCreatingEvent"
-        @create-event="handleAddEvent"
-        @close="showEventForm = false"
+      :show-event-form="showEventForm"
+      :venues="venues"
+      :is-creating-event="isCreatingEvent"
+      @create-event="handleAddEvent"
+      @close="showEventForm = false"
     />
   </div>
 </template>
