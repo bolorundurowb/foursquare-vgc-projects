@@ -109,4 +109,23 @@ public class Event : Schema
         var gracePeriod = TimeSpan.FromMinutes(30);
         return (EndsAt + gracePeriod) >= DateTime.UtcNow;
     }
+
+    public OnlineAttendee RecordOnlineAttendance(Person person)
+    {
+        var personId = (ObjectId)person.Id;
+        var eventSeat = AssignedSeats.FirstOrDefault(x => x.PersonId == personId);
+
+        if (eventSeat != null)
+            throw new InvalidOperationException("You have already registered in person.");
+
+        var attendee = OnlineAttendance.FirstOrDefault(x => x.PersonId == personId);
+
+        if (attendee != null)
+            return attendee;
+
+        attendee = new OnlineAttendee(personId);
+        OnlineAttendance.Add(attendee);
+
+        return attendee;
+    }
 }
