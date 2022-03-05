@@ -26,6 +26,8 @@ public class Event : Schema
 
     public List<EventSeat> AssignedSeats { get; private set; } = new();
 
+    public List<OnlineAttendee> OnlineAttendance { get; private set; } = new();
+
     private Event()
     {
     }
