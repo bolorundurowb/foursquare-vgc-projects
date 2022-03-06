@@ -26,6 +26,8 @@ public class Event : Schema
 
     public List<EventSeat> AssignedSeats { get; private set; } = new();
 
+    public List<OnlineAttendee> OnlineAttendance { get; private set; } = new();
+
     private Event()
     {
     }
@@ -106,5 +108,22 @@ public class Event : Schema
     {
         var gracePeriod = TimeSpan.FromMinutes(30);
         return (EndsAt + gracePeriod) >= DateTime.UtcNow;
+    }
+
+    public void RecordOnlineAttendance(Person person)
+    {
+        var personId = (ObjectId)person.Id;
+        var eventSeat = AssignedSeats.FirstOrDefault(x => x.PersonId == personId);
+
+        if (eventSeat != null)
+            throw new InvalidOperationException("You have already registered in person.");
+
+        var attendee = OnlineAttendance.FirstOrDefault(x => x.PersonId == personId);
+
+        if (attendee != null)
+            return;
+
+        attendee = new OnlineAttendee(personId);
+        OnlineAttendance.Add(attendee);
     }
 }

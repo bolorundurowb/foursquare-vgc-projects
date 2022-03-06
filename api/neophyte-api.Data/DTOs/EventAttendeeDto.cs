@@ -12,7 +12,7 @@ public class EventAttendeeDto
 
     public string Venue { get; set; }
 
-    public SeatCategory Category { get; set; }
+    public SeatCategory? Category { get; set; }
 
     public string Seat { get; set; }
 

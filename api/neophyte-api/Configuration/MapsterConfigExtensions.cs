@@ -3,6 +3,7 @@ using System.Linq;
 using Mapster;
 using neophyte.api.Data.DTOs;
 using neophyte.api.Data.Entities;
+using neophyte.api.Data.Enums;
 using neophyte.api.Data.ValueObjects;
 using neophyte.api.Models.View;
 using neophyte.api.Shared.Media.Implementations;
@@ -48,7 +49,16 @@ public static class MapsterConfigExtensions
 
         config.NewConfig<Event, BaseEventViewModel>()
             .Map(x => x.Id, y => y.Id.ToString())
-            .Map(x => x.NumOfAttendees, y => y.AssignedSeats.Count);
+            .AfterMapping((model, vm) =>
+            {
+                var sum = model.OnlineAttendance.Count();
+                sum += model.AssignedSeats
+                    .Count(x => x.Category == SeatCategory.Single);
+                sum += model.AssignedSeats
+                    .Count(x => x.Category == SeatCategory.Couples);
+
+                vm.NumOfAttendees = sum;
+            });
 
         config.NewConfig<Event, EventViewModel>()
             .Inherits<Event, BaseEventViewModel>()

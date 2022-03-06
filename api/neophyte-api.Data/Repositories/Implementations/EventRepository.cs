@@ -56,20 +56,23 @@ public class EventRepository : IEventRepository
 
     public async Task<List<EventAttendeeDto>> GetAttendees(Event @event)
     {
+        var onlinePersonIds = @event.OnlineAttendance
+            .Select(x => x.PersonId);
         var personIds = @event.AssignedSeats
             .Where(x => x.PersonId != null)
-            .Select(x => (object)x.PersonId)
+            .Select(x => x.PersonId.Value)
+            .Concat(onlinePersonIds)
             .Distinct()
             .ToList();
         var persons = await Meerkat.Query<Person>()
-            .Where(x => personIds.Contains(x.Id))
+            .Where(x => personIds.Cast<object>().Contains(x.Id))
             .ToListAsync();
         var personMap = new Dictionary<ObjectId, Person>();
 
         foreach (var personId in personIds)
         {
             var person = persons.FirstOrDefault(x => personId.Equals(x.Id));
-            personMap[(ObjectId)personId] = person;
+            personMap[personId] = person;
         }
 
         var response = new List<EventAttendeeDto>();
@@ -101,6 +104,27 @@ public class EventRepository : IEventRepository
 
             response.Add(attendee);
         }
+        
+        // read out the online attendees
+        foreach (var onlineAttendee in @event.OnlineAttendance)
+        {
+            var attendee = new EventAttendeeDto();
+            var personId = onlineAttendee.PersonId;
+
+            if (!personMap.ContainsKey(personId)) 
+                continue;
+            
+            var person = personMap[personId];
+
+            if (person == null) 
+                continue;
+
+            attendee.Venue = "Online";
+            attendee.FirstName = person.FirstName;
+            attendee.LastName = person.LastName;
+            attendee.Phone = person.Phone;
+            response.Add(attendee);
+        }
 
         return response;
     }
@@ -114,4 +138,10 @@ public class EventRepository : IEventRepository
     }
 
     public Task Remove(string eventId) => Meerkat.RemoveByIdAsync<Event>(ObjectId.Parse(eventId));
+
+    public async Task OnlineRegister(Event @event, Person person)
+    {
+        @event.RecordOnlineAttendance(person);
+        await @event.SaveAsync();
+    }
 }
