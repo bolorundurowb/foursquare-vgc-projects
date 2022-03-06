@@ -17,7 +17,8 @@ public interface IEventRepository
 
     Task<Event> FindByNameAndDate(string name, DateTime date);
 
-    Task<Event> Create(string name, DateTime date, int durationInMinutes, List<(int Priority, Venue Venue)> venuePriority);
+    Task<Event> Create(string name, DateTime date, int durationInMinutes,
+        List<(int Priority, Venue Venue)> venuePriority);
 
     Task<EventSeat> AssignSeat(Event @event, SeatCategory category, Person person);
 
@@ -28,4 +29,6 @@ public interface IEventRepository
     Task<(string, byte[])> GetAttendeeReport(Event @event);
 
     Task Remove(string eventId);
+
+    Task OnlineRegister(Event @event, Person person);
 }

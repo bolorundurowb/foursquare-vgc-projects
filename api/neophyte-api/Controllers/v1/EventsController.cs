@@ -75,7 +75,7 @@ public class EventsController : ApiController
 
     [AllowAnonymous]
     [HttpPost("{eventId}/checkin")]
-    [ProducesResponseType(typeof(EventSeatViewModel), 201)]
+    [ProducesResponseType(typeof(EventSeatViewModel), 200)]
     [ProducesResponseType(typeof(GenericViewModel), 404)]
     [ProducesResponseType(typeof(GenericViewModel), 409)]
     [ProducesResponseType(typeof(GenericViewModel), 500)]
@@ -198,5 +198,37 @@ public class EventsController : ApiController
         await _eventRepo.Remove(eventId);
 
         return Ok("Event removed successfully.");
+    }
+
+    [AllowAnonymous]
+    [HttpPost("{eventId}/online/checkin")]
+    [ProducesResponseType(typeof(EventSeatViewModel), 200)]
+    [ProducesResponseType(typeof(GenericViewModel), 404)]
+    [ProducesResponseType(typeof(GenericViewModel), 409)]
+    [ProducesResponseType(typeof(GenericViewModel), 500)]
+    public async Task<IActionResult> OnlineCheckIn(string eventId, [FromBody] OnlineRegistrationBindingModel bm)
+    {
+        try
+        {
+            var @event = await _eventRepo.FindById(eventId);
+
+            if (@event == null)
+                return NotFound("Event not found.");
+
+            if (!@event.CanRegister())
+                return BadRequest("Event has been closed to registration.");
+
+            var person = await _personsRepo.FindById(bm.PersonId);
+
+            if (person == null)
+                return NotFound("Person not found.");
+
+            await _eventRepo.OnlineRegister(@event, person);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return Error(ex.Message);
+        }
     }
 }

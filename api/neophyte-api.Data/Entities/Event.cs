@@ -110,7 +110,7 @@ public class Event : Schema
         return (EndsAt + gracePeriod) >= DateTime.UtcNow;
     }
 
-    public OnlineAttendee RecordOnlineAttendance(Person person)
+    public void RecordOnlineAttendance(Person person)
     {
         var personId = (ObjectId)person.Id;
         var eventSeat = AssignedSeats.FirstOrDefault(x => x.PersonId == personId);
@@ -121,11 +121,9 @@ public class Event : Schema
         var attendee = OnlineAttendance.FirstOrDefault(x => x.PersonId == personId);
 
         if (attendee != null)
-            return attendee;
+            return;
 
         attendee = new OnlineAttendee(personId);
         OnlineAttendance.Add(attendee);
-
-        return attendee;
     }
 }

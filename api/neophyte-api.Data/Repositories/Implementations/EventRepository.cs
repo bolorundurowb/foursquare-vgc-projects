@@ -114,4 +114,10 @@ public class EventRepository : IEventRepository
     }
 
     public Task Remove(string eventId) => Meerkat.RemoveByIdAsync<Event>(ObjectId.Parse(eventId));
+
+    public async Task OnlineRegister(Event @event, Person person)
+    {
+        @event.RecordOnlineAttendance(person);
+        await @event.SaveAsync();
+    }
 }
