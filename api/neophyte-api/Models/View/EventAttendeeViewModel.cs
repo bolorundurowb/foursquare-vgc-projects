@@ -35,7 +35,7 @@ public class EventAttendeeViewModel
     /// The seat type
     /// </summary>
     /// <example>Couples</example>
-    public SeatCategory Category { get; set; }
+    public SeatCategory? Category { get; set; }
 
     /// <summary>
     /// The seat number
