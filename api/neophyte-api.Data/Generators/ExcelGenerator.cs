@@ -40,7 +40,7 @@ public static class ExcelGenerator
             worksheet.Cell(row, 3).Value = attendee.LastName;
             worksheet.Cell(row, 4).Value = attendee.Phone;
             worksheet.Cell(row, 5).Value = attendee.Venue;
-            worksheet.Cell(row, 6).Value = attendee.Category.ToString();
+            worksheet.Cell(row, 6).Value = attendee.Category?.ToString() ?? "N/A";
             worksheet.Cell(row, 7).Value = attendee.Seat;
             worksheet.Cell(row, 8).Value = attendee.AccompanyingSeat ?? "N/A";
 

@@ -4,6 +4,7 @@ using System.Linq;
 using dotenv.net.Utilities;
 using meerkat;
 using meerkat.Attributes;
+using moment.net;
 using MongoDB.Bson;
 using neophyte.api.Data.Enums;
 using neophyte.api.Data.ValueObjects;
@@ -103,11 +104,18 @@ public class Event : Schema
             x.VenueId == venueId && (x.Number == seatNumber || x.AssociatedNumber == seatNumber));
     }
 
+    // determine if the event is about to be open with a 15 minute buffer
+    public bool IsRegistrationOpen()
+    {
+        var gracePeriod = TimeSpan.FromMinutes(15);
+        return (StartsAt - gracePeriod).IsBefore(DateTime.UtcNow);
+    }
+
     // determine if the event has finished with a 30 minute buffer
-    public bool CanRegister()
+    public bool IsRegistrationClosed()
     {
         var gracePeriod = TimeSpan.FromMinutes(30);
-        return (EndsAt + gracePeriod) >= DateTime.UtcNow;
+        return (EndsAt + gracePeriod).IsAfter(DateTime.UtcNow);
     }
 
     public void RecordOnlineAttendance(Person person)
