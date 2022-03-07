@@ -63,7 +63,7 @@ public static class MapsterConfigExtensions
         config.NewConfig<Event, EventViewModel>()
             .Inherits<Event, BaseEventViewModel>()
             .Map(x => x.DurationInMinutes, y => Convert.ToInt32((y.EndsAt - y.StartsAt).TotalMinutes))
-            .Map(x => x.IsRegistrationClosed, y => y.CanRegister())
+            .Map(x => x.IsRegistrationClosed, y => y.IsRegistrationClosed())
             .AfterMapping((model, vm) =>
             {
                 vm.RegistrationUrlQrCode = QrCodeService.GenerateQrCode(model.RegistrationUrl);

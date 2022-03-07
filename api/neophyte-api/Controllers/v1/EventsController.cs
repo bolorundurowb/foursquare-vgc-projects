@@ -88,7 +88,7 @@ public class EventsController : ApiController
             if (@event == null)
                 return NotFound("Event not found.");
 
-            if (!@event.CanRegister())
+            if (@event.IsRegistrationClosed())
                 return BadRequest("Event has been closed to registration.");
 
             if (@event.HasSeatAssigned(bm.PersonId))
@@ -215,7 +215,7 @@ public class EventsController : ApiController
             if (@event == null)
                 return NotFound("Event not found.");
 
-            if (!@event.CanRegister())
+            if (@event.IsRegistrationClosed())
                 return BadRequest("Event has been closed to registration.");
 
             var person = await _personsRepo.FindById(bm.PersonId);
