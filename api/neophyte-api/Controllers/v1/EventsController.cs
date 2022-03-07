@@ -88,6 +88,9 @@ public class EventsController : ApiController
             if (@event == null)
                 return NotFound("Event not found.");
 
+            if (!@event.IsRegistrationOpen())
+                return BadRequest("Event has not yet opened up for registration.");
+
             if (@event.IsRegistrationClosed())
                 return BadRequest("Event has been closed to registration.");
 
@@ -214,6 +217,9 @@ public class EventsController : ApiController
 
             if (@event == null)
                 return NotFound("Event not found.");
+
+            if (!@event.IsRegistrationOpen())
+                return BadRequest("Event has not yet opened up for registration.");
 
             if (@event.IsRegistrationClosed())
                 return BadRequest("Event has been closed to registration.");
