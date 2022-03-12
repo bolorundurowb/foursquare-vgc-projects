@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using meerkat;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using neophyte.api.Data.Entities;
@@ -14,7 +15,7 @@ public class AdminsRepository : IAdminsRepository
         .OrderBy(x => x.Name)
         .ToListAsync();
 
-    public Task<Admin> FindById(string adminId) => Meerkat.FindByIdAsync<Admin>(adminId);
+    public Task<Admin> FindById(string adminId) => Meerkat.FindByIdAsync<Admin>(ObjectId.Parse(adminId));
 
     public Task<Admin> FindByEmail(string email)
     {
