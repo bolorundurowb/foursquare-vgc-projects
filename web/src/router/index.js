@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Cookies from 'js-cookie';
 
 const Home = () => import('../views/attendees/Home.vue');
 const AdminHome = () => import('../views/admin/AdminHome.vue');
 const Login = () => import('../views/admin/auth/Login.vue');
 const Venues = () => import('../views/admin/Venues.vue');
 const Events = () => import('../views/admin/Events.vue');
+const Admins = () => import('../views/admin/Admins.vue');
 const EventDetails = () => import('../views/admin/EventDetails');
 const AttendeeRegistration = () => import('../views/attendees/AttendeeRegistration');
 
@@ -55,6 +55,11 @@ const routes = [
         component: Venues
       },
       {
+        path: 'admins',
+        name: 'Admins',
+        component: Admins
+      },
+      {
         path: '',
         redirect: '/admin/events'
       }
@@ -75,7 +80,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (
     to.matched.some((record) => record.meta.requiresAuth) &&
-    !Cookies.get('token')
+    !localStorage.getItem('token')
   ) {
     next({ name: 'Login' });
   } else {

@@ -21,6 +21,12 @@
             <i class="el-icon-house"/>
             Venues
           </el-menu-item>
+          <el-menu-item
+              class="AdminHome__menu-item"
+              :index="'/admin/admins'">
+            <i class="el-icon-user"/>
+            Admins
+          </el-menu-item>
         </el-menu>
       </div>
 
@@ -41,17 +47,15 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie';
-
 export default {
   name: 'AdminHome',
   methods: {
     commandHandlers(command) {
       if (command === 'logout') {
 
-        Cookies.remove('token', { path: '' });
-        Cookies.remove('admin', { path: '' });
-        Cookies.remove('expiresAt', { path: '' });
+        localStorage.removeItem('token');
+        localStorage.removeItem('admin');
+        localStorage.removeItem('expiresAt');
 
         this.$router.replace({ path: '/login' });
       }
