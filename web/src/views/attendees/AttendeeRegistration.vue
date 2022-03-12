@@ -80,27 +80,29 @@
             >
               <p>Choose a users registered on the device</p>
 
-              <div
-                class="AttendeeRegistration__person-item AttendeeRegistration__person"
-                v-for="(person, personIndex) in cachedUsers"
-                :key="person.id"
-                @click="handlePersonClick(personIndex)"
-              >
-                <el-avatar icon="el-icon-user-solid" />
-                <div class="AttendeeRegistration__person-details">
-                  <p class="AttendeeRegistration__person-name">{{ person.fullName }}</p>
-                  <p class="AttendeeRegistration__person-phone">{{ person.phone }}</p>
+              <div class="AttendeeRegistration__person-container">
+                <div
+                  class="AttendeeRegistration__person-item AttendeeRegistration__person"
+                  v-for="(person, personIndex) in cachedUsers"
+                  :key="person.id"
+                  @click="handlePersonClick(personIndex)"
+                >
+                  <el-avatar icon="el-icon-user-solid" />
+                  <div class="AttendeeRegistration__person-details">
+                    <p class="AttendeeRegistration__person-name">{{ person.fullName }}</p>
+                    <p class="AttendeeRegistration__person-phone">{{ person.phone }}</p>
+                  </div>
                 </div>
               </div>
 
               <div class="AttendeeRegistration__person-item">
-                <el-button type="text" size="mini" @click="showCheckPersonForm = true">
+                <el-button type="text" @click="showCheckPersonForm = true">
                   Registered User? Enter your phone number here.
                 </el-button>
               </div>
 
               <div class="AttendeeRegistration__person-item">
-                <el-button type="text" size="mini" @click="showNewPersonForm = true">
+                <el-button type="text" @click="showNewPersonForm = true">
                   Not Registered? Register here.
                 </el-button>
               </div>
@@ -293,6 +295,10 @@ export default {
 
     &:hover {
       background-color: #F7F7F8;
+    }
+
+    &:last-of-type {
+      margin-bottom: 20px;
     }
   }
 
