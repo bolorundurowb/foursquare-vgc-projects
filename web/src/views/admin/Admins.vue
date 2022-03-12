@@ -5,14 +5,14 @@
         v-if="!isLoadingAdmins && admins.length < 1"
         :image-size="250"
     >
-      <el-button type="primary">
+      <el-button type="primary" @click="showAddAdminForm = true">
         <i class="el-icon-plus"/>
         Add Admin
       </el-button>
     </el-empty>
 
     <el-row class="Admins__header-row" v-if="admins.length > 0">
-      <el-button type="primary" @click="showAdminForm = true" size="small">
+      <el-button type="primary" @click="showAddAdminForm = true" size="small">
         <i class="el-icon-plus"/>
         Add Admin
       </el-button>
@@ -32,6 +32,13 @@
       @close="handleCloseAdminEditForm"
       @confirm="handleEditPassword"
     />
+
+    <add-admin-dialog
+      :is-creating-admin="isLoadingAddAdmin"
+      :show-add-admin-form="showAddAdminForm"
+      @close="handleCloseAddAdminForm"
+      @create-admin="handleCreateAdmin"
+    />
   </div>
 </template>
 
@@ -40,12 +47,14 @@ import api from '@/utils/api';
 import { AlertMixin } from '@/mixins';
 import AdminTable from '@/components/AdminTable.vue';
 import AdminEditPassword from '@/components/EditAdminPasswordDialog.vue';
+import AddAdminDialog from '@/components/AddAdminDialog.vue';
 
 export default {
   name: 'Admins',
   mixins: [AlertMixin],
   components: {
     AdminTable,
+    AddAdminDialog,
     AdminEditPassword
   },
   data() {
@@ -53,7 +62,8 @@ export default {
       isLoadingAdmins: false,
       isLoadingEditAdminPassword: false,
       admins: [],
-      showAdminForm: false,
+      showAddAdminForm: false,
+      isLoadingAddAdmin: false,
       showEditPasswordForm: false
     };
   },
@@ -83,6 +93,19 @@ export default {
         this.isLoadingEditAdminPassword = false;
       }
     },
+    async addAdmin(body) {
+      this.isLoadingAddAdmin = true;
+
+      try {
+        await api.post('/v1/admins', body);
+        this.getAdmins();
+        this.showAddAdminForm = false;
+      } catch (error) {
+        this.handleError(error);
+      } finally {
+        this.isLoadingAddAdmin = false;
+      }
+    },
     handleShowEditPasswordDialog() {
       this.showEditPasswordForm = true;
     },
@@ -91,6 +114,12 @@ export default {
     },
     handleEditPassword(form) {
       this.editAdminPassword(form);
+    },
+    handleCloseAddAdminForm() {
+      this.showAddAdminForm = false;
+    },
+    handleCreateAdmin(form) {
+      this.addAdmin(form);
     }
   },
   mounted() {
