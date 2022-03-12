@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>neophyte.api.Data</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+      <PackageReference Include="ClosedXML" Version="0.95.4" />
+      <PackageReference Include="CsvHelper" Version="27.2.1" />
+      <PackageReference Include="meerkat" Version="1.0.12" />
+      <PackageReference Include="moment.net" Version="1.3.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\neophyte-api.Core\neophyte-api.Core.csproj" />
+      <ProjectReference Include="..\neophyte-api.Shared\neophyte-api.Shared.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,23 +1,19 @@
 import Vue from 'vue';
-import axios from 'axios';
+import format from 'date-fns/format';
+
 import App from './App.vue';
 import router from './router';
-import VueSwal from 'vue-swal';
-import VueAxios from 'vue-axios';
-import VueModal from '@kouts/vue-modal';
 
-import '@kouts/vue-modal/dist/vue-modal.css';
+import ElementUI from 'element-ui';
+import './sass/style.scss';
 
+import locale from 'element-ui/lib/locale/lang/en';
 Vue.config.productionTip = false;
+Vue.use(ElementUI, { locale });
 
-Vue.use(VueSwal);
-
-Vue.component('VueModal', VueModal);
-
-const instance = axios.create({
-  baseURL: process.env.VUE_APP_API_URL || 'http://localhost:5089/'
+Vue.filter('dateFilter', (value) => {
+  return value ? format(new Date(value), 'PPPP') : '';
 });
-Vue.use(VueAxios, instance);
 
 new Vue({
   router,
