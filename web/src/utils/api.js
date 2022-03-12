@@ -1,9 +1,7 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
-
 class Api {
   static token() {
-    return Cookies.get('token');
+    return localStorage.getItem('token');
   }
 
   getToken() {
