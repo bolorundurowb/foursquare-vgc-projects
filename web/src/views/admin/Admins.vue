@@ -84,7 +84,7 @@ export default {
       this.isLoadingEditAdminPassword = true;
 
       try {
-        await api.post('/v1/admins/current/password', body);
+        await api.put('/v1/admins/current/password', body);
         this.showEditPasswordForm = false;
         this.handleSuccess('Password changed successully');
       } catch (error) {
