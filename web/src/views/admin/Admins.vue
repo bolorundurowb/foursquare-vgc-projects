@@ -12,9 +12,9 @@
     </el-empty>
 
     <el-row class="Admins__header-row" v-if="admins.length > 0">
-      <el-button type="primary" @click="showEventForm = true" size="small">
+      <el-button type="primary" @click="showAdminForm = true" size="small">
         <i class="el-icon-plus"/>
-        Add Event
+        Add Admin
       </el-button>
     </el-row>
 
@@ -22,27 +22,39 @@
       <admin-table
         :admins="admins"
         :is-loading="isLoadingAdmins"
+        @edit-password="handleShowEditPasswordDialog"
       />
     </el-card>
+
+    <admin-edit-password
+      :show-edit-admin-password-form="showEditPasswordForm"
+      :is-editing-password="isLoadingEditAdminPassword"
+      @close="handleCloseAdminEditForm"
+      @confirm="handleEditPassword"
+    />
   </div>
 </template>
 
 <script>
-/* eslint-disable */
 import api from '@/utils/api';
 import { AlertMixin } from '@/mixins';
 import AdminTable from '@/components/AdminTable.vue';
+import AdminEditPassword from '@/components/EditAdminPasswordDialog.vue';
 
 export default {
   name: 'Admins',
   mixins: [AlertMixin],
   components: {
-    AdminTable
+    AdminTable,
+    AdminEditPassword
   },
   data() {
     return {
       isLoadingAdmins: false,
-      admins: []
+      isLoadingEditAdminPassword: false,
+      admins: [],
+      showAdminForm: false,
+      showEditPasswordForm: false
     };
   },
   methods: {
@@ -57,6 +69,28 @@ export default {
       } finally {
         this.isLoadingAdmins = false;
       }
+    },
+    async editAdminPassword(body) {
+      this.isLoadingEditAdminPassword = true;
+
+      try {
+        await api.post('/v1/admins/current/password', body);
+        this.showEditPasswordForm = false;
+        this.handleSuccess('Password changed successully');
+      } catch (error) {
+        this.handleError(error);
+      } finally {
+        this.isLoadingEditAdminPassword = false;
+      }
+    },
+    handleShowEditPasswordDialog() {
+      this.showEditPasswordForm = true;
+    },
+    handleCloseAdminEditForm() {
+      this.showEditPasswordForm = false;
+    },
+    handleEditPassword(form) {
+      this.editAdminPassword(form);
     }
   },
   mounted() {

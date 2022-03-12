@@ -80,8 +80,8 @@ export default {
     handleDeleteAdmin(row) {
       this.$emit('delete-event', row);
     },
-    handleEditAdminPassword() {
-      // this.$router.push({ path: `/admin/events/${row.id}` });
+    handleEditAdminPassword({ id }) {
+      this.$emit('edit-password', id);
     },
     isCurrentUser({ id }) {
       const admin = localStorage.getItem('admin');
