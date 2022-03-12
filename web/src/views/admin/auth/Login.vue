@@ -30,10 +30,11 @@
 
 <script>
 import api from '@/utils/api';
-import Cookies from 'js-cookie';
+import { AlertMixin } from '@/mixins';
 
 export default {
   name: 'Login',
+  mixins: [AlertMixin],
   data() {
     return {
       isLoading: false,
@@ -72,15 +73,13 @@ export default {
 
         const { token, admin, expiresAt } = data
 
-        Cookies.set('token', token);
-        Cookies.set('admin', admin);
-        Cookies.set('expiresAt', expiresAt);
+        localStorage.setItem('token', token);
+        localStorage.setItem('admin', JSON.stringify(admin));
+        localStorage.setItem('expiresAt', expiresAt);
 
         this.$router.replace({ path: '/admin/events' });
-      } catch (err) {
-        const { data, status } = err.response;
-
-        console.log(status, data.message);
+      } catch (error) {
+        this.handleError(error);
       } finally {
         this.isLoading = false;
       }
