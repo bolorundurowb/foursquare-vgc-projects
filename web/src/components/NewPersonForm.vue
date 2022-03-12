@@ -25,6 +25,7 @@
         v-model="newPersonForm.phone"
         prefix-icon="el-icon-phone-outline"
         placeholder="08012345678"
+        type="tel"
       />
     </el-form-item>
 
