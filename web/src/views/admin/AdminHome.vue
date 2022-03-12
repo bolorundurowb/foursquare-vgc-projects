@@ -85,7 +85,7 @@ export default {
   }
 
   &__logo {
-    height: 40px;
+    height: 35px;
   }
 
   &__menu {
