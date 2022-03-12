@@ -58,23 +58,21 @@
           </el-col>
           <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="10">
             <el-card shadow="never">
-              <div>
-                <el-image
-                  class="EventDetails__qr-image"
-                  :src="qrCodeImage"
-                  fit="contain"
-                  v-loading="isLoadingEvent"
-                >
-                  <div slot="error" class="EventDetails__qr-image-error-slot">
-                    <i class="el-icon-picture-outline"></i>
-                  </div>
-                </el-image>
-              </div>
+              <el-image
+                class="EventDetails__qr-image"
+                :src="qrCodeImage"
+                fit="contain"
+                v-loading="isLoadingEvent"
+              >
+                <div slot="error" class="EventDetails__qr-image-error-slot">
+                  <i class="el-icon-picture-outline"></i>
+                </div>
+              </el-image>
 
               <el-button
                 type="primary"
                 :disabled="!qrCodeImage"
-                @click="printQrCode"
+                @click="showPrintQrDialog = true"
               >
                 Print QR Code
               </el-button>
@@ -113,7 +111,7 @@
       </el-col>
       <el-col class="EventDetails__col" :xs="24" :lg="12" :xl="14">
         <el-row>
-          <el-col class="EventDetails__col" xs="24">
+          <el-col class="EventDetails__col" :xs="24">
             <el-card shadow="never" class="EventDetails__card-">
               <el-button
                   type="text"
@@ -124,7 +122,7 @@
             </el-card>
           </el-col>
 
-          <el-col class="EventDetails__col" xs="24">
+          <el-col class="EventDetails__col" :xs="24">
             <el-card shadow="never">
               <el-table
                 style="width: 100%"
@@ -180,16 +178,22 @@
         </el-row>
       </el-col>
     </el-row>
+
+    <qr-code-print-dialog
+      :show-print-qr-dialog="showPrintQrDialog"
+      :event="event"
+      @close="showPrintQrDialog = false"
+    />
   </div>
 </template>
 
 <script>
-import printJs from 'print-js';
 import api from '@/utils/api';
 import { AlertMixin } from '@/mixins';
 
 import ChangeSeatForm from '@/components/ChangeSeatForm.vue';
 import PersonCheckin from '@/components/AdminPersonCheckin.vue'
+import QrCodePrintDialog from '@/components/QrCodePrintDialog.vue';
 
 export default {
   name: 'EventDetails',
@@ -202,13 +206,15 @@ export default {
   },
   components: {
     PersonCheckin,
-    ChangeSeatForm
+    ChangeSeatForm,
+    QrCodePrintDialog
   },
   data() {
     return {
       event: {},
       attendees: [],
       isLoadingEvent: false,
+      showPrintQrDialog: false,
       changeSeatHasError: false,
       personCheckinLoading: false,
       personCheckinError: false,
@@ -339,15 +345,6 @@ export default {
         this.handleError(new Error('there was a problem downloding the file'))
       } finally {
         this.isLoadingEvent = false;
-      }
-    },
-    printQrCode() {
-      if (this.qrCodeImage) {
-        printJs({
-          printable: this.qrCodeImage,
-          type: 'image',
-          base64: true
-        });
       }
     },
     handleChangeSeatFormSubmit(body) {
