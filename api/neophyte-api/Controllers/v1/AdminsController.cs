@@ -14,10 +14,7 @@ public class AdminsController : ApiController
 {
     private readonly IAdminsRepository _adminsRepo;
 
-    public AdminsController(IMapper mapper, IAdminsRepository adminsRepo) : base(mapper)
-    {
-        _adminsRepo = adminsRepo;
-    }
+    public AdminsController(IMapper mapper, IAdminsRepository adminsRepo) : base(mapper) => _adminsRepo = adminsRepo;
 
     [HttpGet("")]
     [ProducesResponseType(typeof(List<AdminViewModel>), 200)]

@@ -7,7 +7,7 @@
 
     <el-divider />
 
-    <el-row :gutter="20">
+    <el-row :gutter="20" class="EventDetails__content">
       <el-col :xs="24" :lg="12" :xl="10">
         <el-row :gutter="20">
           <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="14">
@@ -58,23 +58,21 @@
           </el-col>
           <el-col class="EventDetails__col" :xs="24" :sm="12" :lg="10">
             <el-card shadow="never">
-              <div>
-                <el-image
-                  class="EventDetails__qr-image"
-                  :src="qrCodeImage"
-                  fit="contain"
-                  v-loading="isLoadingEvent"
-                >
-                  <div slot="error" class="EventDetails__qr-image-error-slot">
-                    <i class="el-icon-picture-outline"></i>
-                  </div>
-                </el-image>
-              </div>
+              <el-image
+                class="EventDetails__qr-image"
+                :src="qrCodeImage"
+                fit="contain"
+                v-loading="isLoadingEvent"
+              >
+                <div slot="error" class="EventDetails__qr-image-error-slot">
+                  <i class="el-icon-picture-outline"></i>
+                </div>
+              </el-image>
 
               <el-button
                 type="primary"
                 :disabled="!qrCodeImage"
-                @click="printQrCode"
+                @click="showPrintQrDialog = true"
               >
                 Print QR Code
               </el-button>
@@ -112,69 +110,90 @@
         </el-row>
       </el-col>
       <el-col class="EventDetails__col" :xs="24" :lg="12" :xl="14">
-        <el-card shadow="never">
-          <el-table
-            style="width: 100%"
-            :data="attendees"
-            v-loading="isLoadingEventAttendees"
-          >
-            <el-table-column
-              prop="Name"
-              label="Name"
-            >
-              <template v-slot="{ row }">
-                {{row.lastName}} {{row.firstName}}
-              </template>
-            </el-table-column>
-            <el-table-column
-              prop="phone"
-              label="Phone Number"
-            />
-            <el-table-column
-              prop="venue"
-              label="Venue"
-            />
-            <el-table-column
-              prop="category"
-              label="Category"
-            >
-              <template v-slot="{ row }">
-                <el-tag >
-                  {{row.category}}
-                </el-tag>
-              </template>
-            </el-table-column>
-            <el-table-column
-              prop="seat"
-              label="Seat"
-            />
-            <el-table-column
-              prop="accompanyingSeat"
-              label="Accompanying Seat"
-            >
-              <template v-slot="{ row }">
-                <span v-if="row.accompanyingSeat">
-                  {{row.accompanyingSeat}}
-                </span>
-                <span v-else>
-                  --
-                </span>
-              </template>
-            </el-table-column>
-          </el-table>
-        </el-card>
+        <el-row>
+          <el-col class="EventDetails__col" :xs="24">
+            <el-card shadow="never" class="EventDetails__card-">
+              <el-button
+                  type="text"
+                  @click="handleDownloadAttendees"
+                >
+                  Download Event Attendees
+                </el-button>
+            </el-card>
+          </el-col>
+
+          <el-col class="EventDetails__col" :xs="24">
+            <el-card shadow="never">
+              <el-table
+                style="width: 100%"
+                :data="attendees"
+                v-loading="isLoadingEventAttendees"
+              >
+                <el-table-column
+                  prop="Name"
+                  label="Name"
+                >
+                  <template v-slot="{ row }">
+                    {{row.lastName}} {{row.firstName}}
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  prop="phone"
+                  label="Phone Number"
+                />
+                <el-table-column
+                  prop="venue"
+                  label="Venue"
+                />
+                <el-table-column
+                  prop="category"
+                  label="Category"
+                >
+                  <template v-slot="{ row }">
+                    <el-tag >
+                      {{row.category}}
+                    </el-tag>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  prop="seat"
+                  label="Seat"
+                />
+                <el-table-column
+                  prop="accompanyingSeat"
+                  label="Accompanying Seat"
+                >
+                  <template v-slot="{ row }">
+                    <span v-if="row.accompanyingSeat">
+                      {{row.accompanyingSeat}}
+                    </span>
+                    <span v-else>
+                      --
+                    </span>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </el-card>
+          </el-col>
+        </el-row>
       </el-col>
     </el-row>
+
+    <qr-code-print-dialog
+      :show-print-qr-dialog="showPrintQrDialog"
+      :event="event"
+      @close="showPrintQrDialog = false"
+    />
   </div>
 </template>
 
 <script>
-import printJs from 'print-js';
 import api from '@/utils/api';
 import { AlertMixin } from '@/mixins';
 
 import ChangeSeatForm from '@/components/ChangeSeatForm.vue';
 import PersonCheckin from '@/components/AdminPersonCheckin.vue'
+import QrCodePrintDialog from '@/components/QrCodePrintDialog.vue';
 
 export default {
   name: 'EventDetails',
@@ -187,13 +206,15 @@ export default {
   },
   components: {
     PersonCheckin,
-    ChangeSeatForm
+    ChangeSeatForm,
+    QrCodePrintDialog
   },
   data() {
     return {
       event: {},
       attendees: [],
       isLoadingEvent: false,
+      showPrintQrDialog: false,
       changeSeatHasError: false,
       personCheckinLoading: false,
       personCheckinError: false,
@@ -306,13 +327,24 @@ export default {
         this.personCheckinLoading = false;
       }
     },
-    printQrCode() {
-      if (this.qrCodeImage) {
-        printJs({
-          printable: this.qrCodeImage,
-          type: 'image',
-          base64: true
-        });
+    async attendeeReportDownload() {
+      this.isLoadingEvent = true;
+
+      try {
+        const { data } = await api.get(`/v1/events/${this.eventId}/attendees/report`, { responseType: 'blob' });
+
+        const file = new Blob([data]);
+
+        const url = window.URL.createObjectURL(file);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `${this.event.name}_attendees.xlsx`);
+        document.body.appendChild(link);
+        link.click();
+      } catch {
+        this.handleError(new Error('there was a problem downloding the file'))
+      } finally {
+        this.isLoadingEvent = false;
       }
     },
     handleChangeSeatFormSubmit(body) {
@@ -320,11 +352,15 @@ export default {
     },
     handlePersonCheckinSubmit(body) {
       this.attenndeeCheckin(body);
+    },
+    handleDownloadAttendees() {
+      this.attendeeReportDownload();
     }
   },
   mounted() {
     this.getEventDetails();
     this.getEventAttendees();
+    // this.attendeeReportDownload();
   }
 }
 </script>
