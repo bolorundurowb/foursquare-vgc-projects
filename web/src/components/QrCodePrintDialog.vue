@@ -37,12 +37,12 @@
 
         Android users can download a QR Code scanner from here
         <el-link
-          href="https://play.google.com/store/apps/details?id=com.gamma.scan"
+          href="https://bit.ly/3w30Mmt"
           target="_blank"
           type="primary"
           :underline="false"
         >
-          https://play.google.com/store/apps/details?id=com.gamma.scan
+          https://bit.ly/3w30Mmt
         </el-link>
       </div>
 
