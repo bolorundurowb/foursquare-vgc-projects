@@ -64,4 +64,12 @@ public class VenuesController : ApiController
         await _venueRepo.Remove(venueId);
         return Ok("Venue removed successfully.");
     }
+
+    [HttpDelete("{venueId}/seats/{seatNumber}")]
+    [SwaggerResponse(StatusCodes.Status200OK, "Venue seat removed successfully.", typeof(GenericViewModel))]
+    public async Task<IActionResult> RemoveSeat(string venueId, string seatNumber)
+    {
+        await _venueRepo.RemoveSeat(venueId, seatNumber);
+        return Ok("Venue seat removed successfully.");
+    }
 }
