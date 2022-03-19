@@ -18,4 +18,6 @@ public interface IVenueRepository
     Task<Venue> Create(string name, List<(SeatCategory Category, string Range)> seatRanges);
 
     Task Remove(string venueId);
+
+    Task RemoveSeat(string venueId, string seatNumber);
 }
