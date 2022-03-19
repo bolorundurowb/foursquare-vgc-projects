@@ -49,4 +49,15 @@ public class VenueRepository : IVenueRepository
     }
 
     public Task Remove(string venueId) => Meerkat.RemoveByIdAsync<Venue>(ObjectId.Parse(venueId));
+
+    public async Task RemoveSeat(string venueId, string seatNumber)
+    {
+        var venue = await FindById(venueId);
+
+        if (venue == null)
+            return;
+
+        venue.RemoveSeat(seatNumber);
+        await venue.SaveAsync();
+    }
 }

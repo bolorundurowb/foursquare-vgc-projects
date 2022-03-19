@@ -4,7 +4,6 @@
       <div class="AdminHome__header-logo-container">
         <img src="./../../assets/logo.svg" alt="logo" class="AdminHome__logo">
 
-        <!-- these guys don't have a mobile responsive menu so I am hiding it -->
         <el-menu
             class="AdminHome__menu hidden-sm-and-down"
             mode="horizontal"
@@ -30,7 +29,7 @@
         </el-menu>
       </div>
 
-      <el-dropdown trigger="click" @command="commandHandlers">
+      <el-dropdown trigger="click" @command="commandHandlers" class="hidden-sm-and-down">
         <span class="AdminHome__dropdown">
           Admin <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
@@ -38,6 +37,34 @@
           <el-dropdown-item command="logout">Logout</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
+
+      <div class="AdminHome__mobile-menu hidden-md-and-up">
+        <el-dropdown trigger="click" @command="mobileCommandHandlers">
+          <el-button plain icon="el-icon-more"></el-button>
+
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item
+              icon="el-icon-date"
+              command="goToEvents"
+            >
+              Events
+            </el-dropdown-item>
+            <el-dropdown-item
+              icon="el-icon-house"
+              command="goToVenues"
+            >
+              Venues
+            </el-dropdown-item>
+            <el-dropdown-item
+              icon="el-icon-user"
+              command="goToAdmins"
+            >
+              Admins
+            </el-dropdown-item>
+            <el-dropdown-item icon="el-icon-switch-button" command="logout">Logout</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </el-header>
 
     <el-main class="AdminHome__content">
@@ -58,6 +85,26 @@ export default {
         localStorage.removeItem('expiresAt');
 
         this.$router.replace({ path: '/login' });
+      }
+    },
+    mobileCommandHandlers(command) {
+      switch (command) {
+        case 'logout':
+          localStorage.removeItem('token');
+          localStorage.removeItem('admin');
+          localStorage.removeItem('expiresAt');
+
+          this.$router.replace({ path: '/login' });
+          break;
+        case 'goToEvents':
+          this.$router.replace({ path: '/admin/events' });
+          break;
+        case 'goToVenues':
+          this.$router.replace({ path: '/admin/venues' });
+          break;
+        case 'goToAdmins':
+          this.$router.replace({ path: '/admin/admins' });
+          break;
       }
     }
   }
