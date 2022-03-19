@@ -39,44 +39,69 @@
       </el-dropdown>
 
       <div class="AdminHome__mobile-menu hidden-md-and-up">
-        <el-dropdown trigger="click" @command="mobileCommandHandlers">
-          <el-button plain icon="el-icon-more"></el-button>
-
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item
-              icon="el-icon-date"
-              command="goToEvents"
-            >
-              Events
-            </el-dropdown-item>
-            <el-dropdown-item
-              icon="el-icon-house"
-              command="goToVenues"
-            >
-              Venues
-            </el-dropdown-item>
-            <el-dropdown-item
-              icon="el-icon-user"
-              command="goToAdmins"
-            >
-              Admins
-            </el-dropdown-item>
-            <el-dropdown-item icon="el-icon-switch-button" command="logout">Logout</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+        <el-button plain icon="el-icon-more" @click="handleOpenMobileDrawer"></el-button>
       </div>
     </el-header>
 
     <el-main class="AdminHome__content">
       <router-view/>
     </el-main>
+
+    <el-drawer
+      :visible.sync="isMobileDrawerOpen"
+      direction="ltr"
+      class="Admin__mobile-drawer"
+      ref="mobileDrawer"
+    >
+      <template v-slot:title>
+        <div class="AdminHome__header-logo-container">
+          <img src="./../../assets/logo.svg" alt="logo" class="AdminHome__logo">
+        </div>
+      </template>
+
+      <el-menu
+        class="AdminHome__mobile-menu"
+        :router="true">
+        <el-menu-item
+          @click="$refs.mobileDrawer.closeDrawer()"
+          class="AdminHome__mobile-menu-item"
+          :index="'/admin/events'">
+          <i class="el-icon-date"/>
+          Events
+        </el-menu-item>
+        <el-menu-item
+          @click="$refs.mobileDrawer.closeDrawer()"
+          class="AdminHome__mobile-menu-item"
+          :index="'/admin/venues'">
+          <i class="el-icon-house"/>
+          Venues
+        </el-menu-item>
+        <el-menu-item
+          @click="$refs.mobileDrawer.closeDrawer()"
+          class="AdminHome__mobile-menu-item"
+          :index="'/admin/admins'">
+        <i class="el-icon-user"/>
+        Admins
+      </el-menu-item>
+    </el-menu>
+    </el-drawer>
   </el-container>
 </template>
 
 <script>
 export default {
   name: 'AdminHome',
+  data() {
+    return {
+      isMobileDrawerOpen: false
+    };
+  },
   methods: {
+    handleOpenMobileDrawer() {
+      console.log('is this not called');
+
+      this.isMobileDrawerOpen = true;
+    },
     commandHandlers(command) {
       if (command === 'logout') {
 
@@ -111,7 +136,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .AdminHome {
   height: 100vh;
 
@@ -149,6 +174,10 @@ export default {
     &:not(:first-of-type) {
       margin-left: 10px;
     }
+  }
+
+  .el-drawer {
+    width: 65% !important;
   }
 }
 </style>
