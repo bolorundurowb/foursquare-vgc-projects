@@ -16,10 +16,7 @@ public class VenuesController : ApiController
 {
     private readonly IVenueRepository _venueRepo;
 
-    public VenuesController(IMapper mapper, IVenueRepository venueRepo) : base(mapper)
-    {
-        _venueRepo = venueRepo;
-    }
+    public VenuesController(IMapper mapper, IVenueRepository venueRepo) : base(mapper) => _venueRepo = venueRepo;
 
     [HttpGet("")]
     [ProducesResponseType(typeof(List<BaseVenueViewModel>), 200)]
