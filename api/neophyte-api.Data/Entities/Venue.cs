@@ -21,12 +21,6 @@ public class Venue : Schema
 
     public Venue(string name) => Name = name;
 
-    public void UpdateName(string name)
-    {
-        if (!string.IsNullOrWhiteSpace(name))
-            Name = name.Trim();
-    }
-
     public void AddSeat(SeatCategory category, string seatNumber)
     {
         if (string.IsNullOrWhiteSpace(seatNumber))
@@ -41,14 +35,14 @@ public class Venue : Schema
         Seats.Add(new Seat(category, seatNumber));
     }
 
-    public void RemoveSeat(SeatCategory category, string seatNumber)
+    public void RemoveSeat(string seatNumber)
     {
         if (string.IsNullOrWhiteSpace(seatNumber))
             throw new ArgumentException("Invalid seat number.", nameof(seatNumber));
 
         seatNumber = seatNumber.ToUpperInvariant();
         Seats ??= new List<Seat>();
-        var seat = Seats.FirstOrDefault(x => x.Category == category && x.Number == seatNumber);
+        var seat = Seats.FirstOrDefault(x => x.Number == seatNumber);
 
         if (seat == null)
             return;
