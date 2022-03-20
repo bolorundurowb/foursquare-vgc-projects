@@ -15,7 +15,13 @@
       label=""
       width="120">
       <template slot-scope="{ row }">
-        <el-button type="text" size="small">Details</el-button>
+        <el-button
+          type="text"
+          size="small"
+          @click="handleShowVenueDetails(row)"
+        >
+          Details
+        </el-button>
         <el-popconfirm
           title="Are you sure to delete this?"
           class="VenueTable__delete-button"
@@ -53,6 +59,9 @@ export default {
   methods: {
     handleDeleteVenue(row) {
       this.$emit('delete-venue', row);
+    },
+    handleShowVenueDetails({ id }) {
+      this.$router.push({ path: `/admin/venues/${id}` });
     }
   }
 }

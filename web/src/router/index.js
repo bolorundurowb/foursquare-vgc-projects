@@ -8,6 +8,7 @@ const Venues = () => import('../views/admin/Venues.vue');
 const Events = () => import('../views/admin/Events.vue');
 const Admins = () => import('../views/admin/Admins.vue');
 const EventDetails = () => import('../views/admin/EventDetails');
+const VenueDetails = () => import('../views/admin/VenueDetails');
 const AttendeeRegistration = () => import('../views/attendees/AttendeeRegistration');
 
 Vue.use(VueRouter);
@@ -53,6 +54,12 @@ const routes = [
         path: 'venues',
         name: 'Venues',
         component: Venues
+      },
+      {
+        path: 'venues/:venueId',
+        name: 'VenueDetails',
+        component: VenueDetails,
+        props: true
       },
       {
         path: 'admins',
