@@ -9,7 +9,7 @@
 
     <el-row class="VenueDetails__venue-detail">
       <el-col :span="20" :offset="2">
-        <el-descriptions title="Venue Info" border v-loading="isLoadingVenue">
+        <el-descriptions title="" border v-loading="isLoadingVenue">
           <el-descriptions-item label="Name">{{venue.name}}</el-descriptions-item>
           <el-descriptions-item label="Number of Seats">{{venue.numOfSeats}}</el-descriptions-item>
       </el-descriptions>
