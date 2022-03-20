@@ -20,7 +20,7 @@
       <el-col :span="20" :offset="2">
         <el-card shadow="never" >
           <el-table
-            :data="venue.seats"
+            :data="paginatedVenue"
             v-loading="isLoadingVenue"
           >
             <el-table-column
@@ -58,6 +58,15 @@
               </template>
             </el-table-column>
           </el-table>
+
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="venueSeatLength"
+            :current-page.sync="paginationObj.page"
+            class="VenueDetails__seat-paginator"
+          >
+          </el-pagination>
         </el-card>
       </el-col>
     </el-row>
@@ -80,8 +89,24 @@ export default {
   data() {
     return {
       venue: {},
-      isLoadingVenue: false
+      isLoadingVenue: false,
+      paginationObj: {
+        page: 1,
+        limit: 10
+      }
     };
+  },
+  computed: {
+    paginatedVenue() {
+      const { page, limit } = this.paginationObj;
+
+      const start = ((page - 1) * limit) + 1;
+
+      return (this.venue.seats || []).slice(start, start + limit);
+    },
+    venueSeatLength() {
+      return (this.venue.seats || []).length;
+    }
   },
   methods: {
     goBack() {
@@ -123,6 +148,10 @@ export default {
   .VenueDetails {
     &__venue-detail {
       margin-bottom: 30px;
+    }
+
+    &__seat-paginator {
+      margin-top: 20px;
     }
   }
 </style>
