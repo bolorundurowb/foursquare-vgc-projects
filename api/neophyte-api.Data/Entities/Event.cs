@@ -115,7 +115,7 @@ public class Event : Schema
     public bool IsRegistrationClosed()
     {
         var gracePeriod = TimeSpan.FromMinutes(30);
-        return (EndsAt + gracePeriod).IsAfter(DateTime.UtcNow);
+        return DateTime.UtcNow.IsAfter(EndsAt + gracePeriod);
     }
 
     public void RecordOnlineAttendance(Person person)
