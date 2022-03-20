@@ -98,8 +98,6 @@ export default {
   },
   methods: {
     handleOpenMobileDrawer() {
-      console.log('is this not called');
-
       this.isMobileDrawerOpen = true;
     },
     commandHandlers(command) {
