@@ -24,5 +24,5 @@ public class EventCreationBindingModelValidator: AbstractValidator<EventCreation
             .SetValidator(new VenuePriorityBindingModelValidator());
     }
 
-    private DateTime GetCurrentDate() => DateTime.Now;
+    private DateTime GetCurrentDate() => DateTime.UtcNow;
 }
