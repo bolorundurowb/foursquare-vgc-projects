@@ -51,11 +51,11 @@
                 </el-descriptions-item>
 
                 <el-descriptions-item label="Seat Number" :span="assignedSeat.associatedNumber ? 1 : 2">
-                  <el-tag size="default" style="font-size: 1.1rem">{{assignedSeat.number}}</el-tag>
+                  <el-tag size="default" style="font-size: 1.3rem">{{assignedSeat.number}}</el-tag>
                 </el-descriptions-item>
 
                 <el-descriptions-item label="Associated Seat Number" v-if="assignedSeat.associatedNumber">
-                  <el-tag size="default" style="font-size: 1.1rem">{{assignedSeat.associatedNumber}}</el-tag>
+                  <el-tag size="default" style="font-size: 1.3rem">{{assignedSeat.associatedNumber}}</el-tag>
                 </el-descriptions-item>
               </el-descriptions>
 
