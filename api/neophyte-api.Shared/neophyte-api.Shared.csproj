@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <LangVersion>10</LangVersion>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>11</LangVersion>
         <RootNamespace>neophyte.api.Shared</RootNamespace>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
