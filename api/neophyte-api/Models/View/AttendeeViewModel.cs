@@ -5,21 +5,21 @@ namespace neophyte.api.Models.View;
 
 public class AttendeeViewModel
 {
-    public string Id { get; set; }
+    public string Id { get; set; } = null!;
 
     public DateTime Date { get; set; }
 
-    public string EmailAddress { get; set; }
+    public string EmailAddress { get; set; } = null!;
 
-    public string FullName { get; set; }
+    public string FullName { get; set; } = null!;
 
     public int? Age { get; set; }
 
     public Gender? Gender { get; set; }
 
-    public string Phone { get; set; }
+    public string Phone { get; set; } = null!;
 
-    public string ResidentialAddress { get; set; }
+    public string ResidentialAddress { get; set; } = null!;
 
     public bool ReturnedInLastTenDays { get; set; }
 
@@ -31,7 +31,7 @@ public class AttendeeViewModel
 
     public int? SeatNumber { get; set; }
 
-    public string SeatAssigned { get; set; }
+    public string SeatAssigned { get; set; } = null!;
 
-    public string SeatType { get; set; }
+    public string SeatType { get; set; } = null!;
 }

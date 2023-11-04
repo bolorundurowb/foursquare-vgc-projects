@@ -9,9 +9,9 @@ public static class ActionContextExtensions
     public static BadRequestObjectResult Format(this ActionContext actionContext)
     {
         var firstMessage = actionContext.ModelState
-            .Where(x => x.Value.Errors.Any())
+            .Where(x => x.Value?.Errors.Any() == true)
             .Take(1)
-            .Select(x => x.Value.Errors.First())
+            .Select(x => x.Value!.Errors.First())
             .Select(x => x.ErrorMessage)
             .First();
 
