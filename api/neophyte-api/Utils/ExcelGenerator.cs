@@ -24,7 +24,7 @@ public static class ExcelGenerator
                 worksheet.Cell(row + 1, 3).Value = newcomer.EmailAddress;
                 worksheet.Cell(row +1, 4).Value = newcomer.Phone;
                 worksheet.Cell(row + 1, 5).Value = newcomer.HomeAddress;
-                worksheet.Cell(row + 1, 6).Value = newcomer.BornAgain.GetValueOrDefault();
+                worksheet.Cell(row + 1, 6).Value = newcomer.BornAgain.GetValueOrDefault().ToString();
                 worksheet.Cell(row + 1, 7).Value = newcomer.BecomeMember.GetValueOrDefault().ToString();
                 worksheet.Cell(row + 1, 8).Value = newcomer.AgeGroup;
                 worksheet.Cell(row + 1, 9).Value = newcomer.BirthDay;
