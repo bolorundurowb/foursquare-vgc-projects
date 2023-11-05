@@ -9,18 +9,18 @@ using neophyte.api.Models.View;
 namespace neophyte.api.Controllers.v2;
 
 [ApiVersion("2.0")]
-public class AttendeesController : ApiController
+public class AttendanceController : ApiController
 {
     private readonly IAttendanceRegistryRepository _attendanceRegistryRepo;
 
-    public AttendeesController(IMapper mapper, IAttendanceRegistryRepository attendanceRegistryRepo) : base(mapper) =>
+    public AttendanceController(IMapper mapper, IAttendanceRegistryRepository attendanceRegistryRepo) : base(mapper) =>
         _attendanceRegistryRepo = attendanceRegistryRepo;
 
     [AllowAnonymous]
-    [HttpPost("")]
+    [HttpPost("register")]
     [ProducesResponseType(201)]
     [ProducesResponseType(typeof(GenericViewModel), 400)]
-    public async Task<IActionResult> Create([FromBody] RecordAttendeeBindingModel bm)
+    public async Task<IActionResult> Register([FromBody] RecordAttendeeBindingModel bm)
     {
         await _attendanceRegistryRepo.Create(bm.FirstName, bm.LastName, bm.EmailAddress, bm.PhoneNumber, bm.SeatNumber);
         return Ok();
