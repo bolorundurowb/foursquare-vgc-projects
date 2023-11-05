@@ -10,5 +10,5 @@ public class OnlineRegistrationBindingModel
     /// </summary>
     /// <example>61fff8966b22c10a9e790d57</example>
     [SwaggerSchema(Nullable = false)]
-    public string PersonId { get; set; }
+    public string PersonId { get; set; } = null!;
 }

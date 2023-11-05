@@ -9,7 +9,7 @@ public class SeatChangeBindingModel
     /// </summary>
     /// <example>61fff8966b22c10a9e790d57</example>
     [SwaggerSchema(Nullable = false)]
-    public string PersonId { get; set; }
+    public string PersonId { get; set; } = null!;
 
     /// <summary>
     /// The venue which the seat number should be assigned in
@@ -17,12 +17,12 @@ public class SeatChangeBindingModel
     /// <example>C5</example>
     /// <example>61fff8966b22c10a9e790d57</example>
     [SwaggerSchema(Nullable = false)]
-    public string VenueId { get; set; }
+    public string VenueId { get; set; } = null!;
 
     /// <summary>
     /// The seat number
     /// </summary>
     /// <example>C5</example>
     [SwaggerSchema(Nullable = false)]
-    public string SeatNumber { get; set; }
+    public string SeatNumber { get; set; } = null!;
 }
