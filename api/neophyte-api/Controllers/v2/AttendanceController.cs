@@ -26,6 +26,15 @@ public class AttendanceController : ApiController
         return Ok(attendance);
     }
 
+    [HttpGet("{registryId}")]
+    [ProducesResponseType(typeof(AttendanceSummaryDto), 200)]
+    [ProducesResponseType(typeof(GenericViewModel), 404)]
+    public async Task<IActionResult> GetOne(string registryId)
+    {
+        var attendance = await _attendanceRegistryRepo.GetOne(registryId);
+        return Ok(attendance);
+    }
+
     [AllowAnonymous]
     [HttpPost("register")]
     [ProducesResponseType(201)]
@@ -34,5 +43,13 @@ public class AttendanceController : ApiController
     {
         await _attendanceRegistryRepo.Create(bm.FirstName, bm.LastName, bm.EmailAddress, bm.PhoneNumber, bm.SeatNumber);
         return Created();
+    }
+
+    [HttpGet("{registryId}/attendees")]
+    [ProducesResponseType(typeof(List<AttendeeSummaryDto>), 200)]
+    public async Task<IActionResult> GetRegistryAttendees(string registryId)
+    {
+        var attendees = await _attendanceRegistryRepo.GetAttendeesForRegistry(registryId);
+        return Ok(attendees);
     }
 }

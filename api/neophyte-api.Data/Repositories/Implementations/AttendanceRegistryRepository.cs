@@ -23,6 +23,16 @@ public class AttendanceRegistryRepository : IAttendanceRegistryRepository
             .ToListAsync();
     }
 
+    public async Task<AttendanceSummaryDto> GetOne(string registryId)
+    {
+        var registry = await Meerkat.FindByIdAsync<AttendanceRegistry>(registryId);
+
+        if (registry is null)
+            return null;
+
+        return new AttendanceSummaryDto(registry.Date, registry.Attendees.Count);
+    }
+
     public async Task<List<AttendeeSummaryDto>> GetAttendeesForRegistry(string registryId)
     {
         var registry = await Meerkat.FindByIdAsync<AttendanceRegistry>(registryId);

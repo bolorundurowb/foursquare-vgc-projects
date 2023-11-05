@@ -8,6 +8,8 @@ public interface IAttendanceRegistryRepository
 {
     Task<List<AttendanceSummaryDto>> GetAll(int skip, int limit);
 
+    Task<AttendanceSummaryDto> GetOne(string registryId);
+
     Task<List<AttendeeSummaryDto>> GetAttendeesForRegistry(string registryId);
 
     Task Create(string firstName, string lastName, string? emailAddress, string? phoneNumber,
