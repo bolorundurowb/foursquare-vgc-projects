@@ -12,9 +12,17 @@ public class AttendanceRegistry : Schema
 
     public List<Attendee> Attendees { get; private set; }
 
-    public AttendanceRegistry()
+    public AttendanceRegistry(DateOnly date)
     {
-        Date = DateOnly.FromDateTime(DateTime.UtcNow);
+        Date = date;
         Attendees = new List<Attendee>();
+    }
+
+    public Attendee AddAttendee(string firstName, string lastName, string? emailAddress, string? phoneNumber, string? seatNumber)
+    {
+        var attendee = new Attendee(firstName, lastName, emailAddress, phoneNumber, seatNumber);
+        Attendees.Add(attendee);
+
+        return attendee;
     }
 }
