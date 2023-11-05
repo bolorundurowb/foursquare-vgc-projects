@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using neophyte.api.Data.DTOs;
 using neophyte.api.Data.Repositories.Interfaces;
 using neophyte.api.Models.Binding;
 using neophyte.api.Models.View;
@@ -16,6 +18,14 @@ public class AttendanceController : ApiController
     public AttendanceController(IMapper mapper, IAttendanceRegistryRepository attendanceRegistryRepo) : base(mapper) =>
         _attendanceRegistryRepo = attendanceRegistryRepo;
 
+    [HttpGet("")]
+    [ProducesResponseType(typeof(List<AttendanceSummaryDto>), 200)]
+    public async Task<IActionResult> GetAll([FromQuery] CollectionQueryModel qm)
+    {
+        var attendance = await _attendanceRegistryRepo.GetAll(qm.Skip, qm.Limit);
+        return Ok(attendance);
+    }
+
     [AllowAnonymous]
     [HttpPost("register")]
     [ProducesResponseType(201)]
@@ -23,6 +33,6 @@ public class AttendanceController : ApiController
     public async Task<IActionResult> Register([FromBody] RecordAttendeeBindingModel bm)
     {
         await _attendanceRegistryRepo.Create(bm.FirstName, bm.LastName, bm.EmailAddress, bm.PhoneNumber, bm.SeatNumber);
-        return Ok();
+        return Created();
     }
 }
