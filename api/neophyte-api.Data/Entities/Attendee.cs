@@ -38,7 +38,7 @@ public class Attendee : Schema
 
     public string SeatType { get; private set; }
 
-    [Ignore] 
+    [Ignore]
     public int SerialNo { get; set; }
 
     private Attendee()

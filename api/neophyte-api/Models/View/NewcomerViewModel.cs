@@ -12,7 +12,7 @@ public class NewcomerViewModel
     /// <example>61fff8966b22c10a9e790d57</example>
     [SwaggerSchema(Nullable = false)]
     public string Id { get; set; }
-        
+
     /// <summary>
     /// The date this newcomers record was created
     /// </summary>

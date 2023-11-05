@@ -23,7 +23,7 @@ public class ApiController : ControllerBase
     {
         Mapper = mapper;
     }
-        
+
     protected BadRequestObjectResult BadRequest(string message) =>
         BadRequest(new GenericViewModel
         {
@@ -37,7 +37,7 @@ public class ApiController : ControllerBase
         });
 
     protected ObjectResult Conflict(string message) =>
-        StatusCode((int) HttpStatusCode.Conflict, new GenericViewModel
+        StatusCode((int)HttpStatusCode.Conflict, new GenericViewModel
         {
             Message = message
         });
@@ -45,13 +45,13 @@ public class ApiController : ControllerBase
     protected CreatedResult Created<T>(T data) => Created(string.Empty, data);
 
     protected ObjectResult Forbidden(string message) =>
-        StatusCode((int) HttpStatusCode.Forbidden, new GenericViewModel
+        StatusCode((int)HttpStatusCode.Forbidden, new GenericViewModel
         {
             Message = message
         });
 
     protected ObjectResult Error(string message) =>
-        StatusCode((int) HttpStatusCode.InternalServerError, new GenericViewModel
+        StatusCode((int)HttpStatusCode.InternalServerError, new GenericViewModel
         {
             Message = message
         });

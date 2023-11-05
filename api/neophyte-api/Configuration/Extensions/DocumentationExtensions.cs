@@ -21,7 +21,7 @@ internal static class DocumentationExtensions
 
             var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             var xmlPath = Path.Combine(baseDirectory, "neophyte-api.xml");
-            
+
             options.IncludeXmlComments(xmlPath);
         });
     }

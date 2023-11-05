@@ -26,7 +26,7 @@ public class PersonsRepository : IPersonsRepository
                     new BsonRegularExpression($"^{Regex.Escape(name)}", "i"))
             );
             queryable = queryable.Where(_ => filter.Inject());
-            
+
         }
 
         return queryable.ToListAsync();

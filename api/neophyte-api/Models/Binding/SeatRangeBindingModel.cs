@@ -9,7 +9,7 @@ public class SeatRangeBindingModel
     /// </summary>
     /// <example>Couples</example>
     public SeatCategory Category { get; set; }
-    
+
     /// <summary>
     /// The seat number range or a single seat number
     /// </summary>

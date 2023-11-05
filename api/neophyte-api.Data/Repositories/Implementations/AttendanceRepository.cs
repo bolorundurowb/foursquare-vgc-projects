@@ -48,7 +48,7 @@ public class AttendanceRepository : IAttendanceRepository
         var attendee = new Attendee(normalizedEmail, fullName, age, phone, residentialAddress, gender,
             returnedInLastTenDays, liveWithCovidCaregivers, caredForSickPerson, haveCovidSymptoms);
 
-        if (seatNumber.HasValue) 
+        if (seatNumber.HasValue)
             attendee.UpdateSeatNumber(seatNumber);
 
         if (!attendee.CanRegister())

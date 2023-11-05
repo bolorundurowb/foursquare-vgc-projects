@@ -9,7 +9,7 @@ public class CreateAdminBindingModelValidator : AbstractValidator<CreateAdminBin
     {
         RuleFor(x => x.Name)
             .NotEmpty();
-        
+
         RuleFor(x => x.EmailAddress)
             .NotEmpty()
             .EmailAddress();

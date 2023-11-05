@@ -33,7 +33,7 @@ public class Newcomer : Schema
     public MultiChoice? BecomeMember { get; private set; }
 
     public string Remarks { get; private set; }
-        
+
     [Ignore]
     public int SerialNo { get; set; }
 

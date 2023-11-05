@@ -39,7 +39,7 @@ public class MailgunService : IEmailService
             content.Add(new StringContent(emailMessage.Sender ?? Sender), "from");
             content.Add(new StringContent(recipient), "to");
             content.Add(new StringContent(emailMessage.Subject), "subject");
-            content.Add(new StringContent( emailMessage.Content), "html");
+            content.Add(new StringContent(emailMessage.Content), "html");
 
             foreach (var attachment in emailMessage.Attachments)
             {
