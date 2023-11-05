@@ -22,10 +22,6 @@ public static class MapsterConfigExtensions
         config.NewConfig<Newcomer, NewcomerViewModel>()
             .Map(x => x.Id, y => y.Id.ToString());
 
-        config.NewConfig<Attendee, AttendeeViewModel>()
-            .Map(x => x.Id, y => y.Id.ToString())
-            .Map(x => x.SeatAssigned, y => y.SeatNumber.HasValue ? y.SeatNumber.Value.ToString() : y.SeatAssigned);
-
         config.NewConfig<DateSummaryDto, DateSummaryViewModel>()
             .AfterMapping((x, y) => { y.HumanReadableDate = y.Date.ToString("ddd, dd MMM yyyy"); });
 

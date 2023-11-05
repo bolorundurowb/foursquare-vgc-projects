@@ -9,19 +9,19 @@ public class CreateAdminBindingModel
     /// </summary>
     /// <example>John Doe</example>
     [SwaggerSchema(Nullable = false)]
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
 
     /// <summary>
     /// The admins email address
     /// </summary>
     /// <example>john@doe.com</example>
     [SwaggerSchema(Nullable = false)]
-    public string EmailAddress { get; set; }
+    public string EmailAddress { get; set; } = null!;
 
     /// <summary>
     /// The default admin of the password
     /// </summary>
     /// <example>Y0urP@$5word</example>
     [SwaggerSchema(Nullable = false)]
-    public string Password { get; set; }
+    public string Password { get; set; } = null!;
 }

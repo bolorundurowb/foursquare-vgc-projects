@@ -9,17 +9,17 @@ public class BasePersonViewModel
     /// </summary>
     /// <example>61fff8966b22c10a9e790d57</example>
     [SwaggerSchema(Nullable = false)]
-    public string Id { get; set; }
+    public string Id { get; set; } = null!;
 
     /// <summary>
     /// The church attendee's first name
     /// </summary>
     /// <example>Jane</example>
-    public string FirstName { get; set; }
+    public string FirstName { get; set; } = null!;
 
     /// <summary>
     /// The church attendee's last name
     /// </summary>
     /// <example>Doe</example>
-    public string LastName { get; set; }
+    public string LastName { get; set; } = null!;
 }

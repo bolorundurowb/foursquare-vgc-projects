@@ -43,17 +43,6 @@ public class NewcomersController : ApiController
         return Ok(Mapper.Map<IEnumerable<NewcomerViewModel>>(newcomers));
     }
 
-    [Obsolete("Deprecated")]
-    [HttpPost("")]
-    [ProducesResponseType(typeof(NewcomerViewModel), 201)]
-    public async Task<IActionResult> AddNewcomer([FromBody] NewcomerBindingModel bm)
-    {
-        var newcomer = await _newcomersRepo.AddNewcomer(bm.FullName, bm.HomeAddress, bm.Phone, bm.EmailAddress,
-            bm.BirthDay, bm.AgeGroup, bm.CommentsOrPrayers, bm.HowYouFoundUs, bm.BecomeMember, bm.Gender,
-            bm.BornAgain);
-        return Created(Mapper.Map<NewcomerViewModel>(newcomer));
-    }
-
     [HttpPut("{id}")]
     [ProducesResponseType(typeof(NewcomerViewModel), 200)]
     [ProducesResponseType(typeof(GenericViewModel), 404)]

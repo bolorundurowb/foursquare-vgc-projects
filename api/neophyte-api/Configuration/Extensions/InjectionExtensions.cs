@@ -19,6 +19,5 @@ internal static class InjectionExtensions
         services.AddScoped<IAdminsRepository, AdminsRepository>();
         services.AddScoped<IPersonsRepository, PersonsRepository>();
         services.AddScoped<INewcomersRepository, NewcomersRepository>();
-        services.AddScoped<IAttendanceRepository, AttendanceRepository>();
     }
 }

@@ -31,9 +31,6 @@ public class Attendee : Schema
 
     public MultiChoice? HaveCovidSymptoms { get; private set; }
 
-    [Obsolete("Replaced by 'SeatAssigned'")]
-    public int? SeatNumber { get; private set; }
-
     public string SeatAssigned { get; private set; }
 
     public string SeatType { get; private set; }
@@ -128,11 +125,6 @@ public class Attendee : Schema
     public void UpdateAge(int? age)
     {
         if (age.HasValue) Age = age.Value;
-    }
-
-    public void UpdateSeatNumber(int? seatNumber)
-    {
-        if (seatNumber.HasValue) SeatNumber = seatNumber.Value;
     }
 
     public void UpdateReturnedInLastTenDays(bool? returnedInLastTen)
