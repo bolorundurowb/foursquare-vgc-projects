@@ -35,7 +35,7 @@ public class EventsController : ApiController
     [ProducesResponseType(typeof(List<BaseEventViewModel>), 200)]
     public async Task<IActionResult> GetAll([FromQuery] CollectionQueryModel qm)
     {
-        var events = await _eventRepo.GetAll(qm.Skip.Value, qm.Limit.Value);
+        var events = await _eventRepo.GetAll(qm.Skip, qm.Limit);
         return Ok(Mapper.Map<List<BaseEventViewModel>>(events));
     }
 
