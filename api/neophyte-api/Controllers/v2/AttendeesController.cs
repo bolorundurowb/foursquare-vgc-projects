@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using neophyte.api.Data.Repositories.Interfaces;
 using neophyte.api.Models.Binding;
@@ -15,6 +16,7 @@ public class AttendeesController : ApiController
     public AttendeesController(IMapper mapper, IAttendanceRegistryRepository attendanceRegistryRepo) : base(mapper) =>
         _attendanceRegistryRepo = attendanceRegistryRepo;
 
+    [AllowAnonymous]
     [HttpPost("")]
     [ProducesResponseType(201)]
     [ProducesResponseType(typeof(GenericViewModel), 400)]
