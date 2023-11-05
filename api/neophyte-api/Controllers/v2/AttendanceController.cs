@@ -32,6 +32,10 @@ public class AttendanceController : ApiController
     public async Task<IActionResult> GetOne(string registryId)
     {
         var attendance = await _attendanceRegistryRepo.GetOne(registryId);
+
+        if (attendance is null)
+            return NotFound("Attendance not found");
+
         return Ok(attendance);
     }
 

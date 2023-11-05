@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using meerkat;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using neophyte.api.Data.DTOs;
@@ -17,25 +18,25 @@ public class AttendanceRegistryRepository : IAttendanceRegistryRepository
     {
         return Meerkat.Query<AttendanceRegistry>()
             .OrderByDescending(x => x.Date)
-            .Select(x => new AttendanceSummaryDto(x.Date, x.Attendees.Count))
+            .Select(x => new AttendanceSummaryDto(x.Id.ToString(), x.Date, x.Attendees.Count))
             .Skip(skip)
             .Take(limit)
             .ToListAsync();
     }
 
-    public async Task<AttendanceSummaryDto> GetOne(string registryId)
+    public async Task<AttendanceSummaryDto?> GetOne(string registryId)
     {
-        var registry = await Meerkat.FindByIdAsync<AttendanceRegistry>(registryId);
+        var registry = await Meerkat.FindByIdAsync<AttendanceRegistry>(ObjectId.Parse(registryId));
 
         if (registry is null)
             return null;
 
-        return new AttendanceSummaryDto(registry.Date, registry.Attendees.Count);
+        return new AttendanceSummaryDto(registry.Id.ToString(), registry.Date, registry.Attendees.Count);
     }
 
     public async Task<List<AttendeeSummaryDto>> GetAttendeesForRegistry(string registryId)
     {
-        var registry = await Meerkat.FindByIdAsync<AttendanceRegistry>(registryId);
+        var registry = await Meerkat.FindByIdAsync<AttendanceRegistry>(ObjectId.Parse(registryId));
 
         if (registry is null)
             throw new Exception();
