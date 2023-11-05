@@ -26,7 +26,7 @@ internal static class AuthExtensions
                 };
             });
     }
-        
+
     public static void UseAuth(this IApplicationBuilder app)
     {
         app.UseAuthentication();

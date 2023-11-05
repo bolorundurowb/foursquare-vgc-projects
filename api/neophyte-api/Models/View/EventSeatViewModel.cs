@@ -10,7 +10,7 @@ public class EventSeatViewModel : SeatViewModel
     /// <example>2</example>
     public int Priority { get; private set; }
 
-   
+
     /// <summary>
     /// The venue internal identifier
     /// </summary>

@@ -7,7 +7,7 @@ using neophyte.api.Data.Enums;
 
 namespace neophyte.api.Data.Repositories.Interfaces;
 
-public interface INewcomersRepository 
+public interface INewcomersRepository
 {
     Task<List<DateSummaryDto>> GetNewcomersDates();
 

@@ -104,19 +104,19 @@ public class EventRepository : IEventRepository
 
             response.Add(attendee);
         }
-        
+
         // read out the online attendees
         foreach (var onlineAttendee in @event.OnlineAttendance)
         {
             var attendee = new EventAttendeeDto();
             var personId = onlineAttendee.PersonId;
 
-            if (!personMap.ContainsKey(personId)) 
+            if (!personMap.ContainsKey(personId))
                 continue;
-            
+
             var person = personMap[personId];
 
-            if (person == null) 
+            if (person == null)
                 continue;
 
             attendee.Venue = "Online";

@@ -7,7 +7,7 @@ using neophyte.api.Data.Enums;
 
 namespace neophyte.api.Data.Repositories.Interfaces;
 
-public interface IAttendanceRepository 
+public interface IAttendanceRepository
 {
     Task<List<DateSummaryDto>> GetAttendanceDates();
 

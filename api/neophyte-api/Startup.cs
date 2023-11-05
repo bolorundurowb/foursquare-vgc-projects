@@ -40,7 +40,7 @@ public class Startup
         app.UseLogging();
         app.UseApi();
         app.UseDocs(provider);
-            
+
         DbExtensions.SeedDefaults();
     }
 }

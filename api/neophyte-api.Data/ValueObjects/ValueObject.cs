@@ -14,12 +14,12 @@ public abstract class ValueObject : IEquatable<ValueObject>
 
     public static bool Equals(ValueObject current, ValueObject other)
     {
-        if (ReferenceEquals(null, current) && ReferenceEquals(null, other) )
+        if (ReferenceEquals(null, current) && ReferenceEquals(null, other))
             return true;
-        
+
         if (ReferenceEquals(null, current))
             return false;
-        
+
         if (ReferenceEquals(null, other))
             return false;
 
