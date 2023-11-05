@@ -25,7 +25,7 @@ public class PersonsController : ApiController
 
     [HttpGet("")]
     [ProducesResponseType(typeof(List<BasePersonViewModel>), 200)]
-    public async Task<IActionResult> GetAll([FromQuery] string name = null)
+    public async Task<IActionResult> GetAll([FromQuery] string? name = null)
     {
         var persons = await _personsRepo.GetAll(name);
         return Ok(Mapper.Map<List<PersonViewModel>>(persons));

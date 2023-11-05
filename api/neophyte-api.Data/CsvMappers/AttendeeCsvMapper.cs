@@ -23,10 +23,5 @@ public sealed class AttendeeCsvMapper : ClassMap<Attendee>
             .Name("Seat Type")
             .Index(3)
             .Convert(x => x.Value.SeatType);
-
-        Map(x => x.SeatNumber)
-            .Name("Seat Number")
-            .Index(4)
-            .Convert(x => x.Value.SeatNumber.HasValue ? x.Value.SeatNumber.Value.ToString() : x.Value.SeatAssigned);
     }
 }

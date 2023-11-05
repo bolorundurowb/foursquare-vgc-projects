@@ -9,5 +9,5 @@ public class GenericViewModel
     /// </summary>
     /// <example>A response message</example>
     [SwaggerSchema(Nullable = false)]
-    public string Message { get; set; }
+    public string Message { get; set; } = null!;
 }

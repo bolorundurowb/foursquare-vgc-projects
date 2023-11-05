@@ -16,11 +16,11 @@ public class SeatViewModel
     /// </summary>
     /// <example>C5</example>
     [SwaggerSchema(Nullable = false)]
-    public string Number { get; set; }
+    public string Number { get; set; } = null!;
 
     /// <summary>
     /// The couple seat number (if it is a couples seat)
     /// </summary>
     /// <example>C5A</example>
-    public string AssociatedNumber { get; set; }
+    public string AssociatedNumber { get; set; } = null!;
 }

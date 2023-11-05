@@ -127,11 +127,6 @@ public class Attendee : Schema
         if (age.HasValue) Age = age.Value;
     }
 
-    public void UpdateSeatNumber(int? seatNumber)
-    {
-        if (seatNumber.HasValue) SeatNumber = seatNumber.Value;
-    }
-
     public void UpdateReturnedInLastTenDays(bool? returnedInLastTen)
     {
         if (returnedInLastTen.HasValue) ReturnedInLastTenDays = returnedInLastTen.Value;

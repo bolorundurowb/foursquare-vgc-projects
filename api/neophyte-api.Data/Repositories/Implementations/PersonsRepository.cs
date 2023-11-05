@@ -13,7 +13,7 @@ namespace neophyte.api.Data.Repositories.Implementations;
 
 public class PersonsRepository : IPersonsRepository
 {
-    public Task<List<Person>> GetAll(string name = null)
+    public Task<List<Person>> GetAll(string? name)
     {
         var queryable = Meerkat.Query<Person>();
 
@@ -34,9 +34,9 @@ public class PersonsRepository : IPersonsRepository
 
     public Task<Person> FindById(string personId) => Meerkat.FindByIdAsync<Person>(ObjectId.Parse(personId));
 
-    public Task<Person> GetByPhone(string phoneNumber)
+    public Task<Person?> GetByPhone(string phoneNumber)
     {
-        phoneNumber = phoneNumber?.Regularize().Trim();
+        phoneNumber = phoneNumber.Regularize().Trim();
         return Meerkat.FindOneAsync<Person>(x => x.Phone == phoneNumber);
     }
 
