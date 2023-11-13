@@ -78,7 +78,7 @@
               class="AttendeeRegistration__person-list"
               v-if="!(showNewPersonForm || showCheckPersonForm || showSeatSelectionForm || showAssignedSeat)"
             >
-              <p>Choose a users registered on the device</p>
+              <p>Choose a user registered on the device</p>
 
               <div class="AttendeeRegistration__person-container">
                 <div

@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 // open routes
 const Home = () => import('../views/open/Home.vue');
 const AttendeeRegistration = () => import('../views/open/AttendeeRegistration');
+const RegisterAttendance = () => import('../views/open/RegisterAttendance');
 
 // admin routes
 const AdminHome = () => import('../views/admin/AdminHome.vue');
@@ -32,6 +33,11 @@ const routes = [
     name: 'AttendeeRegistration',
     component: AttendeeRegistration,
     props: true
+  },
+  {
+    path: '/attendance/register',
+    name: 'RegisterAttendance',
+    component: RegisterAttendance
   },
   {
     path: '/admin',
