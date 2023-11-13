@@ -23,7 +23,7 @@
     <el-form-item label="Email Address" prop="emailAddress">
       <el-input
         v-model="newAttendeeForm.emailAddress"
-        prefix-icon="el-icon-promotion"
+        prefix-icon="el-icon-message"
         placeholder="john@email.org"
         type="email"
       />
@@ -31,7 +31,7 @@
 
     <el-form-item label="Phone Number" prop="phoneNumber">
       <el-input
-        v-model="newAttendeeForm.emailAddress"
+        v-model="newAttendeeForm.phoneNumber"
         prefix-icon="el-icon-phone-outline"
         placeholder="08012345678"
         type="tel"
@@ -73,11 +73,11 @@ export default {
         firstName: [{ required: false, message: 'First name is required', trigger: 'blur' }],
         lastName: [{ required: false, message: 'Last name is required', trigger: 'blur' }],
         phoneNumber: [
-          { validator: this.validatePhoneNumber, trigger: 'blur' },
+          { validator: this.validatePhoneNumber, trigger: 'change' },
           { required: false }
         ],
         emailAddress: [
-          { validator: this.validateEmailAddress, trigger: 'blur' },
+          { validator: this.validateEmailAddress, trigger: 'change' },
           { required: false }
         ]
       }
