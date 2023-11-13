@@ -1,7 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-const Home = () => import('../views/attendees/Home.vue');
+// open routes
+const Home = () => import('../views/open/Home.vue');
+const AttendeeRegistration = () => import('../views/open/AttendeeRegistration');
+
+// admin routes
 const AdminHome = () => import('../views/admin/AdminHome.vue');
 const Login = () => import('../views/admin/auth/Login.vue');
 const Venues = () => import('../views/admin/Venues.vue');
@@ -9,7 +13,6 @@ const Events = () => import('../views/admin/Events.vue');
 const Admins = () => import('../views/admin/Admins.vue');
 const EventDetails = () => import('../views/admin/EventDetails');
 const VenueDetails = () => import('../views/admin/VenueDetails');
-const AttendeeRegistration = () => import('../views/attendees/AttendeeRegistration');
 
 Vue.use(VueRouter);
 
